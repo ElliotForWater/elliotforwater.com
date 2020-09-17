@@ -1,0 +1,24 @@
+.button {
+  border-radius: 30px;
+  padding: 16px 25px;
+  cursor: pointer;
+  line-height: 20.4px;
+  background: var(--waterAzure);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  color: white;
+  font-family: var(--headerFont);
+  text-align: center;
+}
+
+.button:hover {
+  background: var(--elliot-light-color, #9cd5db);
+}
+
+.button a {
+  cursor: pointer;
+  color: white;
+}
+
+.button a:hover {
+  color: white;
+}

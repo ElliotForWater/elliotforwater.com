@@ -6,12 +6,13 @@
   --emerald: #00909e;
   --violet: #633a82;
   --azure: #f1fcfc;
+  --waterAzure: #3fa2b8;
   --bodyFont: 'Lora', serif;
   --headerFont: 'Ubuntu', sans-serif;
 }
 
 body {
-  background: var(--backgroundColor);
+  background: white;
   color: var(--textColor);
   font-family: var(--bodyFont);
   font-weight: 400;

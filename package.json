@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "storybook": "start-storybook"
   },
   "keywords": [
     "search",
@@ -25,20 +26,28 @@
     ]
   },
   "dependencies": {
-    "next": "^9.5.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@types/node": "14.10.3",
+    "@types/react": "16.9.49",
+    "next": "9.5.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "typescript": "4.0.2"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1"
+    "@babel/core": "~7.11.6",
+    "@storybook/react": "~6.0.21",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "~8.1.0",
+    "eslint": "~7.9.0",
+    "eslint-config-prettier": "~6.11.0",
+    "eslint-plugin-jsx-a11y": "~6.3.1",
+    "eslint-plugin-prettier": "~3.1.4",
+    "eslint-plugin-react": "~7.20.6",
+    "eslint-plugin-react-hooks": "~4.1.2",
+    "husky": "~4.3.0",
+    "lint-staged": "~10.3.0",
+    "prettier": "~2.1.1",
+    "react-docgen-typescript-loader": "^3.7.2"
   },
   "husky": {
     "hooks": {
