@@ -8,7 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -s ./public",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -34,6 +34,7 @@
     "@babel/core": "~7.11.6",
     "@babel/plugin-transform-runtime": "~7.11.5",
     "@babel/preset-flow": "~7.10.4",
+    "@storybook/addon-docs": "^6.0.21",
     "@storybook/react": "~6.0.21",
     "@types/enzyme": "~3.10.6",
     "@types/jest": "~26.0.14",

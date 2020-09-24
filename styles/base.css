@@ -1,14 +1,14 @@
 :root {
-  --backgroundColor: #27496d;
-  --brandColor: #40e0d0;
-  --textColor: #27496d;
-  --textColorContrast: #dae1e7;
-  --emerald: #00909e;
-  --violet: #633a82;
-  --azure: #f1fcfc;
-  --waterAzure: #3fa2b8;
-  --bodyFont: 'Lora', serif;
-  --headerFont: 'Ubuntu', sans-serif;
+  --elliotPrimary: #4aacc2;
+  --elliotHover: #9cd5db;
+  --elliotVisited: #63bfce;
+  --dimGrey: #999999;
+  --lightGrey: #f0f0f0;
+  --placeholder: #cccccc;
+  --textColor: #444444;
+  --cta: #3fa2b8;
+  --footerBg: #e6f6f9;
+  font-family: Arial, sans-serif;
 }
 
 body {

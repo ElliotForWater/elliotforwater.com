@@ -1,7 +1,9 @@
 const path = require('path')
 
 module.exports = {
-  stories: ['../components/**/**/*.stories.tsx'],
+  stories: ['../components/**/**/*.stories.@(tsx|js|mdx)'],
+  addons: ['@storybook/addon-docs'],
+
   webpackFinal: async (config) => {
     // Remove the existing css rule
     config.module.rules = config.module.rules.filter(

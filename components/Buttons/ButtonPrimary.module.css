@@ -3,7 +3,7 @@
   padding: 16px 25px;
   cursor: pointer;
   line-height: 20.4px;
-  background: var(--waterAzure);
+  background: var(--cta);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
   color: white;
   font-family: var(--headerFont);

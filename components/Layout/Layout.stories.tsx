@@ -5,7 +5,7 @@ export default { title: 'Layout/Container' }
 
 export const Container = () => (
   <div style={{ background: '#673AB7', color: '#fff' }}>
-    <Layout>
+    <Layout pageTitle="home" pageDescription="some description">
       <h1>I'm the title</h1>
     </Layout>
   </div>
@@ -13,7 +13,7 @@ export const Container = () => (
 
 export const FluidContainer = () => (
   <div style={{ background: '#673AB7', color: '#fff' }}>
-    <Layout fluid>
+    <Layout fluid pageTitle="home" pageDescription="some description">
       <h1>I'm the title</h1>
     </Layout>
   </div>
