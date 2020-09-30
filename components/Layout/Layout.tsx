@@ -3,8 +3,8 @@ import Head from 'next/head'
 import styles from './Layout.module.css'
 
 type LayoutProps = {
-  fluid?: Boolean,
-  pageTitle: string,
+  fluid?: Boolean
+  pageTitle: string
   pageDescription?: string
 }
 

@@ -1,0 +1,50 @@
+.form {
+  position: relative;
+  width: calc(100% - 1em);
+  max-width: 255px;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  padding: 0 6px 0 1em;
+  height: 2.8em;
+  border-radius: 2em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--borderColor);
+}
+
+.input::placeholder {
+  /* Chrome, FF, Opera, Safari 10.1+ */
+  color: var(--placeholder-grey-color, lightgrey);
+  opacity: 1; /* FF */
+}
+.input:-ms-input-placeholder {
+  /* IE 10-11 */
+  color: var(--placeholder-grey-color, lightgrey);
+}
+.input::-ms-input-placeholder {
+  /* Edge */
+  color: var(--placeholder-grey-color, lightgrey);
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  bottom: 23%;
+  z-index: 1;
+  background: #fff;
+  border: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  font-size: 0.8em;
+}
+
+.icon svg {
+  color: var(--placeholder-grey-color, lightgrey);
+}
