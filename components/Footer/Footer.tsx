@@ -5,11 +5,6 @@ import styles from './Footer.module.css'
 export const Footer: FunctionComponent = () => {
   const [emailValue, setEmailValue] = useState('')
 
-  function handleSubmit(value) {
-    console.log('submit', value)
-    //todo: submit form
-  }
-
   function handleChange(value) {
     console.log('submit', value)
     setEmailValue(value)
@@ -79,7 +74,11 @@ export const Footer: FunctionComponent = () => {
       </div>
       <div className={styles.newsletter}>
         <h4 className={styles.title}>Follow our journey</h4>
-        <form className={styles.newsletterForm} onSubmit={handleSubmit}>
+        <form
+          className={styles.newsletterForm}
+          action="/Contact/Subscribe"
+          method="post"
+        >
           <input
             type="email"
             placeholder="Email"

@@ -9,7 +9,13 @@
   --cta: #3fa2b8;
   --footerBg: #e6f6f9;
   --borderColor: #99b7bd4f;
+  --lightGrey: #e8e8e8;
   font-family: Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -34,6 +40,20 @@ a {
 
 label {
   font-family: var(--headerFont);
+}
+
+.input::placeholder {
+  /* Chrome, FF, Opera, Safari 10.1+ */
+  color: var(--placeholder);
+  opacity: 1; /* FF */
+}
+.input:-ms-input-placeholder {
+  /* IE 10-11 */
+  color: var(--placeholder);
+}
+.input::-ms-input-placeholder {
+  /* Edge */
+  color: var(--placeholder);
 }
 
 /* COMMON STYLE */
