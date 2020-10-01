@@ -33,7 +33,6 @@ export const SearchBar: FunctionComponent = () => {
         break
       case 40:
         setHighlightIndex((prevIndex) => {
-          console.log(suggestedWords.length)
           if (prevIndex === suggestedWords.length - 1) {
             return prevIndex
           } else {
@@ -44,10 +43,8 @@ export const SearchBar: FunctionComponent = () => {
     }
   }
   async function showSuggestedWords(event) {
-    const value = event.target.value
-    if (!value) return
+    setSearchValue(event.target.value)
 
-    setSearchValue(value)
     try {
       const res = await fetchJsonp(`${suggestURL}${searchValue}`)
       const suggestedWordsArray = await res.json()
