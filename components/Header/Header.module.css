@@ -18,74 +18,23 @@
   margin: 20px 0px;
 }
 
-.bottomRow {
-  width: 100%;
-  padding-left: 10%;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.leftSide {
-  display: flex;
-  width: 100%;
-}
-
 .logo {
   width: 100px;
   margin: 0;
 }
 
-.logoSmaller {
-  width: 100px;
-  margin: 1em;
-}
-
 .dropletContainer {
-  margin: 1.2em 0 0 0;
   height: 1.6em;
   display: flex;
 }
 
 .dropletImg {
   min-width: 1em;
-  margin: 3px;
+  margin-right: 5px;
 }
 
 .dropletCount {
-  margin: 2px 5px 0 0;
-}
-
-.menu {
-  margin: 1.2em 1.2em;
-}
-
-.toggle {
-  color: #000;
-  font-size: 18px;
-}
-
-.toggle:hover,
-.toggle:focus {
-  color: #000;
-}
-
-.rightSide {
-  display: flex;
-  justify-content: flex-end;
-  margin: 1em;
-}
-
-.dropdownMenu {
-  left: -175px;
-}
-
-.dropdownMenuItem {
-  float: right;
-  clear: right;
-  margin: 0.5em 1em;
-}
-
-.divider {
-  clear: both;
+  margin-top: 6px;
 }
 
 .searchWrap {
@@ -95,26 +44,38 @@
   margin-bottom: 1em;
 }
 
+.menu {
+  margin-left: 1.2em;
+  margin-top: 6px;
+}
+
 @media (min-width: 768px) {
+  .wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    flex-direction: row;
+  }
+
+  .leftSide {
+    display: flex;
+    width: 60%;
+    align-items: center;
+  }
+
+  .logoSmaller {
+    width: 100px;
+    margin: 23px 1em 1em 1em;
+  }
+
   .searchWrap {
     margin: 1em 0;
   }
 
-  .leftSide {
-    width: 60%;
-  }
-
-  .logo {
-    flex: 0 0 100%;
-    min-width: 80px;
-    max-width: 130px;
-    padding-top: 6px;
-    padding-left: 1em;
-    padding-right: 2em;
-    margin: auto 0;
-  }
-
-  .bottomRow {
-    padding-left: 155px;
+  .rightSide {
+    display: flex;
+    justify-content: flex-end;
   }
 }

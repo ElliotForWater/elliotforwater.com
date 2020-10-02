@@ -1,0 +1,58 @@
+.hamburgerMenu {
+  display: block;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 17px;
+  cursor: pointer;
+}
+
+.hamburgerMenu span {
+  display: block;
+  width: auto;
+  height: 3px;
+  margin-bottom: 3px;
+  position: relative;
+  background: black;
+  border-radius: 10px;
+}
+
+/* Copy from bootstrap to be consistent with old website */
+.menuContainer {
+  position: absolute;
+  top: 100%;
+  left: -175px;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.menuItem {
+  /* float: right;
+  clear: right; */
+  text-align: right;
+  margin: 0.5em 1em;
+}
+
+.menuItem a {
+  display: block;
+  padding: 3px 20px;
+  line-height: 1.428571429;
+  color: #333;
+  white-space: nowrap;
+}
+
+.divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
