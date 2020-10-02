@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
+import '../../webComponents/SearchCounter'
 import styles from './Header.module.css'
 
 type HeaderProps = {
@@ -19,7 +20,7 @@ export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
                 alt="WaterDrop"
               />
               <p className={styles.dropletCount}>
-                {/* <search-count></search-count> */}
+                <search-count></search-count>
               </p>
             </div>
             <div className={styles.logo}>
@@ -53,7 +54,7 @@ export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
                 alt="WaterDrop"
               />
               <p className={styles.dropletCount}>
-                {/* <search-count></search-count> */}
+                <search-count></search-count>
               </p>
             </div>
             <div className={styles.menu}>{/* <partial name="_Menu" /> */}</div>
