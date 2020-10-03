@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import Head from 'next/head'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
 
 type LayoutProps = {
-  fluid?: Boolean
-  pageTitle: string
+  fluid?: Boolean,
+  pageTitle: string,
   pageDescription?: string
 }
 
@@ -51,10 +53,13 @@ export const Layout: FunctionComponent<LayoutProps> = ({
         <meta name="og:site_name" content="Elliot for Water" />
         <meta name="og:type" content="website"></meta>
       </Head>
-
-      <main className={fluid ? styles.fluid : styles.container}>
-        {children}
-      </main>
+      <body>
+        <Header />
+        <main className={fluid ? styles.fluid : styles.container}>
+          {children}
+        </main>
+        <Footer />
+      </body>
     </div>
   )
 }

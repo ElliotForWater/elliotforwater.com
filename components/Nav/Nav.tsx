@@ -1,15 +1,25 @@
 import React, { FunctionComponent, useState } from 'react'
-import styles from './DropdownMenu.module.css'
+import classnames from 'classnames'
+import styles from './Nav.module.css'
 
-export const DropdownMenu: FunctionComponent = () => {
+export const Nav: FunctionComponent = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
-    <nav>
-      <div className={styles.hamburgerMenu}>
+    <nav className={styles.nav}>
+      <div
+        className={styles.hamburgerMenu}
+        onClick={() => setIsOpen((wasOpen) => (wasOpen ? false : true))}
+      >
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <ul className={styles.menuContainer}>
+      <ul
+        className={classnames(styles.menuContainer, {
+          [styles.menuOpen]: isOpen
+        })}
+      >
         <li className={styles.menuItem}>
           <a href="/about">Contact</a>
         </li>
@@ -40,4 +50,4 @@ export const DropdownMenu: FunctionComponent = () => {
   )
 }
 
-export default DropdownMenu
+export default Nav

@@ -1,6 +1,6 @@
 import * as cookieHelper from '../helpers/_cookies'
 
-const template = document.createElement('template')
+const template = document && document.createElement('template')
 template.innerHTML = `<span></span>`
 
 class SearchCount extends HTMLElement {

@@ -1,7 +1,9 @@
+.nav {
+  position: relative;
+}
+
 .hamburgerMenu {
   display: block;
-  -webkit-user-select: none;
-  user-select: none;
   width: 17px;
   cursor: pointer;
 }
@@ -18,12 +20,11 @@
 
 /* Copy from bootstrap to be consistent with old website */
 .menuContainer {
+  display: none;
   position: absolute;
-  top: 100%;
+  top: 22px;
   left: -175px;
   z-index: 1000;
-  display: none;
-  float: left;
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
@@ -35,19 +36,27 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
+.menuOpen {
+  display: block;
+}
+
 .menuItem {
-  /* float: right;
-  clear: right; */
   text-align: right;
   margin: 0.5em 1em;
 }
 
 .menuItem a {
-  display: block;
+  display: inline-block;
   padding: 3px 20px;
   line-height: 1.428571429;
   color: #333;
   white-space: nowrap;
+}
+
+.menuItem a:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #428bca;
 }
 
 .divider {

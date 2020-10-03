@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
-import DropdownMenu from '../DropdownMenu/DropdownMenu'
+import Nav from '../Nav/Nav'
 import '../../webComponents/SearchCounter'
 import styles from './Header.module.css'
 
@@ -29,7 +29,7 @@ export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
                 <img src="/images/small_logo.svg" alt="Elliot For Water Logo" />
               </a>
             </div>
-            <DropdownMenu />
+            <Nav />
           </div>
           <div className={styles.searchWrap}>
             <SearchBar />
@@ -59,7 +59,7 @@ export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
               </p>
             </div>
             <div className={styles.menu}>
-              <DropdownMenu />
+              <Nav />
             </div>
           </div>
         </section>
