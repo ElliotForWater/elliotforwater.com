@@ -1,15 +1,16 @@
 import * as cookieHelper from '../helpers/_cookies'
 
-const template = document && document.createElement('template')
-template.innerHTML = `<span></span>`
 
 class SearchCount extends HTMLElement {
   constructor() {
     super()
+    const template = document.createElement('template')
+    template.innerHTML = `<span></span>`
     this.root = this.attachShadow({ mode: 'open' })
     this.root.appendChild(template.content.cloneNode(true))
     this.countElement = this.root.querySelector('span')
     this.cookiePolicyName = cookieHelper.COOKIE_NAME_SEARCH_COUNT
+
   }
 
   getCount() {

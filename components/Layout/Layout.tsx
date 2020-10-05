@@ -53,13 +53,13 @@ export const Layout: FunctionComponent<LayoutProps> = ({
         <meta name="og:site_name" content="Elliot for Water" />
         <meta name="og:type" content="website"></meta>
       </Head>
-      <body>
+      <div>
         <Header />
         <main className={fluid ? styles.fluid : styles.container}>
           {children}
         </main>
         <Footer />
-      </body>
+      </div>
     </div>
   )
 }

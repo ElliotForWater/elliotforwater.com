@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useRef, useEffect } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
 import styles from './SearchBar.module.css'
@@ -23,7 +23,7 @@ export const SearchBar: FunctionComponent = () => {
   function handleHighlight(event) {
     switch (event.keyCode) {
       case 38:
-        setHighlightIndex((prevIndex) => {
+        setHighlightIndex((prevIndex: number) => {
           if (prevIndex === 0) {
             return prevIndex
           } else {
@@ -32,7 +32,7 @@ export const SearchBar: FunctionComponent = () => {
         })
         break
       case 40:
-        setHighlightIndex((prevIndex) => {
+        setHighlightIndex((prevIndex: number) => {
           if (prevIndex === suggestedWords.length - 1) {
             return prevIndex
           } else {

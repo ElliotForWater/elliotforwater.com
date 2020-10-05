@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
 import Nav from '../Nav/Nav'
-import '../../webComponents/SearchCounter'
+
+
 import styles from './Header.module.css'
 
 type HeaderProps = {
@@ -9,6 +10,9 @@ type HeaderProps = {
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
+  useEffect(() => {
+    import("../../webComponents/SearchCounter")
+  }, [])
   return (
     <header className={styles.header}>
       {isMobile ? (
@@ -36,34 +40,34 @@ export const Header: FunctionComponent<HeaderProps> = ({ isMobile }) => {
           </div>
         </section>
       ) : (
-        <section className={styles.wrapper}>
-          <div className={styles.leftSide}>
-            <div className={styles.logoSmaller}>
-              <a href="https://www.elliotforwater.com/">
-                <img src="/images/small_logo.svg" alt="Elliot For Water Logo" />
-              </a>
+          <section className={styles.wrapper}>
+            <div className={styles.leftSide}>
+              <div className={styles.logoSmaller}>
+                <a href="https://www.elliotforwater.com/">
+                  <img src="/images/small_logo.svg" alt="Elliot For Water Logo" />
+                </a>
+              </div>
+              <div className={styles.searchWrap}>
+                <SearchBar />
+              </div>
             </div>
-            <div className={styles.searchWrap}>
-              <SearchBar />
+            <div className={styles.rightSide}>
+              <div className={styles.dropletContainer}>
+                <img
+                  className={styles.dropletImg}
+                  src="/images/water_droplet.svg"
+                  alt="WaterDrop"
+                />
+                <p className={styles.dropletCount}>
+                  <search-count></search-count>
+                </p>
+              </div>
+              <div className={styles.menu}>
+                <Nav />
+              </div>
             </div>
-          </div>
-          <div className={styles.rightSide}>
-            <div className={styles.dropletContainer}>
-              <img
-                className={styles.dropletImg}
-                src="/images/water_droplet.svg"
-                alt="WaterDrop"
-              />
-              <p className={styles.dropletCount}>
-                <search-count></search-count>
-              </p>
-            </div>
-            <div className={styles.menu}>
-              <Nav />
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
     </header>
   )
 }

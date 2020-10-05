@@ -1,7 +1,7 @@
-module.exports = {
-  webpack: (config, options) => {
-    config.module.rules.push()
+// module.exports = {
+//   webpack: (config, options) => {
+//     config.module.rules.push()
 
-    return config
-  }
-}
+//     return config
+//   }
+// }
