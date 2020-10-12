@@ -1,19 +1,16 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { useState } from 'react'
 import classnames from 'classnames'
 import styles from './Nav.module.css'
 
-export const Nav: FunctionComponent = () => {
+const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <nav className={styles.nav}>
-      <div
-        className={styles.hamburgerMenu}
-        onClick={() => setIsOpen((wasOpen) => (wasOpen ? false : true))}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className={styles.hamburgerMenu} onClick={() => setIsOpen((wasOpen) => !wasOpen)}>
+        <span />
+        <span />
+        <span />
       </div>
       <ul
         className={classnames(styles.menuContainer, {
@@ -21,29 +18,29 @@ export const Nav: FunctionComponent = () => {
         })}
       >
         <li className={styles.menuItem}>
-          <a href="/about">Contact</a>
+          <a href='/about'>Contact</a>
         </li>
         <li className={styles.menuItem}>
-          <a href="/about">About us</a>
+          <a href='/about'>About us</a>
         </li>
-        <li className={styles.divider}></li>
+        <li className={styles.divider} />
         <li className={styles.menuItem}>
-          <a href="https://www.facebook.com/elliotforwater/?fref=ts">Share</a>
+          <a href='https://www.facebook.com/elliotforwater/?fref=ts'>Share</a>
         </li>
         <li className={styles.menuItem}>
-          <a href="http://blog.elliotforwater.com/">Blog</a>
+          <a href='http://blog.elliotforwater.com/'>Blog</a>
         </li>
-        <li className={styles.divider}></li>
+        <li className={styles.divider} />
         <li className={styles.menuItem}>
-          <a href="#" data-toggle="modal" data-target="#settings-modal">
+          <a href='#' data-toggle='modal' data-target='#settings-modal'>
             Settings
           </a>
         </li>
         <li className={styles.menuItem}>
-          <a href="/Terms">Terms</a>
+          <a href='/Terms'>Terms</a>
         </li>
         <li className={styles.menuItem}>
-          <a href="/Privacy">Privacy</a>
+          <a href='/Privacy'>Privacy</a>
         </li>
       </ul>
     </nav>

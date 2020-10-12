@@ -1,6 +1,8 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import styles from './ButtonPrimary.module.css'
 
-export default function Button({ children }) {
+const Button: FC = ({ children }) => {
   return <div className={styles.button}>{children}</div>
 }
+
+export default Button

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
 import styles from './SearchBar.module.css'
@@ -7,7 +7,7 @@ import SearchIcon from '../Icons/SearchIcon'
 const suggestURL =
   'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
-export const SearchBar: FunctionComponent = () => {
+const SearchBar = () => {
   const [searchValue, setSearchValue] = useState('')
   const [highlightIndex, setHighlightIndex] = useState(0)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState(false)
@@ -20,34 +20,34 @@ export const SearchBar: FunctionComponent = () => {
     }
   }, [suggestedWords])
 
-  function handleHighlight(event) {
-    switch (event.keyCode) {
-      case 38:
-        setHighlightIndex((prevIndex: number) => {
-          if (prevIndex === 0) {
-            return prevIndex
-          } else {
-            return prevIndex - 1
-          }
-        })
-        break
-      case 40:
-        setHighlightIndex((prevIndex: number) => {
-          if (prevIndex === suggestedWords.length - 1) {
-            return prevIndex
-          } else {
-            return prevIndex + 1
-          }
-        })
-        break
+  const handleHighlight = useCallback((event) => {
+    if (event.keyCode === 38) {
+      setHighlightIndex((prevIndex: number) => {
+        if (prevIndex === 0) {
+          return prevIndex
+        } else {
+          return prevIndex - 1
+        }
+      })
     }
-  }
-  async function showSuggestedWords(event) {
+
+    if (event.keyCode === 40) {
+      setHighlightIndex((prevIndex: number) => {
+        if (prevIndex === suggestedWords.length - 1) {
+          return prevIndex
+        } else {
+          return prevIndex + 1
+        }
+      })
+    }
+  }, [])
+  async function showSuggestedWords (event: React.ChangeEvent<HTMLInputElement>): Promise<any> {
     setSearchValue(event.target.value)
 
     try {
       const res = await fetchJsonp(`${suggestURL}${searchValue}`)
       const suggestedWordsArray = await res.json()
+      console.log('suggestedW', suggestedWordsArray[1].slice(0, 10))
       setSuggestedWords(suggestedWordsArray[1].slice(0, 10))
       setIsSuggestionOpen(true)
       return
@@ -57,34 +57,34 @@ export const SearchBar: FunctionComponent = () => {
     }
   }
 
-  function handleSelectWord(word) {
+  function handleSelectWord (word: string) {
     setSearchValue(word)
     setIsSuggestionOpen(false)
   }
 
-  function handleOnBlur() {
+  function handleOnBlur () {
     setIsSuggestionOpen(false)
   }
 
   return (
     <div className={styles.container}>
-      <form action="/Search/Index" method="get" className={styles.form}>
+      <form action='/Search/Index' method='get' className={styles.form}>
         <input
-          name="q"
-          type="text"
+          name='q'
+          type='text'
           value={searchValue}
           className={styles.input}
           onChange={showSuggestedWords}
           onFocus={showSuggestedWords}
           onBlur={handleOnBlur}
-          autoComplete="off"
-          autoCapitalize="off"
-          autoCorrect="off"
-          spellCheck="false"
-          placeholder="Every search gives water..."
+          autoComplete='off'
+          autoCapitalize='off'
+          autoCorrect='off'
+          spellCheck='false'
+          placeholder='Every search gives water...'
         />
-        <button className={styles.button} type="submit">
-          <SearchIcon color="#ccc" size={14} />
+        <button className={styles.button} type='submit'>
+          <SearchIcon color='#ccc' size={14} />
         </button>
       </form>
       {isSuggestionOpen && (
@@ -95,9 +95,9 @@ export const SearchBar: FunctionComponent = () => {
               className={classnames(styles.autosuggestWord, {
                 [styles.highlight]: i === highlightIndex
               })}
-              onMouseDown={() => handleSelectWord(word)}
+              onMouseDown={() => handleSelectWord(word || '')}
             >
-              <SearchIcon color="#212121" size={14} /> {''}
+              <SearchIcon color='#212121' size={14} />
               {word}
             </li>
           ))}

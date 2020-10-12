@@ -1,6 +1,8 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import styles from './ButtonOutline.module.css'
 
-export default function ButtonOutline({ children }) {
+const ButtonOutline: FC = ({ children }) => {
   return <div className={styles.button}>{children}</div>
 }
+
+export default ButtonOutline

@@ -8,6 +8,6 @@
       "options": { "parser": "json" }
     }
   ],
-  "trailingComma": "none",
+  "trailingComma": "es5",
   "semi": false
 }
