@@ -18,10 +18,10 @@ const Nav = () => {
         })}
       >
         <li className={styles.menuItem}>
-          <a href='/about'>Contact</a>
+          <a href='https://www.elliotforwater.com/about'>Contact</a>
         </li>
         <li className={styles.menuItem}>
-          <a href='/about'>About us</a>
+          <a href='https://www.elliotforwater.com/about'>About us</a>
         </li>
         <li className={styles.divider} />
         <li className={styles.menuItem}>
@@ -37,10 +37,10 @@ const Nav = () => {
           </a>
         </li>
         <li className={styles.menuItem}>
-          <a href='/Terms'>Terms</a>
+          <a href='https://www.elliotforwater.com/Terms'>Terms</a>
         </li>
         <li className={styles.menuItem}>
-          <a href='/Privacy'>Privacy</a>
+          <a href='https://www.elliotforwater.com/Privacy'>Privacy</a>
         </li>
       </ul>
     </nav>

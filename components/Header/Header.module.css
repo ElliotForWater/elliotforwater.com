@@ -3,7 +3,11 @@
   justify-content: space-between;
 }
 
-.wrapper {
+.wrapperDesktop {
+  display: none;
+}
+
+.wrapperMobile {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -50,12 +54,16 @@
 }
 
 @media (min-width: 768px) {
-  .wrapper {
+  .wrapperMobile {
+    display: none;
+  }
+
+  .wrapperDesktop {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 0;
+    margin: 20px;
     flex-direction: row;
   }
 
@@ -63,19 +71,22 @@
     display: flex;
     width: 60%;
     align-items: center;
+    margin-bottom: 1em;
   }
 
   .logoSmaller {
     width: 100px;
-    margin: 23px 1em 1em 1em;
-  }
-
-  .searchWrap {
-    margin: 1em 0;
+    padding: 15px 25px 0 0;
   }
 
   .rightSide {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 1em;
+  }
+
+  .searchWrap {
+    margin: 0;
+    position: relative;
   }
 }

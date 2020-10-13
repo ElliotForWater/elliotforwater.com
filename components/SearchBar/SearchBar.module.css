@@ -1,26 +1,22 @@
-.container {
-  width: calc(100% - 1em);
-  max-width: 255px;
-}
-
 .form {
   position: relative;
 }
 
 .input {
   outline: none;
-  width: 100%;
+  width: calc(100% - 1em);
   padding: 0 6px 0 1em;
   height: 2.8em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--lightGrey);
+  font-size: 18px;
 }
 
 .button {
   position: absolute;
-  right: 0;
-  bottom: 23%;
+  right: 16px;
+  bottom: 27%;
   z-index: 1;
   background: #fff;
   border: 0;
@@ -29,17 +25,18 @@
 }
 
 .autosuggestResults {
+  position: absolute;
+  width: calc(100% - 45px);
   z-index: 2;
+  background-color: #fff;
+  list-style-type: none;
   margin-top: 0;
   margin-bottom: 10px;
   margin-left: 20px;
-  list-style-type: none;
-  background-color: #fff;
   border-left: 1px solid var(--lightGrey);
   border-right: 1px solid var(--lightGrey);
   border-bottom: 1px solid var(--lightGrey);
   border-radius: 0 0 24px 24px;
-  width: calc(100% - 50px);
 }
 
 .autosuggestWord {
@@ -55,4 +52,8 @@
 
 .highlight {
   background: var(--lightGrey);
+}
+
+.autosuggestItemIcon {
+  padding-right: 10px;
 }

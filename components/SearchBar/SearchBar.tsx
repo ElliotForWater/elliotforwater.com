@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [highlightIndex, setHighlightIndex] = useState<number>(0)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
-  const [suggestedWords, setSuggestedWords] = useState([])
+  const [suggestedWords, setSuggestedWords] = useState<Array<string>>([])
 
   useEffect(() => {
     document.addEventListener('keydown', handleHighlight)
@@ -47,7 +47,6 @@ const SearchBar = () => {
     try {
       const res = await fetchJsonp(`${suggestURL}${searchValue}`)
       const suggestedWordsArray = await res.json()
-      console.log('suggestedW', suggestedWordsArray[1].slice(0, 10))
       setSuggestedWords(suggestedWordsArray[1].slice(0, 10))
       setIsSuggestionOpen(true)
       return
@@ -67,7 +66,7 @@ const SearchBar = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <form action='/Search/Index' method='get' className={styles.form}>
         <input
           name='q'
@@ -84,7 +83,7 @@ const SearchBar = () => {
           placeholder='Every search gives water...'
         />
         <button className={styles.button} type='submit'>
-          <SearchIcon color='#ccc' size={14} />
+          <SearchIcon color='#ccc' size={16} />
         </button>
       </form>
       {isSuggestionOpen && (
@@ -97,7 +96,9 @@ const SearchBar = () => {
               })}
               onMouseDown={() => handleSelectWord(word || '')}
             >
-              <SearchIcon color='#212121' size={14} />
+              <span className={styles.autosuggestItemIcon}>
+                <SearchIcon color='#212121' size={14} />
+              </span>
               {word}
             </li>
           ))}
