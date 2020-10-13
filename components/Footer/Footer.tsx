@@ -3,7 +3,7 @@ import ButtonOutline from '../Buttons/ButtonOutline'
 import styles from './Footer.module.css'
 
 const Footer = () => {
-  const [emailValue, setEmailValue] = useState('')
+  const [emailValue, setEmailValue] = useState<string>('')
 
   function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
     console.log('submit', event.target)

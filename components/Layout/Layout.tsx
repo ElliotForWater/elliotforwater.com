@@ -4,9 +4,10 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
 
+// prettier-ignore
 interface LayoutProps {
-  fluid?: Boolean
-  pageTitle: string
+  fluid?: boolean,
+  pageTitle: string,
   pageDescription?: string
 }
 

@@ -8,9 +8,9 @@ const suggestURL =
   'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
 const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState('')
-  const [highlightIndex, setHighlightIndex] = useState(0)
-  const [isSuggestionOpen, setIsSuggestionOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [highlightIndex, setHighlightIndex] = useState<number>(0)
+  const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
   const [suggestedWords, setSuggestedWords] = useState([])
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import styles from './Nav.module.css'
 
 const Nav = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
     <nav className={styles.nav}>
