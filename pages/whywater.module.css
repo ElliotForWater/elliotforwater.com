@@ -1,0 +1,280 @@
+.layer1,
+.layer2,
+.layer3,
+.layer4,
+.layer5,
+.layer6 {
+  min-height: calc(100vh - 165px);
+  height: 100%;
+  position: relative;
+  top: -3px;
+}
+
+.layer2 {
+  background: #e5d1c1;
+}
+
+.layer3 {
+  background: #d9c6b8;
+}
+
+.layer4 {
+  background: #d0bbae;
+}
+
+.layer5 {
+  background: #c8b5a9;
+  padding-top: 50px;
+}
+
+.layer6 {
+  top: -5px;
+  background: white;
+  padding-top: 10%;
+}
+
+.bg1,
+.bg2,
+.bg3,
+.bg4,
+.bg5,
+.bg6 {
+  position: absolute;
+  bottom: 0;
+  width: 600px;
+  right: -140px;
+}
+
+.bg2 {
+  width: 700px;
+  right: -140px;
+}
+
+.bg3 {
+  right: auto;
+}
+
+.bg4 {
+  left: -140px;
+  right: auto;
+}
+
+.wellMiddle {
+  position: absolute;
+  top: 0;
+  background-color: var(--elliotVisited);
+  background-image: url('/images/why-water-page/wellBit.svg');
+  height: 100%;
+  width: 36px;
+  right: 10px;
+}
+
+.wellLastBit {
+  height: 65%;
+}
+
+.bubble {
+  display: none;
+  z-index: var(--zindex10);
+  position: absolute;
+  width: 200px;
+}
+
+.headline {
+  margin: 0 10px;
+  z-index: var(--zindex10);
+  position: relative;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.headline2 {
+  padding-top: 50px;
+}
+
+.headline3 {
+  padding-top: 50px;
+  text-align: right;
+}
+
+.headline4 {
+  padding-top: 50px;
+  text-align: right;
+}
+
+.headline6 {
+  margin-top: -15%;
+}
+
+.highlightText {
+  color: var(--elliotPrimary);
+}
+
+.title {
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  margin-bottom: 13px;
+}
+
+.smallTitle {
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+/* MEDIA QUERY */
+/* ==================================== */
+
+@media (min-width: 400px) {
+  .bg1,
+  .bg2,
+  .bg3,
+  .bg5 {
+    width: 130%;
+    right: auto;
+  }
+
+  .bg4 {
+    width: 150%;
+    right: auto;
+    left: -50px;
+  }
+
+  .bg6 {
+    width: 100%;
+    right: auto;
+  }
+
+  .wellMiddle {
+    width: 8.1%;
+    right: 2.4%;
+    top: -3px;
+  }
+
+  .description {
+    text-align: justify;
+  }
+
+  .headline {
+    font-size: 16px;
+  }
+
+  .headline3 .description {
+    text-align: right;
+  }
+
+  .headline4 {
+    margin: 0 auto;
+    left: -5%;
+    max-width: 350px;
+  }
+
+  .headline4 .description {
+    text-align: center;
+  }
+}
+
+@media (min-width: 600px) {
+  .headline {
+    margin: 0 25px;
+    max-width: 400px;
+  }
+
+  .headline2 {
+    padding-top: 100px;
+    max-width: 500px;
+  }
+
+  .headline3 {
+    right: -10%;
+  }
+
+  .headline4 {
+    margin: 0 auto;
+    max-width: 350px;
+  }
+
+  .headline6 {
+    margin-top: -15%;
+  }
+  
+  .title {
+    margin-bottom: 25px;
+  }
+  
+  .subtitle {
+    margin-bottom: 23px;
+  }
+}
+
+@media (min-width: 768px) {
+  .layer1,
+  .layer2,
+  .layer3,
+  .layer4,
+  .layer5,
+  .layer6 {
+    min-height: calc(100vh - 108px);
+  }
+
+  .bg4 {
+    left: auto;
+  }
+
+  .bg1,
+  .bg2,
+  .bg3,
+  .bg4,
+  .bg5 {
+    width: 100%;
+  }
+
+  .wellMiddle {
+    width: 6.1%;
+    right: 25%;
+  }
+}
+
+@media (min-width: 900px) {
+  .headline {
+    margin: 0 40px;
+    max-width: 400px;
+  }
+
+  .headline4 {
+    margin: 0 auto;
+    max-width: 350px;
+  }
+
+  .headline6 {
+    margin-top: -15%;
+  }
+}
+
+@media (min-height: 700px) {
+  .layer6 {
+    padding-top: 0;
+  }
+
+  .headline6 {
+    margin-top: 0;
+  }
+}
+
+@media (min-height: 800px) {
+  .wellLastBit {
+    height: 75%;
+  }
+}
+
+@media (min-height: 1080px) {
+  .wellLastBit {
+    height: 85%;
+  }
+}

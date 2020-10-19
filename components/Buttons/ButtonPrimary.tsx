@@ -1,8 +1,13 @@
 import React, { FC } from 'react'
 import styles from './ButtonPrimary.module.css'
+import classnames from 'classnames'
 
-const Button: FC = ({ children }) => {
-  return <div className={styles.button}>{children}</div>
+type Props = {
+  fluid?: boolean
+}
+
+const Button: FC<Props> = ({ children, fluid }) => {
+  return <div className={classnames(styles.button, { [styles.fluid]: fluid })}>{children}</div>
 }
 
 export default Button

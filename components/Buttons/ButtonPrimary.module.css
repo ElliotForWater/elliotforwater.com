@@ -8,6 +8,7 @@
   color: white;
   font-family: var(--headerFont);
   text-align: center;
+  display: inline-block;
 }
 
 .button:hover {
@@ -21,4 +22,8 @@
 
 .button a:hover {
   color: white;
+}
+
+.fluid {
+  width: 100%;
 }

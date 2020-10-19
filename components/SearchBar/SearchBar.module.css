@@ -4,7 +4,7 @@
 
 .input {
   outline: none;
-  width: calc(100% - 1em);
+  width: calc(100% - 2em);
   padding: 0 6px 0 1em;
   height: 2.8em;
   border-radius: 2em;
@@ -15,7 +15,7 @@
 
 .button {
   position: absolute;
-  right: 16px;
+  right: 26px;
   bottom: 27%;
   z-index: 1;
   background: #fff;

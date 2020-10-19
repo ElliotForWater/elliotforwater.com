@@ -10,8 +10,12 @@
   --footerBg: #e6f6f9;
   --borderColor: #99b7bd4f;
   --lightGrey: #e8e8e8;
-
-  font-family: Arial, sans-serif;
+  --zindex0: 0;
+  --zindex10: 10;
+  --zindex50: 50;
+  --zindex100: 100;
+  --zindex200: 200;
+  --zindex300: 300;
 }
 
 * {
@@ -27,26 +31,24 @@ body {
 body {
   background: white;
   color: var(--textColor);
-  font-family: var(--bodyFont);
   font-weight: 400;
   min-height: 100%;
+  line-height: 1.5;
+  /*TODO: CHANGE FONT WITH HELVETICA NEUE*/
+  font-family: Arial, sans-serif; 
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--headerFont);
   font-weight: 600;
+  line-height: 1.5;
 }
 
 a {
   text-decoration: none;
   color: var(--emerald);
-}
-
-label {
-  font-family: var(--headerFont);
 }
 
 .input::placeholder {
