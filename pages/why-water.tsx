@@ -31,10 +31,20 @@ function WaterPage () {
             millions of people everyday by simply searching the web. Every search equals one liter
             of clean drinking water.
           </p>
-          <ButtonPrimary>Add Elliot for water to Chrome</ButtonPrimary>
+          <div className={styles.hideMobile}>
+            <ButtonPrimary>Add Elliot for water to Chrome</ButtonPrimary>
+          </div>
         </div>
         <img className={styles.bg1} src={bg1} />
-        <img className={classnames(styles.bubble, styles.l1Bubble)} src={l1Bubble} />
+        <div className={styles.bg1Hover}>
+          <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper1)}>
+            <p>
+              Wells allow people with no acess to fresh water to have a direct and sustainable water
+              source directly at their fingertips.
+            </p>
+            <img className={classnames(styles.bubble, styles.l1Bubble)} src={l1Bubble} />
+          </div>
+        </div>
       </section>
 
       <section className={styles.layer2}>
@@ -47,7 +57,15 @@ function WaterPage () {
         </div>
         <img className={styles.bg2} src={bg2} />
         <div className={styles.wellMiddle} />
-        <img className={classnames(styles.bubble, styles.l2Bubble)} src={l2Bubble} />
+        <div className={styles.bg2Hover}>
+          <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper2)}>
+            <p>
+              Dirty water sourced from shallow hand-dug wells can contain many harmful bacteria,
+              parasites, and even toxic chemicals
+            </p>
+            <img className={classnames(styles.bubble, styles.l2Bubble)} src={l2Bubble} />
+          </div>
+        </div>
       </section>
 
       <section className={styles.layer3}>
@@ -60,7 +78,12 @@ function WaterPage () {
         </div>
         <img className={styles.bg3} src={bg3} />
         <div className={styles.wellMiddle} />
-        <img className={classnames(styles.bubble, styles.l3Bubble)} src={l3Bubble} />
+        <div className={styles.bg3Hover}>
+          <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper3)}>
+            <p>One of these jars the women carry on their heads can weigh up to 44 pounds!</p>
+            <img className={classnames(styles.bubble, styles.l3Bubble)} src={l3Bubble} />
+          </div>
+        </div>
       </section>
 
       <section className={styles.layer4}>
@@ -75,7 +98,15 @@ function WaterPage () {
         </div>
         <img className={styles.bg4} src={bg4} />
         <div className={styles.wellMiddle} />
-        <img className={classnames(styles.bubble, styles.l4Bubble)} src={l4Bubble} />
+        <div className={styles.bg4Hover}>
+          <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper4)}>
+            <p>
+              Wells are usually dug around 50-75 feet to reach the water found deep within the
+              earth.
+            </p>
+            <img className={classnames(styles.bubble, styles.l4Bubble)} src={l4Bubble} />
+          </div>
+        </div>
       </section>
 
       <section className={styles.layer5}>
@@ -89,7 +120,15 @@ function WaterPage () {
         </div>
         <img className={styles.bg5} src={bg5} />
         <div className={classnames(styles.wellMiddle, styles.wellLastBit)} />
-        <img className={classnames(styles.bubble, styles.l5Bubble)} src={l5Bubble} />
+        <div className={styles.bg5Hover}>
+          <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper5)}>
+            <p>
+              A pump cylinder pulls the water up through the main pipes and delivers the fresh
+              water.
+            </p>
+            <img className={classnames(styles.bubble, styles.l5Bubble)} src={l5Bubble} />
+          </div>
+        </div>
       </section>
 
       <section className={styles.layer6}>

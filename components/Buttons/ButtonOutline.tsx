@@ -1,8 +1,20 @@
-import React, { FC } from 'react'
+import React from 'react'
+import classnames from 'classnames'
 import styles from './ButtonOutline.module.css'
 
-const ButtonOutline: FC = ({ children }) => {
-  return <div className={styles.button}>{children}</div>
+interface ButtonProps {
+  fluid?: boolean
+  handleClick?: (event: React.MouseEvent<HTMLElement>) => void
+  children: any
 }
 
-export default ButtonOutline
+export default function ButtonOutline (Props: ButtonProps) {
+  return (
+    <div
+      className={classnames(styles.button, { [styles.fluid]: Props.fluid })}
+      onClick={Props.handleClick}
+    >
+      {Props.children}
+    </div>
+  )
+}

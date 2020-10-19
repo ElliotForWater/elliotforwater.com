@@ -19,12 +19,10 @@
   margin-top: 40px;
 }
 
-.links {
-  grid-area: links;
-}
-
 .separationLine {
   grid-area: line;
+  color: var(--textColor);
+  margin-top: 50px;
 }
 
 .icons {
@@ -46,7 +44,8 @@
   border: none;
   border-bottom: 1px dotted black;
   outline: none;
-  top: 3px;
+  top: 0;
+  right: 3px;
   position: relative;
 }
 
@@ -62,12 +61,8 @@
   border: 1px solid var(--elliotPrimary);
 }
 
-.separationLine {
-  color: var(--textColor);
-  margin-top: 50px;
-}
-
 .links {
+  grid-area: links;
   margin-top: 10px;
   list-style: none;
   padding: 0;
@@ -77,7 +72,7 @@
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  margin: 0px 10px;
+  margin: 0 10px;
   display: inline;
 }
 
@@ -108,7 +103,7 @@
 
   .newsletter {
     text-align: right;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .links {

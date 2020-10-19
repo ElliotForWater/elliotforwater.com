@@ -6,7 +6,6 @@ const Footer = () => {
   const [emailValue, setEmailValue] = useState<string>('')
 
   function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('submit', event.target)
     setEmailValue(event.target.value)
   }
 
@@ -66,7 +65,7 @@ const Footer = () => {
             onChange={handleChange}
             className={styles.newsletterEmail}
           />
-          <ButtonOutline>Subscribe</ButtonOutline>
+          <ButtonOutline handleClick={() => setEmailValue('')}>Subscribe</ButtonOutline>
         </form>
       </div>
 

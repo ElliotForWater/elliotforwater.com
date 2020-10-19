@@ -73,13 +73,6 @@
   height: 65%;
 }
 
-.bubble {
-  display: none;
-  z-index: var(--zindex10);
-  position: absolute;
-  width: 200px;
-}
-
 .headline {
   margin: 0 10px;
   z-index: var(--zindex10);
@@ -128,8 +121,71 @@
   margin-bottom: 20px;
 }
 
+.hideMobile {
+  display: none;
+}
+
+.bubbleWrapper {
+  z-index: var(--zindex10);
+  position: absolute;
+  font-size: 14px;
+  display: none;
+}
+
+.bubbleWrapper p {
+  position: absolute;
+}
+
+.bubbleWrapper1 {
+  width: 350px;
+  left: -80%;
+  bottom: 30%;
+}
+
+.bubbleWrapper1 p {
+  max-width: 300px;
+  padding: 18px 0 0 20px;
+}
+
+.bubbleWrapper2 {
+  width: 300px;
+  left: -23%;
+  top: -30%;
+}
+
+.bubbleWrapper2 p {
+  max-width: 230px;
+  text-align: justify;
+  padding: 23px;
+  line-height: 1.6;
+}
+
+.bubbleWrapper3 {
+  width: 269px;
+  left: -20%;
+  top: -42%;
+}
+
+.bubbleWrapper3 p {
+  max-width: 200px;
+  text-align: justify;
+  padding: 20px;
+}
+
+.bubbleWrapper4,
+.bubbleWrapper5 {
+  width: 280px;
+  right: -12%;
+}
+
+.bubbleWrapper4 p,
+.bubbleWrapper5 p {
+  max-width: 220px;
+  padding: 11px 0 0 29px;
+  line-height: 1.3;
+}
+
 /* MEDIA QUERY */
-/* ==================================== */
 
 @media (min-width: 400px) {
   .bg1,
@@ -192,7 +248,8 @@
   }
 
   .headline3 {
-    right: -10%;
+    right: -15%;
+    padding-top: 50px;
   }
 
   .headline4 {
@@ -203,11 +260,11 @@
   .headline6 {
     margin-top: -15%;
   }
-  
+
   .title {
     margin-bottom: 25px;
   }
-  
+
   .subtitle {
     margin-bottom: 23px;
   }
@@ -239,6 +296,10 @@
     width: 6.1%;
     right: 25%;
   }
+
+  .headline3 {
+    right: -10%;
+  }
 }
 
 @media (min-width: 900px) {
@@ -257,6 +318,71 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .hideMobile {
+    display: block;
+  }
+
+  .headline3 {
+    right: -24%;
+    padding-top: 20px;
+  }
+
+  .bg1Hover {
+    position: absolute;
+    right: 8%;
+    width: 30%;
+    height: 50%;
+    bottom: 5%;
+  }
+
+  .bg1Hover:hover .bubbleWrapper1 {
+    display: block;
+  }
+
+  .bg2Hover {
+    position: absolute;
+    right: 30%;
+    width: 30%;
+    height: 50%;
+    bottom: 20%;
+  }
+
+  .bg2Hover:hover .bubbleWrapper2 {
+    display: block;
+  }
+
+  .bg3Hover {
+    position: absolute;
+    left: 10%;
+    width: 35%;
+    height: 50%;
+    bottom: 20%;
+  }
+
+  .bg3Hover:hover .bubbleWrapper3 {
+    display: block;
+  }
+
+  .bg4Hover,
+  .bg5Hover {
+    position: absolute;
+    right: 10%;
+    width: 35%;
+    height: 50%;
+    bottom: 20%;
+  }
+
+  .bg4Hover:hover .bubbleWrapper4 {
+    display: block;
+  }
+
+  .bg5Hover:hover .bubbleWrapper5 {
+    display: block;
+  }
+}
+
+/* MEDIA HEIGHT */
 @media (min-height: 700px) {
   .layer6 {
     padding-top: 0;

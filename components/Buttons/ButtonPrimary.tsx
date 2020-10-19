@@ -1,13 +1,20 @@
-import React, { FC } from 'react'
+import React from 'react'
 import styles from './ButtonPrimary.module.css'
 import classnames from 'classnames'
 
-type Props = {
+interface ButtonProps {
   fluid?: boolean
+  handleClick?: (event: React.MouseEvent<HTMLElement>) => void
+  children: any
 }
 
-const Button: FC<Props> = ({ children, fluid }) => {
-  return <div className={classnames(styles.button, { [styles.fluid]: fluid })}>{children}</div>
+export default function Button (Props: ButtonProps) {
+  return (
+    <div
+      className={classnames(styles.button, { [styles.fluid]: Props.fluid })}
+      onClick={Props.handleClick}
+    >
+      {Props.children}
+    </div>
+  )
 }
-
-export default Button
