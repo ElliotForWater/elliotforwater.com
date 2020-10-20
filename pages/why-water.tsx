@@ -32,7 +32,9 @@ function WaterPage () {
             of clean drinking water.
           </p>
           <div className={styles.hideMobile}>
-            <ButtonPrimary>Add Elliot for water to Chrome</ButtonPrimary>
+            <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
+              Add Elliot for water to Chrome
+            </ButtonPrimary>
           </div>
         </div>
         <img className={styles.bg1} src={bg1} />
@@ -133,14 +135,16 @@ function WaterPage () {
 
       <section className={styles.layer6}>
         <div className={classnames(styles.headline, styles.headline6)}>
-          <p className={styles.description}>
+          <div className={styles.description}>
             <h3 className={styles.subtitle}>How does it work?</h3>
             We work with local and trusted organizations in order to implement the best and most
             sustainable solution in each village. The methods that are used depend heavily on a
             projects geographical positioning/climate. The most important part is that all people
             get access to fresh drinking water.
-          </p>
-          <ButtonPrimary>Add Elliot for water to Chrome</ButtonPrimary>
+          </div>
+          <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
+            Add Elliot for water to Chrome
+          </ButtonPrimary>
         </div>
         <img className={styles.bg6} src={bg6} />
       </section>

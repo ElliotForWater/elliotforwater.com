@@ -11,19 +11,19 @@
 }
 
 .layer2 {
-  background: #e5d1c1;
+  background: #dfc8b3;
 }
 
 .layer3 {
-  background: #d9c6b8;
+  background: #d1bcaa;
 }
 
 .layer4 {
-  background: #d0bbae;
+  background: #c6af9e;
 }
 
 .layer5 {
-  background: #c8b5a9;
+  background: #bca799;
   padding-top: 50px;
 }
 
@@ -40,7 +40,7 @@
 .bg5,
 .bg6 {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   width: 600px;
   right: -140px;
 }
@@ -62,8 +62,9 @@
 .wellMiddle {
   position: absolute;
   top: 0;
-  background-color: var(--elliotVisited);
-  background-image: url('/images/why-water-page/wellBit.svg');
+  background-image: url('/images/why-water-page/wellBit.png');
+  background-repeat: repeat round;
+  background-size: 100%;
   height: 100%;
   width: 36px;
   right: 10px;
@@ -74,7 +75,7 @@
 }
 
 .headline {
-  margin: 0 10px;
+  margin: 0 20px;
   z-index: var(--zindex10);
   position: relative;
   max-width: 75%;
@@ -208,7 +209,7 @@
   }
 
   .wellMiddle {
-    width: 8.1%;
+    width: 8%;
     right: 2.4%;
     top: -3px;
   }
