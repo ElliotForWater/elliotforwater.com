@@ -6,6 +6,7 @@ import styles from './whywater.module.css'
 
 // Images Paths
 const bg1 = '/images/why-water-page/bg1.svg'
+const wellTop = '/images/why-water-page/wellTop.svg'
 const l1Bubble = '/images/why-water-page/layer1_bubble.svg'
 const bg2 = '/images/why-water-page/bg2.svg'
 const l2Bubble = '/images/why-water-page/layer2_bubble.svg'
@@ -14,6 +15,7 @@ const l3Bubble = '/images/why-water-page/layer3_bubble.svg'
 const bg4 = '/images/why-water-page/bg4.svg'
 const l4Bubble = '/images/why-water-page/layer4_bubble.svg'
 const bg5 = '/images/why-water-page/bg5.svg'
+const wellBottom = '/images/why-water-page/wellBottom.svg'
 const l5Bubble = '/images/why-water-page/layer5_bubble.svg'
 const bg6 = '/images/why-water-page/bg6.svg'
 
@@ -38,6 +40,7 @@ function WaterPage () {
           </div>
         </div>
         <img className={styles.bg1} src={bg1} />
+        <img className={styles.wellTop} src={wellTop} />
         <div className={styles.bg1Hover}>
           <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper1)}>
             <p>
@@ -122,6 +125,7 @@ function WaterPage () {
         </div>
         <img className={styles.bg5} src={bg5} />
         <div className={classnames(styles.wellMiddle, styles.wellLastBit)} />
+        <img className={styles.wellBottom} src={wellBottom} />
         <div className={styles.bg5Hover}>
           <div className={classnames(styles.bubbleWrapper, styles.bubbleWrapper5)}>
             <p>
@@ -142,9 +146,11 @@ function WaterPage () {
             projects geographical positioning/climate. The most important part is that all people
             get access to fresh drinking water.
           </div>
-          <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
-            Add Elliot for water to Chrome
-          </ButtonPrimary>
+          <div className={styles.hideMobile}>
+            <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
+              Add Elliot for water to Chrome
+            </ButtonPrimary>
+          </div>
         </div>
         <img className={styles.bg6} src={bg6} />
       </section>
