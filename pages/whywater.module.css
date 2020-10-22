@@ -390,7 +390,9 @@
   }
 
   .bg1Hover:hover .bubbleWrapper1 {
-    display: block;
+    /* Hiding bubble for now (22.10.2020) */
+
+    /* display: block; */
   }
 
   .bg2Hover {
@@ -402,7 +404,9 @@
   }
 
   .bg2Hover:hover .bubbleWrapper2 {
-    display: block;
+    /* Hiding bubble for now (22.10.2020) */
+
+    /* display: block; */
   }
 
   .bg3Hover {
@@ -414,7 +418,9 @@
   }
 
   .bg3Hover:hover .bubbleWrapper3 {
-    display: block;
+    /* Hiding bubble for now (22.10.2020) */
+
+    /* display: block; */
   }
 
   .bg4Hover,
@@ -427,11 +433,15 @@
   }
 
   .bg4Hover:hover .bubbleWrapper4 {
-    display: block;
+    /* Hiding bubble for now (22.10.2020) */
+
+    /* display: block; */
   }
 
   .bg5Hover:hover .bubbleWrapper5 {
-    display: block;
+    /* Hiding bubble for now (22.10.2020) */
+
+    /* display: block; */
   }
 }
 
