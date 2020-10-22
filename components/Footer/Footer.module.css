@@ -61,6 +61,13 @@
   border: 1px solid var(--elliotPrimary);
 }
 
+.submitButton {
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 .links {
   grid-area: links;
   margin-top: 10px;

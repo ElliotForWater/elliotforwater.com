@@ -15,7 +15,7 @@ const socialDescription = 'Search Engine which collects water to build well'
 
 export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescription }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Head>
         <title>{pageTitle} - Elliot for Water</title>
         {/* <!-- Search Engine --> */}
@@ -34,7 +34,7 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         <meta name='og:site_name' content='Elliot for Water' />
         <meta name='og:type' content='website' />
       </Head>
-      <div>
+      <div className={styles.wrapper}>
         <Header />
         <main className={fluid ? styles.fluid : styles.container}>{children}</main>
         <Footer />

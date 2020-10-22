@@ -1,4 +1,9 @@
+.wrapper {
+  height: 100%;
+}
+
 .container {
+  min-height: calc(100% - 260px - 108px); /* 100% - footerHeight - headerHeight */
   max-width: 1200px;
   padding: 0 15px;
   margin: 0 auto;

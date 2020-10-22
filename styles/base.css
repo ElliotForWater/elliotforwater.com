@@ -24,7 +24,8 @@
 }
 
 html,
-body {
+body,
+#__next {
   height: 100%;
 }
 
@@ -34,8 +35,7 @@ body {
   font-weight: 400;
   min-height: 100%;
   line-height: 1.5;
-  /*TODO: CHANGE FONT WITH HELVETICA NEUE*/
-  font-family: Arial, sans-serif; 
+  font-family: Arial, sans-serif;
 }
 
 h1,

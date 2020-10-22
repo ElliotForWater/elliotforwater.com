@@ -65,7 +65,12 @@ const Footer = () => {
             onChange={handleChange}
             className={styles.newsletterEmail}
           />
-          <ButtonOutline handleClick={() => setEmailValue('')}>Subscribe</ButtonOutline>
+          {/* <ButtonOutline handleClick={() => setEmailValue('')}>Subscribe</ButtonOutline> */}
+          <ButtonOutline>
+            <button className={styles.submitButton} type='submit'>
+              Subscribe
+            </button>
+          </ButtonOutline>
         </form>
       </div>
 
