@@ -29,13 +29,12 @@ function WaterPage () {
           </h1>
           <h3 className={styles.subtitle}>1 in 10 people lack access to safe drinking water</h3>
           <p className={styles.description}>
-            Marking Elliot for Water your default search engine, means you will be directly saving
-            millions of people everyday by simply searching the web. Every search equals one liter
-            of clean drinking water.
+            Marking Elliot for Water your default search engine means you will be directly saving
+            millions of people every day by simply searching the web.
           </p>
           <div className={styles.hideMobile}>
             <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
-              Add Elliot for water to Chrome
+              Add Elliot for Water to Chrome
             </ButtonPrimary>
           </div>
         </div>
@@ -56,8 +55,8 @@ function WaterPage () {
         <div className={classnames(styles.headline, styles.headline2)}>
           <p className={styles.description}>
             <strong className={styles.smallTitle}>785 million people</strong>
-            world wide lack access to safe drinking water. Providing clean water we can save the
-            lives of over 768,000 people every year.
+            around the world lack access to safe drinking water leading to many health diseases.
+            Clean water can save the lives of more than 760,000 people every year.
           </p>
         </div>
         <img className={styles.bg2} src={bg2} />
@@ -77,8 +76,8 @@ function WaterPage () {
         <div className={classnames(styles.headline, styles.headline3)}>
           <p className={styles.description}>
             <strong className={styles.smallTitle}>6 hours every day</strong>
-            is how long women spend collecting water. When we give villages fresh water, it means
-            women get the opportunity to work and time to take send with families.
+            is how long women spend collecting water. When we give villages clean water, women get
+            back the time and the opportunity to work and take care of their families.
           </p>
         </div>
         <img className={styles.bg3} src={bg3} />
@@ -94,11 +93,10 @@ function WaterPage () {
       <section className={styles.layer4}>
         <div className={classnames(styles.headline, styles.headline4)}>
           <p className={styles.description}>
-            Children walk up to
-            <strong className={styles.smallTitle}> 4 miles per day</strong>
-            to find muddy drinking water. Your searches give them not only fresh and healthy
-            drinking water, but also the time that allows them to attend a school and get an
-            education.
+            <strong className={styles.smallTitle}>Children walk up to 4 miles</strong>
+            per day to find muddy drinking water. Your searches give them not only fresh and healthy
+            drinking water, but also the time to attend school, get an education, and enjoy their
+            childhood.
           </p>
         </div>
         <img className={styles.bg4} src={bg4} />
@@ -117,10 +115,9 @@ function WaterPage () {
       <section className={styles.layer5}>
         <div className={classnames(styles.headline, styles.headline5)}>
           <p className={styles.description}>
-            <strong className={styles.smallTitle}>Offset CO2 pollution.</strong>
-            By providing villages with clean drinking water, people in developing countries do not
-            have to burn wood to boil and purify water. Instead they can take that time to farm and
-            practice agriculture.
+            <strong className={styles.smallTitle}>Carbon offset.</strong>
+            Access to clean drinking water prevents people from creating CO2 emissions, as villagers
+            do not need anymore to burn wood to boil and purify their water.
           </p>
         </div>
         <img className={styles.bg5} src={bg5} />
@@ -140,15 +137,15 @@ function WaterPage () {
       <section className={styles.layer6}>
         <div className={classnames(styles.headline, styles.headline6)}>
           <div className={styles.description}>
-            <h3 className={styles.subtitle}>How does it work?</h3>
-            We work with local and trusted organizations in order to implement the best and most
-            sustainable solution in each village. The methods that are used depend heavily on a
-            projects geographical positioning/climate. The most important part is that all people
-            get access to fresh drinking water.
+            <h3 className={styles.subtitle}>How do we work?</h3>
+            We work with local and trusted organizations to implement the best and most sustainable
+            solution in each village. In fact, not every location has the same needs: some villages
+            may require wells while other sand filters or pipelines, for example. The most important
+            thing is that all people get access to fresh drinking water.
           </div>
           <div className={styles.hideMobile}>
             <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
-              Add Elliot for water to Chrome
+              Add Elliot for Water to Chrome
             </ButtonPrimary>
           </div>
         </div>
