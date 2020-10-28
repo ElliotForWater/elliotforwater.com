@@ -1,5 +1,6 @@
 :root {
-  --elliotPrimary: #4aacc2;
+  --elliotPrimary: #72afd4;
+  --elliotSecondary: #5082af;
   --elliotHover: #9cd5db;
   --elliotVisited: #63bfce;
   --dimGrey: #999;
@@ -10,6 +11,8 @@
   --footerBg: #e6f6f9;
   --borderColor: #99b7bd4f;
   --lightGrey: #e8e8e8;
+  --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
+  --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
   --zindex0: 0;
   --zindex10: 10;
   --zindex50: 50;
@@ -35,14 +38,15 @@ body {
   font-weight: 400;
   min-height: 100%;
   line-height: 1.5;
-  font-family: Arial, sans-serif;
+  font-family: var(--fontCommon);
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-weight: 600;
+  font-family: var(--fontCommon);
+  font-weight: 700;
   line-height: 1.5;
 }
 

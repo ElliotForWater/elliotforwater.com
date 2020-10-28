@@ -1,18 +1,25 @@
 .button {
-  border-radius: 30px;
-  padding: 16px 25px;
-  cursor: pointer;
-  line-height: 20.4px;
-  background: var(--cta);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-  color: white;
-  font-family: var(--headerFont);
-  text-align: center;
   display: inline-block;
+  font-family: var(--fontCommon);
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  line-height: 20.4px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, var(--elliotSecondary) 0%, var(--elliotPrimary) 51%, var(--elliotSecondary) 100%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  padding: 8px 24px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 .button:hover {
-  background: var(--elliot-light-color, #9cd5db);
+  background-position: right center;
+}
+
+.big {
+  padding: 16px 24px;
 }
 
 .button a {

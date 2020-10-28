@@ -33,8 +33,11 @@ function WaterPage () {
             millions of people every day by simply searching the web.
           </p>
           <div className={styles.hideMobile}>
-            <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
-              Add Elliot for Water to Chrome
+            <ButtonPrimary
+              big
+              linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
+            >
+              Add Elliot for water to Chrome
             </ButtonPrimary>
           </div>
         </div>
@@ -144,8 +147,11 @@ function WaterPage () {
             thing is that all people get access to fresh drinking water.
           </div>
           <div className={styles.hideMobile}>
-            <ButtonPrimary linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'>
-              Add Elliot for Water to Chrome
+            <ButtonPrimary
+              big
+              linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
+            >
+              Add Elliot for water to Chrome
             </ButtonPrimary>
           </div>
         </div>
