@@ -34,12 +34,13 @@
 
 .dropletContainer {
   display: inline-flex;
+  align-items: center;
 }
 
 .dropletImg {
   margin-right: 3px;
   width: 20px;
-  height: 26px;
+  height: 19px;
 }
 
 .dropletCount {
@@ -82,6 +83,10 @@
   .logoSmaller {
     width: 100px;
     padding: 15px 25px 0 0;
+  }
+
+  .logoSmaller img {
+    max-width: 100%;
   }
 
   .rightSide {
