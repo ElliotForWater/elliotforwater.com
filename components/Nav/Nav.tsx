@@ -18,17 +18,17 @@ const Nav = () => {
         })}
       >
         <li className={styles.menuItem}>
-          <a href='https://www.elliotforwater.com/about'>Contact</a>
+          <a href='https://www.elliotforwater.com/why-water.html'>Why Water</a>
         </li>
         <li className={styles.menuItem}>
           <a href='https://www.elliotforwater.com/about'>About us</a>
         </li>
         <li className={styles.divider} />
         <li className={styles.menuItem}>
-          <a href='https://www.facebook.com/elliotforwater/?fref=ts'>Share</a>
+          <a href='https://www.facebook.com/elliotforwater/?fref=ts'>Share us on Facebook</a>
         </li>
         <li className={styles.menuItem}>
-          <a href='http://blog.elliotforwater.com/'>Blog</a>
+          <a href='https://elliotforwater.wordpress.com/'>Blog</a>
         </li>
         <li className={styles.divider} />
         <li className={styles.menuItem}>
