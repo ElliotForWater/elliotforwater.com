@@ -29,7 +29,12 @@
 
 .logo {
   width: 100px;
+  height: calc(100% - 13px);
   margin: 0;
+}
+
+.logo img {
+  max-width: 100%;
 }
 
 .dropletContainer {
