@@ -13,6 +13,17 @@
   font-size: 18px;
 }
 
+.inputBig {
+  outline: none;
+  width: calc(100% - 2em);
+  padding: 0 60px 0 1em;
+  height: 2.8em;
+  border-radius: 2em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--lightGrey);
+  font-size: 18px;
+}
+
 .button {
   position: absolute;
   right: 26px;
@@ -22,6 +33,13 @@
   border: 0;
   margin-bottom: 0;
   padding: 0;
+}
+
+.buttonBig {
+  /* stylelint-disable */
+  @extend .button;
+  /* stylelint-enable */
+  right: 65px;
 }
 
 .autosuggestResults {
@@ -37,6 +55,13 @@
   border-right: 1px solid var(--lightGrey);
   border-bottom: 1px solid var(--lightGrey);
   border-radius: 0 0 24px 24px;
+}
+
+.autosuggestResultsBig {
+  /* stylelint-disable */
+  @extend .autosuggestResults;
+  /* stylelint-enable */
+  max-width: 37em;
 }
 
 .autosuggestWord {

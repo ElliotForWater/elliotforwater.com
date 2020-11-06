@@ -80,3 +80,45 @@ a {
 .container {
   padding: 20px 0;
 }
+
+/* Site css from .NET */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.background--50 {
+  top: 50%;
+}
+
+.section-center {
+  padding: 0 16px;
+  margin: auto;
+}
+
+.section {
+  position: relative;
+}
+
+.section--centered {
+  text-align: center;
+}
+
+.flex--center {
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.card {
+  margin: auto;
+}
+
+.card__img {
+  width: 25em;
+}

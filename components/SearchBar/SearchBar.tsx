@@ -4,10 +4,14 @@ import classnames from 'classnames'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
 
+type SearchProps = {
+  big?: boolean
+}
+
 const suggestURL =
   'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
-const SearchBar = () => {
+const SearchBar = ({ big }: SearchProps) => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [highlightIndex, setHighlightIndex] = useState<number>(0)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
@@ -72,7 +76,7 @@ const SearchBar = () => {
           name='q'
           type='text'
           value={searchValue}
-          className={styles.input}
+          className={big ? styles.inputBig : styles.input}
           onChange={showSuggestedWords}
           onFocus={showSuggestedWords}
           onBlur={handleOnBlur}
@@ -82,12 +86,12 @@ const SearchBar = () => {
           spellCheck='false'
           placeholder='Every search gives water...'
         />
-        <button className={styles.button} type='submit'>
+        <button className={big ? styles.buttonBig : styles.button} type='submit'>
           <SearchIcon color='#ccc' size={16} />
         </button>
       </form>
       {isSuggestionOpen && (
-        <ul className={styles.autosuggestResults}>
+        <ul className={big ? styles.autosuggestResultsBig : styles.autosuggestResults}>
           {suggestedWords.map((word, i) => (
             <li
               key={i}

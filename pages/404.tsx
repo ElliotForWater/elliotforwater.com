@@ -7,7 +7,7 @@ function WaterPage () {
     <Layout fluid pageTitle='404' pageDescription='404 error page - Elliot for Water'>
       <section className='wrapper'>
         <h1>Don't drown in a glass of water!</h1>
-        <p>Look like the page you are looking for doesn't exist!</p>
+        <p>Look like the page you are looking for doesn't exist</p>
         <div className='buttonWrapper'>
           <ButtonPrimary big linkHref='/'>
             Go back to Homepage

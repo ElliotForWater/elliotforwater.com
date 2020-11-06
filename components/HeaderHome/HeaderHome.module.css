@@ -1,0 +1,47 @@
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: var(--zindex300);
+}
+
+.headerRight {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+
+.headerRightLink {
+  margin-left: 0.5em;
+  color: #428bca;
+  text-decoration: none;
+}
+
+.rightSide {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropletContainer {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropletImg {
+  margin-right: 3px;
+  width: 20px;
+  height: 19px;
+}
+
+.dropletCount {
+  margin-top: 2px;
+}
+
+.menu {
+  margin-left: 1.2em;
+  margin-top: 6px;
+}
