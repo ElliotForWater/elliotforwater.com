@@ -1,7 +1,5 @@
-// module.exports = {
-//   webpack: (config, options) => {
-//     config.module.rules.push()
+const { locales, defaultLocale } = require('./i18n')
 
-//     return config
-//   }
-// }
+module.exports = {
+  i18n: { locales, defaultLocale }
+}

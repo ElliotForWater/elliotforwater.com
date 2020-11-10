@@ -1,10 +1,14 @@
 import React, { FC } from 'react'
+import useTranslation from 'next-translate/useTranslation'
+// import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 import styles from './index.module.css'
 
 const App: FC = () => {
+  const { t } = useTranslation()
+
   return (
     <Layout pageTitle='Home' pageDescription='Elliot for Water Homepage' isHome fluid>
       <section>

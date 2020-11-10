@@ -1,20 +1,23 @@
 import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 
-function WaterPage () {
+function Error () {
+  const { t } = useTranslation()
+
   return (
-    <Layout fluid pageTitle='404' pageDescription='404 error page - Elliot for Water'>
+    <Layout fluid pageTitle='404 Error Page' pageDescription='404 error page - Elliot for Water'>
       <section className='wrapper'>
-        <h1>Don't drown in a glass of water!</h1>
-        <p>Look like the page you are looking for doesn't exist</p>
+        <h1>{t('common:404.title')}</h1>
+        <p>{t('common:404.description')}</p>
         <div className='buttonWrapper'>
           <ButtonPrimary big linkHref='/'>
-            Go back to Homepage
+            {t('common:backHome')}
           </ButtonPrimary>
         </div>
 
-        <img src='/images/404.png' />
+        <img src='/images/404.png' alt='Page not found' />
       </section>
       <style jsx>
         {`
@@ -62,4 +65,4 @@ function WaterPage () {
   )
 }
 
-export default WaterPage
+export default Error

@@ -1,0 +1,31 @@
+
+{
+  "addToChrome": "Aggiungi Elliot for water a Chrome",
+  "backHome": "torna alla home",
+  "404": {
+    "title": "Non ti perdere in un bicchiere d'acqua!",
+    "description": "Sembrerebbe che la pagina che stai cercando non esiste"
+  },
+  "error": {
+    "title": "Ooops! Sembrerebbe che ci sia stata una perdita",
+    "description": "C'e' stato un problema nel nostro sistema, per favore riprova piu' tardi. Perdonaci!"
+  },
+  "footer": {
+    "social_with_us": "Get social with us",
+    "follow_our_journey": "Follow our journey",
+    "contact": "Contact",
+    "about_us": "About us",
+    "faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "subscribe": "Subscribe"
+  },
+  "nav": {
+    "why_water": "Why Water",
+    "about_us": "About us",
+    "share_fb": "Share us on Facebook",
+    "blog": "Blog",
+    "settings": "Settings",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  }
+}
