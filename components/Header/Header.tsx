@@ -3,11 +3,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import Nav from '../Nav/Nav'
 import styles from './Header.module.css'
 
-type HeaderProps = {
-  isMobile?: Boolean
-}
-
-const Header: FC<HeaderProps> = ({ isMobile }) => {
+const Header: FC = () => {
   useEffect(() => {
     import('../../webComponents/SearchCounter')
   }, [])

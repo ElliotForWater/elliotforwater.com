@@ -1,13 +1,12 @@
 import React, { FC } from 'react'
-import useTranslation from 'next-translate/useTranslation'
-// import Trans from 'next-translate/Trans'
+// import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 import styles from './index.module.css'
 
 const App: FC = () => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   return (
     <Layout pageTitle='Home' pageDescription='Elliot for Water Homepage' isHome fluid>
@@ -157,271 +156,272 @@ const App: FC = () => {
 
       {/* <cookie-policy /> */}
 
-      <style jsx>{`
-        /* ==================================================
+      <style jsx>
+        {`
+          /* ==================================================
           Logo
         ================================================== */
-        .logo-main {
-          text-align: center;
-          margin: 0 2em;
-        }
+          .logo-main {
+            text-align: center;
+            margin: 0 2em;
+          }
 
-        .logo-main__link {
-        }
+          .logo-main__link {
+          }
 
-        .logo-main__img {
-          height: auto;
-          width: 100%;
-          max-width: 10em;
-        }
+          .logo-main__img {
+            height: auto;
+            width: 100%;
+            max-width: 10em;
+          }
 
-        .logo-main__subtitle {
-          text-transform: uppercase;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 4px;
-          text-shadow: 0 2px 3px #c3c2c245;
-          margin-bottom: 33px;
-        }
+          .logo-main__subtitle {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 3px #c3c2c245;
+            margin-bottom: 33px;
+          }
 
-        /* ==================================================
+          /* ==================================================
           Donated water section
         ================================================== */
-        .donated-water-wrapper {
-          margin: 33px auto;
-          text-align: center;
-        }
-
-        .odometer {
-          color: var(--elliotPrimary);
-          font-size: 20px;
-          letter-spacing: 0.3em;
-          font-family: var(--fontCommon);
-          font-weight: 700;
-        }
-
-        .donated-water-text {
-          color: #868383d4;
-          font-size: 12px;
-        }
-
-        /* ==================================================
-          Home Text and Buttons
-        ================================================== */
-        .home-text {
-          text-align: center;
-          margin: 0 auto;
-          margin-bottom: 8px;
-        }
-
-        .home-text__title {
-          font-size: 16px;
-          text-shadow: 1px 3px 5px #6f6e6e0f;
-        }
-
-        .home-text__caption {
-          margin: 0;
-          font-size: 14px;
-        }
-
-        .home-text__chrome {
-          display: none;
-        }
-
-        .show-more__link {
-          margin-top: 70px;
-        }
-
-        /* ==================================================
-          How It Works section
-        ================================================== */
-        .section__how-it-works {
-          height: 58em;
-          height: 100vh;
-          min-height: 50em;
-          margin-top: 20%;
-        }
-
-        .carousel {
-          width: fit-content;
-          margin: 0 auto;
-        }
-
-        .carousel-inner {
-          margin: 0 auto;
-          margin-left: -24px;
-        }
-
-        .carousel-card {
-          width: 100%;
-          padding: 10px;
-          text-align: left;
-          margin: auto;
-        }
-
-        .carousel-card__img {
-          height: 25em;
-          padding: 20px;
-        }
-
-        .carousel-indicators {
-          bottom: -10px;
-        }
-
-        .carousel-indicators li {
-          border: 1px solid #000;
-        }
-
-        .section__how-it-works .elliot-btn-group {
-          margin-top: 10%;
-        }
-
-        /* ==================================================
-          Projects section
-        ================================================== */
-        .projects__img {
-          margin: 10% auto;
-          max-width: 90%;
-          border-radius: 30px;
-        }
-
-        .projects__title {
-          position: absolute;
-          top: 45%;
-          width: 100%;
-          font-weight: bold;
-          font-size: 2.2vw;
-          letter-spacing: 0.45px;
-          text-align: center;
-          color: #fff;
-        }
-
-        .projects__caption {
-          position: absolute;
-          width: 100%;
-          font-size: 1.1vw;
-          letter-spacing: 0.45px;
-          text-align: center;
-          color: #fff;
-          margin-top: -32%;
-        }
-
-        /* Override bootrstrap carousel styles */
-        .carousel-control.left {
-          background-image: none;
-          left: -22px;
-          background: white;
-        }
-
-        .carousel-control.right {
-          background-image: none;
-          right: 4px;
-          background: white;
-        }
-
-        .carousel-control .icon-prev,
-        .carousel-control .icon-next,
-        .carousel-control .glyphicon-chevron-left,
-        .carousel-control .glyphicon-chevron-right {
-          position: relative;
-          left: auto;
-        }
-
-        .carousel-indicators .active {
-          background-color: #3fa2b8;
-        }
-
-        /* ==================================================
-          Responsive Media
-        ================================================== */
-        @media (min-width: 400px) {
-          .logo-main__subtitle {
-            font-size: 14px;
+          .donated-water-wrapper {
+            margin: 33px auto;
+            text-align: center;
           }
 
           .odometer {
-            font-size: 22px;
-          }
-
-          .home-text__title {
-            margin-top: 0px;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-          }
-
-          .section-center {
-            width: 80%;
-          }
-        }
-
-        @media (min-width: 768px) {
-          .logo-main__subtitle {
-            font-size: 17px;
-          }
-
-          .section__search {
-            margin-top: 0;
-          }
-
-          .search__input {
-            height: 3em;
-          }
-
-          .main-search-wrapper {
-            margin: 22px auto 44px;
-          }
-
-          .odometer {
-            font-size: 26px;
+            color: var(--elliotPrimary);
+            font-size: 20px;
+            letter-spacing: 0.3em;
+            font-family: var(--fontCommon);
+            font-weight: 700;
           }
 
           .donated-water-text {
-            font-size: 16px;
-          }
-
-          .donated-water-wrapper {
-            margin: 44px 0 22px;
-          }
-
-          .home-text {
-            margin-bottom: 14px;
-          }
-
-          .home-text__title {
-            font-size: 30px;
-          }
-
-          .home-text__caption {
-            font-size: 16px;
-          }
-
-          .home-text__chrome {
-            display: inline-block;
+            color: #868383d4;
             font-size: 12px;
           }
 
-          .search-form-container {
-            width: auto;
+          /* ==================================================
+          Home Text and Buttons
+        ================================================== */
+          .home-text {
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 8px;
           }
 
-          .home-text .elliot-btn-group {
-            margin-top: 14px;
+          .home-text__title {
+            font-size: 16px;
+            text-shadow: 1px 3px 5px #6f6e6e0f;
+          }
+
+          .home-text__caption {
+            margin: 0;
+            font-size: 14px;
+          }
+
+          .home-text__chrome {
+            display: none;
           }
 
           .show-more__link {
-            margin-top: 8px;
-            margin-left: -13px;
+            margin-top: 70px;
           }
 
-          .show-more .show-more__link .chevron {
-            position: relative;
-            display: inherit;
-            height: auto;
-            right: 0;
-            top: 0;
+          /* ==================================================
+          How It Works section
+        ================================================== */
+          .section__how-it-works {
+            height: 58em;
+            height: 100vh;
+            min-height: 50em;
+            margin-top: 20%;
           }
-        }
-      `}
+
+          .carousel {
+            width: fit-content;
+            margin: 0 auto;
+          }
+
+          .carousel-inner {
+            margin: 0 auto;
+            margin-left: -24px;
+          }
+
+          .carousel-card {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            margin: auto;
+          }
+
+          .carousel-card__img {
+            height: 25em;
+            padding: 20px;
+          }
+
+          .carousel-indicators {
+            bottom: -10px;
+          }
+
+          .carousel-indicators li {
+            border: 1px solid #000;
+          }
+
+          .section__how-it-works .elliot-btn-group {
+            margin-top: 10%;
+          }
+
+          /* ==================================================
+          Projects section
+        ================================================== */
+          .projects__img {
+            margin: 10% auto;
+            max-width: 90%;
+            border-radius: 30px;
+          }
+
+          .projects__title {
+            position: absolute;
+            top: 45%;
+            width: 100%;
+            font-weight: bold;
+            font-size: 2.2vw;
+            letter-spacing: 0.45px;
+            text-align: center;
+            color: #fff;
+          }
+
+          .projects__caption {
+            position: absolute;
+            width: 100%;
+            font-size: 1.1vw;
+            letter-spacing: 0.45px;
+            text-align: center;
+            color: #fff;
+            margin-top: -32%;
+          }
+
+          /* Override bootrstrap carousel styles */
+          .carousel-control.left {
+            background-image: none;
+            left: -22px;
+            background: white;
+          }
+
+          .carousel-control.right {
+            background-image: none;
+            right: 4px;
+            background: white;
+          }
+
+          .carousel-control .icon-prev,
+          .carousel-control .icon-next,
+          .carousel-control .glyphicon-chevron-left,
+          .carousel-control .glyphicon-chevron-right {
+            position: relative;
+            left: auto;
+          }
+
+          .carousel-indicators .active {
+            background-color: #3fa2b8;
+          }
+
+          /* ==================================================
+          Responsive Media
+        ================================================== */
+          @media (min-width: 400px) {
+            .logo-main__subtitle {
+              font-size: 14px;
+            }
+
+            .odometer {
+              font-size: 22px;
+            }
+
+            .home-text__title {
+              margin-top: 0px;
+              margin-bottom: 10px;
+              font-size: 1.4em;
+            }
+
+            .section-center {
+              width: 80%;
+            }
+          }
+
+          @media (min-width: 768px) {
+            .logo-main__subtitle {
+              font-size: 17px;
+            }
+
+            .section__search {
+              margin-top: 0;
+            }
+
+            .search__input {
+              height: 3em;
+            }
+
+            .main-search-wrapper {
+              margin: 22px auto 44px;
+            }
+
+            .odometer {
+              font-size: 26px;
+            }
+
+            .donated-water-text {
+              font-size: 16px;
+            }
+
+            .donated-water-wrapper {
+              margin: 44px 0 22px;
+            }
+
+            .home-text {
+              margin-bottom: 14px;
+            }
+
+            .home-text__title {
+              font-size: 30px;
+            }
+
+            .home-text__caption {
+              font-size: 16px;
+            }
+
+            .home-text__chrome {
+              display: inline-block;
+              font-size: 12px;
+            }
+
+            .search-form-container {
+              width: auto;
+            }
+
+            .home-text .elliot-btn-group {
+              margin-top: 14px;
+            }
+
+            .show-more__link {
+              margin-top: 8px;
+              margin-left: -13px;
+            }
+
+            .show-more .show-more__link .chevron {
+              position: relative;
+              display: inherit;
+              height: auto;
+              right: 0;
+              top: 0;
+            }
+          }
+        `}
       </style>
     </Layout>
   )
