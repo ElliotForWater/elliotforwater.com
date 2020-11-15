@@ -7,7 +7,7 @@ module.exports = {
   },
   exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
-      '/why-water': { page: 'why-water' },
+      '/why-water': { page: '/why-water' },
       '/404': { page: '404' }
     }
   }

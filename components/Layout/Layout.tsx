@@ -60,19 +60,13 @@ export const Layout: FC<LayoutProps> = ({
         />
 
         {/* <!-- Apple Icons --> */}
-        <link rel='apple-touch-icon' sizes='57x57' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='60x60' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='72x72' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='76x76' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='114x114' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='120x120' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='144x144' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='152x152' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='apple-touch-icon' sizes='180x180' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='icon' type='image/svg' sizes='192x192' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='icon' type='image/svg' sizes='32x32' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='icon' type='image/svg' sizes='96x96' href='/images/metas/FAVICON-Elliot.png' />
-        <link rel='icon' type='image/svg' sizes='16x16' href='/images/metas/FAVICON-Elliot.png' />
+        <link rel='apple-touch-icon' sizes='180x180' href='images/metas/apple-touch-icon.png' />
+        <link rel='icon' type='image/png' sizes='32x32' href='images/metas/favicon-32x32.png' />
+        <link rel='icon' type='image/png' sizes='16x16' href='images/metas/favicon-16x16.png' />
+        <link rel='manifest' href='images/metas/site.webmanifest' />
+        <link rel='mask-icon' href='images/metas/safari-pinned-tab.svg' color='#5bbad5' />
+        <meta name='msapplication-TileColor' content='#da532c' />
+        <meta name='theme-color' content='#ffffff' />
       </Head>
       <div className={styles.wrapper}>
         {isHome ? <HeaderHome /> : <Header />}

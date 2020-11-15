@@ -4,8 +4,8 @@
 
 .input {
   outline: none;
-  width: calc(100% - 2em);
-  padding: 0 6px 0 1em;
+  width: 100%;
+  padding: 0 40px 0 1em;
   height: 2.8em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
@@ -15,8 +15,8 @@
 
 .inputBig {
   outline: none;
-  width: calc(100% - 2em);
-  padding: 0 60px 0 1em;
+  width: 100%;
+  padding: 0 40px 0 1em;
   height: 2.8em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
@@ -26,7 +26,7 @@
 
 .button {
   position: absolute;
-  right: 26px;
+  right: 20px;
   bottom: 27%;
   z-index: 1;
   background: #fff;
@@ -39,12 +39,12 @@
   /* stylelint-disable */
   @extend .button;
   /* stylelint-enable */
-  right: 65px;
+  right: 25px;
 }
 
 .autosuggestResults {
   position: absolute;
-  width: calc(100% - 45px);
+  width: calc(100% - 10%);
   z-index: 2;
   background-color: #fff;
   list-style-type: none;
@@ -61,7 +61,7 @@
   /* stylelint-disable */
   @extend .autosuggestResults;
   /* stylelint-enable */
-  max-width: 37em;
+  max-width: 39em;
 }
 
 .autosuggestWord {

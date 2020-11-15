@@ -1,30 +1,30 @@
 {
   "pageTitle": "Why Water",
-  "pageDescription": "Helping providing drinkable water for all the world",
+  "pageDescription": "Because water means health, education, women’s empowerment, and childhood. Simply put, Water means Life!",
   "layer1": {
-    "title": "<0>Why<1>water?</1></0>",
-    "subtitle": "1 in 10 people lack access to safe drinking water",
-    "explanation": "Marking Elliot for Water your default search engine means you will be directly saving millions of people every day by simply searching the web.",
+    "title": "<0>Why <1>water?</1></0>",
+    "subtitle": "Because water means health, education, women’s empowerment, and childhood. Simply put, Water means Life!",
+    "explanation": "1 in 10 people lack access to safe drinking water and our mission is to change that! This is why we created Elliot for Water, a search engine that donates water thanks to your searches.",
     "bubble": "Wells allow people with no access to fresh water to have a direct and sustainable water source directly at their fingertips."
   },
   "layer2": {
-    "explanation": "<0><1>785 million people</1>around the world lack access to safe drinking water leading to many health diseases. Clean water can save the lives of more than 760,000 people every year.</0>",
+    "explanation": "<0><1>Water means life!</1> Through clean water, we can save the lives of more than 760,000 people every year. Today 785 million people around the world still lack access to safe drinking water leading to many health diseases.</0>",
     "bubble": "Dirty water sourced from shallow hand-dug wells can contain many harmful bacteria, parasites, and even toxic chemicals"
   },
   "layer3": {
-    "explanation": "<0><1>6 hours every day</1>is how long women spend collecting water. When we give villages clean water, women get back the time and the opportunity to work and take care of their families.</0>",
+    "explanation": "<0><1>Water means women’s empowerment!</1>In developing countries, women spend on average 6 hours a day collecting water. With a close source of clean water, women get back the time to study, work, create businesses, and take care of their families!</0>",
     "bubble": "One of these jars the women carry on their heads can weigh up to 44 pounds!"
   },
   "layer4": {
-    "explanation": "<0><1>Children walk up to 4 miles</1>per day to find muddy drinking water. Your searches give them not only fresh and healthy drinking water, but also the time to attend school, get an education, and enjoy their childhood.</0>",
+    "explanation": "<0><1>Water means education!</1>Children walk up to 4 miles per day to get water for their families, but your searches will change that and give kids the opportunity and time to go to school, get an education, and simply enjoy their childhood.</0>",
     "bubble": "Wells are usually dug around 50-75 feet to reach the water found deep within the earth."
   },
   "layer5": {
-    "explanation": "<0><1>Carbon offset.</1>Access to clean drinking water prevents people from creating CO2 emissions, as villagers do not need anymore to burn wood to boil and purify their water.</0>",
+    "explanation": "<0><1>Water helps the environment!</1>Access to clean drinking water prevents people from creating CO2 emissions, as villagers do not need anymore to burn wood to boil and purify their water.</0>",
     "bubble": "A pump cylinder pulls the water up through the main pipes and delivers the fresh water."
   },
   "layer6": {
-    "subtitle": "How do we work?",
-    "explanation": "We work with local and trusted organizations to implement the best and most sustainable solution in each village. In fact, not every location has the same needs: some villages may require wells while other sand filters or pipelines, for example. The most important thing is that all people get access to fresh drinking water."
+    "subtitle": "How do your searches become water?",
+    "explanation": "<0>We donate 60% of our profit to the local trusted organizations we work with so that they can implement the best and most sustainable water solution in each village. In fact, not every location has the same needs: some villages may require wells while other sand filters or pipelines, for example. The most important thing is that all people get access to fresh drinking water. Currently, we are working in Guinea-Bissau in collaboration with <1>WellFound.</1> You can click <2>here</2> if you want to learn more about our projects.</0>"
   }
 }

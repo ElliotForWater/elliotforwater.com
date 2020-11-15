@@ -110,6 +110,9 @@
 
 .headline6 {
   margin-top: -15%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .highlightText {
@@ -123,6 +126,7 @@
 
 .subtitle {
   margin-bottom: 13px;
+  line-height: 1.3;
 }
 
 .smallTitle {
@@ -239,8 +243,8 @@
     width: 32px;
   }
 
-  .description {
-    text-align: justify;
+  .description a {
+    color: #428bca;
   }
 
   .headline {
@@ -265,7 +269,7 @@
 @media (min-width: 600px) {
   .headline {
     margin: 0 25px;
-    max-width: 400px;
+    max-width: 500px;
   }
 
   .headline2 {
@@ -274,7 +278,7 @@
   }
 
   .headline3 {
-    right: -15%;
+    right: -5%;
     padding-top: 50px;
   }
 
@@ -336,14 +340,17 @@
   }
 
   .headline3 {
-    right: -10%;
+    right: 0%;
   }
 }
 
 @media (min-width: 900px) {
   .headline {
     margin: 0 40px;
-    max-width: 400px;
+  }
+
+  .headline3 {
+    right: -10%;
   }
 
   .headline4 {
@@ -362,7 +369,7 @@
   }
 
   .headline3 {
-    right: -24%;
+    right: -15%;
     padding-top: 20px;
   }
 

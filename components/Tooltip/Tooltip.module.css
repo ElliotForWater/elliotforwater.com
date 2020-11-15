@@ -1,0 +1,50 @@
+.tooltip {
+  display: block;
+  position: absolute;
+  width: 260px;
+  height: 110px;
+  line-height: 20px;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+  color: var(--elliotPrimary);
+  background: #f9f9f9;
+  border: 4px solid #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+  top: 40px;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #f9f9f9 transparent;
+  top: -23px;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.left::after {
+  left: 10px;
+}
+
+.right::after {
+  right: 10px;
+}
+
+.isHidden {
+  display: none;
+}

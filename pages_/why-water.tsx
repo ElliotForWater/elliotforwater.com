@@ -23,6 +23,7 @@ const bg6 = '/images/why-water-page/bg6.svg'
 
 const ComponentH1 = (props) => <h1 className={styles.title} {...props} />
 const ComponentDescription = (props) => <p className={styles.description} {...props} />
+const ComponentSpan = (props) => <span {...props} />
 
 function WaterPage () {
   const { t } = useTranslation()
@@ -66,7 +67,7 @@ function WaterPage () {
           <Trans
             i18nKey='whyWater:layer2.explanation'
             /* eslint-disable-next-line react/jsx-key */
-            components={[<ComponentDescription />, <span className={styles.smallTitle} />]}
+            components={[<ComponentDescription />, <strong className={styles.smallTitle} />]}
           />
         </div>
         <img className={styles.bg2} src={bg2} />
@@ -138,7 +139,20 @@ function WaterPage () {
         <div className={classnames(styles.headline, styles.headline6)}>
           <div className={styles.description}>
             <h3 className={styles.subtitle}>{t('whyWater:layer6.subtitle')}</h3>
-            {t('whyWater:layer6.explanation')}
+            <Trans
+              i18nKey='whyWater:layer6.explanation'
+              components={[
+                /* eslint-disable-next-line react/jsx-key */
+                <ComponentSpan />,
+                /* eslint-disable-next-line react/jsx-key */
+                <a
+                  href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
+                  target='_blank'
+                />,
+                /* eslint-disable-next-line react/jsx-key */
+                <a href='https://wellfound.org.uk/' target='_blank' />
+              ]}
+            />
           </div>
           <div className={styles.hideMobile}>
             <ButtonPrimary
