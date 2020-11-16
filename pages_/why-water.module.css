@@ -8,6 +8,7 @@
   height: 100%;
   position: relative;
   top: -1px;
+  box-sizing: content-box;
 }
 
 .layer2 {

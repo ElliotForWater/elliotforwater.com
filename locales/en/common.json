@@ -2,6 +2,10 @@
 {
   "addToChrome": "Add Elliot for water to Chrome",
   "backHome": "go back home",
+  "contact_us": "Contact us",
+  "learn_more": "Learn More",
+  "for_water": "For Water",
+  "search_input": "Search the web to give water...",
   "404": {
     "title": "Don't drown in a glass of water!",
     "description": "Look like the page you are looking for doesn't exist!"

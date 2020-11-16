@@ -4,6 +4,10 @@ module.exports = {
   pages: {
     '*': ['common'],
     '/': ['home'],
-    '/why-water': ['whyWater']
+    '/why-water': ['whyWater'],
+    '/about': ['about'],
+    '/terms': ['terms'],
+    '/privacy': ['privacy'],
+    '/search': ['search']
   }
 }

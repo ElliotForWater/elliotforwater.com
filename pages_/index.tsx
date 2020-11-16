@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
-// import useTranslation from 'next-translate/useTranslation'
+import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 import styles from './index.module.css'
 
 const App: FC = () => {
-  // const { t } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <Layout pageTitle='Home' pageDescription='Elliot for Water Homepage' isHome fluid>
@@ -20,21 +20,17 @@ const App: FC = () => {
               title='Elliot For Water'
             />
           </h1>
-          <p className='logo-main__subtitle'>For Water</p>
+          <p className='logo-main__subtitle'>{t('common:for_water')}</p>
         </div>
         <div className={styles.searchWrap}>
           <SearchBar big />
         </div>
         <div className='home-text'>
-          <h2 className='home-text__title'>Together, we can change the world.</h2>
-          <p className='home-text__caption'>
-            Each search made here gives clean drinking water to countries in need.
-          </p>
+          <h2 className='home-text__title'>{t('home:title')}</h2>
+          <p className='home-text__caption'>{t('home:caption')}</p>
           <div className='donated-water-wrapper'>
             <div className='odometer' />
-            <p className='donated-water-text'>
-              Liters of water donated so far by Elliot For Water users
-            </p>
+            <p className='donated-water-text'>{t('home:liter_of_water')} </p>
           </div>
           <div className={styles.hideMobile}>
             <div className='elliot-btn-group'>
@@ -42,7 +38,7 @@ const App: FC = () => {
                 big
                 linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
               >
-                Add Elliot for water to Chrome
+                {t('common:addToChrome')}
               </ButtonPrimary>
             </div>
           </div>
@@ -57,10 +53,9 @@ const App: FC = () => {
       <section id='how-it-works' className='section section--centered section__how-it-works'>
         <div className='section-center'>
           <img className='background background--50' src='/images/waves.png' alt='Water' />
-          <h2 className='section__title'>How it Works</h2>
+          <h2 className='section__title'>{t('home:how_works.title')}</h2>
           <div className='home-text'>
-            <p className='home-text__caption'>Did you ever think making a change in the world</p>
-            <p className='home-text__caption'>could be so simple?</p>
+            <p className='home-text__caption'>{t('home:how_works.description')}</p>
           </div>
           <div className='hidden-md hidden-lg'>
             <div id='myCarousel' className='carousel slide' data-ride='carousel'>
@@ -137,10 +132,10 @@ const App: FC = () => {
               big
               linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
             >
-              Add Elliot for water to Chrome
+              {t('common:addToChrome')}
             </ButtonPrimary>
             <ButtonPrimary big linkHref='/about'>
-              Learn More
+              {t('common:learn_more')}
             </ButtonPrimary>
           </div>
         </div>
@@ -149,7 +144,7 @@ const App: FC = () => {
       {/* <!-- Projects --> */}
       <section className='section section--centered'>
         <img className='projects__img shadow' src='/images/video.png' alt='Change' />
-        <h3 className='projects__title'>Every search with us can truly change a life.</h3>
+        <h3 className='projects__title'>{t('home:projects.title')}</h3>
         <br />
         <p className='projects__caption' />
       </section>
@@ -274,6 +269,10 @@ const App: FC = () => {
 
           .section__how-it-works .elliot-btn-group {
             margin-top: 10%;
+          }
+
+          .section__how-it-works .elliot-btn-group :global(div:first-child) {
+            margin-right: 20px;
           }
 
           /* ==================================================

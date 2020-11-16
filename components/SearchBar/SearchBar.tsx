@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
+import useTranslation from 'next-translate/useTranslation'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
 
@@ -12,6 +13,7 @@ const suggestURL =
   'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
 const SearchBar = ({ big }: SearchProps) => {
+  const { t } = useTranslation()
   const [searchValue, setSearchValue] = useState<string>('')
   const [highlightIndex, setHighlightIndex] = useState<number>(0)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
@@ -66,7 +68,7 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function handleOnBlur () {
-    setIsSuggestionOpen(false)
+    // setIsSuggestionOpen(false)
   }
 
   return (
@@ -84,7 +86,7 @@ const SearchBar = ({ big }: SearchProps) => {
           autoCapitalize='off'
           autoCorrect='off'
           spellCheck='false'
-          placeholder='Every search gives water...'
+          placeholder={t('common:search_input')}
         />
         <button className={big ? styles.buttonBig : styles.button} type='submit'>
           <SearchIcon color='#ccc' size={16} />
