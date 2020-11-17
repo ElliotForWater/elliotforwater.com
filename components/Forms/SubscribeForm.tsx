@@ -1,39 +1,104 @@
 import React, { useState } from 'react'
 import ButtonOutline from '../Buttons/ButtonOutline'
+import ToastList from '../Toast/ToastList'
 import styles from './SubscribeForm.module.css'
 
 const SubscribeForm = () => {
   const [emailValue, setEmailValue] = useState<string>('')
+  const [list, setList] = useState([])
+  let toastProperties = null
 
-  // const [isSubmit, setIsSubmit] = useState<bool | string>('')
+  const showToast = (type) => {
+    const id = Math.floor(Math.random() * 101 + 1)
 
-  // async function submitForm({ value }) {
-  //     setIsSubmit('loading')
-  //     const res = await fetch(url, {
-  //         body: { email: value, name: '' }
-  //     })
+    switch (type) {
+      case 'success':
+        toastProperties = {
+          id,
+          title: 'Success',
+          message: 'This is a success toast component',
+          backgroundColor: '#5cb85c',
+          icon: '/images/toast/check.svg'
+        }
+        break
+      case 'error':
+        toastProperties = {
+          id,
+          title: 'Error',
+          message: 'An unknown error occured!',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg'
+        }
+        break
+      case 'info':
+        toastProperties = {
+          id,
+          title: 'Info',
+          message: 'This is an info toast component',
+          backgroundColor: '#5bc0de',
+          icon: '/images/toast/info.svg'
+        }
+        break
+      case 'submitting':
+        toastProperties = {
+          id,
+          title: 'Submitting...',
+          message: 'Please wait.',
+          backgroundColor: '#f0ad4e',
+          icon: '/images/toast/warning.svg'
+        }
+        break
 
-  //     const json = await res.json()
-  //     json.ok ? setIsSubmit(true) : setIsSubmit(false)
+      default:
+        setList([])
+    }
 
-  //     setTimeout(() => { setIsSubmit('')}, 2000)
-  // }
+    setList([...list, toastProperties])
+  }
 
-  // render (
-  // if (isSubmit === 'loading') ( <div>{spinnerIcon}</div>)}
-  //       {if (isSubmit) ( <div>thank you for subscribing!</div>)}
-  //       {if (!isSubmit) ( <div>An error occured</div>)}
-  //       {if(isSubmit === '') {
-  //       }
-  // );
+  async function subscribe () {
+    const url = 'https://localhost:44348/api/contacts'
+    const data = {
+      email: emailValue
+    }
+    const postOptions = {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+
+    return fetch(url, postOptions)
+      .then((response) => {
+        return response
+      })
+      .catch(() => {
+        throw new Error('There was a problem connecting to the network!')
+      })
+  }
 
   function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
     setEmailValue(event.target.value)
   }
 
-  function handleSubmit (event) {
-    alert('A name was submitted: ' + this.state.value)
+  async function handleSubmit (event) {
     event.preventDefault()
+
+    showToast('submitting')
+    const response = await subscribe()
+
+    if (response.ok) {
+      showToast('success')
+      return
+    }
+
+    // const json = await response.json()
+    if (response.status === 422) {
+      showToast('info')
+      return
+    }
+    showToast('error')
   }
 
   return (
@@ -53,6 +118,7 @@ const SubscribeForm = () => {
           Subscribe
         </button>
       </ButtonOutline>
+      <ToastList toastList={list} position='bottomRight' />
     </form>
   )
 }
