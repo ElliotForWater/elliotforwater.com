@@ -136,7 +136,7 @@
 }
 
 .description {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .hideMobile {
@@ -242,10 +242,6 @@
 
   .wellBottom {
     width: 32px;
-  }
-
-  .description a {
-    color: #428bca;
   }
 
   .headline {

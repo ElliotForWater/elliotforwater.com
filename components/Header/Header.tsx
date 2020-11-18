@@ -18,6 +18,7 @@ const Header: FC = () => {
             className={styles.dropletContainer}
             onMouseEnter={() => setHideTooltip(false)}
             onMouseLeave={() => setHideTooltip(true)}
+            onClick={() => setHideTooltip((prev) => !prev)}
           >
             <img className={styles.dropletImg} src='/images/water_droplet.svg' alt='Water Drop' />
             <Tooltip isHidden={hideTooltip} direction='left'>

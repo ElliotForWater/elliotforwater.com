@@ -11,6 +11,7 @@
   --footerBg: #e6f6f9;
   --borderColor: #99b7bd4f;
   --lightGrey: #e8e8e8;
+  --BSlink: #428bca;
   --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
   --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
   --zindex0: 0;
@@ -52,7 +53,7 @@ h4 {
 
 a {
   text-decoration: none;
-  color: var(--emerald);
+  color: var(--BSlink);
 }
 
 .input::placeholder {

@@ -145,12 +145,12 @@ function WaterPage () {
                 /* eslint-disable-next-line react/jsx-key */
                 <ComponentSpan />,
                 /* eslint-disable-next-line react/jsx-key */
+                <a href='https://wellfound.org.uk/' target='_blank' />,
+                /* eslint-disable-next-line react/jsx-key */
                 <a
                   href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
                   target='_blank'
-                />,
-                /* eslint-disable-next-line react/jsx-key */
-                <a href='https://wellfound.org.uk/' target='_blank' />
+                />
               ]}
             />
           </div>
