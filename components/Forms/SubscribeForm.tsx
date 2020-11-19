@@ -6,57 +6,74 @@ import styles from './SubscribeForm.module.css'
 const SubscribeForm = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [list, setList] = useState([])
-  let toastProperties = null
 
-  const showToast = (type) => {
-    const id = Math.floor(Math.random() * 101 + 1)
+  // TODO: See if better way. Maybe enums are bad in Typescript.
+  /* eslint-disable-next-line no-shadow */
+  enum NOTIFICATION {
+    Submit,
+    Success,
+    UserExists,
+    ConnectionError,
+    ServerError,
+    None,
+  }
 
-    switch (type) {
-      case 'success':
+  const showToast = (notification: NOTIFICATION) => {
+    let toastProperties = null
+
+    switch (notification) {
+      case NOTIFICATION.Submit:
         toastProperties = {
-          id,
-          title: 'Success',
-          message: 'This is a success toast component',
-          backgroundColor: '#5cb85c',
-          icon: '/images/toast/check.svg'
-        }
-        break
-      case 'error':
-        toastProperties = {
-          id,
-          title: 'Error',
-          message: 'An unknown error occured!',
-          backgroundColor: '#d9534f',
-          icon: '/images/toast/error.svg'
-        }
-        break
-      case 'info':
-        toastProperties = {
-          id,
-          title: 'Info',
-          message: 'This is an info toast component',
+          title: 'Submitting...',
+          message: 'Please wait!',
           backgroundColor: '#5bc0de',
           icon: '/images/toast/info.svg'
         }
         break
-      case 'submitting':
+      case NOTIFICATION.Success:
         toastProperties = {
-          id,
-          title: 'Submitting...',
-          message: 'Please wait.',
-          backgroundColor: '#f0ad4e',
-          icon: '/images/toast/warning.svg'
+          title: 'Success',
+          message: 'Thanks for your interest.',
+          backgroundColor: '#5cb85c',
+          icon: '/images/toast/check.svg'
         }
         break
-
+      case NOTIFICATION.UserExists:
+        toastProperties = {
+          title: 'Thanks',
+          message: ' We already have your details',
+          backgroundColor: '#5bc0de',
+          icon: '/images/toast/info.svg'
+        }
+        break
+      case NOTIFICATION.ServerError:
+        toastProperties = {
+          title: 'Sorry',
+          message: 'An error occured on our server.',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg'
+        }
+        break
+      case NOTIFICATION.ConnectionError:
+        toastProperties = {
+          title: 'Error',
+          message: 'Unable to connect.',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg'
+        }
+        break
+      case NOTIFICATION.None:
       default:
         setList([])
+        break
     }
 
-    setList([...list, toastProperties])
+    if (toastProperties) {
+      setList([...list, toastProperties])
+    }
   }
 
-  async function subscribe () {
+  async function subscribeApiPost () {
     const url = 'https://localhost:44348/api/contacts'
     const data = {
       email: emailValue
@@ -70,35 +87,44 @@ const SubscribeForm = () => {
     }
 
     return fetch(url, postOptions)
-      .then((response) => {
-        return response
-      })
-      .catch(() => {
-        throw new Error('There was a problem connecting to the network!')
-      })
   }
 
-  function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
+  function handleEmailChange (event: React.ChangeEvent<HTMLInputElement>) {
     setEmailValue(event.target.value)
   }
 
   async function handleSubmit (event) {
+    // Reset any notifications
+    setList([])
+
+    showToast(NOTIFICATION.Submit)
+
+    // Prevent form post back
     event.preventDefault()
 
-    showToast('submitting')
-    const response = await subscribe()
+    try {
+      const response = await subscribeApiPost()
 
-    if (response.ok) {
-      showToast('success')
-      return
-    }
+      // handle success
+      if (response.ok) {
+        showToast(NOTIFICATION.Success)
+        setTimeout(() => {
+          showToast(NOTIFICATION.None)
+        }, 5000)
+        return
+      }
 
-    // const json = await response.json()
-    if (response.status === 422) {
-      showToast('info')
-      return
+      // handle server errors
+      if (response.status === 422) {
+        showToast(NOTIFICATION.UserExists)
+        return
+      }
+
+      showToast(NOTIFICATION.ServerError)
+    } catch {
+      // handle connection issuess
+      showToast(NOTIFICATION.ConnectionError)
     }
-    showToast('error')
   }
 
   return (
@@ -109,7 +135,7 @@ const SubscribeForm = () => {
         name='email'
         placeholder='Email'
         value={emailValue}
-        onChange={handleChange}
+        onChange={handleEmailChange}
         className={styles.newsletterEmail}
         required
       />
