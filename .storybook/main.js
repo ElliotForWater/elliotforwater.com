@@ -1,7 +1,10 @@
 const path = require('path')
 
 module.exports = {
-  stories: ['../components/**/**/*.stories.@(tsx|js|mdx)'],
+  stories: [
+    '../components/**/**/*.stories.@(tsx|js)',
+    '../webComponents/**/**/*.stories.@(tsx|js)',
+  ],
   addons: ['@storybook/addon-docs'],
   typescript: {
     check: false,
@@ -9,8 +12,8 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
-    }
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
   },
 
   webpackFinal: async (config) => {
@@ -24,13 +27,13 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            modules: true // Enable modules to help you using className
-          }
-        }
+            modules: true, // Enable modules to help you using className
+          },
+        },
       ],
-      include: [path.resolve(__dirname, '../components'), path.resolve(__dirname, '../styles')]
+      include: [path.resolve(__dirname, '../components'), path.resolve(__dirname, '../styles')],
     })
 
     return config
-  }
+  },
 }

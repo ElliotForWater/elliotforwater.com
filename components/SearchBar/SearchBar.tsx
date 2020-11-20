@@ -47,6 +47,7 @@ const SearchBar = ({ big }: SearchProps) => {
       })
     }
   }, [])
+
   async function showSuggestedWords (event: React.ChangeEvent<HTMLInputElement>): Promise<any> {
     setSearchValue(event.target.value)
 
@@ -68,11 +69,11 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function handleOnBlur () {
-    // setIsSuggestionOpen(false)
+    setIsSuggestionOpen(false)
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <form action='/Search/Index' method='get' className={styles.form}>
         <input
           name='q'

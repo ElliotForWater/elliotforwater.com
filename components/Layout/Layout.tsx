@@ -1,11 +1,9 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Head from 'next/head'
 import Header from '../Header/Header'
 import HeaderHome from '../HeaderHome/HeaderHome'
 import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
-
-import * as settingsHelper from '../../helpers/_settingsHelper'
 
 // prettier-ignore
 interface LayoutProps {
@@ -24,12 +22,6 @@ export const Layout: FC<LayoutProps> = ({
   pageDescription,
   isHome
 }) => {
-  useEffect(() => {
-    import('../../webComponents/cookiePolicy')
-
-    settingsHelper.initialise()
-  }, [])
-
   return (
     <div className={styles.wrapper}>
       <Head>
@@ -71,6 +63,9 @@ export const Layout: FC<LayoutProps> = ({
       <div className={styles.wrapper}>
         {isHome ? <HeaderHome /> : <Header />}
         <main className={fluid ? styles.fluid : styles.container}>{children}</main>
+
+        <cookie-policy />
+
         <Footer />
       </div>
 

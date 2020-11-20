@@ -63,6 +63,10 @@ template.innerHTML = `
   `
 
 class CookiePolicy extends HTMLElement {
+  private root: ShadowRoot
+  private cookiePolicyName: String
+  private cookiePolicyValue: String
+
   constructor () {
     super()
     this.root = this.attachShadow({ mode: 'open' })
@@ -74,17 +78,18 @@ class CookiePolicy extends HTMLElement {
     this.cookiePolicyValue = 'yes'
   }
 
-  updateDisplay (display) {
-    this.root.querySelector('.cookie-policy-wrapper').style.display = display
+  public updateDisplay (display): void {
+    const elem: HTMLElement = this.root.querySelector('.cookie-policy-wrapper')
+    elem.style.display = display
   }
 
-  connectedCallback () {
+  public connectedCallback (): void {
     if (cookieHelper.get(this.cookiePolicyName) === this.cookiePolicyValue) {
       this.updateDisplay('none')
     }
   }
 
-  onAccepted () {
+  public onAccepted (): void {
     cookieHelper.set(this.cookiePolicyName, this.cookiePolicyValue)
     this.updateDisplay('none')
   }

@@ -176,7 +176,7 @@ function About () {
                 id='msg'
                 name='msg'
                 placeholder='Type your message here...'
-                rows='10'
+                rows={10}
                 required
               />
             </div>

@@ -1,14 +1,10 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import Nav from '../Nav/Nav'
 import Tooltip from '../Tooltip/Tooltip'
 import styles from './HeaderHome.module.css'
 
 const HeaderHome: FC = () => {
   const [hideTooltip, setHideTooltip] = useState(true)
-
-  useEffect(() => {
-    import('../../webComponents/SearchCounter')
-  }, [])
 
   return (
     <header className={styles.header}>
