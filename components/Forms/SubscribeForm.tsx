@@ -27,7 +27,7 @@ const SubscribeForm = () => {
           title: 'Submitting...',
           message: 'Please wait!',
           backgroundColor: '#5bc0de',
-          icon: '/images/toast/info.svg'
+          icon: '/images/toast/info.svg',
         }
         break
       case NOTIFICATION.Success:
@@ -35,7 +35,7 @@ const SubscribeForm = () => {
           title: 'Success',
           message: 'Thanks for your interest.',
           backgroundColor: '#5cb85c',
-          icon: '/images/toast/check.svg'
+          icon: '/images/toast/check.svg',
         }
         break
       case NOTIFICATION.UserExists:
@@ -43,7 +43,7 @@ const SubscribeForm = () => {
           title: 'Thanks',
           message: ' We already have your details',
           backgroundColor: '#5bc0de',
-          icon: '/images/toast/info.svg'
+          icon: '/images/toast/info.svg',
         }
         break
       case NOTIFICATION.ServerError:
@@ -51,7 +51,7 @@ const SubscribeForm = () => {
           title: 'Sorry',
           message: 'An error occured on our server.',
           backgroundColor: '#d9534f',
-          icon: '/images/toast/error.svg'
+          icon: '/images/toast/error.svg',
         }
         break
       case NOTIFICATION.ConnectionError:
@@ -59,7 +59,7 @@ const SubscribeForm = () => {
           title: 'Error',
           message: 'Unable to connect.',
           backgroundColor: '#d9534f',
-          icon: '/images/toast/error.svg'
+          icon: '/images/toast/error.svg',
         }
         break
       case NOTIFICATION.None:
@@ -76,14 +76,14 @@ const SubscribeForm = () => {
   async function subscribeApiPost () {
     const url = 'https://localhost:44348/api/contacts'
     const data = {
-      email: emailValue
+      email: emailValue,
     }
     const postOptions = {
       method: 'post',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     }
 
     return fetch(url, postOptions)
