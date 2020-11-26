@@ -7,7 +7,6 @@ const SubscribeForm = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [list, setList] = useState([])
 
-  // TODO: See if better way. Maybe enums are bad in Typescript.
   /* eslint-disable-next-line no-shadow */
   enum NOTIFICATION {
     Submit,
@@ -74,7 +73,7 @@ const SubscribeForm = () => {
   }
 
   async function subscribeApiPost () {
-    const url = 'https://localhost:44348/api/contacts'
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts`
     const data = {
       email: emailValue,
     }
