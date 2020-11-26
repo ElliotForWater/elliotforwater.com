@@ -29,6 +29,7 @@ describe('ToastList', () => {
       // Arrange
       const wrapper = mount(<ToastList {...{ toastList: toastList }} />)
       const firstToast = wrapper.findWhere((el) => el.is(Toast)).first()
+
       // Act
       firstToast.find('button').simulate('click')
 
