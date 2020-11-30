@@ -1,26 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import cookies from 'js-cookie'
-import ButtonOutline from '../Buttons/ButtonOutline'
+import SubscribeForm from '../Forms/SubscribeForm'
 import styles from './Footer.module.css'
 
 const Footer = () => {
-  const [emailValue, setEmailValue] = useState<string>('')
-  const [cookieAntiforgery, setCookieAntiforgery] = useState<string>('')
-
-  useEffect(() => {
-    const wordInCookie = '.AspNetCore.Antiforgery'
-    const allCookies = cookies.get()
-    for (const key in allCookies) {
-      if (key.startsWith(wordInCookie)) {
-        setCookieAntiforgery(allCookies[key])
-      }
-    }
-  }, [])
-
-  function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
-    setEmailValue(event.target.value)
-  }
-
   return (
     <footer className={styles.footer}>
       <div className={styles.social}>
@@ -69,24 +50,7 @@ const Footer = () => {
       </div>
       <div className={styles.newsletter}>
         <h4 className={styles.title}>Follow our journey</h4>
-        <form className={styles.newsletterForm} action='/Contact/Subscribe' method='post'>
-          <input type='text' name='name' style={{ display: 'none' }} />
-          <input
-            type='email'
-            name='email'
-            placeholder='Email'
-            value={emailValue}
-            onChange={handleChange}
-            className={styles.newsletterEmail}
-            required
-          />
-          <input type='hidden' name='__RequestVerificationToken' value={cookieAntiforgery} />
-          <ButtonOutline>
-            <button className={styles.submitButton} type='submit'>
-              Subscribe
-            </button>
-          </ButtonOutline>
-        </form>
+        <SubscribeForm />
       </div>
 
       <div className={styles.separationLine} />

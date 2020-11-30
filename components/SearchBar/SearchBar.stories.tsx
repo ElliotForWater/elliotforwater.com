@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import SearchBar from './SearchBar'
 
 export default { title: 'Components/Search Bar' }

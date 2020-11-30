@@ -2,17 +2,18 @@ module.exports = {
   extends: ['standard', 'standard-jsx'],
   settings: {
     react: {
-      version: '16.13'
-    }
+      version: '16.13',
+    },
   },
   env: {
     browser: true,
     node: true,
-    jest: true
+    jest: true,
   },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-hooks', 'jest'],
   rules: {
+    'comma-dangle': ['error', 'only-multiline'],
     'no-shadow': 'warn',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -20,8 +21,8 @@ module.exports = {
       {
         vars: 'all',
         args: 'none',
-        ignoreRestSiblings: true
-      }
+        ignoreRestSiblings: true,
+      },
     ],
 
     'react-hooks/rules-of-hooks': 'error',
@@ -29,12 +30,12 @@ module.exports = {
     'react/jsx-handler-names': 'warn',
     'react/jsx-pascal-case': 'warn',
     'react/jsx-no-target-blank': 'off',
-    'react/jsx-indent': 'off'
+    'react/jsx-indent': 'off',
   },
   globals: {
     SITE_URL: 'readonly',
     __DEVELOPMENT__: 'readonly',
     __ENV__: 'readonly',
-    __API_URL__: 'readonly'
-  }
+    __API_URL__: 'readonly',
+  },
 }

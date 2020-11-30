@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import HeaderComponent from './Header'
 
 export default { title: 'Components/Header' }

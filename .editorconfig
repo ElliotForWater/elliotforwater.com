@@ -8,4 +8,4 @@ max_line_length = 100
 
 [*.md]
 max_line_length = 0
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true

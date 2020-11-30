@@ -34,40 +34,6 @@
   margin: 0 10px;
 }
 
-.newsletterForm {
-  margin-top: 25px;
-  display: flex;
-}
-
-.newsletterEmail {
-  background: transparent;
-  border: none;
-  border-bottom: 1px dotted black;
-  outline: none;
-  top: 0;
-  right: 3px;
-  position: relative;
-}
-
-.newsletterButton {
-  background: transparent;
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 3px;
-}
-
-.newsletterButton:hover {
-  color: var(--elliotPrimary);
-  border: 1px solid var(--elliotPrimary);
-}
-
-.submitButton {
-  border: 0;
-  background: transparent;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
 .links {
   grid-area: links;
   margin-top: 10px;
@@ -118,10 +84,6 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
     margin-top: 0;
-  }
-
-  .newsletterForm {
-    justify-content: flex-end;
   }
 
   .separationLine {

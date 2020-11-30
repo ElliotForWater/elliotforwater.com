@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import SearchFiltersComp from './SearchFilters'
 
 export default { title: 'Components/Search Filters' }
