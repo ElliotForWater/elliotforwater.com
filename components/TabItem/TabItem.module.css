@@ -1,0 +1,20 @@
+.tab {
+  padding-right: 12px;
+  margin-bottom: -1px;
+}
+
+.title {
+  color: var(--textColor);
+  padding: 0 5px 0 5px;
+}
+
+.active .title {
+  color: var(--elliotPrimary);
+  font-weight: bold;
+  border-bottom: 2px solid var(--elliotPrimary);
+  padding-bottom: 2px;
+}
+
+.title:hover {
+  color: var(--elliotPrimary);
+}

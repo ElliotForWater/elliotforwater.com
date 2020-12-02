@@ -1,0 +1,9 @@
+.tabs {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--lightGrey);
+}
+
+.content {
+  padding: 10px 0;
+}
