@@ -4,7 +4,7 @@
   --elliotHover: #9cd5db;
   --elliotVisited: #63bfce;
   --dimGrey: #999;
-  --lightGrey: #f0f0f0;
+  --lighterGrey: #f0f0f0;
   --placeholder: #ccc;
   --textColor: #444;
   --cta: #3fa2b8;
@@ -74,6 +74,10 @@ a {
 
 p {
   margin: 0;
+}
+
+ul {
+  list-style: none;
 }
 
 /* COMMON STYLE */
@@ -175,7 +179,7 @@ p {
 .chevron::after {
   position: absolute;
   display: block;
-  content: "";
+  content: '';
   border: 10px solid transparent;
 }
 

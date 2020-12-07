@@ -10,7 +10,7 @@
   height: 2.8em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--lightGrey);
+  border: 1px solid var(--lighterGrey);
   font-size: 18px;
 }
 
@@ -21,7 +21,7 @@
   height: 2.8em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--lightGrey);
+  border: 1px solid var(--lighterGrey);
   font-size: 18px;
 }
 
@@ -52,9 +52,9 @@
   margin-top: 0;
   margin-bottom: 10px;
   margin-left: 20px;
-  border-left: 1px solid var(--lightGrey);
-  border-right: 1px solid var(--lightGrey);
-  border-bottom: 1px solid var(--lightGrey);
+  border-left: 1px solid var(--lighterGrey);
+  border-right: 1px solid var(--lighterGrey);
+  border-bottom: 1px solid var(--lighterGrey);
   border-radius: 0 0 24px 24px;
 }
 
@@ -73,11 +73,11 @@
 }
 
 .autosuggestWord:hover {
-  background: var(--lightGrey);
+  background: var(--lighterGrey);
 }
 
 .highlight {
-  background: var(--lightGrey);
+  background: var(--lighterGrey);
 }
 
 .autosuggestItemIcon {
