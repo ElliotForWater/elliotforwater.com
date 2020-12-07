@@ -1,0 +1,23 @@
+.tabs {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: -15px;
+  display: flex;
+  flex-flow: wrap;
+  overflow: hidden;
+  height: 45px;
+}
+
+.tab {
+  color: var(--textColor);
+  background-color: #fff;
+  border: 1px solid var(--lightGrey);
+  box-shadow: 0 1px 2px rgba(192, 194, 197, 0.6);
+  text-transform: none;
+  font-style: normal;
+  margin: 5px;
+  padding: 0.6em 0.8em;
+  font-size: 80%;
+  border-radius: 2em;
+  white-space: nowrap;
+}
