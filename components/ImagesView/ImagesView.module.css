@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0 20px;
+}
+
+.item {
+  flex-grow: 1;
+  margin: 4px;
+  background-color: var(--light-grey-color);
+  height: 200px;
+}
+
+.item:last-child {
+  flex-grow: 0;
+}
+
+.image {
+  height: 200px;
+  object-fit: cover;
+  max-width: 100%;
+  min-width: 100%;
+  vertical-align: bottom;
+  border-radius: 4px;
+}
+
+.hidden {
+  height: 0;
+  width: 0;
+  display: none;
+}

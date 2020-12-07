@@ -99,7 +99,15 @@ ul {
   padding: 20px 0;
 }
 
-/* Site css from .NET */
+.hidden-element {
+  height: 0;
+  width: 0;
+  display: none;
+}
+
+/* ==================================================
+  Styles from .NET
+================================================== */
 .background {
   position: absolute;
   top: 0;
