@@ -2,11 +2,14 @@
   --elliotPrimary: #72afd4;
   --elliotSecondary: #5082af;
   --elliotHover: #9cd5db;
-  --elliotVisited: #63bfce;
+  --elliotVisited: #2a6496;
+  --elliotLink: #287896;
+  --elliotLinkSubtitle: #4aacc28f;
   --dimGrey: #999;
   --lighterGrey: #f0f0f0;
   --placeholder: #ccc;
   --textColor: #444;
+  --textGreyColor: #44444494;
   --cta: #3fa2b8;
   --footerBg: #e6f6f9;
   --borderColor: #99b7bd4f;
@@ -78,6 +81,12 @@ p {
 
 ul {
   list-style: none;
+}
+
+.hidden-element {
+  height: 0;
+  width: 0;
+  display: none;
 }
 
 /* COMMON STYLE */
