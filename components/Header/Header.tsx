@@ -27,7 +27,7 @@ const Header: FC = () => {
             </span>
           </div>
           <div className={styles.logo}>
-            <a href='https://www.elliotforwater.com/'>
+            <a href='/'>
               <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
             </a>
           </div>
@@ -41,7 +41,7 @@ const Header: FC = () => {
       <section className={styles.wrapperDesktop}>
         <div className={styles.leftSide}>
           <div className={styles.logoSmaller}>
-            <a href='https://www.elliotforwater.com/'>
+            <a href='/'>
               <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
             </a>
           </div>

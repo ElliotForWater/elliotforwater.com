@@ -22,6 +22,15 @@
   padding: 16px 24px;
 }
 
+.button button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: white;
+}
+
 .button a {
   cursor: pointer;
   color: white;

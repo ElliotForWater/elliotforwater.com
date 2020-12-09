@@ -20,7 +20,7 @@ export const Layout: FC<LayoutProps> = ({
   fluid,
   pageTitle,
   pageDescription,
-  isHome
+  isHome,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -38,7 +38,7 @@ export const Layout: FC<LayoutProps> = ({
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta name='og:title' content={`${pageTitle} - Elliot for Water`} />
         <meta name='og:description' content={pageDescription || socialDescription} />
-        <meta name='og:url' content='https://www.elliotforwater.com/' />
+        <meta name='og:url' content={process.env.NEXT_PUBLIC_API_URL} />
         <meta name='og:site_name' content='Elliot for Water' />
         <meta name='og:type' content='website' />
 

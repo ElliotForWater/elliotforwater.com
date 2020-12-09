@@ -14,14 +14,14 @@ const Nav = () => {
       </div>
       <ul
         className={classnames(styles.menuContainer, {
-          [styles.menuOpen]: isOpen
+          [styles.menuOpen]: isOpen,
         })}
       >
         <li className={styles.menuItem}>
-          <a href='https://www.elliotforwater.com/why-water.html'>Why Water</a>
+          <a href='/why-water.html'>Why Water</a>
         </li>
         <li className={styles.menuItem}>
-          <a href='https://www.elliotforwater.com/about'>About us</a>
+          <a href='/about'>About us</a>
         </li>
         <li className={styles.divider} />
         <li className={styles.menuItem}>
@@ -37,10 +37,10 @@ const Nav = () => {
           </a>
         </li>
         <li className={styles.menuItem}>
-          <a href='https://www.elliotforwater.com/Terms'>Terms</a>
+          <a href='/terms'>Terms</a>
         </li>
         <li className={styles.menuItem}>
-          <a href='https://www.elliotforwater.com/Privacy'>Privacy</a>
+          <a href='/privacy'>Privacy</a>
         </li>
       </ul>
     </nav>

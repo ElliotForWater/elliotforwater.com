@@ -56,19 +56,19 @@ const Footer = () => {
       <div className={styles.separationLine} />
       <ul className={styles.links}>
         <li className={styles.link}>
-          <a href='https://www.elliotforwater.com/About'>Contact</a>
+          <a href='/about'>Contact</a>
         </li>
         <li className={styles.link}>
-          <a href='https://www.elliotforwater.com/About'>About Us</a>
+          <a href='/about'>About Us</a>
         </li>
         {/* <li>
             FAQ
         </li> */}
         <li className={styles.link}>
-          <a href='https://www.elliotforwater.com/Privacy'>Privacy</a>
+          <a href='/privacy'>Privacy</a>
         </li>
         <li className={styles.link}>
-          <a href='https://www.elliotforwater.com/Terms'>Terms</a>
+          <a href='/terms'>Terms</a>
         </li>
       </ul>
     </footer>

@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ContactUsForm from '../components/Forms/ContactForm/ContactForm'
 
 const ComponentSpan = (props) => <p className='facts__text' {...props} />
 
@@ -57,7 +58,7 @@ function About () {
                             target='_blank'
                           />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://wellfound.org.uk/' target='_blank' />
+                          <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
                       />
                     </div>
@@ -95,7 +96,7 @@ function About () {
                             target='_blank'
                           />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://wellfound.org.uk/' target='_blank' />
+                          <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
                       />
                     </div>
@@ -123,71 +124,7 @@ function About () {
       </div>
       <section className='section contact-us' id='contact-us'>
         <h2 className='contact-us__title'>{t('about:contact_us')}</h2>
-        <form method='post' action='/Contact/ContactUs'>
-          <div className='form-row'>
-            <div className='form-group col-md-12'>
-              <input
-                type='tel'
-                className='form-control'
-                id='tel'
-                name='tel'
-                placeholder='Telephone'
-              />
-            </div>
-          </div>
-          <div className='row'>
-            <div className='form-group col-sm-6'>
-              <input
-                type='text'
-                className='form-control'
-                id='name'
-                name='name'
-                placeholder='Name'
-                required
-              />
-            </div>
-            <div className='form-group col-sm-6'>
-              <input
-                type='email'
-                className='form-control'
-                id='email'
-                name='email'
-                placeholder='Email'
-                required
-              />
-            </div>
-          </div>
-          <div className='row'>
-            <div className='form-group col-md-12'>
-              <input
-                type='tel'
-                className='form-control'
-                id='phone'
-                name='phone'
-                placeholder='Phone Number'
-                required
-              />
-            </div>
-          </div>
-          <div className='row'>
-            <div className='form-group col-md-12'>
-              <textarea
-                className='form-control form-control--multiline'
-                id='msg'
-                name='msg'
-                placeholder='Type your message here...'
-                rows={10}
-                required
-              />
-            </div>
-          </div>
-          <div className='form-row'>
-            <div className='col-md-12'>
-              <ButtonPrimary big>{t('about:send')}</ButtonPrimary>
-            </div>
-          </div>
-          <input name='__RequestVerificationToken' type='hidden' value='' />
-        </form>
+        <ContactUsForm />
       </section>
       <style jsx>
         {`
@@ -293,11 +230,6 @@ function About () {
             font-weight: 700;
           }
 
-          .col-md-12 {
-            display: flex;
-            justify-content: flex-end;
-          }
-
           /* ==================================================
             Media Styles
           ================================================== */
@@ -335,7 +267,8 @@ function About () {
             .facts__text {
               font-size: 2vw;
             }
-            .contact-us {
+
+            .contactUs {
               margin: 15% auto;
               width: 90%;
             }

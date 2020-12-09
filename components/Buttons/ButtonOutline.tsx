@@ -9,7 +9,7 @@ interface ButtonProps {
   linkHref?: string
 }
 
-export default function ButtonOutline ({ fluid, handleClick, linkHref, children }: ButtonProps) {
+export default function ButtonOutline({ fluid, handleClick, linkHref, children }: ButtonProps) {
   return (
     <div className={classnames(styles.button, { [styles.fluid]: fluid })} onClick={handleClick}>
       {linkHref ? <a href={linkHref}>{children}</a> : children}
