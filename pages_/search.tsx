@@ -56,7 +56,7 @@ const initResults = {
   newsResults: null,
 }
 
-function Container ({ results, component }) {
+function Container ({ results, query, component }) {
   if (
     !results.organicResults &&
     !results.sponsoredResults &&
@@ -66,16 +66,32 @@ function Container ({ results, component }) {
     !results.newsResults
   ) {
     return <Loader />
-  } else {
-    return component
   }
+
+  if (results.organicResults.numResults === 0) {
+    return (
+      <h3 className='title'>
+        {`We are sorry but there are no results for "${query}"`}
+        <style jsx>{`
+          .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+          }
+        `}
+        </style>
+      </h3>
+    )
+  }
+
+  return component
 }
 function SearchPage ({ query, type }) {
   const { t } = useTranslation()
   const router = useRouter()
   const [results, setResults] = useState<resultsProp>(initResults)
   const [activeTab, setActiveTab] = useState<tabProp>(initStateTab)
-  const [searchType, setSearchType] = useState<string>(type)
   const [isError, setIsError] = useState<boolean>(false)
 
   const tabMenu = [
@@ -86,13 +102,14 @@ function SearchPage ({ query, type }) {
       content: (
         <Container
           results={results}
+          query={query}
           component={
             <AllResultsView
               organicItems={results.organicResults !== null && results.organicResults.items}
               sponsoredItems={results.sponsoredResults !== null && results.sponsoredResults.items}
               relatedSearches={results.relatedSearches !== null && results.relatedSearches.items}
               images={results.imageResults !== null && results.imageResults.items}
-              goToSearchType={(type) => handleSwitchTab(findTab(type))}
+              searchQuery={query}
             />
           }
         />
@@ -105,6 +122,7 @@ function SearchPage ({ query, type }) {
       content: (
         <Container
           results={results}
+          query={query}
           component={
             <ImagesView images={results.imageResults !== null && results.imageResults.items} />
           }
@@ -118,6 +136,7 @@ function SearchPage ({ query, type }) {
       content: (
         <Container
           results={results}
+          query={query}
           component={
             <VideosView videos={results.videoResults !== null && results.videoResults.items} />
           }
@@ -131,6 +150,7 @@ function SearchPage ({ query, type }) {
       content: (
         <Container
           results={results}
+          query={query}
           component={<NewsView news={results.newsResults !== null && results.newsResults.items} />}
         />
       ),
@@ -148,14 +168,14 @@ function SearchPage ({ query, type }) {
   }, [results])
 
   useEffect(() => {
-    if (searchType === 'map') {
+    if (type === 'map') {
       return setActiveTab(findTab())
     }
 
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${searchType}?query=${query}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}`,
         )
         if (res.ok) {
           const json = await res.json()
@@ -172,15 +192,14 @@ function SearchPage ({ query, type }) {
     }
 
     fetchData()
-  }, [searchType])
+  }, [query, type])
 
   function handleSwitchTab (nextActiveTab) {
-    setSearchType(nextActiveTab.resultType)
     router.push(`search?query=${query}&type=${nextActiveTab.resultType}`)
   }
 
-  function findTab (type?: string): tabProp {
-    return tabMenu.find((tab) => (type || searchType) === tab.resultType)
+  function findTab (newType?: string): tabProp {
+    return tabMenu.find((tab) => (newType || type) === tab.resultType)
   }
 
   return (

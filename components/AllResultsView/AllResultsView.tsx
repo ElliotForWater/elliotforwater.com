@@ -43,7 +43,7 @@ interface Prop {
   sponsoredItems: sponsoredItemsObj[]
   relatedSearches: relatedLinks[]
   images: image[]
-  goToSearchType: (type: string) => void
+  searchQuery: string
 }
 
 const AllResultsView = ({
@@ -51,7 +51,7 @@ const AllResultsView = ({
   sponsoredItems,
   relatedSearches,
   images,
-  goToSearchType,
+  searchQuery,
 }: Prop) => {
   const mainlineSponsor = []
   const sidebarSponsor = []
@@ -73,7 +73,8 @@ const AllResultsView = ({
       <div className={styles.main}>
         {combinedResults.map((item: image[] | sponsoredItemsObj, i) => {
           if (Array.isArray(item)) {
-            return <ImagesBlock images={item} key={i} handleGoToSearchType={goToSearchType} />
+            if (item.length === 0) return
+            return <ImagesBlock images={item} key={i} searchQuery={searchQuery} />
           } else {
             return (
               <Article

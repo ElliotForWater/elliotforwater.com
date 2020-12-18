@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import styles from './AllResultsView.module.css'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -11,10 +12,10 @@ type image = {
 
 type Prop = {
   images: image[]
-  handleGoToSearchType: (type: string) => void
+  searchQuery: string
 }
 
-const ImagesBlock = ({ images, handleGoToSearchType }: Prop) => {
+const ImagesBlock = ({ images, searchQuery }: Prop) => {
   const { t } = useTranslation()
   const firstBatch = images.slice(0, 3)
 
@@ -35,15 +36,16 @@ const ImagesBlock = ({ images, handleGoToSearchType }: Prop) => {
           </div>
         ))}
       </div>
-      <a
-        href='#'
-        onClick={(e) => {
-          e.preventDefault()
-          handleGoToSearchType('image')
+      <Link
+        href={{
+          pathname: '/search',
+          query: { query: searchQuery, type: 'image' },
         }}
       >
-        {t('search:more_images')} {'>'}
-      </a>
+        <a>
+          {t('search:more_images')} {'>'}
+        </a>
+      </Link>
     </div>
   )
 }

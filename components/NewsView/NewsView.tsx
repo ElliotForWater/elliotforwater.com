@@ -29,7 +29,7 @@ const NewsView = ({ news }: Prop) => {
                       [styles.placeholder]: !article.thumbnailUrl,
                     })}
                     src={article.thumbnailUrl || ''}
-                    alt={article.title}
+                    alt={article.thumbnailUrl ? article.title : ''}
                     title={article.title}
                   />
                 </a>

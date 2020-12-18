@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/router'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
@@ -14,10 +15,18 @@ const suggestURL =
 
 const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
-  const [searchValue, setSearchValue] = useState<string>('')
+  const router = useRouter()
+  const { query, type } = router.query
+  const initType = typeof type === 'undefined' ? 'web' : type
+  const [searchValue, setSearchValue] = useState<string | string[]>(query || '')
+  const [typeValue, setTypeValue] = useState<string | string[]>(initType)
   const [highlightIndex, setHighlightIndex] = useState<number>(0)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
   const [suggestedWords, setSuggestedWords] = useState<Array<string>>([])
+
+  if (type !== typeValue && typeValue !== initType) {
+    setTypeValue(type)
+  }
 
   useEffect(() => {
     document.addEventListener('keydown', handleHighlight)
@@ -65,6 +74,7 @@ const SearchBar = ({ big }: SearchProps) => {
 
   function handleSelectWord (word: string) {
     setSearchValue(word)
+    router.push(`search?query=${word}&type=${typeValue}`)
     setIsSuggestionOpen(false)
   }
 
@@ -72,34 +82,48 @@ const SearchBar = ({ big }: SearchProps) => {
     setIsSuggestionOpen(false)
   }
 
+  function handleClickSearchInput (event) {
+    event.preventDefault()
+    router.push(`search?query=${searchValue}&type=${typeValue}`)
+  }
+
+  function handleKeyPress (event) {
+    if (event.charCode === 13) {
+      router.push(`search?query=${searchValue}&type=${typeValue}`)
+      setIsSuggestionOpen(false)
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
-      <form action='/Search/Index' method='get' className={styles.form}>
+      <div className={styles.form}>
         <input
           name='q'
-          type='text'
+          type='search'
           value={searchValue}
           className={big ? styles.inputBig : styles.input}
           onChange={showSuggestedWords}
           onFocus={showSuggestedWords}
           onBlur={handleOnBlur}
+          onKeyPress={handleKeyPress}
           autoComplete='off'
           autoCapitalize='off'
           autoCorrect='off'
           spellCheck='false'
           placeholder={t('common:search_input')}
         />
-        <button className={big ? styles.buttonBig : styles.button} type='submit'>
+        <button className={big ? styles.buttonBig : styles.button} onClick={handleClickSearchInput}>
           <SearchIcon color='#ccc' size={16} />
         </button>
-      </form>
+      </div>
+
       {isSuggestionOpen && (
         <ul className={big ? styles.autosuggestResultsBig : styles.autosuggestResults}>
           {suggestedWords.map((word, i) => (
             <li
               key={i}
               className={classnames(styles.autosuggestWord, {
-                [styles.highlight]: i === highlightIndex
+                [styles.highlight]: i === highlightIndex,
               })}
               onMouseDown={() => handleSelectWord(word || '')}
             >
