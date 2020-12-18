@@ -1,37 +1,36 @@
-import React, { useState } from 'react'
+import React, { ReactElement } from 'react'
 import TabItem from '../TabItem/TabItem'
-import styles from './TabsMenu.module.css'
-
-type tabItemsProp = {
+interface tabProp {
   id: number
+  resultType: string
   title: string
-  content: string | React.ReactNode
+  content: ReactElement
 }
-
 interface Props {
-  tabItems: tabItemsProp[]
+  tabItems: tabProp[]
+  activeTabId: number
+  setActiveTab: (nextActiveTab: tabProp) => void
 }
 
-const TabsMenu = ({ tabItems }: Props) => {
-  const [active, setActive] = useState(1)
-
+const TabsMenu = ({ tabItems, activeTabId, setActiveTab }: Props) => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.tabs}>
-        {tabItems.map(({ id, title }) => (
-          <TabItem
-            key={title}
-            title={title}
-            onItemClicked={() => setActive(id)}
-            isActive={active === id}
-          />
-        ))}
-      </div>
-      <div className={styles.content}>
-        {tabItems.map(({ id, content }) => {
-          return active === id ? content : ''
-        })}
-      </div>
+    <div className='tabs'>
+      {tabItems.map((tab) => (
+        <TabItem
+          key={tab.title}
+          title={tab.title}
+          onItemClicked={() => setActiveTab(tab)}
+          isActive={activeTabId === tab.id}
+        />
+      ))}
+      <style jsx>
+        {`
+          .tabs {
+            display: flex;
+            align-items: center;
+          }
+        `}
+      </style>
     </div>
   )
 }

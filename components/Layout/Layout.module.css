@@ -1,5 +1,7 @@
 .wrapper {
   height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .container {
@@ -13,5 +15,4 @@
 .fluid {
   overflow: hidden;
   max-width: 100%;
-  margin: 0 auto;
 }

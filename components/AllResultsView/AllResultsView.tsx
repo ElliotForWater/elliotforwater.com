@@ -1,61 +1,109 @@
 import React from 'react'
+import RefineSearch from '../RefineSearch/RefineSearch'
+import ImagesBlock from './ImagesBlock'
+import Article from './Article'
 import styles from './AllResultsView.module.css'
 
-type relatesObj = {
-  url: string
-  title: string
+type relatedLinks = {
+  text: string
+  pixelUrl: string
 }
 
-type ItemsObj = {
+type siteLinks = {
   url: string
+  text: string
+  pixelUrl: string
+}
+
+type image = {
   title: string
-  subtitle: string
+  targetedUrl: string
+  thumbnailUrl: string
+  pixelUrl: string
+}
+
+type sponsoredItemsObj = {
+  targetedUrl: string
+  title: string
+  displayUrl: string
   description: string
-  sponsor: boolean
-  relates: relatesObj[]
+  pixelUrl: string
+  siteLinks: siteLinks[]
 }
 
+type organicItemsObj = {
+  targetedUrl: string
+  title: string
+  displayUrl: string
+  description: string
+  pixelUrl: string
+}
 interface Prop {
-  items: ItemsObj[]
-  searchQuery: string
+  organicItems: organicItemsObj[]
+  sponsoredItems: sponsoredItemsObj[]
+  relatedSearches: relatedLinks[]
+  images: image[]
+  goToSearchType: (type: string) => void
 }
 
-const NewsView = ({ items, searchQuery }: Prop) => {
+const AllResultsView = ({
+  organicItems,
+  sponsoredItems,
+  relatedSearches,
+  images,
+  goToSearchType,
+}: Prop) => {
+  const mainlineSponsor = []
+  const sidebarSponsor = []
+  if (sponsoredItems.length) {
+    mainlineSponsor.push(...sponsoredItems.filter((item) => item.placementHint === 'Mainline'))
+    sidebarSponsor.push(...sponsoredItems.filter((item) => item.placementHint === 'Sidebar'))
+  }
+
+  const firstBatchOrganic = organicItems.slice(0, 3)
+  const secondBatchOrganic = organicItems.slice(3, organicItems.length)
+
+  const combinedResults = [...mainlineSponsor, ...firstBatchOrganic, images, ...secondBatchOrganic]
+
   return (
-    <div>
-      {items.map((item, i) => {
-        const relates = item.relates
-        return (
-          <article className={styles.article} key={i}>
-            <h3 className={styles.title}>
-              <a className={styles.titleLink} href={item.url}>
-                {item.title}
-              </a>
-            </h3>
-            <div className={styles.subtitle}>
-              {item.sponsor && <span className={styles.sponsorLabel}>Ad</span>}
-              {item.subtitle}
-            </div>
-            <p>{item.description}</p>
-            <div>
-              {relates.map((link, i) => (
-                <span key={i}>
-                  <a className={styles.relatedLink} href={link.url}>
-                    {link.title}
-                  </a>
-                  {i === relates.length - 1 ? '' : <span> - </span>}
-                </span>
-              ))}
-            </div>
-            <img
-              className={styles.hidden}
-              src={`https://feed.cf-se.com/v2/pixel/?gd=SY1002408&amp;uid=&amp;sid=&amp;q=${searchQuery}&amp;searchProvider=2&amp;searchSource=80&amp;searchTagId=ptvl!%3D!tracingTag%253DC24%2526tracingTag%253Dus-east-1%2526tracingTag%253Dg1!%26!ptnvls!%3D!%257B%257D!%26!ptvls!%3D!%257B%2522C%2522%253A%252224%2522%257D&amp;original=&amp;linktype=Image&amp;referrer=&amp;agent=&amp;page=0&amp;mkt=&amp;c=24&amp;d=&amp;td=&amp;n=&amp;r=&amp;af=1&amp;at=images&amp;AdUnitId=11715086&amp;AdUnitName=cf_elliot4w_media1&amp;tid=1f347847-288c-4789-ba73-dde214c4ed73&amp;adPosition=150&amp;isid=&amp;ab_isSticky=&amp;ab_startDate=&amp;ab_endDate=&amp;ab_per=&amp;nu=&amp;ptv=2&amp;resultType=organic`}
-            />
-          </article>
-        )
-      })}
+    <div className={styles.gridContainer}>
+      <div className={styles.header}>
+        <RefineSearch refineSearches={relatedSearches} />
+      </div>
+      <div className={styles.main}>
+        {combinedResults.map((item: image[] | sponsoredItemsObj, i) => {
+          if (Array.isArray(item)) {
+            return <ImagesBlock images={item} key={i} handleGoToSearchType={goToSearchType} />
+          } else {
+            return (
+              <Article
+                key={i}
+                targetedUrl={item.targetedUrl}
+                title={item.title}
+                displayUrl={item.displayUrl}
+                description={item.description}
+                pixelUrl={item.pixelUrl}
+                siteLinks={item.siteLinks}
+              />
+            )
+          }
+        })}
+      </div>
+      <div className={styles.sidebar}>
+        {sidebarSponsor.map((item: sponsoredItemsObj, i) => (
+          <Article
+            key={i}
+            targetedUrl={item.targetedUrl}
+            title={item.title}
+            displayUrl={item.displayUrl}
+            description={item.description}
+            pixelUrl={item.pixelUrl}
+            siteLinks={item.siteLinks}
+          />
+        ))}
+      </div>
     </div>
   )
 }
 
-export default NewsView
+export default AllResultsView

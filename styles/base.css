@@ -7,6 +7,7 @@
   --elliotLinkSubtitle: #4aacc28f;
   --dimGrey: #999;
   --lighterGrey: #f0f0f0;
+  --containerBg: #f7f7f7;
   --placeholder: #ccc;
   --textColor: #444;
   --textGreyColor: #44444494;
@@ -97,12 +98,6 @@ ul {
 
 .container {
   padding: 20px 0;
-}
-
-.hidden-element {
-  height: 0;
-  width: 0;
-  display: none;
 }
 
 /* ==================================================

@@ -1,8 +1,13 @@
 import React from 'react'
 import styles from './RefineSearch.module.css'
 
+type relatedObj = {
+  text: string
+  pixelUrl: string
+}
+
 interface Props {
-  refineSearches: string[]
+  refineSearches: relatedObj[]
 }
 
 const RefineSearch = ({ refineSearches }: Props) => {
@@ -10,8 +15,8 @@ const RefineSearch = ({ refineSearches }: Props) => {
     <div className={styles.tabs}>
       {refineSearches &&
         refineSearches.map((item, i) => (
-          <a key={i} className={styles.tab} href={`/search?q=${item}&amp;type=all`}>
-            {item}
+          <a key={i} className={styles.tab} href={`/search?q=${item.text}&amp;type=all`}>
+            {item.text}
           </a>
         ))}
     </div>

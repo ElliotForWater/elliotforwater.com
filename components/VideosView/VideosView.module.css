@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 10px 4px 20px;
+  padding: 5px 15px;
 }
 
 .item {
@@ -68,5 +68,11 @@
 @media (min-width: 600px) {
   .item {
     width: calc(100% / 3 - 6px);
+  }
+}
+
+@media (min-width: 768px) {
+  .item {
+    width: calc(100% / 4 - 6px);
   }
 }

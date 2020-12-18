@@ -1,6 +1,7 @@
 .tab {
   padding-right: 12px;
   margin-bottom: -1px;
+  cursor: pointer;
 }
 
 .title {

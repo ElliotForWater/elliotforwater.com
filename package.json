@@ -31,6 +31,7 @@
     "next-translate": "^0.19.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0",
     "storybook": "^6.1.1"
   },
   "devDependencies": {

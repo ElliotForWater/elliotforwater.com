@@ -1,3 +1,7 @@
+.articles {
+  padding: 8px 15px;
+}
+
 .article {
   border-radius: 10px;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
@@ -8,10 +12,6 @@
   word-break: break-word;
   overflow: hidden;
   max-width: 768px;
-}
-
-.article:first-child {
-  margin-top: 15px;
 }
 
 .wrap {
@@ -29,6 +29,11 @@
   height: 125px;
   width: 125px;
   border: 1px solid var(--lightGrey);
+}
+
+.placeholder {
+  background: var(--lightGrey);
+  display: block;
 }
 
 .title {
@@ -52,11 +57,19 @@
 }
 
 @media (min-width: 768px) {
+  .articles {
+    padding-left: 75px;
+  }
+
   .article {
     margin: 2.5em 1em;
     border-radius: 0;
     box-shadow: none;
     padding: 0;
+  }
+
+  .article:first-child {
+    margin-top: 0;
   }
 
   .wrap {

@@ -1,6 +1,4 @@
 .tabs {
-  margin-top: 15px;
-  margin-left: 20px;
   margin-bottom: -15px;
   display: flex;
   flex-flow: wrap;
@@ -20,4 +18,8 @@
   font-size: 80%;
   border-radius: 2em;
   white-space: nowrap;
+}
+
+.tab:hover {
+  text-decoration: none;
 }
