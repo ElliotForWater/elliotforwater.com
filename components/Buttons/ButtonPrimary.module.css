@@ -18,8 +18,12 @@
   background-position: right center;
 }
 
-.big {
-  padding: 16px 24px;
+.outline {
+  @extend .button;
+
+  background-image: none;
+  border: 2px solid var(--elliotSecondary);
+  color: var(--elliotSecondary);
 }
 
 .button button {
@@ -36,10 +40,31 @@
   color: white;
 }
 
+.outline a {
+  @extend .button a;
+
+  color: var(--elliotSecondary);
+}
+
 .button a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.outline:hover {
+  color: white;
+  background-image: linear-gradient(to right, var(--elliotSecondary) 0%, var(--elliotPrimary) 51%, var(--elliotSecondary) 100%);
+  border: 2px solid transparent;
+}
+
+.outline:hover a {
   color: white;
 }
 
 .fluid {
   width: 100%;
+}
+
+.big {
+  padding: 16px 24px;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ButtonOutline from '../Buttons/ButtonOutline'
+import ButtonSubscribe from '../Buttons/ButtonSubscribe'
 import ToastList from '../Toast/ToastList'
 import styles from './SubscribeForm.module.css'
 
@@ -129,20 +129,12 @@ const SubscribeForm = () => {
   return (
     <form className={styles.newsletterForm} method='post' onSubmit={handleSubmit}>
       <input type='text' name='name' style={{ display: 'none' }} />
-      <input
-        type='email'
-        name='email'
-        placeholder='Email'
-        value={emailValue}
-        onChange={handleEmailChange}
-        className={styles.newsletterEmail}
-        required
-      />
-      <ButtonOutline>
+      <input type='email' name='email' placeholder='Email' value={emailValue} onChange={handleEmailChange} className={styles.newsletterEmail} required />
+      <ButtonSubscribe>
         <button className={styles.submitButton} type='submit'>
           Subscribe
         </button>
-      </ButtonOutline>
+      </ButtonSubscribe>
       <ToastList toastList={list} position='bottomRight' />
     </form>
   )

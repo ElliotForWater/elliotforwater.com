@@ -37,9 +37,8 @@
 }
 
 .buttonBig {
-  /* stylelint-disable */
   @extend .button;
-  /* stylelint-enable */
+
   right: 25px;
 }
 
@@ -59,9 +58,8 @@
 }
 
 .autosuggestResultsBig {
-  /* stylelint-disable */
   @extend .autosuggestResults;
-  /* stylelint-enable */
+
   max-width: 39em;
 }
 

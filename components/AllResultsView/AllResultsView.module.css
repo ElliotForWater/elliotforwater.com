@@ -1,3 +1,10 @@
+.titleNoResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
 .gridContainer {
   display: grid;
   padding: 15px;

@@ -11,33 +11,35 @@ type VideosProp = {
 
 interface Prop {
   videos: VideosProp[]
+  query: string
 }
 
-const VideosView = ({ videos }: Prop) => {
+const VideosView = ({ videos, query }: Prop) => {
   return (
-    <div className={styles.container}>
-      {videos.map((video, i) => (
-        <div className={styles.item} key={i}>
-          <div className={styles.box}>
-            <a className={styles.link} href={video.targetedUrl} target='_self'>
-              <img
-                className={styles.image}
-                src={video.thumbnailUrl}
-                alt={video.title}
-                title={video.title}
-              />
-              <div className={styles.caption}>
-                <div className={styles.title}>
-                  <h5 className={styles.titleLink}>{video.title}</h5>
-                </div>
-                <div className={styles.subtitle}>{video.publisher}</div>
+    <>
+      {!videos.length ? (
+        <h3 className={styles.titleNoResults}>We are sorry but there are no results for "{query}"</h3>
+      ) : (
+        <div className={styles.container}>
+          {videos.map((video, i) => (
+            <div className={styles.item} key={i}>
+              <div className={styles.box}>
+                <a className={styles.link} href={video.targetedUrl} target='_self'>
+                  <img className={styles.image} src={video.thumbnailUrl} alt={video.title} title={video.title} />
+                  <div className={styles.caption}>
+                    <div className={styles.title}>
+                      <h5 className={styles.titleLink}>{video.title}</h5>
+                    </div>
+                    <div className={styles.subtitle}>{video.publisher}</div>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-          <img className={styles.hidden} src={video.pixelUrl} />
+              <img className={styles.hidden} src={video.pixelUrl} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import styles from './ButtonOutline.module.css'
+import styles from './ButtonSubscribe.module.css'
 
 interface ButtonProps {
   fluid?: boolean
@@ -9,7 +9,7 @@ interface ButtonProps {
   linkHref?: string
 }
 
-export default function ButtonOutline({ fluid, handleClick, linkHref, children }: ButtonProps) {
+export default function ButtonSubscribe ({ fluid, handleClick, linkHref, children }: ButtonProps) {
   return (
     <div className={classnames(styles.button, { [styles.fluid]: fluid })} onClick={handleClick}>
       {linkHref ? <a href={linkHref}>{children}</a> : children}
