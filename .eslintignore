@@ -4,3 +4,4 @@ build
 .next
 .storybook
 __mocks__
+.env.local

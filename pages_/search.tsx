@@ -70,7 +70,6 @@ const maxResults = {
 }
 
 function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore }) {
-  console.log('conatiner', isLoading)
   if (isLoading) {
     return <Loader />
   } else {
@@ -175,15 +174,12 @@ function SearchPage ({ query, type }) {
           setActiveTab(findTab())
           window.scrollTo(0, 0)
           handleShowLoadMore(json)
-          // setIsLoading(false)
         } else {
           setIsError({ status: 400 })
-          // setIsLoading(false)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
         setIsError({ status: 500 })
-        // setIsLoading(false)
       }
       setIsLoading(false)
     }
