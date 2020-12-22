@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
-import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import styles from './index.module.css'
 
 const App: FC = () => {
@@ -32,15 +32,8 @@ const App: FC = () => {
             <div className='odometer' />
             <p className='donated-water-text'>{t('home:liter_of_water')} </p>
           </div>
-          <div className={styles.hideMobile}>
-            <div className='elliot-btn-group'>
-              <ButtonPrimary
-                big
-                linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-              >
-                {t('common:addToChrome')}
-              </ButtonPrimary>
-            </div>
+          <div className='cta'>
+            <ButtonAddToBrowser />
           </div>
           <div className='show-more'>
             <a href='#how-it-works' className='show-more__link'>
@@ -125,19 +118,8 @@ const App: FC = () => {
             </div>
           </div>
         </div>
-
-        <div className={styles.hideMobile}>
-          <div className='elliot-btn-group'>
-            <ButtonPrimary
-              big
-              linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-            >
-              {t('common:addToChrome')}
-            </ButtonPrimary>
-            <ButtonPrimary big linkHref='/about'>
-              {t('common:learn_more')}
-            </ButtonPrimary>
-          </div>
+        <div className='cta'>
+          <ButtonAddToBrowser />
         </div>
       </section>
 
@@ -148,8 +130,6 @@ const App: FC = () => {
         <br />
         <p className='projects__caption' />
       </section>
-
-      {/* <cookie-policy /> */}
 
       <style jsx>
         {`
@@ -418,6 +398,10 @@ const App: FC = () => {
               height: auto;
               right: 0;
               top: 0;
+            }
+
+            .cta {
+              margin-top: 20px;
             }
           }
         `}

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
-import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import styles from './why-water.module.css'
 
 // Images Paths
@@ -43,13 +43,8 @@ function WaterPage () {
           />
           <h3 className={styles.subtitle}>{t('whyWater:layer1.subtitle')}</h3>
           <p className={styles.description}>{t('whyWater:layer1.explanation')}</p>
-          <div className={styles.hideMobile}>
-            <ButtonPrimary
-              big
-              linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-            >
-              {t('common:addToChrome')}
-            </ButtonPrimary>
+          <div className={styles.cta}>
+            <ButtonAddToBrowser />
           </div>
         </div>
         <img className={styles.bg1} src={bg1} />
@@ -150,17 +145,12 @@ function WaterPage () {
                 <a
                   href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
                   target='_blank'
-                />
+                />,
               ]}
             />
           </div>
-          <div className={styles.hideMobile}>
-            <ButtonPrimary
-              big
-              linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-            >
-              {t('common:addToChrome')}
-            </ButtonPrimary>
+          <div className={styles.cta}>
+            <ButtonAddToBrowser />
           </div>
         </div>
         <img className={styles.bg6} src={bg6} />
