@@ -25,6 +25,7 @@
   "author": "ElliotForWater",
   "license": "ISC",
   "dependencies": {
+    "@types/chrome": "0.0.127",
     "@types/classnames": "2.2.10",
     "es6-promise": "4.2.8",
     "next": "^10.0.1",
