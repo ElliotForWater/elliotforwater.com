@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
-import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import ContactUsForm from '../components/Forms/ContactForm/ContactForm'
 
 const ComponentSpan = (props) => <p className='facts__text' {...props} />
@@ -63,13 +63,8 @@ function About () {
                       />
                     </div>
                   </div>
-                  <div className='buttonChrome'>
-                    <ButtonPrimary
-                      big
-                      linkHref='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-                    >
-                      {t('common:addToChrome')}
-                    </ButtonPrimary>
+                  <div className='cta'>
+                    <ButtonAddToBrowser />
                   </div>
                 </div>
               </div>
@@ -249,6 +244,12 @@ function About () {
             .facts__text {
               font-size: 1.8vw;
             }
+
+            /* New style */
+            .cta {
+              margin-top: 20px;
+            }
+            /* Finish new style */
           }
 
           @media (max-width: 600px) {

@@ -11,6 +11,6 @@ export function set (cookieName, cookieValue, expiryDays = 365) {
   document.cookie = `${cookieName}=${cookieValue};${expires};path=/`
 }
 
-export function get (cookieName) {
+export const get = function get (cookieName) {
   return `; ${document.cookie}`.split(`; ${cookieName}=`).pop().split(';').shift()
 }

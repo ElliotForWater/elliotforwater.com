@@ -1,22 +1,25 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { UserContext } from '../../context/UserContext'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
+import { updateSearchCounter } from '../../helpers/_settingsHelper'
 
 type SearchProps = {
   big?: boolean
 }
 
-const suggestURL =
-  'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
+const suggestURL = 'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
 const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
   const router = useRouter()
-  const { query, type } = router.query
+  const { query, type, method } = router.query
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const [userContext, setUserContext] = useContext(UserContext)
   const initType = typeof type === 'undefined' ? 'web' : type
   const [searchValue, setSearchValue] = useState<string | string[]>(query || '')
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
@@ -30,6 +33,10 @@ const SearchBar = ({ big }: SearchProps) => {
 
   useEffect(() => {
     document.addEventListener('keydown', handleHighlight)
+
+    if (method === 'topbar') {
+      updateSearchCounter(setUserContext)
+    }
     return () => {
       document.removeEventListener('keydown', handleHighlight)
     }
@@ -84,11 +91,13 @@ const SearchBar = ({ big }: SearchProps) => {
 
   function handleClickSearchInput (event) {
     event.preventDefault()
+    updateSearchCounter(setUserContext)
     router.push(`search?query=${searchValue}&type=${typeValue}`)
   }
 
   function handleKeyPress (event) {
     if (event.charCode === 13) {
+      updateSearchCounter(setUserContext)
       router.push(`search?query=${searchValue}&type=${typeValue}`)
       setIsSuggestionOpen(false)
     }

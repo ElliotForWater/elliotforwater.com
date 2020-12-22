@@ -139,10 +139,6 @@
   margin-bottom: 0;
 }
 
-.hideMobile {
-  display: none;
-}
-
 .bubbleWrapper {
   z-index: var(--zindex10);
   position: absolute;
@@ -338,6 +334,10 @@
 
   .headline3 {
     right: 0%;
+  }
+
+  .cta {
+    margin-top: 20px;
   }
 }
 

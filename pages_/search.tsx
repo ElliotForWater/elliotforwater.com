@@ -174,14 +174,16 @@ function SearchPage ({ query, type }) {
           setActiveTab(findTab())
           window.scrollTo(0, 0)
           handleShowLoadMore(json)
+          setIsLoading(false)
         } else {
           setIsError({ status: 400 })
+          setIsLoading(false)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
         setIsError({ status: 500 })
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
 
     fetchData()
@@ -249,15 +251,17 @@ function SearchPage ({ query, type }) {
             default:
               return
           }
+
+          setIsLoading(false)
         } else {
           setIsError({ status: 400 })
+          setIsLoading(false)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
         setIsError({ status: 500 })
+        setIsLoading(false)
       }
-
-      setIsLoading(false)
     }
 
     fetchData()
@@ -325,10 +329,12 @@ function SearchPage ({ query, type }) {
   )
 }
 
-SearchPage.getInitialProps = ({ query }) => {
+export async function getServerSideProps ({ query }) {
   return {
-    query: query.query,
-    type: query.type,
+    props: {
+      query: query.query,
+      type: query.type,
+    },
   }
 }
 
