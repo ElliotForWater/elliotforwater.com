@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { UserContext } from '../../context/UserContext'
 import fetchJsonp from 'fetch-jsonp'
@@ -12,7 +12,7 @@ type SearchProps = {
   big?: boolean
 }
 
-const suggestURL = 'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
+const SUGGESTED_WORDS_URL = 'https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&gd=SY1002042&q='
 
 const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
@@ -23,84 +23,112 @@ const SearchBar = ({ big }: SearchProps) => {
   const initType = typeof type === 'undefined' ? 'web' : type
   const [searchValue, setSearchValue] = useState<string | string[]>(query || '')
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
-  const [highlightIndex, setHighlightIndex] = useState<number>(0)
+  const [highlightIndex, setHighlightIndex] = useState<number>(null)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
   const [suggestedWords, setSuggestedWords] = useState<Array<string>>([])
+  const [searchSuggestedWords, setSearchSuggestedWords] = useState(true)
+  const inputEl = useRef(null)
 
   if (type !== typeValue && typeValue !== initType) {
     setTypeValue(type)
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', handleHighlight)
-
     if (method === 'topbar') {
       updateSearchCounter(setUserContext)
     }
-    return () => {
-      document.removeEventListener('keydown', handleHighlight)
-    }
-  }, [suggestedWords])
-
-  const handleHighlight = useCallback((event) => {
-    if (event.keyCode === 38) {
-      setHighlightIndex((prevIndex: number) => {
-        if (prevIndex === 0) {
-          return prevIndex
-        } else {
-          return prevIndex - 1
-        }
-      })
-    }
-
-    if (event.keyCode === 40) {
-      setHighlightIndex((prevIndex: number) => {
-        if (prevIndex === suggestedWords.length - 1) {
-          return prevIndex
-        } else {
-          return prevIndex + 1
-        }
-      })
-    }
   }, [])
 
-  async function showSuggestedWords (event: React.ChangeEvent<HTMLInputElement>): Promise<any> {
-    setSearchValue(event.target.value)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const { key } = event
 
-    try {
-      const res = await fetchJsonp(`${suggestURL}${searchValue}`)
-      const suggestedWordsArray = await res.json()
-      setSuggestedWords(suggestedWordsArray[1].slice(0, 10))
-      setIsSuggestionOpen(true)
-      return
-    } catch {
-      console.log('error fetching suggested results')
-      setIsSuggestionOpen(false)
+      switch (key) {
+        case 'ArrowUp':
+          event.preventDefault()
+          setSearchSuggestedWords(false)
+          return setHighlightIndex((prevIndex: number) => {
+            if (prevIndex === 0) {
+              return prevIndex
+            } else {
+              return prevIndex - 1
+            }
+          })
+
+        case 'ArrowDown':
+          setSearchSuggestedWords(false)
+          return setHighlightIndex((prevIndex: number) => {
+            if (prevIndex === null) {
+              return 0
+            }
+
+            if (prevIndex === suggestedWords.length - 1) {
+              return prevIndex
+            } else {
+              return prevIndex + 1
+            }
+          })
+
+        case 'Escape':
+          setIsSuggestionOpen(false)
+          break
+
+        default:
+          setHighlightIndex(null)
+          setSearchValue(event.target.defaultValue)
+      }
     }
-  }
+    document.addEventListener('keydown', handleKeyDown)
 
-  function handleSelectWord (word: string) {
-    setSearchValue(word)
-    router.push(`search?query=${word}&type=${typeValue}`)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [searchValue])
+
+  useEffect(() => {
+    const fetchSuggestedWords = async () => {
+      try {
+        const res = await fetchJsonp(`${SUGGESTED_WORDS_URL}${searchValue}`)
+        const suggestedWordsArray = await res.json()
+        setSuggestedWords(suggestedWordsArray[1].slice(0, 10))
+        return
+      } catch {
+        console.log('error fetching suggested results')
+      }
+    }
+
+    if (searchSuggestedWords) {
+      fetchSuggestedWords()
+    }
+  }, [searchValue])
+
+  function resetDropdown () {
     setIsSuggestionOpen(false)
+    setHighlightIndex(null)
   }
 
-  function handleOnBlur () {
-    setIsSuggestionOpen(false)
-  }
-
-  function handleClickSearchInput (event) {
-    event.preventDefault()
+  function search (word?: string) {
     updateSearchCounter(setUserContext)
-    router.push(`search?query=${searchValue}&type=${typeValue}`)
+    router.push(`search?query=${word || searchValue}&type=${typeValue}`)
+    resetDropdown()
+  }
+
+  function handleOnMouseDown (word: string) {
+    setSearchValue(word)
+    search()
   }
 
   function handleKeyPress (event) {
     if (event.charCode === 13) {
-      updateSearchCounter(setUserContext)
-      router.push(`search?query=${searchValue}&type=${typeValue}`)
-      setIsSuggestionOpen(false)
+      search()
+      inputEl?.current.blur()
     }
+  }
+
+  function handleOnChange (el) {
+    setSearchValue(el.target.value)
+    setSearchSuggestedWords(true)
+    setIsSuggestionOpen(true)
   }
 
   return (
@@ -111,16 +139,17 @@ const SearchBar = ({ big }: SearchProps) => {
           type='search'
           value={searchValue}
           className={big ? styles.inputBig : styles.input}
-          onChange={showSuggestedWords}
-          onFocus={showSuggestedWords}
-          onBlur={handleOnBlur}
+          ref={inputEl}
+          onChange={handleOnChange}
+          onFocus={handleOnChange}
+          onBlur={() => resetDropdown()}
           onKeyPress={handleKeyPress}
           autoComplete='off'
           autoCorrect='off'
           spellCheck='false'
           placeholder={t('common:search_input')}
         />
-        <button className={big ? styles.buttonBig : styles.button} onClick={handleClickSearchInput}>
+        <button className={big ? styles.buttonBig : styles.button} onClick={() => search()}>
           <SearchIcon color='#ccc' size={16} />
         </button>
       </div>
@@ -133,7 +162,8 @@ const SearchBar = ({ big }: SearchProps) => {
               className={classnames(styles.autosuggestWord, {
                 [styles.highlight]: i === highlightIndex,
               })}
-              onMouseDown={() => handleSelectWord(word || '')}
+              onMouseDown={() => handleOnMouseDown(word || '')}
+              ref={(el) => i === highlightIndex && el && setSearchValue(el.innerText)}
             >
               <span className={styles.autosuggestItemIcon}>
                 <SearchIcon color='#212121' size={14} />

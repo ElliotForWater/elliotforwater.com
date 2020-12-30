@@ -15,7 +15,7 @@ const RefineSearch = ({ refineSearches }: Props) => {
     <div className={styles.tabs}>
       {refineSearches &&
         refineSearches.map((item, i) => (
-          <a key={i} className={styles.tab} href={`/search?q=${item.text}&amp;type=all`}>
+          <a key={i} className={styles.tab} href={`/search?query=${item.text}&type=web`}>
             {item.text}
           </a>
         ))}

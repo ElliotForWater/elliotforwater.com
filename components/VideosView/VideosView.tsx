@@ -1,4 +1,5 @@
 import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import styles from './VideosView.module.css'
 
 type VideosProp = {
@@ -15,10 +16,11 @@ interface Prop {
 }
 
 const VideosView = ({ videos, query }: Prop) => {
+  const { t } = useTranslation()
   return (
     <>
       {!videos.length ? (
-        <h3 className={styles.titleNoResults}>We are sorry but there are no results for "{query}"</h3>
+        <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <div className={styles.container}>
           {videos.map((video, i) => (

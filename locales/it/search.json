@@ -8,5 +8,8 @@
   "images": "Images",
   "videos": "Videos",
   "news": "News",
-  "map": "Map"
+  "map": "Map",
+  "tot_results": "{{tot_results}} results",
+  "microsoft_result": "Results by Microsoft (privacy)",
+  "no_result_found_query": "We are sorry but there are no results for '{{query}}'"
 }
