@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import RefineSearch from '../RefineSearch/RefineSearch'
 import ImagesBlock from './ImagesBlock'
 import Article from './Article'
@@ -47,7 +48,9 @@ interface Prop {
   searchQuery: string
   batches?: { [x: number]: any[] }
 }
+
 const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images, searchQuery, batches }: Prop) => {
+  const { t } = useTranslation()
   const mainlineSponsor = []
   const sidebarSponsor = []
   if (sponsoredItems.length) {
@@ -68,7 +71,7 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
   return (
     <>
       {!sponsoredItems?.length ? (
-        <h3 className={styles.titleNoResults}>We are sorry but there are no results for "{searchQuery}"</h3>
+        <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
           <div className={styles.header}>
@@ -84,13 +87,11 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
               }
             })}
 
-            {moreResults.length && moreResults.map((item, i) => <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />)}
+            {moreResults.length !== 0 && moreResults.map((item, i) => <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />)}
           </div>
 
           <div className={styles.sidebar}>
-            {sidebarSponsor.map((item: sponsoredItemsObj, i) => (
-              <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />
-            ))}
+            {sidebarSponsor && sidebarSponsor.map((item: sponsoredItemsObj, i) => <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />)}
           </div>
         </div>
       )}

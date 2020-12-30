@@ -7,6 +7,7 @@ import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
+import { formatNumber } from '../helpers/_utils'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -38,6 +39,7 @@ const initStateTab = {
 
 type itemsProp = {
   items: any[]
+  numResults?: number
 }
 
 type batchesProp = {
@@ -62,6 +64,15 @@ const initResults = {
   newsResults: null,
 }
 
+interface ConatinerProps {
+  isLoading: boolean
+  component: ReactElement
+  resultsBatch: number
+  incrementResultsBatch: (nextIndex: any) => void
+  showLoadMore: boolean
+  numResults?: number
+}
+
 const maxResults = {
   web: { name: 'organicResults', maxPerReq: 10 },
   image: { name: 'imageResults', maxPerReq: 150 },
@@ -69,7 +80,9 @@ const maxResults = {
   news: { name: 'newsResults', maxPerReq: 100 },
 }
 
-function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore }) {
+function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ConatinerProps) {
+  const { t } = useTranslation()
+
   if (isLoading) {
     return <Loader />
   } else {
@@ -90,6 +103,33 @@ function Container ({ isLoading, component, resultsBatch, incrementResultsBatch,
 
                 @media (min-width: 768px) {
                   .loadmoreContainer {
+                    margin: 40px 0;
+                  }
+                }
+              `}
+            </style>
+          </div>
+        )}
+        {numResults && (
+          <div className='resultsTot'>
+            <p>{t('search:tot_results', { tot_results: formatNumber(numResults) })}</p>
+            <p>
+              <a href='https://privacy.microsoft.com/privacystatement' target='_blank'>
+                {t('search:microsoft_result')}
+              </a>
+            </p>
+            <style jsx>
+              {`
+                .resultsTot {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  margin: 20px 0;
+                }
+
+                @media (min-width: 768px) {
+                  .resultsTot {
                     margin: 40px 0;
                   }
                 }
@@ -123,6 +163,7 @@ function SearchPage ({ query, type }) {
           resultsBatch={resultsBatch}
           incrementResultsBatch={handleSetResultBatch}
           showLoadMore={showLoadMore}
+          numResults={results.organicResults?.numResults}
           component={<AllResultsView organicItems={results.organicResults?.items ?? []} sponsoredItems={results.sponsoredResults?.items ?? []} relatedSearches={results.relatedSearches?.items ?? []} images={results.imageResults?.items ?? []} searchQuery={query} batches={results.batches} />}
         />
       ),
