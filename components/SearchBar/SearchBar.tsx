@@ -116,7 +116,6 @@ const SearchBar = ({ big }: SearchProps) => {
           onBlur={handleOnBlur}
           onKeyPress={handleKeyPress}
           autoComplete='off'
-          autoCapitalize='off'
           autoCorrect='off'
           spellCheck='false'
           placeholder={t('common:search_input')}
