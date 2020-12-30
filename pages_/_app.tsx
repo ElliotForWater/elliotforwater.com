@@ -10,16 +10,20 @@ if (typeof window !== 'undefined') {
 }
 
 function ElliotApp ({ Component, pageProps }: AppProps) {
+  const userState = {
+    numOfSearches: 0,
+  }
+
+  const [userContext, setUserContext] = useState(userState)
+
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
     import('../helpers/_cookies')
-  }, [])
 
-  const searchesFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_SEARCH_COUNT)
-  const userState = {
-    numOfSearches: searchesFromCookies || 0,
-  }
-  const [userContext, setUserContext] = useState(userState)
+    setUserContext({
+      numOfSearches: cookieHelper.get(cookieHelper.COOKIE_NAME_SEARCH_COUNT),
+    })
+  }, [])
 
   useEffect(() => {
     cookieHelper?.set(cookieHelper?.COOKIE_NAME_SEARCH_COUNT, userContext.numOfSearches)
