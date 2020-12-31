@@ -74,9 +74,11 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
-          <div className={styles.header}>
-            <RefineSearch refineSearches={relatedSearches} />
-          </div>
+          {relatedSearches.length !== 0 && (
+            <div className={styles.refineSearchesWrap}>
+              <RefineSearch refineSearches={relatedSearches} />
+            </div>
+          )}
           <div className={styles.main}>
             {combinedResults.map((item: image[] | sponsoredItemsObj, i) => {
               if (Array.isArray(item)) {
@@ -86,6 +88,12 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
                 return <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />
               }
             })}
+
+            {relatedSearches.length !== 0 && (
+              <div className={styles.refineSearchesMobile}>
+                <RefineSearch refineSearches={relatedSearches} />
+              </div>
+            )}
 
             {moreResults.length !== 0 && moreResults.map((item, i) => <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />)}
           </div>

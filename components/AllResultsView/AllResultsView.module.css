@@ -10,13 +10,13 @@
   padding: 15px;
   column-gap: 1em;
   grid-template-areas:
-    'header'
+    'refineSearchesWrap'
     'main'
     'sidebar';
 }
 
-.header {
-  grid-area: header;
+.refineSearchesWrap {
+  grid-area: refineSearchesWrap;
   display: none;
 }
 
@@ -129,12 +129,16 @@
     margin-left: 80px;
     grid-template-columns: 70% auto;
     grid-template-areas:
-      'header header'
+      'refineSearchesWrap refineSearchesWrap'
       'main sidebar';
   }
 
-  .header {
-    display: block;
+  .refineSearchesWrap {
+    display: inherit;
+  }
+
+  .refineSearchesMobile {
+    display: none;
   }
 
   .sidebar {
@@ -146,5 +150,9 @@
     border-radius: 0;
     padding: 0;
     margin: 2.5em 1em;
+  }
+
+  .article:first-child {
+    margin-top: 0;
   }
 }
