@@ -41,18 +41,42 @@ type organicItemsObj = {
   pixelUrl: string
 }
 interface Prop {
-  organicItems: organicItemsObj[]
-  sponsoredItems: sponsoredItemsObj[]
-  relatedSearches: relatedLinks[]
-  images: image[]
-  searchQuery: string
+  organicResults: { items: organicItemsObj[] }
+  sponsoredResults: { items: sponsoredItemsObj[] }
+  relatedSearches: { items: relatedLinks[] }
+  imageResults: { items: image[] }
+  videoResults: { items: any[] }
   batches?: { [x: number]: any[] }
 }
 
-const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images, searchQuery, batches }: Prop) => {
+interface ResultsProp {
+  results: Prop
+  searchQuery: string
+}
+
+const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
   const { t } = useTranslation()
+  const [moreResults, setMoreResults] = useState<sponsoredItemsObj[]>([])
+
+  useEffect(() => {
+    if (results && results.batches && Object.keys(results.batches).length) {
+      for (const key in batches) {
+        setMoreResults((prev) => [...prev, ...batches[key]])
+      }
+    } else {
+      setMoreResults([])
+    }
+  }, [results])
+
+  if (!results) return <></>
+
+  const { organicResults, sponsoredResults, relatedSearches, imageResults, batches } = results
+  const organicItems = organicResults.items
+  const sponsoredItems = sponsoredResults.items
+  const images = imageResults.items
   const mainlineSponsor = []
   const sidebarSponsor = []
+
   if (sponsoredItems.length) {
     mainlineSponsor.push(...sponsoredItems.filter((item) => item.placementHint === 'Mainline'))
     sidebarSponsor.push(...sponsoredItems.filter((item) => item.placementHint === 'Sidebar'))
@@ -60,13 +84,6 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
   const firstBatchOrganic = !organicItems.length ? [] : organicItems.slice(0, 3)
   const secondBatchOrganic = !organicItems.length ? [] : organicItems.slice(3, organicItems.length)
   const combinedResults = [...mainlineSponsor, ...firstBatchOrganic, images, ...secondBatchOrganic]
-  const [moreResults, setMoreResults] = useState<sponsoredItemsObj[]>([])
-
-  useEffect(() => {
-    for (const key in batches) {
-      setMoreResults((prev) => [...prev, ...batches[key]])
-    }
-  }, [batches])
 
   return (
     <>
@@ -74,24 +91,28 @@ const AllResultsView = ({ organicItems, sponsoredItems, relatedSearches, images,
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
-          {relatedSearches.length !== 0 && (
-            <div className={styles.refineSearchesWrap}>
-              <RefineSearch refineSearches={relatedSearches} />
-            </div>
-          )}
+          <div className={styles.header}>
+            {relatedSearches.items.length !== 0 && (
+              <div className={styles.refineSearchesWrap}>
+                <RefineSearch refineSearches={relatedSearches.items} />
+              </div>
+            )}
+          </div>
           <div className={styles.main}>
-            {combinedResults.map((item: image[] | sponsoredItemsObj, i) => {
-              if (Array.isArray(item)) {
-                if (item.length === 0) return
-                return <ImagesBlock images={item} key={i} searchQuery={searchQuery} />
-              } else {
-                return <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />
-              }
-            })}
+            {combinedResults &&
+              combinedResults.map((item: image[] | sponsoredItemsObj, i) => {
+                if (Array.isArray(item)) {
+                  if (item.length === 0) return
+                  return <ImagesBlock images={item} key={i} searchQuery={searchQuery} />
+                } else {
+                  if (!item) return
+                  return <Article key={i} targetedUrl={item.targetedUrl} title={item.title} displayUrl={item.displayUrl} description={item.description} pixelUrl={item.pixelUrl} siteLinks={item.siteLinks} />
+                }
+              })}
 
-            {relatedSearches.length !== 0 && (
+            {relatedSearches.items.length !== 0 && (
               <div className={styles.refineSearchesMobile}>
-                <RefineSearch refineSearches={relatedSearches} />
+                <RefineSearch refineSearches={relatedSearches.items} />
               </div>
             )}
 

@@ -10,12 +10,20 @@ type ImagesProp = {
 }
 
 interface Prop {
-  images: ImagesProp[]
+  imageResults: { items: ImagesProp[] }
+}
+
+interface ResultsProp {
+  results: Prop
   query: string
 }
 
-const ImagesView = ({ images, query }: Prop) => {
+const ImagesView = ({ results, query }: ResultsProp) => {
   const { t } = useTranslation()
+  if (!results) return <></>
+
+  const images = results.imageResults.items
+
   return (
     <>
       {!images.length ? (

@@ -13,12 +13,18 @@ type NewsObj = {
 }
 
 interface Prop {
-  news: NewsObj[]
+  newsResults: { items: NewsObj[] }
+}
+
+interface ResultsProp {
+  results: Prop
   query: string
 }
 
-const NewsView = ({ news, query }: Prop) => {
+const NewsView = ({ results, query }: ResultsProp) => {
   const { t } = useTranslation()
+  const news = results.newsResults.items
+
   return (
     <>
       {!news.length ? (

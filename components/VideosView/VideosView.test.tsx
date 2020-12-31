@@ -6,12 +6,12 @@ import VIDEOS from '../../__mocks__/videoApi.json'
 
 describe('VideosView', () => {
   it('should render without throwing an error', function () {
-    const wrap = shallow(<VideosView videos={VIDEOS.videoResults.items} query='goat' />)
+    const wrap = shallow(<VideosView results={VIDEOS} query='goat' />)
     expect(wrap).toBeDefined()
   })
 
   it('should render all videos results', function () {
-    render(<VideosView videos={VIDEOS.videoResults.items} query='goat' />)
+    render(<VideosView results={VIDEOS} query='goat' />)
     const img = screen.getAllByRole('link')
     expect(img.length).toBe(23)
   })
