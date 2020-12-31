@@ -55,16 +55,7 @@ interface resultsProp {
   batches?: batchesProp
 }
 
-const initResults = {
-  organicResults: null,
-  sponsoredResults: null,
-  relatedSearches: null,
-  imageResults: null,
-  videoResults: null,
-  newsResults: null,
-}
-
-interface ConatinerProps {
+interface ContainerProps {
   isLoading: boolean
   component: ReactElement
   resultsBatch: number
@@ -80,7 +71,7 @@ const maxResults = {
   news: { name: 'newsResults', maxPerReq: 100 },
 }
 
-function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ConatinerProps) {
+function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ContainerProps) {
   const { t } = useTranslation()
 
   if (isLoading) {
@@ -145,7 +136,7 @@ function Container ({ isLoading, component, resultsBatch, incrementResultsBatch,
 function SearchPage ({ query, type }) {
   const { t } = useTranslation()
   const router = useRouter()
-  const [results, setResults] = useState<resultsProp>(initResults)
+  const [results, setResults] = useState<resultsProp>(null)
   const [activeTab, setActiveTab] = useState<tabProp>(initStateTab)
   const [isError, setIsError] = useState<{ status: number }>({ status: 200 })
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -157,34 +148,25 @@ function SearchPage ({ query, type }) {
       id: 1,
       resultType: 'web',
       title: t('search:all'),
-      content: (
-        <Container
-          isLoading={isLoading}
-          resultsBatch={resultsBatch}
-          incrementResultsBatch={handleSetResultBatch}
-          showLoadMore={showLoadMore}
-          numResults={results.organicResults?.numResults}
-          component={<AllResultsView organicItems={results.organicResults?.items ?? []} sponsoredItems={results.sponsoredResults?.items ?? []} relatedSearches={results.relatedSearches?.items ?? []} images={results.imageResults?.items ?? []} searchQuery={query} batches={results.batches} />}
-        />
-      ),
+      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} numResults={results?.organicResults?.numResults} component={<AllResultsView results={results} searchQuery={query} />} />,
     },
     {
       id: 2,
       resultType: 'image',
       title: t('search:images'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<ImagesView images={results.imageResults?.items ?? []} query={query} />} />,
+      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<ImagesView results={results} query={query} />} />,
     },
     {
       id: 3,
       resultType: 'video',
       title: t('search:videos'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<VideosView videos={results.videoResults?.items ?? []} query={query} />} />,
+      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<VideosView results={results} query={query} />} />,
     },
     {
       id: 4,
       resultType: 'news',
       title: t('search:news'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<NewsView news={results.newsResults?.items ?? []} query={query} />} />,
+      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<NewsView results={results} query={query} />} />,
     },
     {
       id: 5,
@@ -211,10 +193,23 @@ function SearchPage ({ query, type }) {
         if (res.ok) {
           const json = await res.json()
           setIsError({ status: 200 })
-          setResults(json)
+          setResults((prev) => {
+            if (prev && prev.batches) {
+              const newResults = {
+                ...json,
+                batches: {},
+              }
+
+              return newResults
+            } else {
+              return json
+            }
+          })
+
           setActiveTab(findTab())
           window.scrollTo(0, 0)
           handleShowLoadMore(json)
+
           setIsLoading(false)
         } else {
           setIsError({ status: 400 })
@@ -235,7 +230,7 @@ function SearchPage ({ query, type }) {
     if (resultsBatch === 0 || type === 'map') return
 
     const fetchData = async () => {
-      setIsLoading(true)
+      // TODO: Proper Batch Loading state - load just new batch, not whole container
 
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&page=${resultsBatch}`)
@@ -243,11 +238,10 @@ function SearchPage ({ query, type }) {
         if (res.ok) {
           const json = await res.json()
           setIsError({ status: 200 })
-          handleShowLoadMore(json)
 
           switch (type) {
             case 'web':
-              setResults((prevResults) => {
+              return setResults((prevResults) => {
                 const sponsoredMainline = json.sponsoredResults?.items?.filter((item) => item.placementHint === 'Mainline')
                 const newResults = {
                   ...prevResults,
@@ -255,70 +249,73 @@ function SearchPage ({ query, type }) {
                     [resultsBatch]: [...sponsoredMainline, ...json.organicResults?.items],
                   },
                 }
+                handleShowLoadMore(newResults)
                 return newResults
               })
-              break
 
             case 'image':
-              setResults((prevResults) => {
+              return setResults((prevResults) => {
                 const newResults = {
                   ...prevResults,
                 }
                 newResults.imageResults.items = prevResults.imageResults.items.concat(json.imageResults?.items)
+
+                handleShowLoadMore(newResults)
                 return newResults
               })
-              break
 
             case 'video':
-              setResults((prevResults) => {
+              return setResults((prevResults) => {
                 const newResults = {
                   ...prevResults,
                 }
                 newResults.videoResults.items = prevResults.videoResults.items.concat(json.videoResults?.items)
+                handleShowLoadMore(newResults)
                 return newResults
               })
-              break
 
             case 'news':
-              setResults((prevResults) => {
+              return setResults((prevResults) => {
                 const newResults = {
                   ...prevResults,
                 }
                 newResults.newsResults.items = prevResults.newsResults.items.concat(json.newsResults?.items)
+                handleShowLoadMore(newResults)
                 return newResults
               })
-              break
-
-            default:
-              return
           }
-
-          setIsLoading(false)
         } else {
           setIsError({ status: 400 })
-          setIsLoading(false)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
         setIsError({ status: 500 })
-        setIsLoading(false)
       }
     }
 
     fetchData()
   }, [resultsBatch])
 
-  function handleSetResultBatch (nextIndex) {
-    setResultsBatch(nextIndex)
-  }
-
   function handleShowLoadMore (newResults) {
     const typeResultName = maxResults[type].name
     const maxResultsPerReq = maxResults[type].maxPerReq
 
-    if (newResults[typeResultName]?.items.length < maxResultsPerReq) {
-      return setShowLoadMore(false)
+    if (type === 'web') {
+      if (!newResults.batches) return
+
+      const last = newResults.batches && Object.keys(newResults.batches).pop()
+      if (newResults.batches[last].length < maxResultsPerReq) {
+        return setShowLoadMore(false)
+      }
+    } else {
+      if (newResults[typeResultName]?.items.length < maxResultsPerReq) {
+        return setShowLoadMore(false)
+      }
     }
+  }
+
+  function handleSetResultBatch (nextIndex) {
+    setResultsBatch(nextIndex)
   }
 
   function handleSwitchTab (nextActiveTab) {

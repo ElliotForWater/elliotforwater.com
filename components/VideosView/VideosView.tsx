@@ -11,12 +11,18 @@ type VideosProp = {
 }
 
 interface Prop {
-  videos: VideosProp[]
+  videoResults: { items: VideosProp[] }
+}
+
+interface ResultsProp {
+  results: Prop
   query: string
 }
 
-const VideosView = ({ videos, query }: Prop) => {
+const VideosView = ({ results, query }: ResultsProp) => {
   const { t } = useTranslation()
+  const videos = results.videoResults.items
+
   return (
     <>
       {!videos.length ? (
