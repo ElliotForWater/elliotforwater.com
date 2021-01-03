@@ -119,6 +119,14 @@ function Container ({ isLoading, component, resultsBatch, incrementResultsBatch,
                   margin: 20px 0;
                 }
 
+                .resultsTot p {
+                  margin-bottom: 10px;
+                }
+
+                .resultsTot a {
+                  color: var(--dimGrey);
+                }
+
                 @media (min-width: 768px) {
                   .resultsTot {
                     margin: 40px 0;
@@ -141,7 +149,7 @@ function SearchPage ({ query, type }) {
   const [isError, setIsError] = useState<{ status: number }>({ status: 200 })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [resultsBatch, setResultsBatch] = useState<number>(0)
-  const [showLoadMore, setShowLoadMore] = useState<boolean>(true)
+  const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
 
   const tabMenu = [
     {
@@ -193,6 +201,7 @@ function SearchPage ({ query, type }) {
         if (res.ok) {
           const json = await res.json()
           setIsError({ status: 200 })
+
           setResults((prev) => {
             if (prev && prev.batches) {
               const newResults = {
@@ -233,6 +242,7 @@ function SearchPage ({ query, type }) {
       // TODO: Proper Batch Loading state - load just new batch, not whole container
 
       try {
+        setShowLoadMore(false)
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&page=${resultsBatch}`)
 
         if (res.ok) {
@@ -301,7 +311,10 @@ function SearchPage ({ query, type }) {
     const maxResultsPerReq = maxResults[type].maxPerReq
 
     if (type === 'web') {
-      if (!newResults.batches) return
+      if (!newResults.batches) {
+        setShowLoadMore(true)
+        return
+      }
 
       const last = newResults.batches && Object.keys(newResults.batches).pop()
       if (newResults.batches[last].length < maxResultsPerReq) {
@@ -312,6 +325,8 @@ function SearchPage ({ query, type }) {
         return setShowLoadMore(false)
       }
     }
+
+    setShowLoadMore(true)
   }
 
   function handleSetResultBatch (nextIndex) {
@@ -344,8 +359,15 @@ function SearchPage ({ query, type }) {
             margin-top: 10px;
           }
 
+          .wrapper {
+            min-height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 100%;
+          }
+
           .content {
-            min-height: 200px;
+            min-height: 100%;
             padding: 10px 2px;
             background: var(--containerBg);
             margin-top: 1px;

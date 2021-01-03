@@ -15,15 +15,9 @@ interface LayoutProps {
 
 const socialDescription = 'Search Engine which collects water to build well'
 
-export const Layout: FC<LayoutProps> = ({
-  children,
-  fluid,
-  pageTitle,
-  pageDescription,
-  isHome,
-}) => {
+export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescription, isHome }) => {
   return (
-    <div className={styles.wrapper}>
+    <>
       <Head>
         <title>{pageTitle} - Elliot for Water</title>
         {/* <!-- Search Engine --> */}
@@ -46,10 +40,7 @@ export const Layout: FC<LayoutProps> = ({
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css' />
 
         {/* <!-- Styles --> */}
-        <link
-          rel='stylesheet'
-          href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
-        />
+        <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' />
 
         {/* <!-- Apple Icons --> */}
         <link rel='apple-touch-icon' sizes='180x180' href='images/metas/apple-touch-icon.png' />
@@ -73,7 +64,7 @@ export const Layout: FC<LayoutProps> = ({
       <script src='/lib/jquery/dist/jquery.min.js' />
       <script src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js' />
       <script src='/js/odometer.js' />
-    </div>
+    </>
   )
 }
 

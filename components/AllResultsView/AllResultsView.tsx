@@ -91,13 +91,11 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
-          <div className={styles.header}>
-            {relatedSearches.items.length !== 0 && (
-              <div className={styles.refineSearchesWrap}>
-                <RefineSearch refineSearches={relatedSearches.items} />
-              </div>
-            )}
-          </div>
+          {relatedSearches.items.length !== 0 && (
+            <div className={styles.refineSearchesWrap}>
+              <RefineSearch refineSearches={relatedSearches.items} />
+            </div>
+          )}
           <div className={styles.main}>
             {combinedResults &&
               combinedResults.map((item: image[] | sponsoredItemsObj, i) => {

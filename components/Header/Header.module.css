@@ -2,8 +2,6 @@
   background-color: white;
   display: flex;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
   z-index: var(--zindex300);
 }
 
@@ -87,8 +85,8 @@
   }
 
   .logoSmaller {
-    width: 100px;
-    padding: 15px 25px 0 0;
+    width: 130px;
+    padding: 15px 15px 0 0;
   }
 
   .logoSmaller img {
