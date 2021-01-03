@@ -150,7 +150,7 @@ const SearchBar = ({ big }: SearchProps) => {
           placeholder={t('common:search_input')}
         />
         <button className={big ? styles.buttonBig : styles.button} onClick={() => search()}>
-          <SearchIcon color='#ccc' size={16} />
+          <SearchIcon color='var(--elliotPrimary)' size={16} />
         </button>
       </div>
 
@@ -166,7 +166,7 @@ const SearchBar = ({ big }: SearchProps) => {
               ref={(el) => i === highlightIndex && el && setSearchValue(el.innerText)}
             >
               <span className={styles.autosuggestItemIcon}>
-                <SearchIcon color='#212121' size={14} />
+                <SearchIcon color='var(--placeholder)' size={14} />
               </span>
               {word}
             </li>

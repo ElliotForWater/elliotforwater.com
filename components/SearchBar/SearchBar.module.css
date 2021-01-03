@@ -18,7 +18,7 @@
   outline: none;
   width: 100%;
   padding: 0 40px 0 1em;
-  height: 2.8em;
+  height: 3em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--lighterGrey);
@@ -28,7 +28,7 @@
 .button {
   position: absolute;
   right: 20px;
-  bottom: 27%;
+  bottom: 20%;
   z-index: 1;
   background: #fff;
   border: 0;

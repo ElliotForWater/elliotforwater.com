@@ -127,7 +127,7 @@
   .gridContainer {
     max-width: 1100px;
     margin-left: 80px;
-    grid-template-columns: 70% auto;
+    grid-template-columns: 65% auto;
     grid-template-areas:
       'refineSearchesWrap refineSearchesWrap'
       'main sidebar';
