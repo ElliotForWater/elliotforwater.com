@@ -17,12 +17,12 @@
 .inputBig {
   outline: none;
   width: 100%;
-  padding: 0 40px 0 1em;
-  height: 3em;
+  padding: 15px 40px 15px 1em;
+  height: 3.2em;
   border-radius: 2em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--lighterGrey);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .button {

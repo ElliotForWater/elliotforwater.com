@@ -13,12 +13,7 @@ const App: FC = () => {
       <section>
         <div className='logo-main'>
           <h1 className='logo-main__title'>
-            <img
-              className='logo-main__img'
-              src='/images/HEADER-LOGO.svg'
-              alt='Elliot For Water'
-              title='Elliot For Water'
-            />
+            <img className='logo-main__img' src='/images/HEADER-LOGO.svg' alt='Elliot For Water' title='Elliot For Water' />
           </h1>
           <p className='logo-main__subtitle'>{t('common:for_water')}</p>
         </div>
@@ -63,31 +58,19 @@ const App: FC = () => {
               <div className='carousel-inner'>
                 <div className='item active'>
                   <div className='carousel-card'>
-                    <img
-                      className='carousel-card__img'
-                      src='/images/how-it-works/search.svg'
-                      alt='Search'
-                    />
+                    <img className='carousel-card__img' src='/images/how-it-works/search.svg' alt='Search' />
                   </div>
                 </div>
 
                 <div className='item'>
                   <div className='carousel-card'>
-                    <img
-                      className='carousel-card__img'
-                      src='/images/how-it-works/give.svg'
-                      alt='Give'
-                    />
+                    <img className='carousel-card__img' src='/images/how-it-works/give.svg' alt='Give' />
                   </div>
                 </div>
 
                 <div className='item'>
                   <div className='carousel-card'>
-                    <img
-                      className='carousel-card__img'
-                      src='/images/how-it-works/change.svg'
-                      alt='Change'
-                    />
+                    <img className='carousel-card__img' src='/images/how-it-works/change.svg' alt='Change' />
                   </div>
                 </div>
               </div>
@@ -187,6 +170,8 @@ const App: FC = () => {
             text-align: center;
             margin: 0 auto;
             margin-bottom: 8px;
+            max-width: 80%;
+            max-width: 55%;
           }
 
           .home-text__title {
@@ -210,6 +195,10 @@ const App: FC = () => {
           /* ==================================================
           How It Works section
         ================================================== */
+          .section__title {
+            font-size: 38px;
+          }
+
           .section__how-it-works {
             height: 58em;
             height: 100vh;
@@ -318,10 +307,6 @@ const App: FC = () => {
               font-size: 14px;
             }
 
-            .odometer {
-              font-size: 22px;
-            }
-
             .home-text__title {
               margin-top: 0px;
               margin-bottom: 10px;
@@ -402,6 +387,12 @@ const App: FC = () => {
 
             .cta {
               margin-top: 20px;
+            }
+          }
+
+          @media (min-width: 900px) {
+            .home-text {
+              max-width: 55%;
             }
           }
         `}
