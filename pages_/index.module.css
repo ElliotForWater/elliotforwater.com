@@ -3,3 +3,9 @@
   margin: 33px auto;
   font-size: 1.2em;
 }
+
+@media (min-width: 768px) {
+  .searchWrap {
+    max-width: 42em;
+  }
+}
