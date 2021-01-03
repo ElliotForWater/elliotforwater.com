@@ -10,9 +10,9 @@ describe('AllResultsView', () => {
     expect(wrap).toBeDefined()
   })
 
-  it('should render 13 articles', function () {
+  it('should render 16 articles', function () {
     render(<AllResultsView results={ALL_RESULTS} searchQuery='sugar' />)
     const article = screen.getAllByRole('article')
-    expect(article.length).toBe(14)
+    expect(article.length).toBe(16)
   })
 })
