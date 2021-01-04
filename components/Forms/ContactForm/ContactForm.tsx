@@ -22,32 +22,32 @@ const ContactForm = () => {
     switch (notification) {
       case NOTIFICATION.Submit:
         toastProperties = {
-          title: 'Submitting...',
-          message: 'Please wait!',
+          title: t('common:forms.submitting'),
+          message: t('common:forms.submitting_text'),
           backgroundColor: '#5bc0de',
           icon: '/images/toast/info.svg',
         }
         break
       case NOTIFICATION.Success:
         toastProperties = {
-          title: 'Success',
-          message: 'Thanks for your interest.',
+          title: t('common:forms.success'),
+          message: t('common:forms.success_text'),
           backgroundColor: '#5cb85c',
           icon: '/images/toast/check.svg',
         }
         break
       case NOTIFICATION.ServerError:
         toastProperties = {
-          title: 'Sorry',
-          message: 'An error occured on our server.',
+          title: t('common:forms.sorry'),
+          message: t('common:forms.sorry_text'),
           backgroundColor: '#d9534f',
           icon: '/images/toast/error.svg',
         }
         break
       case NOTIFICATION.ConnectionError:
         toastProperties = {
-          title: 'Error',
-          message: 'Unable to connect.',
+          title: t('common:forms.error'),
+          message: t('common:forms.error_text'),
           backgroundColor: '#d9534f',
           icon: '/images/toast/error.svg',
         }
@@ -63,7 +63,7 @@ const ContactForm = () => {
     }
   }
 
-  async function contactApiPost(event) {
+  async function contactApiPost (event) {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/contactus`
 
     const { name, email, phone, msg } = event.target.elements
@@ -84,7 +84,7 @@ const ContactForm = () => {
     return fetch(url, postOptions)
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmit (event) {
     // Reset any notifications
     setList([])
     showToast(NOTIFICATION.Submit)
@@ -118,67 +118,33 @@ const ContactForm = () => {
   return (
     <>
       <form method='post' onSubmit={handleSubmit}>
-        <div className='form-row'>
-          <div className='form-group col-md-12'>
-            <input
-              type='tel'
-              className='form-control'
-              id='tel'
-              name='tel'
-              placeholder='Telephone'
-            />
-          </div>
-        </div>
         <div className='row'>
           <div className='form-group col-sm-6'>
-            <input
-              type='text'
-              className='form-control'
-              id='name'
-              name='name'
-              placeholder='Name'
-              required
-            />
+            <input type='text' className='form-control' id='name' name='name' placeholder={t('common:forms.name')} required />
           </div>
           <div className='form-group col-sm-6'>
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              placeholder='Email'
-              required
-            />
+            <input type='email' className='form-control' id='email' name='email' placeholder={t('common:forms.email')} required />
           </div>
         </div>
         <div className='row'>
           <div className='form-group col-md-12'>
-            <input
-              type='tel'
-              className='form-control'
-              id='phone'
-              name='phone'
-              placeholder='Phone Number'
-              required
-            />
+            <input type='tel' className='form-control' id='phone' name='phone' placeholder={t('common:forms.phone')} required />
           </div>
         </div>
         <div className='row'>
           <div className='form-group col-md-12'>
-            <textarea
-              className='form-control form-control--multiline'
-              id='msg'
-              name='msg'
-              placeholder='Type your message here...'
-              rows={10}
-              required
-            />
+            <textarea className='form-control form-control--multiline' id='msg' name='msg' placeholder={t('common:forms.message')} rows={10} required />
+          </div>
+        </div>
+        <div className='row'>
+          <div className='form-group col-md-12'>
+            <input type='tel' className='form-control hidden' id='tel' name='tel' />
           </div>
         </div>
         <div className='form-row'>
           <div className='col-md-12'>
             <ButtonPrimary big>
-              <button type='submit'>{t('about:send')}</button>
+              <button type='submit'>{t('common:forms.subscribe')}</button>
             </ButtonPrimary>
           </div>
         </div>
@@ -189,6 +155,10 @@ const ContactForm = () => {
           .col-md-12 {
             display: flex;
             justify-content: flex-end;
+          }
+
+          .hidden {
+            display: none;
           }
         `}
       </style>

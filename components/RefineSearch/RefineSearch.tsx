@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import useTranslation from 'next-translate/useTranslation'
 import styles from './RefineSearch.module.css'
 
 type relatedObj = {
@@ -12,12 +13,14 @@ interface Props {
 }
 
 const RefineSearch = ({ refineSearches }: Props) => {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className={styles.mobile}>
         <article className={styles.article}>
           <div>
-            <h6 className={styles.title}> Refine your search:</h6>
+            <h6 className={styles.title}>{t('search:refine_search')}</h6>
 
             <div className={styles.tabs}>
               {refineSearches &&

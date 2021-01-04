@@ -78,11 +78,11 @@ const App: FC = () => {
               {/* <!-- Left and right controls --> */}
               <a className='left carousel-control' href='#myCarousel' data-slide='prev'>
                 <span className='glyphicon glyphicon-chevron-left' />
-                <span className='sr-only'>Previous</span>
+                <span className='sr-only'>{t('common:previous')}</span>
               </a>
               <a className='right carousel-control' href='#myCarousel' data-slide='next'>
                 <span className='glyphicon glyphicon-chevron-right' />
-                <span className='sr-only'>Next</span>
+                <span className='sr-only'>{t('common:next')}</span>
               </a>
             </div>
           </div>

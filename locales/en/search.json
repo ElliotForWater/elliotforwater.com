@@ -11,5 +11,6 @@
   "map": "Map",
   "tot_results": "{{tot_results}} results", 
   "microsoft_result": "Results by Microsoft (privacy)",
-  "no_result_found_query": "We are sorry but there are no results for '{{query}}'"
+  "no_result_found_query": "We are sorry but there are no results for '{{query}}'",
+  "refine_search": "Refine your search:"
 }

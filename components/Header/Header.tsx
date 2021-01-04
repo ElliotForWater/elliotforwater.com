@@ -1,4 +1,6 @@
 import React, { FC, useState, useContext } from 'react'
+import useTranslation from 'next-translate/useTranslation'
+import Link from 'next/link'
 import SearchBar from '../SearchBar/SearchBar'
 import Nav from '../Nav/Nav'
 import { UserContext } from '../../context/UserContext'
@@ -8,6 +10,7 @@ import styles from './Header.module.css'
 const Header: FC = () => {
   const [hideTooltip, setHideTooltip] = useState(true)
   const [userContext] = useContext(UserContext)
+  const { t } = useTranslation()
 
   return (
     <header className={styles.header}>
@@ -16,14 +19,16 @@ const Header: FC = () => {
           <div className={styles.dropletContainer} onMouseEnter={() => setHideTooltip(false)} onMouseLeave={() => setHideTooltip(true)} onClick={() => setHideTooltip((prev) => !prev)}>
             <img className={styles.dropletImg} src='/images/water_droplet.svg' alt='Water Drop' />
             <Tooltip isHidden={hideTooltip} direction='left'>
-              This is the number of searches you have done with Elliot for Water. Approximately, every search donates 14 liters of pure drinking water.
+              {t('common:header.tooltip_count')}
             </Tooltip>
             <span className={styles.dropletCount}>{userContext.numOfSearches}</span>
           </div>
           <div className={styles.logo}>
-            <a href='/'>
-              <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
-            </a>
+            <Link href='/'>
+              <a>
+                <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
+              </a>
+            </Link>
           </div>
           <Nav />
         </div>
@@ -35,9 +40,11 @@ const Header: FC = () => {
       <section className={styles.wrapperDesktop}>
         <div className={styles.leftSide}>
           <div className={styles.logoSmaller}>
-            <a href='/'>
-              <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
-            </a>
+            <Link href='/'>
+              <a>
+                <img src='/images/small_logo.svg' alt='Elliot For Water Logo' />
+              </a>
+            </Link>
           </div>
           <div className={styles.searchWrap}>
             <SearchBar />
@@ -47,7 +54,7 @@ const Header: FC = () => {
           <div className={styles.dropletContainer} onMouseEnter={() => setHideTooltip(false)} onMouseLeave={() => setHideTooltip(true)}>
             <img className={styles.dropletImg} src='/images/water_droplet.svg' alt='WaterDrop' />
             <Tooltip isHidden={hideTooltip} direction='right'>
-              This is the number of searches you have done with Elliot for Water. Approximately, every search donates 14 liters of pure drinking water.
+              {t('common:header.tooltip_count')}
             </Tooltip>
             <p className={styles.dropletCount}>{userContext.numOfSearches}</p>
           </div>

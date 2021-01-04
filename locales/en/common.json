@@ -1,13 +1,19 @@
 
 {
   "addToChrome": "Add Elliot For Water to Chrome",
-  "addToFF": "Add Elliot For Water to Firefox",
+  "addToFirefox": "Add Elliot For Water to Firefox",
   "backHome": "go back home",
   "contact_us": "Contact us",
   "learn_more": "Learn More",
   "load_more": "Load More",
   "for_water": "For Water",
   "search_input": "Search the web to give water...",
+  "previous": "Previous",
+  "next": "Next",
+  "header": {
+    "our_mission": "Our mission",
+    "tooltip_count": "This is the number of searches you have done with Elliot for Water. Approximately, every search donates 14 liters of pure drinking water."
+  },
   "404": {
     "title": "Don't drown in a glass of water!",
     "description": "Look like the page you are looking for doesn't exist!"
@@ -23,15 +29,32 @@
     "about_us": "About us",
     "faq": "FAQ",
     "privacy": "Privacy Policy",
-    "subscribe": "Subscribe"
+    "terms": "Terms"
   },
   "nav": {
     "why_water": "Why Water",
-    "about_us": "About us",
+    "about": "About us",
     "share_fb": "Share us on Facebook",
     "blog": "Blog",
     "settings": "Settings",
     "terms": "Terms",
     "privacy": "Privacy"
+  },
+  "forms": {
+    "subscribe": "Subscribe",
+    "submitting": "Submitting...",
+    "submitting_text": "Please wait!",
+    "success": "Success",
+    "success_text": "Thanks for your interest.",
+    "thanks": "Thanks",
+    "thanks_text": "We already have your details",
+    "sorry": "Sorry",
+    "sorry_text": "An error occurred on our server.",
+    "error": "Error",
+    "error_text": "Unable to connect.",
+    "phone": "Phone Number",
+    "name": "Name",
+    "email": "Email",
+    "message": "Type your message here..."
   }
 }

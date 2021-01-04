@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, Fragment } from 'react'
 import Head from 'next/head'
 import Header from '../Header/Header'
 import HeaderHome from '../HeaderHome/HeaderHome'

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import ButtonSubscribe from '../Buttons/ButtonSubscribe'
-import ToastList from '../Toast/ToastList'
+import ButtonSubscribe from '../../Buttons/ButtonSubscribe'
+import ToastList from '../../Toast/ToastList'
+import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
 
 const SubscribeForm = () => {
+  const { t } = useTranslation()
   const [emailValue, setEmailValue] = useState<string>('')
   const [list, setList] = useState([])
 
@@ -23,40 +25,40 @@ const SubscribeForm = () => {
     switch (notification) {
       case NOTIFICATION.Submit:
         toastProperties = {
-          title: 'Submitting...',
-          message: 'Please wait!',
+          title: t('common:forms.submitting'),
+          message: t('common:forms.submitting_text'),
           backgroundColor: '#5bc0de',
           icon: '/images/toast/info.svg',
         }
         break
       case NOTIFICATION.Success:
         toastProperties = {
-          title: 'Success',
-          message: 'Thanks for your interest.',
+          title: t('common:forms.success'),
+          message: t('common:forms.success_text'),
           backgroundColor: '#5cb85c',
           icon: '/images/toast/check.svg',
         }
         break
       case NOTIFICATION.UserExists:
         toastProperties = {
-          title: 'Thanks',
-          message: ' We already have your details',
+          title: t('common:forms.thanks'),
+          message: t('common:forms.thanks_text'),
           backgroundColor: '#5bc0de',
           icon: '/images/toast/info.svg',
         }
         break
       case NOTIFICATION.ServerError:
         toastProperties = {
-          title: 'Sorry',
-          message: 'An error occured on our server.',
+          title: t('common:forms.sorry'),
+          message: t('common:forms.sorry_text'),
           backgroundColor: '#d9534f',
           icon: '/images/toast/error.svg',
         }
         break
       case NOTIFICATION.ConnectionError:
         toastProperties = {
-          title: 'Error',
-          message: 'Unable to connect.',
+          title: t('common:forms.error'),
+          message: t('common:forms.error_text'),
           backgroundColor: '#d9534f',
           icon: '/images/toast/error.svg',
         }
@@ -132,7 +134,7 @@ const SubscribeForm = () => {
       <input type='email' name='email' placeholder='Email' value={emailValue} onChange={handleEmailChange} className={styles.newsletterEmail} required />
       <ButtonSubscribe>
         <button className={styles.submitButton} type='submit'>
-          Subscribe
+          {t('common:forms.subscribe')}
         </button>
       </ButtonSubscribe>
       <ToastList toastList={list} position='bottomRight' />
