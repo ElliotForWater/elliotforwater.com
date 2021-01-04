@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
@@ -9,10 +9,6 @@ const ComponentSpan = (props) => <p className='facts__text' {...props} />
 
 function About () {
   const { t } = useTranslation()
-
-  useEffect(() => {
-    document.getElementById('tel').style.display = 'none'
-  }, [])
 
   return (
     <Layout pageTitle='About us' pageDescription='Who we are - Elliot for Water' fluid>
@@ -53,10 +49,7 @@ function About () {
                           /* eslint-disable-next-line react/jsx-key */
                           <ComponentSpan />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a
-                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
-                            target='_blank'
-                          />,
+                          <a href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing' target='_blank' />,
                           /* eslint-disable-next-line react/jsx-key */
                           <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
@@ -86,10 +79,7 @@ function About () {
                           /* eslint-disable-next-line react/jsx-key */
                           <ComponentSpan />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a
-                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
-                            target='_blank'
-                          />,
+                          <a href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing' target='_blank' />,
                           /* eslint-disable-next-line react/jsx-key */
                           <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
@@ -97,11 +87,7 @@ function About () {
                     </div>
                   </div>
                   <div className='elliot-btn-group'>
-                    <a
-                      className='btn btn-primary big home-text__link home-text__chrome shadow'
-                      href='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-                      target='_blank'
-                    >
+                    <a className='btn btn-primary big home-text__link home-text__chrome shadow' href='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim' target='_blank'>
                       {t('common:addToChrome')}
                     </a>
                   </div>
