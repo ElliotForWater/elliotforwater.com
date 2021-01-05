@@ -1,12 +1,41 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import styles from './index.module.css'
 
+const Odometer = dynamic(import('react-odometerjs') as any, {
+  ssr: false,
+  loading: () => <p>0</p>,
+})
+
+function getLitersOfWater (litersOfWaterPerMillisecond) {
+  // Set dates from when we started delivering water until today
+  const dateStart = new Date('03/28/2020')
+  const dateNow = new Date()
+  // Calculate the number of seconds between the two dates
+  const millisecondsDifference = dateNow.getTime() - dateStart.getTime()
+
+  // Calculate the number of liters
+  return millisecondsDifference / litersOfWaterPerMillisecond
+}
+
 const App: FC = () => {
   const { t } = useTranslation()
+  const [odometerValue, setOdometerValue] = useState<number>(0)
+
+  useEffect(() => {
+    const litersOfWaterPerMillisecond = 20000
+    setOdometerValue(getLitersOfWater(litersOfWaterPerMillisecond))
+
+    const timerInterval = setInterval(() => {
+      setOdometerValue(getLitersOfWater(litersOfWaterPerMillisecond))
+    }, litersOfWaterPerMillisecond)
+
+    return () => clearInterval(timerInterval)
+  }, [])
 
   return (
     <Layout pageTitle='Home' pageDescription='Elliot for Water Homepage' isHome fluid>
@@ -24,7 +53,12 @@ const App: FC = () => {
           <h2 className='home-text__title'>{t('home:title')}</h2>
           <p className='home-text__caption'>{t('home:caption')}</p>
           <div className='donated-water-wrapper'>
-            <div className='odometer' />
+            <Odometer
+              // @ts-ignore
+              value={odometerValue}
+              format='(,ddd)'
+              duration={1000}
+            />
             <p className='donated-water-text'>{t('home:liter_of_water')} </p>
           </div>
           <div className='cta'>

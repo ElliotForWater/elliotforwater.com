@@ -84,6 +84,7 @@
     "prettier": "~2.1.1",
     "prettier-stylelint": "^0.4.2",
     "react-docgen-typescript-loader": "~3.7.2",
+    "react-odometerjs": "^2.1.1",
     "storybook-addon-next-router": "^2.0.3",
     "stylelint": "~13.7.2",
     "stylelint-config-standard": "~20.0.0",
