@@ -241,6 +241,15 @@ ul {
   margin-top: 2em;
 }
 
+/* odometer custom style */
+.odometer {
+  color: var(--elliotPrimary);
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  font-family: var(--fontCommon);
+  font-weight: 700;
+}
+
 /* about page */
 .facts__text {
   font-size: 1.5vw;
@@ -263,6 +272,10 @@ ul {
     background: white;
     padding-right: 20px;
     padding-left: 20px;
+  }
+
+  .odometer {
+    font-size: 26px;
   }
 }
 

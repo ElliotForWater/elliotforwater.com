@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { UserContext } from '../context/UserContext'
 import '../styles/base.css'
+import '../styles/odometer.css'
 require('es6-promise').polyfill()
 
 let cookieHelper

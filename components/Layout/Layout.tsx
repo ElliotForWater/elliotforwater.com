@@ -63,7 +63,6 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
       {/* Scripts */}
       <script src='/lib/jquery/dist/jquery.min.js' />
       <script src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js' />
-      <script src='/js/odometer.js' />
     </>
   )
 }
