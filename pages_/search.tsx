@@ -64,12 +64,45 @@ interface ContainerProps {
   numResults?: number
 }
 
-const maxResults = {
+const MAX_RESULTS = {
   web: { name: 'organicResults', maxPerReq: 10 },
   image: { name: 'imageResults', maxPerReq: 150 },
   video: { name: 'videoResults', maxPerReq: 50 },
   news: { name: 'newsResults', maxPerReq: 100 },
 }
+
+const TAB_MENU = [
+  {
+    id: 1,
+    resultType: 'web',
+    title: 'search:all',
+    content: null,
+  },
+  {
+    id: 2,
+    resultType: 'image',
+    title: 'search:images',
+    content: null,
+  },
+  {
+    id: 3,
+    resultType: 'video',
+    title: 'search:videos',
+    content: null,
+  },
+  {
+    id: 4,
+    resultType: 'news',
+    title: 'search:news',
+    content: null,
+  },
+  {
+    id: 5,
+    resultType: 'map',
+    title: 'search:map',
+    content: null,
+  },
+]
 
 function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ContainerProps) {
   const { t } = useTranslation()
@@ -101,7 +134,7 @@ function Container ({ isLoading, component, resultsBatch, incrementResultsBatch,
             </style>
           </div>
         )}
-        {numResults && (
+        {numResults !== undefined && numResults > 0 && (
           <div className='resultsTot'>
             <p>{t('search:tot_results', { tot_results: formatNumber(numResults) })}</p>
             <p>
@@ -150,39 +183,29 @@ function SearchPage ({ query, type }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [resultsBatch, setResultsBatch] = useState<number>(0)
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
+  const [tabMenu, setTabMenu] = useState(TAB_MENU)
 
-  const tabMenu = [
-    {
-      id: 1,
-      resultType: 'web',
-      title: t('search:all'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} numResults={results?.organicResults?.numResults} component={<AllResultsView results={results} searchQuery={query} />} />,
-    },
-    {
-      id: 2,
-      resultType: 'image',
-      title: t('search:images'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<ImagesView results={results} query={query} />} />,
-    },
-    {
-      id: 3,
-      resultType: 'video',
-      title: t('search:videos'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<VideosView results={results} query={query} />} />,
-    },
-    {
-      id: 4,
-      resultType: 'news',
-      title: t('search:news'),
-      content: <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<NewsView results={results} query={query} />} />,
-    },
-    {
-      id: 5,
-      resultType: 'map',
-      title: t('search:map'),
-      content: <MapView searchQuery={query} />,
-    },
-  ]
+  useEffect(() => {
+    setTabMenu((prev) => {
+      const newTabs = [...prev]
+      newTabs.map((tab) => {
+        switch (tab.resultType) {
+          case 'web':
+            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} numResults={results?.organicResults?.numResults} component={<AllResultsView results={results} searchQuery={query} />} />)
+          case 'image':
+            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<ImagesView results={results} query={query} />} />)
+          case 'video':
+            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<VideosView results={results} query={query} />} />)
+          case 'news':
+            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<NewsView results={results} query={query} />} />)
+          case 'map':
+            return (tab.content = <MapView searchQuery={query} />)
+        }
+      })
+
+      return newTabs
+    })
+  }, [isLoading, showLoadMore])
 
   useEffect(() => {
     setActiveTab(findTab())
@@ -232,7 +255,6 @@ function SearchPage ({ query, type }) {
     }
 
     fetchData()
-    setIsLoading(false)
   }, [query, type])
 
   useEffect(() => {
@@ -307,23 +329,29 @@ function SearchPage ({ query, type }) {
   }, [resultsBatch])
 
   function handleShowLoadMore (newResults) {
-    const typeResultName = maxResults[type].name
-    const maxResultsPerReq = maxResults[type].maxPerReq
+    const typeResultName = MAX_RESULTS[type].name
+    const maxResultsPerReq = MAX_RESULTS[type].maxPerReq
 
     if (type === 'web') {
-      if (!newResults.batches) {
-        setShowLoadMore(true)
-        return
+      // no results for 'query'
+      if (!newResults.organicResults.items.length) {
+        return setShowLoadMore(false)
       }
 
+      // first render with results
+      if (!newResults.batches) {
+        return setShowLoadMore(true)
+      }
+
+      // no more results available
       const last = newResults.batches && Object.keys(newResults.batches).pop()
       if (newResults.batches[last].length < maxResultsPerReq) {
         return setShowLoadMore(false)
       }
-    } else {
-      if (newResults[typeResultName]?.items.length < maxResultsPerReq) {
-        return setShowLoadMore(false)
-      }
+    }
+
+    if (!newResults[typeResultName]?.items.length || newResults[typeResultName]?.items.length < maxResultsPerReq) {
+      return setShowLoadMore(false)
     }
 
     setShowLoadMore(true)
