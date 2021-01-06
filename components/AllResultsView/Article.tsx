@@ -17,14 +17,7 @@ type articleItemsProp = {
   siteLinks?: siteLinksProp[]
 }
 
-const ArticleLink = ({
-  targetedUrl,
-  title,
-  displayUrl,
-  description,
-  pixelUrl,
-  siteLinks,
-}: articleItemsProp) => {
+const ArticleLink = ({ targetedUrl, title, displayUrl, description, pixelUrl, siteLinks }: articleItemsProp) => {
   const { t } = useTranslation()
 
   return (
@@ -35,7 +28,7 @@ const ArticleLink = ({
         </a>
       </h3>
       <div className={styles.subtitle}>
-        {siteLinks && <span className={styles.sponsorLabel}>{t('search:sponsor_by')}</span>}
+        {siteLinks !== undefined && <span className={styles.sponsorLabel}>{t('search:sponsor_by')}</span>}
         {displayUrl}
       </div>
       <p>{description}</p>

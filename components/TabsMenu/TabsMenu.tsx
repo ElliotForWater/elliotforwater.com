@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import TabItem from '../TabItem/TabItem'
 interface tabProp {
   id: number
@@ -13,15 +14,12 @@ interface Props {
 }
 
 const TabsMenu = ({ tabItems, activeTabId, setActiveTab }: Props) => {
+  const { t } = useTranslation()
+
   return (
     <div className='tabs'>
       {tabItems.map((tab) => (
-        <TabItem
-          key={tab.title}
-          title={tab.title}
-          onItemClicked={() => setActiveTab(tab)}
-          isActive={activeTabId === tab.id}
-        />
+        <TabItem key={tab.title} title={t(tab.title)} onItemClicked={() => setActiveTab(tab)} isActive={activeTabId === tab.id} />
       ))}
       <style jsx>
         {`
