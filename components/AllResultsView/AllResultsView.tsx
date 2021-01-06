@@ -87,7 +87,7 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
 
   return (
     <>
-      {!sponsoredItems?.length ? (
+      {!organicItems?.length ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
