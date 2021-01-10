@@ -1,4 +1,5 @@
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '../Header/Header'
 import HeaderHome from '../HeaderHome/HeaderHome'
@@ -16,21 +17,24 @@ interface LayoutProps {
 const socialDescription = 'Search Engine which collects water to build well'
 
 export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescription, isHome }) => {
+  const router = useRouter()
+  const { query } = router.query
+
   return (
     <>
       <Head>
-        <title>{pageTitle} - Elliot for Water</title>
+        <title>{isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`}</title>
         {/* <!-- Search Engine --> */}
         <meta name='description' content={pageDescription || socialDescription} />
         {/* <!-- Schema.org for Google --> */}
-        <meta itemProp='name' content={`${pageTitle} - Elliot for Water`} />
+        <meta itemProp='name' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta itemProp='description' content={pageDescription || socialDescription} />
         {/* <!-- Twitter --> */}
         <meta name='twitter:card' content='summary' />
-        <meta name='twitter:title' content={`${pageTitle} - Elliot for Water`} />
+        <meta name='twitter:title' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta name='twitter:description' content={pageDescription || socialDescription} />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
-        <meta name='og:title' content={`${pageTitle} - Elliot for Water`} />
+        <meta name='og:title' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta name='og:description' content={pageDescription || socialDescription} />
         <meta name='og:url' content={process.env.NEXT_PUBLIC_API_URL} />
         <meta name='og:site_name' content='Elliot for Water' />

@@ -6,7 +6,7 @@ function Terms () {
   const { t } = useTranslation()
 
   return (
-    <Layout fluid pageTitle='Terms' pageDescription='Read about our terms'>
+    <Layout fluid pageTitle={t('terms:pageTitle')} pageDescription={t('terms:pageDescription')}>
       <div className='old_container'>
         <h2>{t('terms:title')}</h2>
         <label>{t('terms:date')}</label>

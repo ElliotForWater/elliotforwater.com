@@ -370,7 +370,7 @@ function SearchPage ({ query, type }) {
   }
 
   return (
-    <Layout fluid pageTitle={t('search:pageTitle')} pageDescription={t('search:pageDescription')}>
+    <Layout fluid pageTitle={query + t('search:pageTitle')} pageDescription={t('search:pageDescription')}>
       <section className='wrapper'>
         <div className='tabsWrapper'>
           <TabsMenu tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} />

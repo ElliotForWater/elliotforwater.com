@@ -1,14 +1,16 @@
 {
+  "pageTitle": "About us",
+  "pageDescription": "Elliot for Water is a social enterprise, founded by Andrea Demichelis, with the mission of providing millions of people with access to safe drinking water.",
   "title1": "Elliot for Water",
   "title2": "is the search engine",
   "title3": "that donates water",
   "title4": "with your searches",
   "facts_title": "Support clean water projects by simply searching the web",
-  "facts_descrition1": "Elliot for Water is a social enterprise, founded by Andrea Demichelis, with the mission of providing millions of people with access to safe drinking water. The idea behind it is very simple: giving everyone the opportunity to have an impact on the world. And that’s because, at Elliot for Water, we want to represent an idea of change.",
-  "facts_descrition2": "The name Elliot, in fact, is an homage to the Greek God, Helios. He was the god of Sun and Life, and he personified the creative power behind them. This is what Elliot for Water means: energy and life! We want to show that each and every one of us has the power to change the world for the better, even with a simple click.",
-  "facts_descrition3": "Through Elliot for Water, you can use that same power to change the lives of thousands around the world by simply doing what you already do every day: searching the web.",
-  "facts_descrition4": "In practice, Elliot for Water is like any other search engine but with the extra characteristic that we donate 60% of our profit to realize clean water projects. Very simply: you search the web, ads generate money, and that money finances water projects. Right now, we are working on our first goal to provide water to 1 million people by 2025!",
-  "facts_descrition5": "<0>Click <1>here</1> to learn more about the Guinea-Bissau project we have realized in collaboration with <2>Well Found</2>, and about the other water projects that are coming up!</0>",
+  "facts_description1": "Elliot for Water is a social enterprise, founded by Andrea Demichelis, with the mission of providing millions of people with access to safe drinking water. The idea behind it is very simple: giving everyone the opportunity to have an impact on the world. And that’s because, at Elliot for Water, we want to represent an idea of change.",
+  "facts_description2": "The name Elliot, in fact, is an homage to the Greek God, Helios. He was the god of Sun and Life, and he personified the creative power behind them. This is what Elliot for Water means: energy and life! We want to show that each and every one of us has the power to change the world for the better, even with a simple click.",
+  "facts_description3": "Through Elliot for Water, you can use that same power to change the lives of thousands around the world by simply doing what you already do every day: searching the web.",
+  "facts_description4": "In practice, Elliot for Water is like any other search engine but with the extra characteristic that we donate 60% of our profit to realize clean water projects. Very simply: you search the web, ads generate money, and that money finances water projects. Right now, we are working on our first goal to provide water to 1 million people by 2025!",
+  "facts_description5": "<0>Click <1>here</1> to learn more about the Guinea-Bissau project we have realized in collaboration with <2>Well Found</2>, and about the other water projects that are coming up!</0>",
   "contact_us": "Contact Us",
   "send": "send"
 }

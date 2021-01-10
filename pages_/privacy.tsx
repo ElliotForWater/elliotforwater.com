@@ -9,7 +9,7 @@ function Privacy () {
   const { t } = useTranslation()
 
   return (
-    <Layout fluid pageTitle='Privacy' pageDescription='Read about our privacy'>
+    <Layout fluid pageTitle={t('privacy:pageTitle')} pageDescription={t('privacy:pageDescription')}>
       <div className='old_container'>
         <h2 className='title'>{t('privacy:title')}</h2>
         <p>{t('privacy:description')}</p>
