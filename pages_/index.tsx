@@ -38,7 +38,7 @@ const App: FC = () => {
   }, [])
 
   return (
-    <Layout pageTitle='Home' pageDescription='Elliot for Water Homepage' isHome fluid>
+    <Layout pageTitle={t('home:pageTitle')} pageDescription={t('home:pageDescription')} isHome fluid>
       <section>
         <div className='logo-main'>
           <h1 className='logo-main__title'>

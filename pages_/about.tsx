@@ -11,7 +11,7 @@ function About () {
   const { t } = useTranslation()
 
   return (
-    <Layout pageTitle='About us' pageDescription='Who we are - Elliot for Water' fluid>
+    <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
       <div className='about-header'>
         <p className='about-header__text about-header__text--blue'>{t('about:title1')}</p>
         <p className='about-header__text'>{t('about:title2')}</p>
