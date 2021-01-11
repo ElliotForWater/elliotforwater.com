@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['standard', 'standard-jsx'],
+  extends: ['standard', 'standard-jsx', 'plugin:prettier/recommended'],
   settings: {
     react: {
       version: '16.13',
@@ -13,7 +13,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-hooks', 'jest'],
   rules: {
-    'comma-dangle': ['error', 'only-multiline'],
     'no-shadow': 'warn',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -24,7 +23,6 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
-
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-handler-names': 'warn',

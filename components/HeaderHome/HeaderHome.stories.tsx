@@ -1,20 +1,10 @@
 import React from 'react'
 import HeaderComponent from './HeaderHome'
-import { UserContext } from '../../context/UserContext'
 import { withNextRouter } from 'storybook-addon-next-router'
-
-const user = { numOfSearches: 0 }
 
 export default {
   title: 'Components/HeaderHome',
-  decorators: [
-    (Story) => (
-      <UserContext.Provider value={[user, (newObj) => console.log(newObj)]}>
-        <Story />
-      </UserContext.Provider>
-    ),
-    withNextRouter,
-  ],
+  decorators: [(Story) => <Story />, withNextRouter],
 }
 
 export const Header = () => <HeaderComponent />

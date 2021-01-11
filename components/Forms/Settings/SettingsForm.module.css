@@ -1,0 +1,38 @@
+.settingsForm {
+  background-color: rgba(10, 10, 10, 0.86);
+}
+
+.settingsHeader {
+  min-height: 16.428571429px;
+  padding: 5px 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.settingsBody {
+  position: relative;
+  padding: 20px;
+}
+
+.settingsFooter {
+  padding: 19px 20px 20px;
+  margin-top: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.428571429;
+}
+
+.checkboxLabel {
+  min-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  display: block;
+  margin: 3px 10px 0 0 !important; /* override bootstrap */
+  float: left;
+}

@@ -1,0 +1,132 @@
+.button {
+  display: inline-block;
+  font-family: var(--fontCommon);
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 20.4px;
+  background: transparent;
+}
+
+.button button {
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  background: transparent;
+}
+
+.button a {
+  cursor: pointer;
+}
+
+.button a:hover {
+  text-decoration: none;
+}
+
+.fluid {
+  width: 100%;
+}
+
+.big {
+  padding: 16px 24px;
+}
+
+/*
+================================
+PRIMARY BUTTON
+=====================================
+*/
+.primary {
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, var(--elliotSecondary) 0%, var(--elliotPrimary) 51%, var(--elliotSecondary) 100%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  color: white;
+  border-radius: 30px;
+  padding: 8px 24px;
+  transition: 0.5s;
+}
+
+.primary:hover {
+  background-position: right center;
+}
+
+.primary button {
+  color: white;
+}
+
+.primary a {
+  color: white;
+}
+
+.primary a:hover {
+  color: white;
+}
+
+/*
+================================
+TEXT BUTTON
+=====================================
+*/
+.text {
+  padding: 8px 24px;
+}
+
+.text:hover a {
+  text-decoration: underline;
+}
+
+.text:hover {
+  text-decoration: underline;
+}
+
+/*
+================================
+OUTLINE BUTTON
+=====================================
+*/
+.outline {
+  padding: 8px 24px;
+  background-image: none;
+  border: 2px solid var(--elliotSecondary);
+  color: var(--elliotSecondary);
+}
+
+.outline a {
+  color: var(--elliotSecondary);
+}
+
+.outline:hover {
+  color: white;
+  background-image: linear-gradient(to right, var(--elliotSecondary) 0%, var(--elliotPrimary) 51%, var(--elliotSecondary) 100%);
+  border: 2px solid transparent;
+}
+
+.outline:hover a {
+  color: white;
+}
+
+/*
+================================
+SUBSCRIBE BUTTON
+=====================================
+*/
+.subscribe {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 3px;
+  color: black;
+}
+
+.subscribe:hover {
+  color: var(--elliot-primary-color);
+  border-color: var(--elliot-primary-color);
+}
+
+.subscribe a {
+  color: black;
+}
+
+.subscribe a:hover {
+  color: black;
+}

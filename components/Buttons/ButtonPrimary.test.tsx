@@ -10,7 +10,7 @@ describe('ButtonPrimary', () => {
 
   it('should render with a tag', function () {
     const clickMock = jest.fn()
-    const wrap = shallow(<ButtonPrimary handleClick={clickMock}>I'm a button</ButtonPrimary>)
+    const wrap = shallow(<ButtonPrimary onClick={clickMock}>I'm a button</ButtonPrimary>)
     wrap.simulate('click')
     expect(clickMock.mock.calls.length).toBe(1)
   })

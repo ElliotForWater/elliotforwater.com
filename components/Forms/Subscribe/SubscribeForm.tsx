@@ -74,7 +74,7 @@ const SubscribeForm = () => {
     }
   }
 
-  async function subscribeApiPost () {
+  async function subscribeApiPost() {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts`
     const data = {
       email: emailValue,
@@ -90,11 +90,11 @@ const SubscribeForm = () => {
     return fetch(url, postOptions)
   }
 
-  function handleEmailChange (event: React.ChangeEvent<HTMLInputElement>) {
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEmailValue(event.target.value)
   }
 
-  async function handleSubmit (event) {
+  async function handleSubmit(event) {
     // Reset any notifications
     setList([])
 

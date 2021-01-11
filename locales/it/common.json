@@ -1,8 +1,7 @@
-
 {
-  "addToChrome": "Aggiungi Elliot For Water a Chrome",
-  "addToFirefox": "Aggiungi Elliot For Water a Firefox",
-  "backHome": "torna alla home",
+  "addToChrome": "Add Elliot For Water to Chrome",
+  "addToFirefox": "Add Elliot For Water to Firefox",
+  "backHome": "go back home",
   "contact_us": "Contact us",
   "learn_more": "Learn More",
   "load_more": "Load More",
@@ -14,13 +13,15 @@
     "our_mission": "Our mission",
     "tooltip_count": "This is the number of searches you have done with Elliot for Water. Approximately, every search donates 14 liters of pure drinking water."
   },
+  "close": "Close",
+  "save": "Save",
   "404": {
-    "title": "Non ti perdere in un bicchiere d'acqua!",
-    "description": "Sembrerebbe che la pagina che stai cercando non esiste"
+    "title": "Don't drown in a glass of water!",
+    "description": "Look like the page you are looking for doesn't exist!"
   },
   "error": {
-    "title": "Ooops! Sembrerebbe che ci sia stata una perdita",
-    "description": "C'e' stato un problema nel nostro sistema, per favore riprova piu' tardi. Perdonaci!"
+    "title": "Uh-oh! Look like there was a leak!",
+    "description": "Apologize! There was a problem in our system, please try in some minutes"
   },
   "footer": {
     "social_with_us": "Get social with us",
@@ -33,7 +34,7 @@
   },
   "nav": {
     "why_water": "Why Water",
-    "about_us": "About us",
+    "about": "About us",
     "share_fb": "Share us on Facebook",
     "blog": "Blog",
     "settings": "Settings",
@@ -56,5 +57,15 @@
     "name": "Name",
     "email": "Email",
     "message": "Type your message here..."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "adult_filter": "Adult Filter",
+    "new_tab": "Open search results in a new tab",
+    "english": "English",
+    "off": "Off",
+    "moderate": "Moderate",
+    "strict": "Strict"
   }
 }

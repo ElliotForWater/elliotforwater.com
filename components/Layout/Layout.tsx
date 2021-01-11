@@ -36,7 +36,7 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
         <meta name='og:title' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta name='og:description' content={pageDescription || socialDescription} />
-        <meta name='og:url' content={process.env.NEXT_PUBLIC_API_URL} />
+        <meta name='og:url' content={process.env.NEXT_PUBLIC_BASE_URL} />
         <meta name='og:site_name' content='Elliot for Water' />
         <meta name='og:type' content='website' />
 

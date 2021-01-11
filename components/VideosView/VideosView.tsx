@@ -1,5 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import CustomLink from '../CustomLink'
 import styles from './VideosView.module.css'
 
 type VideosProp = {
@@ -32,7 +33,7 @@ const VideosView = ({ results, query }: ResultsProp) => {
           {videos.map((video, i) => (
             <div className={styles.item} key={i}>
               <div className={styles.box}>
-                <a className={styles.link} href={video.targetedUrl} target='_self'>
+                <CustomLink className={styles.link} href={video.targetedUrl}>
                   <img className={styles.image} src={video.thumbnailUrl} alt={video.title} title={video.title} />
                   <div className={styles.caption}>
                     <div className={styles.title}>
@@ -40,7 +41,7 @@ const VideosView = ({ results, query }: ResultsProp) => {
                     </div>
                     <div className={styles.subtitle}>{video.publisher}</div>
                   </div>
-                </a>
+                </CustomLink>
               </div>
               <img className={styles.hidden} src={video.pixelUrl} />
             </div>
