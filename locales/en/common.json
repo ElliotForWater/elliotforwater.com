@@ -1,4 +1,3 @@
-
 {
   "addToChrome": "Add Elliot For Water to Chrome",
   "addToFirefox": "Add Elliot For Water to Firefox",
@@ -14,6 +13,8 @@
     "our_mission": "Our mission",
     "tooltip_count": "This is the number of searches you have done with Elliot for Water. Approximately, every search donates 14 liters of pure drinking water."
   },
+  "close": "Close",
+  "save": "Save",
   "404": {
     "title": "Don't drown in a glass of water!",
     "description": "Look like the page you are looking for doesn't exist!"
@@ -56,5 +57,15 @@
     "name": "Name",
     "email": "Email",
     "message": "Type your message here..."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "adult_filter": "Adult Filter",
+    "new_tab": "Open search results in a new tab",
+    "english": "English",
+    "off": "Off",
+    "moderate": "Moderate",
+    "strict": "Strict"
   }
 }

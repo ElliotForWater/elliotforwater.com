@@ -1,5 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import CustomLink from '../CustomLink'
 import styles from './NewsView.module.css'
 import classnames from 'classnames'
 
@@ -36,7 +37,7 @@ const NewsView = ({ results, query }: ResultsProp) => {
               <article className={styles.article}>
                 <div className={styles.wrap}>
                   <div className={styles.container}>
-                    <a href={article.targetedUrl} target='_self'>
+                    <CustomLink href={article.targetedUrl}>
                       <img
                         className={classnames(styles.image, {
                           [styles.placeholder]: !article.thumbnailUrl,
@@ -45,13 +46,11 @@ const NewsView = ({ results, query }: ResultsProp) => {
                         alt={article.thumbnailUrl ? article.title : ''}
                         title={article.title}
                       />
-                    </a>
+                    </CustomLink>
                   </div>
                   <div className={styles.container}>
                     <div className={styles.title}>
-                      <a href={article.targetedUrl} target='_self'>
-                        {article.title}
-                      </a>
+                      <CustomLink href={article.targetedUrl}>{article.title}</CustomLink>
                     </div>
                     <div className={styles.subtitle}>{article.provider}</div>
                     <p className={styles.description}>{article.description}</p>

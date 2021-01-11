@@ -10,12 +10,12 @@ interface IncrementProp {
 const LoadMore = ({ currIndex, incrementIndex }: IncrementProp) => {
   const { t } = useTranslation()
 
-  function handleIncrementIndex () {
+  function handleIncrementIndex() {
     return incrementIndex(currIndex + 1)
   }
 
   return (
-    <ButtonPrimary outline handleClick={handleIncrementIndex}>
+    <ButtonPrimary outline onClick={handleIncrementIndex}>
       {t('common:load_more')}
     </ButtonPrimary>
   )

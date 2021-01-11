@@ -63,7 +63,7 @@ const ContactForm = () => {
     }
   }
 
-  async function contactApiPost (event) {
+  async function contactApiPost(event) {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/contactus`
 
     const { name, email, phone, msg } = event.target.elements
@@ -84,7 +84,7 @@ const ContactForm = () => {
     return fetch(url, postOptions)
   }
 
-  async function handleSubmit (event) {
+  async function handleSubmit(event) {
     // Reset any notifications
     setList([])
     showToast(NOTIFICATION.Submit)

@@ -3,11 +3,11 @@ import useTranslation from 'next-translate/useTranslation'
 import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
-import ContactUsForm from '../components/Forms/ContactForm/ContactForm'
+import ContactUsForm from '../components/Forms/Contact/ContactForm'
 
 const ComponentSpan = (props) => <p className='facts__text' {...props} />
 
-function About () {
+function About() {
   const { t } = useTranslation()
 
   return (

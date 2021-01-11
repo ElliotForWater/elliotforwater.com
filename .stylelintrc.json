@@ -4,6 +4,14 @@
     "./node_modules/prettier-stylelint/config.js"
   ],
   "rules": {
-    "at-rule-no-unknown": [true, {"ignoreAtRules": ["extend"]} ]
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extend"
+        ]
+      }
+    ],
+    "no-descending-specificity": null
   }
 }

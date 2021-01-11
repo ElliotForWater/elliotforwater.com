@@ -1,4 +1,4 @@
-import SubscribeForm from '../Forms/SubscribeForm/SubscribeForm'
+import SubscribeForm from '../Forms/Subscribe/SubscribeForm'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './Footer.module.css'

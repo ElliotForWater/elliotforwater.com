@@ -1,5 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import CustomLink from '../CustomLink'
 import styles from './ImagesView.module.css'
 
 type ImagesProp = {
@@ -32,9 +33,9 @@ const ImagesView = ({ results, query }: ResultsProp) => {
         <div className={styles.container}>
           {images.map((image, i) => (
             <div className={styles.item} key={i}>
-              <a href={image.imageUrl} target='_self'>
+              <CustomLink href={image.imageUrl}>
                 <img src={image.thumbnailUrl} alt={image.title} title={image.title} className={styles.image} />
-              </a>
+              </CustomLink>
               <img className={styles.hidden} src={image.pixelUrl} />
             </div>
           ))}

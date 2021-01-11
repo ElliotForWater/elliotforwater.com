@@ -6,12 +6,9 @@ import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import styles from './index.module.css'
 
-const Odometer = dynamic(import('react-odometerjs') as any, {
-  ssr: false,
-  loading: () => <p>0</p>,
-})
+let Odometer = null
 
-function getLitersOfWater (litersOfWaterPerMillisecond) {
+function getLitersOfWater(litersOfWaterPerMillisecond) {
   // Set dates from when we started delivering water until today
   const dateStart = new Date('03/28/2020')
   const dateNow = new Date()
@@ -27,6 +24,11 @@ const App: FC = () => {
   const [odometerValue, setOdometerValue] = useState<number>(0)
 
   useEffect(() => {
+    Odometer = dynamic(import('react-odometerjs') as any, {
+      ssr: false,
+      loading: () => <p>0</p>,
+    })
+
     const litersOfWaterPerMillisecond = 20000
     setOdometerValue(getLitersOfWater(litersOfWaterPerMillisecond))
 
@@ -53,12 +55,14 @@ const App: FC = () => {
           <h2 className='home-text__title'>{t('home:title')}</h2>
           <p className='home-text__caption'>{t('home:caption')}</p>
           <div className='donated-water-wrapper'>
-            <Odometer
-              // @ts-ignore
-              value={odometerValue}
-              format='(,ddd)'
-              duration={1000}
-            />
+            {Odometer !== null && (
+              <Odometer
+                // @ts-ignore
+                value={odometerValue}
+                format='(,ddd)'
+                duration={1000}
+              />
+            )}
             <p className='donated-water-text'>{t('home:liter_of_water')} </p>
           </div>
           <div className='cta'>

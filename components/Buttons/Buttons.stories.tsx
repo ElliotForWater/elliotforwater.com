@@ -1,6 +1,10 @@
 import React from 'react'
-import ButtonPrimary from './ButtonPrimary'
+import ButtonComp from './Button'
+import ButtonPrimaryComp from './ButtonPrimary'
+import TextButtonComp from './TextButton'
 import ButtonSubscribe from './ButtonSubscribe'
+import ButtonAddToBrowserComp from './ButtonAddToBrowser'
+import ButtonOutlineComp from './ButtonOutline'
 
 export default {
   title: 'Inputs/Button',
@@ -13,61 +17,76 @@ export default {
   ],
 }
 
-export const Primary = () => (
+export const Button = () => (
   <>
     <p style={{ marginBottom: '20px' }}>Buttons are listed with link and without link</p>
     <h3>Simple</h3>
     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '20px' }}>
-      <ButtonPrimary>
-        <a href='#'>Add Elliot for Water to Chrome</a>
-      </ButtonPrimary>
-      <ButtonPrimary>I'm a button</ButtonPrimary>
+      <ButtonComp>
+        <a href='#'>Go somewhere</a>
+      </ButtonComp>
+      <ButtonComp>I'm a button</ButtonComp>
+      <ButtonComp>
+        <button>I'm a button in the Button Component</button>
+      </ButtonComp>
     </div>
 
     <h3>Outline</h3>
     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '20px' }}>
-      <ButtonPrimary outline>
+      <ButtonComp outline>
         <a href='#'>Go somewhere</a>
-      </ButtonPrimary>
-      <ButtonPrimary outline>Load More</ButtonPrimary>
+      </ButtonComp>
+      <ButtonComp outline>Load More</ButtonComp>
     </div>
 
     <h3>Big</h3>
     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '20px' }}>
-      <ButtonPrimary big>
+      <ButtonComp big>
         <a href='#'>Go somewhere</a>
-      </ButtonPrimary>
-      <ButtonPrimary big>A bigger button</ButtonPrimary>
+      </ButtonComp>
+      <ButtonComp big>A bigger button</ButtonComp>
     </div>
 
     <h3>Fluid</h3>
     <div style={{ marginBottom: '20px' }}>
-      <ButtonPrimary fluid>
-        <a href='#'>Add Elliot for Water to Chrome</a>
-      </ButtonPrimary>
+      <ButtonComp fluid>
+        <a href='#'>Go somewhere</a>
+      </ButtonComp>
       <p />
     </div>
 
     <h3>With callback on click</h3>
-    <ButtonPrimary handleClick={() => console.log('click')}>click and check the web console</ButtonPrimary>
+    <ButtonComp onClick={() => console.log('click')}>click and check the web console</ButtonComp>
 
     <h3>With linkHref</h3>
-    <ButtonPrimary linkHref='#'>Click on me and go to #</ButtonPrimary>
+    <ButtonComp linkHref='#'>Click on me and go to #</ButtonComp>
 
     <h3>Combo</h3>
     <p>Big and outline</p>
     <div style={{ marginBottom: '20px' }}>
-      <ButtonPrimary big outline>
-        <a href='#'>Add Elliot for Water to Chrome</a>
-      </ButtonPrimary>
+      <ButtonComp big outline>
+        <a href='#'>Go somewhere</a>
+      </ButtonComp>
     </div>
     <p>Big and fluid</p>
     <div style={{ marginBottom: '20px' }}>
-      <ButtonPrimary big fluid>
-        <a href='#'>Add Elliot for Water to Chrome</a>
-      </ButtonPrimary>
+      <ButtonComp big fluid>
+        <a href='#'>Go somewhere</a>
+      </ButtonComp>
     </div>
   </>
 )
 
+export const ButtonPrimary = () => (
+  <ButtonPrimaryComp type='primary' onClick={() => console.log('you clicked on me?!')}>
+    I'm faboulous!
+  </ButtonPrimaryComp>
+)
+
+export const ButtonOutline = () => <ButtonOutlineComp>Simple outline</ButtonOutlineComp>
+
+export const TextButton = () => <TextButtonComp>I'm just some clickable text</TextButtonComp>
+
 export const Subscribe = () => <ButtonSubscribe>Subscribe</ButtonSubscribe>
+
+export const ButtonAddToBrowser = () => <ButtonAddToBrowserComp />

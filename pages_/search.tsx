@@ -1,5 +1,6 @@
-import React, { useEffect, useState, ReactElement } from 'react'
+import React, { useEffect, useState, useContext, ReactElement } from 'react'
 import { useRouter } from 'next/router'
+import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
 import Error from 'next/error'
@@ -104,7 +105,7 @@ const TAB_MENU = [
   },
 ]
 
-function Container ({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ContainerProps) {
+function Container({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ContainerProps) {
   const { t } = useTranslation()
 
   if (isLoading) {
@@ -174,9 +175,11 @@ function Container ({ isLoading, component, resultsBatch, incrementResultsBatch,
   }
 }
 
-function SearchPage ({ query, type }) {
+function SearchPage({ query, type }) {
   const { t } = useTranslation()
   const router = useRouter()
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const [userContext, setUserContext] = useContext(UserContext)
   const [results, setResults] = useState<resultsProp>(null)
   const [activeTab, setActiveTab] = useState<tabProp>(initStateTab)
   const [isError, setIsError] = useState<{ status: number }>({ status: 200 })
@@ -184,6 +187,8 @@ function SearchPage ({ query, type }) {
   const [resultsBatch, setResultsBatch] = useState<number>(0)
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
   const [tabMenu, setTabMenu] = useState(TAB_MENU)
+
+  console.log({ userContext })
 
   useEffect(() => {
     setTabMenu((prev) => {
@@ -219,7 +224,14 @@ function SearchPage ({ query, type }) {
     const fetchData = async () => {
       try {
         setIsLoading(true)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}`)
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&` +
+            new URLSearchParams({
+              AdultContentFilter: userContext.adultContentFilter,
+            })
+        )
+
+        console.log('r', res)
 
         if (res.ok) {
           const json = await res.json()
@@ -328,7 +340,7 @@ function SearchPage ({ query, type }) {
     fetchData()
   }, [resultsBatch])
 
-  function handleShowLoadMore (newResults) {
+  function handleShowLoadMore(newResults) {
     const typeResultName = MAX_RESULTS[type].name
     const maxResultsPerReq = MAX_RESULTS[type].maxPerReq
 
@@ -357,15 +369,15 @@ function SearchPage ({ query, type }) {
     setShowLoadMore(true)
   }
 
-  function handleSetResultBatch (nextIndex) {
+  function handleSetResultBatch(nextIndex) {
     setResultsBatch(nextIndex)
   }
 
-  function handleSwitchTab (nextActiveTab) {
+  function handleSwitchTab(nextActiveTab) {
     router.push(`search?query=${query}&type=${nextActiveTab.resultType}`)
   }
 
-  function findTab (newType?: string): tabProp {
+  function findTab(newType?: string): tabProp {
     return tabMenu.find((tab) => (newType || type) === tab.resultType)
   }
 
@@ -417,7 +429,7 @@ function SearchPage ({ query, type }) {
   )
 }
 
-export async function getServerSideProps ({ query }) {
+export async function getServerSideProps({ query }) {
   return {
     props: {
       query: query.query,

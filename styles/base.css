@@ -90,7 +90,9 @@ ul {
   display: none;
 }
 
-/* COMMON STYLE */
+/* COMMON STYLE 
+=========================
+*/
 .main {
   max-width: 1200px;
   margin: 0 auto;
@@ -98,6 +100,26 @@ ul {
 
 .container {
   padding: 20px 0;
+}
+
+/* odometer custom style */
+.odometer {
+  color: var(--elliotPrimary);
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  font-family: var(--fontCommon);
+  font-weight: 700;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 /* ==================================================
@@ -241,13 +263,10 @@ ul {
   margin-top: 2em;
 }
 
-/* odometer custom style */
-.odometer {
-  color: var(--elliotPrimary);
-  font-size: 22px;
-  letter-spacing: 0.3em;
-  font-family: var(--fontCommon);
-  font-weight: 700;
+.control-label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 /* about page */
