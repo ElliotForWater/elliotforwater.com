@@ -4,7 +4,7 @@
   justify-content: space-between;
   z-index: var(--zindex300);
   padding: 30px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 }
 
 .headerRight {
@@ -45,4 +45,10 @@
 .menu {
   margin-left: 1.2em;
   margin-top: 6px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 0;
+  }
 }

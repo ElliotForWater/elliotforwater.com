@@ -23,6 +23,7 @@ const Nav = () => {
         setIsNavOpen(false)
       }
     }
+    console.log({ isNavOpen })
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
