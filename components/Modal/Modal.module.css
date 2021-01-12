@@ -8,8 +8,8 @@
 }
 
 .modalCard {
-  width: 500px;
-  margin: 250px auto;
+  max-width: 500px;
+  margin: 100px auto;
   background: white;
   border: 1px solid var(--placeholder);
   border-radius: 6px;

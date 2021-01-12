@@ -208,8 +208,7 @@ const App: FC = () => {
             text-align: center;
             margin: 0 auto;
             margin-bottom: 8px;
-            max-width: 80%;
-            max-width: 55%;
+            max-width: 85%;
           }
 
           .home-text__title {
@@ -433,6 +432,7 @@ const App: FC = () => {
 
             .home-text {
               margin-bottom: 14px;
+              max-width: 70%;
             }
 
             .home-text__title {

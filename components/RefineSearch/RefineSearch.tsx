@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
+import { UserContext } from '../../context/UserContext'
+import { updateSearchCounter } from '../../helpers/_settingsHelper'
 import styles from './RefineSearch.module.css'
 
 type relatedObj = {
@@ -14,6 +16,8 @@ interface Props {
 
 const RefineSearch = ({ refineSearches }: Props) => {
   const { t } = useTranslation()
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const [userContext, setUserContext] = useContext(UserContext)
 
   return (
     <>
@@ -25,7 +29,14 @@ const RefineSearch = ({ refineSearches }: Props) => {
             <div className={styles.tabs}>
               {refineSearches &&
                 refineSearches.map((item, i) => (
-                  <a key={i} className={styles.tab} href={`/search?query=${item.text}&type=web`}>
+                  <a
+                    key={i}
+                    className={styles.tab}
+                    href={`/search?query=${item.text}&type=web`}
+                    onClick={() => {
+                      updateSearchCounter(setUserContext)
+                    }}
+                  >
                     {item.text}
                   </a>
                 ))}
@@ -37,7 +48,14 @@ const RefineSearch = ({ refineSearches }: Props) => {
       <div className={classnames(styles.tabs, styles.desktop)}>
         {refineSearches &&
           refineSearches.map((item, i) => (
-            <a key={i} className={styles.tab} href={`/search?query=${item.text}&type=web`}>
+            <a
+              key={i}
+              className={styles.tab}
+              href={`/search?query=${item.text}&type=web`}
+              onClick={() => {
+                updateSearchCounter(setUserContext)
+              }}
+            >
               {item.text}
             </a>
           ))}
