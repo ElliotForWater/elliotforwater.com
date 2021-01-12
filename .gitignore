@@ -5,4 +5,4 @@ node_modules/
 /pages
 out/
 storybook-static/
-.env.local
+.env*.local
