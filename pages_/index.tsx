@@ -231,6 +231,52 @@ const App: FC = () => {
           }
 
           /* ==================================================
+          Show More
+        ================================================== */
+          .show-more {
+            text-align: center;
+          }
+
+          .show-more__title {
+            margin-bottom: 0;
+            font-size: 9px;
+          }
+
+          .chevron {
+            position: relative;
+            display: block;
+            height: 20px;
+            right: 10px;
+            top: -2em;
+          }
+
+          .show-more__link {
+            display: inline-block;
+          }
+
+          .show-more__link:hover {
+            text-decoration: none;
+          }
+
+          .chevron::before,
+          .chevron::after {
+            position: absolute;
+            display: block;
+            content: '';
+            border: 10px solid transparent;
+          }
+
+          .chevron::before {
+            top: 0;
+            border-top-color: var(--black, black);
+          }
+
+          .chevron::after {
+            top: -2px;
+            border-top-color: #fff;
+          }
+
+          /* ==================================================
           How It Works section
         ================================================== */
           .section__title {

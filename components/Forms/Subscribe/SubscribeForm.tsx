@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
+import { Input } from '../Inputs/Inputs'
 import ButtonSubscribe from '../../Buttons/ButtonSubscribe'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
 
+/* eslint-disable-next-line no-shadow */
+enum NOTIFICATION {
+  Submit,
+  Success,
+  UserExists,
+  ConnectionError,
+  ServerError,
+  None,
+}
+
 const SubscribeForm = () => {
   const { t } = useTranslation()
-  const [emailValue, setEmailValue] = useState<string>('')
   const [list, setList] = useState([])
 
-  /* eslint-disable-next-line no-shadow */
-  enum NOTIFICATION {
-    Submit,
-    Success,
-    UserExists,
-    ConnectionError,
-    ServerError,
-    None,
-  }
+  const methods = useForm()
+  const { handleSubmit, register, errors } = methods
 
   const showToast = (notification: NOTIFICATION) => {
     let toastProperties = null
@@ -74,37 +78,20 @@ const SubscribeForm = () => {
     }
   }
 
-  async function subscribeApiPost() {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts`
-    const data = {
-      email: emailValue,
-    }
-    const postOptions = {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }
-
-    return fetch(url, postOptions)
-  }
-
-  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmailValue(event.target.value)
-  }
-
-  async function handleSubmit(event) {
+  async function onSubmit(data, e) {
     // Reset any notifications
     setList([])
 
     showToast(NOTIFICATION.Submit)
 
-    // Prevent form post back
-    event.preventDefault()
-
     try {
-      const response = await subscribeApiPost()
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
       // handle success
       if (response.ok) {
@@ -112,6 +99,8 @@ const SubscribeForm = () => {
         setTimeout(() => {
           showToast(NOTIFICATION.None)
         }, 5000)
+
+        e.target.reset()
         return
       }
 
@@ -129,16 +118,31 @@ const SubscribeForm = () => {
   }
 
   return (
-    <form className={styles.newsletterForm} method='post' onSubmit={handleSubmit}>
-      <input type='text' name='name' style={{ display: 'none' }} />
-      <input type='email' name='email' placeholder='Email' value={emailValue} onChange={handleEmailChange} className={styles.newsletterEmail} required />
-      <ButtonSubscribe>
-        <button className={styles.submitButton} type='submit'>
-          {t('common:forms.subscribe')}
-        </button>
-      </ButtonSubscribe>
-      <ToastList toastList={list} position='bottomRight' />
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.newsletterForm} noValidate>
+        <Input className={styles.checkbox} name='name' type='text' hidden register={register} />
+        <div className={styles.wrapperInput}>
+          <Input
+            customClassname={styles.newsletterEmail}
+            name='email'
+            type='email'
+            errors={errors}
+            register={register}
+            rules={{
+              required: { value: true, message: 'Please enter your email address!' },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Please enter a valid email address: example@someemail.com',
+              },
+            }}
+          />
+        </div>
+        <ButtonSubscribe>
+          <button type='submit'>{t('common:forms.subscribe')}</button>
+        </ButtonSubscribe>
+        <ToastList toastList={list} position='bottomRight' />
+      </form>
+    </FormProvider>
   )
 }
 

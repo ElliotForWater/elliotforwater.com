@@ -102,30 +102,30 @@ const SearchBar = ({ big }: SearchProps) => {
     }
   }, [searchValue])
 
-  function resetDropdown () {
+  function resetDropdown() {
     setIsSuggestionOpen(false)
     setHighlightIndex(null)
   }
 
-  function search (word?: string) {
+  function search(word?: string) {
     updateSearchCounter(setUserContext)
     router.push(`search?query=${word || searchValue}&type=${typeValue}`)
     resetDropdown()
   }
 
-  function handleOnMouseDown (word: string) {
+  function handleOnMouseDown(word: string) {
     setSearchValue(word)
     search()
   }
 
-  function handleKeyPress (event) {
+  function handleKeyPress(event) {
     if (event.charCode === 13) {
       search()
       inputEl?.current.blur()
     }
   }
 
-  function handleOnChange (el) {
+  function handleOnChange(el) {
     setSearchValue(el.target.value)
     setSearchSuggestedWords(true)
     setIsSuggestionOpen(true)

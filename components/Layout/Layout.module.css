@@ -10,11 +10,13 @@
   padding: 0 15px;
   margin: 0 auto;
   overflow: hidden;
+  display: grid;
 }
 
 .fluid {
   overflow: hidden;
   max-width: 100%;
+  display: grid;
 }
 
 .main {

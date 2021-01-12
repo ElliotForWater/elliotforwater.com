@@ -3,7 +3,6 @@ import { UserContext } from '../context/UserContext'
 
 const CustomLink = (props) => {
   const [userContext] = useContext(UserContext)
-  console.log(userContext.openInNewTab)
 
   return (
     <>

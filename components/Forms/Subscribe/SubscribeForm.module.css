@@ -2,16 +2,16 @@
   margin-top: 25px;
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.wrapperInput {
+  margin-right: 3px;
 }
 
 .newsletterEmail {
-  background: transparent;
-  border: none;
   border-bottom: 1px dotted black;
-  outline: none;
-  top: 0;
-  right: 3px;
-  position: relative;
+  max-width: 150px;
 }
 
 .newsletterButton {
@@ -24,11 +24,4 @@
 .newsletterButton:hover {
   color: var(--elliotPrimary);
   border: 1px solid var(--elliotPrimary);
-}
-
-.submitButton {
-  border: 0;
-  background: transparent;
-  font-size: 16px;
-  line-height: 1.5;
 }
