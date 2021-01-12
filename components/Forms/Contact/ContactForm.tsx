@@ -144,7 +144,7 @@ const ContactForm = () => {
         <div className='form-row'>
           <div className='col-md-12'>
             <ButtonPrimary big>
-              <button type='submit'>{t('common:forms.subscribe')}</button>
+              <button type='submit'>{t('common:forms.submit')}</button>
             </ButtonPrimary>
           </div>
         </div>

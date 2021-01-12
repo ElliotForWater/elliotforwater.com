@@ -42,6 +42,7 @@
     "privacy": "Privacy"
   },
   "forms": {
+    "submit": "submit",
     "subscribe": "Subscribe",
     "submitting": "Submitting...",
     "submitting_text": "Please wait!",

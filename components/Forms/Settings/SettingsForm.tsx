@@ -24,7 +24,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
       openInNewTab: userContext.openInNewTab,
     },
   })
-  const { handleSubmit } = methods
+  const { handleSubmit, register } = methods
 
   function onSubmit({ language, adultContentFilter, openInNewTab }) {
     setUserContext((prevUserContext) => ({
@@ -54,6 +54,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
                   { label: t('common:settings.english'), value: 1 },
                   { label: t('common:settings.italian'), value: 2 },
                 ]}
+                register={register}
               />
             </div>
 
@@ -67,13 +68,14 @@ const SettingsForm = ({ callbackCloseSettings }) => {
                   { label: t('common:settings.moderate'), value: 2 },
                   { label: t('common:settings.strict'), value: 3 },
                 ]}
+                register={register}
               />
             </div>
 
             <div className='control-group'>
+              <Input id='openInNewTab' name='openInNewTab' className={styles.checkbox} type='checkbox' register={register} />
               <label className={styles.checkboxLabel} htmlFor='openInNewTab'>
                 {t('common:settings.new_tab')}
-                <Input id='openInNewTab' name='openInNewTab' className={styles.checkbox} type='checkbox' />
               </label>
             </div>
           </div>

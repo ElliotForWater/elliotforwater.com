@@ -26,13 +26,6 @@
 }
 
 .checkboxLabel {
-  min-height: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.checkbox {
-  display: block;
-  margin: 3px 10px 0 0 !important; /* override bootstrap */
-  float: left;
+  padding-left: 8px;
+  margin-bottom: 0;
 }

@@ -16,6 +16,7 @@
   --borderColor: #99b7bd4f;
   --lightGrey: #e8e8e8;
   --BSlink: #428bca;
+  --error: #ad081b;
   --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
   --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
   --zindex0: 0;
@@ -111,17 +112,6 @@ ul {
   font-weight: 700;
 }
 
-form {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.label {
-  display: inline-block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 /* ==================================================
   Styles from .NET
 ================================================== */
@@ -179,52 +169,6 @@ form {
   margin-right: 0;
   margin-left: 0;
   width: 100%;
-}
-
-/* ==================================================
-   Show More
-================================================== */
-.show-more {
-  text-align: center;
-}
-
-.show-more__title {
-  margin-bottom: 0;
-  font-size: 9px;
-}
-
-.chevron {
-  position: relative;
-  display: block;
-  height: 20px;
-  right: 10px;
-  top: -2em;
-}
-
-.show-more__link {
-  display: inline-block;
-}
-
-.show-more__link:hover {
-  text-decoration: none;
-}
-
-.chevron::before,
-.chevron::after {
-  position: absolute;
-  display: block;
-  content: '';
-  border: 10px solid transparent;
-}
-
-.chevron::before {
-  top: 0;
-  border-top-color: var(--black, black);
-}
-
-.chevron::after {
-  top: -2px;
-  border-top-color: #fff;
 }
 
 /* ==================================================

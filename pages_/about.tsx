@@ -97,7 +97,7 @@ function About() {
           </div>
         </div>
       </section>
-      <div className='show-more show-more--top20'>
+      <div className='show-more'>
         <p className='show-more__title'>{t('about:contact_us')}</p>
         <a href='#contact-us' className='show-more__link'>
           <i className='fas fa-chevron-down show-more__icon' />
@@ -131,7 +131,53 @@ function About() {
           }
 
           /* ==================================================
-            Learm More
+            Show More
+          ================================================== */
+          .show-more {
+            text-align: center;
+          }
+
+          .show-more__title {
+            margin-bottom: 0;
+            font-size: 12px;
+          }
+
+          .chevron {
+            position: relative;
+            display: block;
+            height: 20px;
+            right: 10px;
+            top: -2em;
+          }
+
+          .show-more__link {
+            display: inline-block;
+          }
+
+          .show-more__link:hover {
+            text-decoration: none;
+          }
+
+          .chevron::before,
+          .chevron::after {
+            position: absolute;
+            display: block;
+            content: '';
+            border: 10px solid transparent;
+          }
+
+          .chevron::before {
+            top: 0;
+            border-top-color: var(--black, black);
+          }
+
+          .chevron::after {
+            top: -2px;
+            border-top-color: #fff;
+          }
+
+          /* ==================================================
+            Learn More
           ================================================== */
           .background-wrapper {
             position: relative;
@@ -189,6 +235,10 @@ function About() {
             letter-spacing: 2px;
             color: #48adc3;
             font-weight: bold;
+          }
+
+          .flex {
+            margin-bottom: 20px;
           }
 
           .buttonChrome {

@@ -188,8 +188,6 @@ function SearchPage({ query, type }) {
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
   const [tabMenu, setTabMenu] = useState(TAB_MENU)
 
-  console.log({ userContext })
-
   useEffect(() => {
     setTabMenu((prev) => {
       const newTabs = [...prev]
@@ -231,7 +229,7 @@ function SearchPage({ query, type }) {
             })
         )
 
-        console.log('r', res)
+        console.log(res)
 
         if (res.ok) {
           const json = await res.json()
