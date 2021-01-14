@@ -1,13 +1,14 @@
-.modalBackground {
-  position: fixed;
-  right: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
+.modal {
   background-color: rgba(49, 49, 49, 0.86);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--zindex100);
 }
 
-.modalCard {
+.modalContent {
   max-width: 500px;
   margin: 100px auto;
   background: white;
@@ -16,23 +17,4 @@
   transition: 1.1s ease-out;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
   transform: scale(1);
-}
-
-.close {
-  float: right;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: 0.2;
-  margin-top: 8px;
-  margin-right: 5px;
-}
-
-button.close {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
 }

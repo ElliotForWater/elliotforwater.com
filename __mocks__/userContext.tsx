@@ -3,4 +3,5 @@ export const user = {
   language: 1, // English
   adultContentFilter: 1, // Moderate
   openInNewTab: false,
+  isModalOpen: false,
 }

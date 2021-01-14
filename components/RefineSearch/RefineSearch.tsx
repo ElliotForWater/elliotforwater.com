@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import { UserContext } from '../../context/UserContext'
-import { updateSearchCounter } from '../../helpers/_settingsHelper'
 import styles from './RefineSearch.module.css'
 
 type relatedObj = {
@@ -16,8 +15,7 @@ interface Props {
 
 const RefineSearch = ({ refineSearches }: Props) => {
   const { t } = useTranslation()
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const [userContext, setUserContext] = useContext(UserContext)
+  const { userState, setNextUserState } = useContext(UserContext)
 
   return (
     <>
@@ -34,7 +32,7 @@ const RefineSearch = ({ refineSearches }: Props) => {
                     className={styles.tab}
                     href={`/search?query=${item.text}&type=web`}
                     onClick={() => {
-                      updateSearchCounter(setUserContext)
+                      setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
                     }}
                   >
                     {item.text}
@@ -53,7 +51,7 @@ const RefineSearch = ({ refineSearches }: Props) => {
               className={styles.tab}
               href={`/search?query=${item.text}&type=web`}
               onClick={() => {
-                updateSearchCounter(setUserContext)
+                setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
               }}
             >
               {item.text}

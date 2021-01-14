@@ -51,7 +51,7 @@
   position: absolute;
   top: 22px;
   left: -192px;
-  z-index: 1000;
+  z-index: var(--zindex50);
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;

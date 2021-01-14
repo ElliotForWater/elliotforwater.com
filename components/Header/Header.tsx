@@ -9,7 +9,7 @@ import styles from './Header.module.css'
 
 const Header: FC = () => {
   const [hideTooltip, setHideTooltip] = useState(true)
-  const [userContext] = useContext(UserContext)
+  const { userState } = useContext(UserContext)
   const { t } = useTranslation()
 
   return (
@@ -21,7 +21,7 @@ const Header: FC = () => {
             <Tooltip isHidden={hideTooltip} direction='left'>
               {t('common:header.tooltip_count')}
             </Tooltip>
-            <span className={styles.dropletCount}>{userContext.numOfSearches}</span>
+            <span className={styles.dropletCount}>{userState.numOfSearches}</span>
           </div>
           <div className={styles.logo}>
             <Link href='/'>
@@ -56,7 +56,7 @@ const Header: FC = () => {
             <Tooltip isHidden={hideTooltip} direction='right'>
               {t('common:header.tooltip_count')}
             </Tooltip>
-            <p className={styles.dropletCount}>{userContext.numOfSearches}</p>
+            <p className={styles.dropletCount}>{userState.numOfSearches}</p>
           </div>
           <div className={styles.menu}>
             <Nav />

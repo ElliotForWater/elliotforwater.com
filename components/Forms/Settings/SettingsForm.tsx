@@ -15,24 +15,23 @@ type InputsProp = {
 
 const SettingsForm = ({ callbackCloseSettings }) => {
   const { t } = useTranslation()
-  const [userContext, setUserContext] = useContext(UserContext)
+  const { userState, setNextUserState } = useContext(UserContext)
 
   const methods = useForm<InputsProp>({
     defaultValues: {
-      language: userContext.language,
-      adultContentFilter: userContext.adultContentFilter,
-      openInNewTab: userContext.openInNewTab,
+      language: userState.language,
+      adultContentFilter: userState.adultContentFilter,
+      openInNewTab: userState.openInNewTab,
     },
   })
   const { handleSubmit, register } = methods
 
   function onSubmit({ language, adultContentFilter, openInNewTab }) {
-    setUserContext((prevUserContext) => ({
-      ...prevUserContext,
+    setNextUserState({
       language,
       adultContentFilter,
       openInNewTab,
-    }))
+    })
 
     callbackCloseSettings()
   }
@@ -52,7 +51,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
                 name='language'
                 options={[
                   { label: t('common:settings.english'), value: 1 },
-                  { label: t('common:settings.italian'), value: 2 },
+                  // { label: t('common:settings.italian'), value: 2 },
                 ]}
                 register={register}
               />
