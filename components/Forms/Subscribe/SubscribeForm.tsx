@@ -120,7 +120,7 @@ const SubscribeForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.newsletterForm} noValidate>
-        <Input className={styles.checkbox} name='name' type='text' hidden register={register} />
+        <Input name='name' type='text' hidden register={register} />
         <div className={styles.wrapperInput}>
           <Input
             customClassname={styles.newsletterEmail}

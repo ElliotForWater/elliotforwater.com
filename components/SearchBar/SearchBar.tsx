@@ -6,7 +6,6 @@ import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
-import { updateSearchCounter } from '../../helpers/_settingsHelper'
 
 type SearchProps = {
   big?: boolean
@@ -18,8 +17,8 @@ const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
   const router = useRouter()
   const { query, type, method } = router.query
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const [userContext, setUserContext] = useContext(UserContext)
+  const { userState, setNextUserState } = useContext(UserContext)
+
   const initType = typeof type === 'undefined' ? 'web' : type
   const [searchValue, setSearchValue] = useState<string | string[]>(query || '')
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
@@ -35,7 +34,7 @@ const SearchBar = ({ big }: SearchProps) => {
 
   useEffect(() => {
     if (method === 'topbar') {
-      updateSearchCounter(setUserContext)
+      setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     }
   }, [])
 
@@ -108,7 +107,7 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function search(word?: string) {
-    updateSearchCounter(setUserContext)
+    setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     router.push(`search?query=${word || searchValue}&type=${typeValue}`)
     resetDropdown()
   }

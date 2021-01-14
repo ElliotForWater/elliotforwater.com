@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 
 const CustomLink = (props) => {
-  const [userContext] = useContext(UserContext)
+  const { userState } = useContext(UserContext)
 
   return (
     <>
-      {userContext.openInNewTab ? (
+      {userState.openInNewTab ? (
         <a target='_blank' {...props}>
           {props.children}
         </a>

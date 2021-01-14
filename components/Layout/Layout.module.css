@@ -22,3 +22,13 @@
 .main {
   min-height: 100%;
 }
+
+.overflow {
+  height: 100%;
+}
+
+.noOverflow {
+  @extend .overflow;
+
+  overflow: hidden;
+}

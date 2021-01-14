@@ -178,8 +178,7 @@ function Container({ isLoading, component, resultsBatch, incrementResultsBatch, 
 function SearchPage({ query, type }) {
   const { t } = useTranslation()
   const router = useRouter()
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const [userContext, setUserContext] = useContext(UserContext)
+  const { userState } = useContext(UserContext)
   const [results, setResults] = useState<resultsProp>(null)
   const [activeTab, setActiveTab] = useState<tabProp>(initStateTab)
   const [isError, setIsError] = useState<{ status: number }>({ status: 200 })
@@ -225,11 +224,11 @@ function SearchPage({ query, type }) {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&` +
             new URLSearchParams({
-              AdultContentFilter: userContext.adultContentFilter,
+              AdultContentFilter: `${userState.adultContentFilter}`,
             })
         )
 
-        console.log(res)
+        // console.log(res)
 
         if (res.ok) {
           const json = await res.json()

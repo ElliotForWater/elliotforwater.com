@@ -1,7 +1,11 @@
 import React from 'react'
 import Layout from './Layout'
+import { withNextRouter } from 'storybook-addon-next-router'
 
-export default { title: 'Layout/Container' }
+export default {
+  title: 'Layout/Container',
+  decorators: [(Story) => <Story />, withNextRouter],
+}
 
 export const Container = () => (
   <div style={{ background: '#673AB7', color: '#fff' }}>
