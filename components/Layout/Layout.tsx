@@ -32,9 +32,9 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
     const newTabFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_NEW_TAB)
 
     setNextUserState({
-      numOfSearches: searchesFromCookies,
-      language: languageFromCookies,
-      adultContentFilter: filterFromCookies,
+      numOfSearches: searchesFromCookies || '0',
+      language: languageFromCookies || '1',
+      adultContentFilter: filterFromCookies || '1',
       openInNewTab: newTabFromCookies !== 'false',
     })
   }, [])
