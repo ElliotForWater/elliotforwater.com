@@ -108,7 +108,8 @@ const SearchBar = ({ big }: SearchProps) => {
 
   function search(word?: string) {
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
-    router.push(`search?query=${word || searchValue}&type=${typeValue}`)
+    const adultFilterString = `${userState.adultContentFilter}`
+    router.push(`search?query=${word || searchValue}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
     resetDropdown()
   }
 

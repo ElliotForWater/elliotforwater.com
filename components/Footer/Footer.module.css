@@ -53,7 +53,6 @@
 
 .link a {
   color: var(--textColor);
-  transition-duration: 0.2s;
 }
 
 .link a:hover {
