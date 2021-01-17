@@ -4,7 +4,7 @@ import styles from './Inputs.module.css'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: any // declare register props
   errors?: any
-  type: 'text' | 'email' | 'number' | 'checkbox'
+  type: 'text' | 'email' | 'number' | 'checkbox' | 'search'
   rules?: any
   name: string
   customClassname?: string

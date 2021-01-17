@@ -24,14 +24,6 @@
   text-decoration: none;
 }
 
-.fluid {
-  width: 100%;
-}
-
-.big {
-  padding: 16px 24px;
-}
-
 /*
 ================================
 PRIMARY BUTTON
@@ -129,4 +121,17 @@ SUBSCRIBE BUTTON
 
 .subscribe a:hover {
   color: black;
+}
+
+/*
+================================
+BUTTON OPTIONS
+=====================================
+*/
+.fluid {
+  width: 100%;
+}
+
+.big {
+  padding: 16px 24px;
 }
