@@ -10,10 +10,11 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 5px 15px;
+  width: 100%;
 }
 
 .item {
-  width: calc(100% / 2 - 6px);
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -48,7 +49,6 @@
 }
 
 .title {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 4px 0;
@@ -72,13 +72,28 @@
   display: none;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 670px) {
   .item {
-    width: calc(100% / 3 - 6px);
+    width: calc(100% / 2 - 6px);
+  }
+
+  .title {
+    white-space: nowrap;
   }
 }
 
 @media (min-width: 768px) {
+  .item {
+    width: calc(100% / 3 - 6px);
+  }
+
+  .item:last-child {
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+@media (min-width: 900px) {
   .item {
     width: calc(100% / 4 - 6px);
   }

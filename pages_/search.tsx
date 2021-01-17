@@ -357,9 +357,7 @@ function SearchPage({ query, type }) {
       if (newResults.batches[last].length < maxResultsPerReq) {
         return setShowLoadMore(false)
       }
-    }
-
-    if (!newResults[typeResultName]?.items.length || newResults[typeResultName]?.items.length < maxResultsPerReq) {
+    } else if (!newResults[typeResultName]?.items.length || newResults[typeResultName]?.items.length < maxResultsPerReq) {
       return setShowLoadMore(false)
     }
 
@@ -392,19 +390,17 @@ function SearchPage({ query, type }) {
           .tabsWrapper {
             border-bottom: 1px solid var(--lighterGrey);
             width: 100%;
-            padding-left: 10%;
+            padding-left: 20px;
             margin-top: 10px;
           }
 
           .wrapper {
-            min-height: 100%;
             display: grid;
             grid-template-rows: auto 1fr auto;
             grid-template-columns: 100%;
           }
 
           .content {
-            min-height: 100%;
             padding: 10px 2px;
             background: var(--containerBg);
             margin-top: 1px;
