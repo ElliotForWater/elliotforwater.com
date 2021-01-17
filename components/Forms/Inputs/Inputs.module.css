@@ -3,6 +3,7 @@ INPUT
 ==============
 */
 .inputWrap {
+  width: 100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-end;

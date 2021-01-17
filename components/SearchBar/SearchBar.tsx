@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
+import { useForm, FormProvider } from 'react-hook-form'
+import { Input } from '../Forms/Inputs/Inputs'
 import { UserContext } from '../../context/UserContext'
 import fetchJsonp from 'fetch-jsonp'
 import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
+import { queryNoWitheSpace } from '../../helpers/_utils'
 
 type SearchProps = {
   big?: boolean
@@ -27,6 +30,15 @@ const SearchBar = ({ big }: SearchProps) => {
   const [suggestedWords, setSuggestedWords] = useState<Array<string>>([])
   const [searchSuggestedWords, setSearchSuggestedWords] = useState(true)
   const inputEl = useRef(null)
+
+  const methods = useForm({
+    defaultValues: {
+      language: userState.language,
+      adultContentFilter: userState.adultContentFilter,
+      openInNewTab: userState.openInNewTab,
+    },
+  })
+  const { register } = methods
 
   if (type !== typeValue && typeValue !== initType) {
     setTypeValue(type)
@@ -101,16 +113,19 @@ const SearchBar = ({ big }: SearchProps) => {
     }
   }, [searchValue])
 
-  function resetDropdown() {
+  function resetDropdown(event) {
     setIsSuggestionOpen(false)
     setHighlightIndex(null)
+    event && event.target.blur()
   }
 
-  function search(word?: string) {
+  function search(word?: string, event?) {
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     const adultFilterString = `${userState.adultContentFilter}`
-    router.push(`search?query=${word || searchValue}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
-    resetDropdown()
+    const hasWord = word && word !== ''
+    const queryNoSpace = queryNoWitheSpace(hasWord || searchValue)
+    router.push(`search?query=${queryNoSpace}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
+    resetDropdown(event)
   }
 
   function handleOnMouseDown(word: string) {
@@ -120,8 +135,7 @@ const SearchBar = ({ big }: SearchProps) => {
 
   function handleKeyPress(event) {
     if (event.charCode === 13) {
-      search()
-      inputEl?.current.blur()
+      search('', event)
     }
   }
 
@@ -133,26 +147,30 @@ const SearchBar = ({ big }: SearchProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.form}>
-        <input
-          name='q'
-          type='search'
-          value={searchValue}
-          className={big ? styles.inputBig : styles.input}
-          ref={inputEl}
-          onChange={handleOnChange}
-          onFocus={handleOnChange}
-          onBlur={() => resetDropdown()}
-          onKeyPress={handleKeyPress}
-          autoComplete='off'
-          autoCorrect='off'
-          spellCheck='false'
-          placeholder={t('common:search_input')}
-        />
-        <button className={big ? styles.buttonBig : styles.button} onClick={() => search()}>
-          <SearchIcon color='var(--elliotPrimary)' size={16} />
-        </button>
-      </div>
+      <FormProvider {...methods}>
+        <div className={styles.form}>
+          <form ref={inputEl}>
+            <Input
+              name='q'
+              type='search'
+              value={searchValue}
+              className={big ? styles.inputBig : styles.input}
+              onChange={handleOnChange}
+              onFocus={handleOnChange}
+              onBlur={resetDropdown}
+              onKeyPress={handleKeyPress}
+              autoComplete='off'
+              autoCorrect='off'
+              spellCheck='false'
+              placeholder={t('common:search_input')}
+              register={register}
+            />
+            <button className={big ? styles.buttonBig : styles.button} onClick={() => search()}>
+              <SearchIcon color='var(--elliotPrimary)' size={16} />
+            </button>
+          </form>
+        </div>
+      </FormProvider>
 
       {isSuggestionOpen && (
         <ul className={big ? styles.autosuggestResultsBig : styles.autosuggestResults}>

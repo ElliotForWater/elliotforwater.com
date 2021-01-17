@@ -8,7 +8,7 @@ import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
-import { formatNumber } from '../helpers/_utils'
+import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -186,6 +186,7 @@ function SearchPage({ query, type }) {
   const [resultsBatch, setResultsBatch] = useState<number>(0)
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
   const [tabMenu, setTabMenu] = useState(TAB_MENU)
+  const queryNoWithe = queryNoWitheSpace(query)
 
   useEffect(() => {
     setTabMenu((prev) => {
@@ -222,13 +223,11 @@ function SearchPage({ query, type }) {
       try {
         setIsLoading(true)
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&` +
+          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${queryNoWithe}&` +
             new URLSearchParams({
               AdultContentFilter: `${userState.adultContentFilter}`,
             })
         )
-
-        // console.log(res)
 
         if (res.ok) {
           const json = await res.json()
@@ -274,7 +273,7 @@ function SearchPage({ query, type }) {
 
       try {
         setShowLoadMore(false)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${query}&page=${resultsBatch}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${queryNoWithe}&page=${resultsBatch}`)
 
         if (res.ok) {
           const json = await res.json()
