@@ -83,4 +83,4 @@ Please use snapshot just when makes sense.
 
 =======================
 
-If you encounter any problem in the installation, please open an issue
+If you encounter any problem in the installation, please open an issue.
