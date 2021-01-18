@@ -24,11 +24,11 @@ interface ResultsProp {
 
 const NewsView = ({ results, query }: ResultsProp) => {
   const { t } = useTranslation()
-  const news = results.newsResults.items
+  const news = results.newsResults?.items
 
   return (
     <>
-      {!news.length ? (
+      {!news || !news.length ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <ul className={styles.articles}>
