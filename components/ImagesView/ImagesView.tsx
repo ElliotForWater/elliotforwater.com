@@ -8,11 +8,9 @@ type ImagesProp = {
   imageUrl: string
   thumbnailUrl: string
   pixelUrl: string
-  length: () => number
-  map: any
 }
 interface ResultsProp {
-  images: ImagesProp
+  images: ImagesProp[]
   query: string
 }
 

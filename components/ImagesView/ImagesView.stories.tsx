@@ -4,4 +4,4 @@ import IMAGES from '../../__mocks__/imageApi.json'
 
 export default { title: 'Components/ImagesView' }
 
-export const ImagesView = () => <ImagesViewComp results={IMAGES} query='bread' />
+export const ImagesView = () => <ImagesViewComp images={IMAGES.imageResults.items} query='bread' />
