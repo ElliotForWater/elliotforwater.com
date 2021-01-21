@@ -28,6 +28,7 @@
     "@types/chrome": "0.0.127",
     "@types/classnames": "2.2.10",
     "es6-promise": "4.2.8",
+    "js-cookie": "^2.2.1",
     "next": "^10.0.1",
     "next-translate": "^0.19.4",
     "react": "^17.0.1",

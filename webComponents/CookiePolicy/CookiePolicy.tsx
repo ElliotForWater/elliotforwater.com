@@ -1,4 +1,5 @@
-import * as cookieHelper from '../../helpers/_cookies'
+import { COOKIE_NAME_COOKIE_CONSENT } from '../../helpers/_cookies'
+import Cookies from 'js-cookie'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -67,30 +68,30 @@ class CookiePolicy extends HTMLElement {
   private cookiePolicyName: String
   private cookiePolicyValue: String
 
-  constructor () {
+  constructor() {
     super()
     this.root = this.attachShadow({ mode: 'open' })
     this.root.appendChild(template.content.cloneNode(true))
     this.root.querySelector('.cookie-policy__button').addEventListener('click', () => {
       this.onAccepted()
     })
-    this.cookiePolicyName = cookieHelper.COOKIE_NAME_COOKIE_CONSENT
+    this.cookiePolicyName = COOKIE_NAME_COOKIE_CONSENT
     this.cookiePolicyValue = 'yes'
   }
 
-  public updateDisplay (display): void {
+  public updateDisplay(display): void {
     const elem: HTMLElement = this.root.querySelector('.cookie-policy-wrapper')
     elem.style.display = display
   }
 
-  public connectedCallback (): void {
-    if (cookieHelper.get(this.cookiePolicyName) === this.cookiePolicyValue) {
+  public connectedCallback(): void {
+    if (Cookies.get(this.cookiePolicyName) === this.cookiePolicyValue) {
       this.updateDisplay('none')
     }
   }
 
-  public onAccepted (): void {
-    cookieHelper.set(this.cookiePolicyName, this.cookiePolicyValue)
+  public onAccepted(): void {
+    Cookies.set(this.cookiePolicyName, this.cookiePolicyValue)
     this.updateDisplay('none')
   }
 }

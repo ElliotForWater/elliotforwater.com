@@ -18,8 +18,13 @@ const HeaderHome: FC = () => {
           <a className={styles.headerRightLink}>{t('common:header.our_mission')}</a>
         </Link>
         <div className={styles.rightSide}>
-          <div className={styles.dropletContainer} onMouseEnter={() => setHideTooltip(false)} onMouseLeave={() => setHideTooltip(true)} onClick={() => setHideTooltip((prev) => !prev)}>
-            <img className={styles.dropletImg} src='/images/water_droplet.svg' alt='Water Drop' />
+          <div
+            className={styles.dropletContainer}
+            onMouseEnter={() => setHideTooltip(false)}
+            onMouseLeave={() => setHideTooltip(true)}
+            onClick={() => setHideTooltip((prev) => !prev)}
+          >
+            <img className={styles.dropletImg} src='/images/water_droplet.svg' />
             <Tooltip isHidden={hideTooltip} direction='right'>
               {t('common:header.tooltip_count')}
             </Tooltip>

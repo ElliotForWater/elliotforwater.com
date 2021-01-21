@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react'
 import { userContextProps, USER_STATE_DEFAULT } from '../context/UserContext'
-import { set, COOKIE_NAME_LANGUAGE, COOKIE_NAME_ADULT_FILTER, COOKIE_NAME_NEW_TAB, COOKIE_NAME_SEARCH_COUNT } from '../helpers/_cookies'
+import {
+  COOKIE_NAME_LANGUAGE,
+  COOKIE_NAME_ADULT_FILTER,
+  COOKIE_NAME_NEW_TAB,
+  COOKIE_NAME_SEARCH_COUNT,
+} from '../helpers/_cookies'
+import Cookies from 'js-cookie'
 
 const cookiesName = {
   numOfSearches: COOKIE_NAME_SEARCH_COUNT,
@@ -20,7 +26,7 @@ export const useUserContext = (): userContextProps => {
       }
 
       for (const key in nextState) {
-        set(cookiesName[key], prevState[key])
+        Cookies.set(cookiesName[key], newState[key])
       }
 
       return newState

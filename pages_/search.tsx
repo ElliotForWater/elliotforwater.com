@@ -9,7 +9,8 @@ import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
-import { splitCookies, get, COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
+import { splitCookies, COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
+import Cookies from 'js-cookie'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -388,7 +389,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   let results: resultsObj = null
   let activeTab = findTabByType(type)
   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  const cookies = req ? req.headers.cookie : get(COOKIE_NAME_ADULT_FILTER)
+  const cookies = req ? req.headers.cookie : Cookies.get(COOKIE_NAME_ADULT_FILTER)
 
   if (type === 'map') {
     activeTab = findTabByType('map')

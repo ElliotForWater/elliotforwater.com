@@ -138,12 +138,6 @@ const SearchBar = ({ big }: SearchProps) => {
     search()
   }
 
-  function handleKeyPress(event) {
-    if (event.charCode === 13) {
-      search('', event)
-    }
-  }
-
   function handleOnChange(el) {
     setSearchValue(el.target.value)
     setSearchSuggestedWords(true)
@@ -163,14 +157,13 @@ const SearchBar = ({ big }: SearchProps) => {
               onChange={handleOnChange}
               onFocus={handleOnChange}
               onBlur={resetDropdown}
-              onKeyPress={handleKeyPress}
               autoComplete='off'
               autoCorrect='off'
               spellCheck='false'
               placeholder={t('common:search_input')}
               register={register}
             />
-            <button className={big ? styles.buttonBig : styles.button} onClick={() => search()}>
+            <button className={big ? styles.buttonBig : styles.button} type='submit'>
               <SearchIcon color='var(--elliotPrimary)' size={16} />
             </button>
           </form>
