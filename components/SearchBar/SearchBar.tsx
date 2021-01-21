@@ -38,7 +38,7 @@ const SearchBar = ({ big }: SearchProps) => {
       openInNewTab: userState.openInNewTab,
     },
   })
-  const { register } = methods
+  const { handleSubmit, register } = methods
 
   if (type !== typeValue && typeValue !== initType) {
     setTypeValue(type)
@@ -113,6 +113,11 @@ const SearchBar = ({ big }: SearchProps) => {
     }
   }, [searchValue])
 
+  function onSubmit({ q }) {
+    setSearchValue(q)
+    search()
+  }
+
   function resetDropdown(event) {
     setIsSuggestionOpen(false)
     setHighlightIndex(null)
@@ -148,7 +153,7 @@ const SearchBar = ({ big }: SearchProps) => {
   return (
     <div className={styles.wrapper}>
       <FormProvider {...methods}>
-        <div className={styles.form}>
+        <div className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <form ref={inputEl}>
             <Input
               name='q'

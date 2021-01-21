@@ -11,20 +11,16 @@ type NewsObj = {
   provider: string
   description: string
   pixelUrl: string
+  length: () => number
+  map: any
 }
-
-interface Prop {
-  newsResults: { items: NewsObj[] }
-}
-
 interface ResultsProp {
-  results: Prop
+  news: NewsObj
   query: string
 }
 
-const NewsView = ({ results, query }: ResultsProp) => {
+const NewsView = ({ news, query }: ResultsProp) => {
   const { t } = useTranslation()
-  const news = results.newsResults?.items
 
   return (
     <>

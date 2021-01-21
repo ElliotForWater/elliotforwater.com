@@ -9,21 +9,18 @@ type VideosProp = {
   targetedUrl: string
   thumbnailUrl: string
   pixelUrl: string
-}
-
-interface Prop {
-  videoResults: { items: VideosProp[] }
+  length: () => number
+  map: any
 }
 
 interface ResultsProp {
-  results: Prop
+  videos: VideosProp
   query: string
 }
 
-const VideosView = ({ results, query }: ResultsProp) => {
+const VideosView = ({ videos, query }: ResultsProp) => {
   const { t } = useTranslation()
-  const videos = results.videoResults.items
-
+  console.log({ videos })
   return (
     <>
       {!videos.length ? (

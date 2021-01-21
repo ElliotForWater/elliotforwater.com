@@ -1,11 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import TabItem from '../TabItem/TabItem'
 interface tabProp {
   id: number
   resultType: string
   title: string
-  content: ReactElement
 }
 interface Props {
   tabItems: tabProp[]
