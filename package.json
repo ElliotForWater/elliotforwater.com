@@ -5,7 +5,7 @@
   "repository": "https://bitbucket.org/elliotforwater/elliotforwater_v4/src/master/",
   "main": "index.js",
   "scripts": {
-    "dev": "next-translate && next dev",
+    "dev": "next-translate && NODE_TLS_REJECT_UNAUTHORIZED='0' next dev",
     "build": "next-translate && next build",
     "start": "next-translate && next start",
     "export": "next build && next export",

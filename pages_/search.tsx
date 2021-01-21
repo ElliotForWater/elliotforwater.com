@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext, ReactElement } from 'react'
-import { useRouter } from 'next/router'
+import React, { useEffect, useState, useContext } from 'react'
+import Router, { useRouter } from 'next/router'
 import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
@@ -9,6 +9,7 @@ import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
+import { splitCookies, get, COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -28,48 +29,13 @@ interface tabProp {
   id: number
   resultType: string
   title: string
-  content: ReactElement
-}
-
-const initStateTab = {
-  id: null,
-  resultType: '',
-  title: '',
-  content: null,
-}
-
-type itemsProp = {
-  items: any[]
-  numResults?: number
-}
-
-type batchesProp = {
-  [x: number]: any[]
-}
-interface resultsProp {
-  organicResults: null | itemsProp
-  sponsoredResults: null | itemsProp
-  relatedSearches: null | itemsProp
-  imageResults: null | itemsProp
-  videoResults: null | itemsProp
-  newsResults: null | itemsProp
-  batches?: batchesProp
-}
-
-interface ContainerProps {
-  isLoading: boolean
-  component: ReactElement
-  resultsBatch: number
-  incrementResultsBatch: (nextIndex: any) => void
-  showLoadMore: boolean
-  numResults?: number
 }
 
 const MAX_RESULTS = {
-  web: { name: 'organicResults', maxPerReq: 10 },
-  image: { name: 'imageResults', maxPerReq: 150 },
-  video: { name: 'videoResults', maxPerReq: 50 },
-  news: { name: 'newsResults', maxPerReq: 100 },
+  web: 10,
+  image: 150,
+  video: 50,
+  news: 100,
 }
 
 const TAB_MENU = [
@@ -77,291 +43,209 @@ const TAB_MENU = [
     id: 1,
     resultType: 'web',
     title: 'search:all',
-    content: null,
   },
   {
     id: 2,
     resultType: 'image',
     title: 'search:images',
-    content: null,
   },
   {
     id: 3,
     resultType: 'video',
     title: 'search:videos',
-    content: null,
   },
   {
     id: 4,
     resultType: 'news',
     title: 'search:news',
-    content: null,
   },
   {
     id: 5,
     resultType: 'map',
     title: 'search:map',
-    content: null,
   },
 ]
 
-function Container({ isLoading, component, resultsBatch, incrementResultsBatch, showLoadMore, numResults }: ContainerProps) {
-  const { t } = useTranslation()
-
-  if (isLoading) {
-    return <Loader />
-  } else {
-    return (
-      <>
-        {component}
-        {showLoadMore && (
-          <div className='loadmoreContainer'>
-            <LoadMore currIndex={resultsBatch} incrementIndex={incrementResultsBatch} />
-            <style jsx>
-              {`
-                .loadmoreContainer {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  margin: 20px 0;
-                }
-
-                @media (min-width: 768px) {
-                  .loadmoreContainer {
-                    margin: 40px 0;
-                  }
-                }
-              `}
-            </style>
-          </div>
-        )}
-        {numResults !== undefined && numResults > 0 && (
-          <div className='resultsTot'>
-            <p>{t('search:tot_results', { tot_results: formatNumber(numResults) })}</p>
-            <p>
-              <a href='https://privacy.microsoft.com/privacystatement' target='_blank'>
-                {t('search:microsoft_result')}
-              </a>
-            </p>
-            <style jsx>
-              {`
-                .resultsTot {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  margin: 20px 0;
-                }
-
-                .resultsTot p {
-                  margin-bottom: 10px;
-                }
-
-                .resultsTot a {
-                  color: var(--dimGrey);
-                }
-
-                @media (min-width: 768px) {
-                  .resultsTot {
-                    margin: 40px 0;
-                  }
-                }
-              `}
-            </style>
-          </div>
-        )}
-      </>
-    )
-  }
+function findTabByType(type?: string): tabProp {
+  return TAB_MENU.find((tab) => type === tab.resultType)
 }
 
-function SearchPage({ query, type }) {
+function SearchPage({
+  query,
+  type,
+  errorCode,
+  activeTab,
+  organicTotResults,
+  organicItems,
+  sponsoredItems,
+  imagesItems,
+  videoItems,
+  newsItems,
+  relatedSearches,
+}) {
   const { t } = useTranslation()
   const router = useRouter()
   const { userState } = useContext(UserContext)
-  const [results, setResults] = useState<resultsProp>(null)
-  const [activeTab, setActiveTab] = useState<tabProp>(initStateTab)
-  const [isError, setIsError] = useState<{ status: number }>({ status: 200 })
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [resultsBatch, setResultsBatch] = useState<number>(0)
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
-  const [tabMenu, setTabMenu] = useState(TAB_MENU)
-  const queryNoWithe = queryNoWitheSpace(query)
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [content, setContent] = useState(null)
+  const queryNoWhite = queryNoWitheSpace(query)
+  const [errorStatus, setStatusCode] = useState(errorCode)
+
+  const [allResults, setAllResults] = useState({ organicItems, sponsoredItems, imagesItems, relatedSearches })
+  const [images, setImages] = useState(imagesItems)
+  const [videos, setVideos] = useState(videoItems)
+  const [news, setNews] = useState(newsItems)
 
   useEffect(() => {
-    setTabMenu((prev) => {
-      const newTabs = [...prev]
-      newTabs.map((tab) => {
-        switch (tab.resultType) {
-          case 'web':
-            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} numResults={results?.organicResults?.numResults} component={<AllResultsView results={results} searchQuery={query} />} />)
-          case 'image':
-            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<ImagesView results={results} query={query} />} />)
-          case 'video':
-            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<VideosView results={results} query={query} />} />)
-          case 'news':
-            return (tab.content = <Container isLoading={isLoading} resultsBatch={resultsBatch} incrementResultsBatch={handleSetResultBatch} showLoadMore={showLoadMore} component={<NewsView results={results} query={query} />} />)
-          case 'map':
-            return (tab.content = <MapView searchQuery={query} />)
-        }
-      })
-
-      return newTabs
-    })
-  }, [isLoading, showLoadMore])
-
-  useEffect(() => {
-    setActiveTab(findTab())
-  }, [results])
-
-  useEffect(() => {
-    if (type === 'map') {
-      return setActiveTab(findTab())
+    switch (type) {
+      case 'web':
+        setAllResults({ organicItems, sponsoredItems, imagesItems, relatedSearches })
+        break
+      case 'image':
+        setImages(imagesItems)
+        break
+      case 'video':
+        setVideos(videoItems)
+        break
+      case 'news':
+        setNews(newsItems)
+        break
     }
+  }, [query, type])
+
+  useEffect(() => {
+    let content
+    setIsLoading(true)
+    switch (type) {
+      case 'web':
+        content = <AllResultsView results={allResults} searchQuery={query} />
+        setIsLoading(false)
+        allResults?.organicItems.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        break
+
+      case 'image':
+        content = <ImagesView images={images} query={query} />
+        setIsLoading(false)
+        images.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        break
+
+      case 'video':
+        content = <VideosView videos={videos} query={query} />
+        setIsLoading(false)
+        videos.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        break
+
+      case 'news':
+        content = <NewsView news={news} query={query} />
+        setIsLoading(false)
+        news.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        break
+
+      case 'map':
+        content = <MapView searchQuery={query} />
+        setIsLoading(false)
+        setShowLoadMore(false)
+        break
+    }
+
+    setContent(content)
+  }, [allResults, images, videos, news, type, query])
+
+  useEffect(() => {
+    if (resultsBatch === 0 || type === 'map') return
 
     const fetchData = async () => {
       try {
-        setIsLoading(true)
+        setIsLoadingMore(true)
+
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${queryNoWithe}&` +
+          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
             new URLSearchParams({
+              query: `${queryNoWhite}`,
+              page: `${resultsBatch}`,
               AdultContentFilter: `${userState.adultContentFilter}`,
             })
         )
 
         if (res.ok) {
           const json = await res.json()
-          setIsError({ status: 200 })
-
-          setResults((prev) => {
-            if (prev && prev.batches) {
-              const newResults = {
-                ...json,
-                batches: {},
-              }
-
-              return newResults
-            } else {
-              return json
-            }
-          })
-
-          setActiveTab(findTab())
-          window.scrollTo(0, 0)
-          handleShowLoadMore(json)
-
-          setIsLoading(false)
-        } else {
-          setIsError({ status: 400 })
-          setIsLoading(false)
-        }
-      } catch (err) {
-        console.error('Error while fetching Search API:', err)
-        setIsError({ status: 500 })
-        setIsLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [query, type])
-
-  useEffect(() => {
-    if (resultsBatch === 0 || type === 'map') return
-
-    const fetchData = async () => {
-      // TODO: Proper Batch Loading state - load just new batch, not whole container
-
-      try {
-        setShowLoadMore(false)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?query=${queryNoWithe}&page=${resultsBatch}`)
-
-        if (res.ok) {
-          const json = await res.json()
-          setIsError({ status: 200 })
-
           switch (type) {
             case 'web':
-              return setResults((prevResults) => {
-                const sponsoredMainline = json.sponsoredResults?.items?.filter((item) => item.placementHint === 'Mainline')
+              setAllResults((prevResults: any) => {
+                const sponsoredMainline = json.sponsoredResults?.items?.filter(
+                  (item) => item.placementHint === 'Mainline'
+                )
+
                 const newResults = {
                   ...prevResults,
                   batches: {
                     [resultsBatch]: [...sponsoredMainline, ...json.organicResults?.items],
                   },
                 }
-                handleShowLoadMore(newResults)
+
+                const last = newResults.batches && Object.keys(newResults.batches).pop()
+                if (newResults.batches[last].length < MAX_RESULTS.web) {
+                  return setShowLoadMore(false)
+                }
+
                 return newResults
               })
+              setIsLoadingMore(false)
+              return
 
             case 'image':
-              return setResults((prevResults) => {
-                const newResults = {
-                  ...prevResults,
-                }
-                newResults.imageResults.items = prevResults.imageResults.items.concat(json.imageResults?.items)
+              setImages((prevResults) => {
+                const newResults = [...prevResults, ...json.imageResults?.items]
 
-                handleShowLoadMore(newResults)
+                if (newResults.length < MAX_RESULTS.image) {
+                  setShowLoadMore(false)
+                }
                 return newResults
               })
+
+              setIsLoadingMore(false)
+              return
 
             case 'video':
-              return setResults((prevResults) => {
-                const newResults = {
-                  ...prevResults,
+              setVideos((prevResults) => {
+                const newResults = [...prevResults, ...json.videoResults?.items]
+
+                if (newResults.length < MAX_RESULTS.video) {
+                  setShowLoadMore(false)
                 }
-                newResults.videoResults.items = prevResults.videoResults.items.concat(json.videoResults?.items)
-                handleShowLoadMore(newResults)
                 return newResults
               })
 
+              setIsLoadingMore(false)
+              return
+
             case 'news':
-              return setResults((prevResults) => {
-                const newResults = {
-                  ...prevResults,
+              setNews((prevResults) => {
+                const newResults = [...prevResults, ...json.newsResults?.items]
+
+                if (newResults.length < MAX_RESULTS.news) {
+                  setShowLoadMore(false)
                 }
-                newResults.newsResults.items = prevResults.newsResults.items.concat(json.newsResults?.items)
-                handleShowLoadMore(newResults)
                 return newResults
               })
+
+              setIsLoadingMore(false)
+              return
           }
         } else {
-          setIsError({ status: 400 })
+          setStatusCode(400)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
-        setIsError({ status: 500 })
+        setStatusCode(500)
       }
     }
 
     fetchData()
   }, [resultsBatch])
-
-  function handleShowLoadMore(newResults) {
-    const typeResultName = MAX_RESULTS[type].name
-    const maxResultsPerReq = MAX_RESULTS[type].maxPerReq
-
-    if (type === 'web') {
-      // no results for 'query'
-      if (!newResults.organicResults.items.length) {
-        return setShowLoadMore(false)
-      }
-
-      // first render with results
-      if (!newResults.batches) {
-        return setShowLoadMore(true)
-      }
-
-      // no more results available
-      const last = newResults.batches && Object.keys(newResults.batches).pop()
-      if (newResults.batches[last].length < maxResultsPerReq) {
-        return setShowLoadMore(false)
-      }
-    } else if (!newResults[typeResultName]?.items.length || newResults[typeResultName]?.items.length < maxResultsPerReq) {
-      return setShowLoadMore(false)
-    }
-
-    setShowLoadMore(true)
-  }
 
   function handleSetResultBatch(nextIndex) {
     setResultsBatch(nextIndex)
@@ -371,18 +255,40 @@ function SearchPage({ query, type }) {
     router.push(`search?query=${query}&type=${nextActiveTab.resultType}`)
   }
 
-  function findTab(newType?: string): tabProp {
-    return tabMenu.find((tab) => (newType || type) === tab.resultType)
-  }
-
   return (
     <Layout fluid pageTitle={query + t('search:pageTitle')}>
       <section className='wrapper'>
         <div className='tabsWrapper'>
-          <TabsMenu tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} />
+          <TabsMenu tabItems={TAB_MENU} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} />
         </div>
 
-        <div className='content'>{isError.status !== 200 ? <Error statusCode={isError.status} /> : activeTab.content}</div>
+        <div className='content'>
+          {isLoading && <Loader />}
+          {errorStatus && <Error statusCode={errorStatus} />}
+
+          {!errorStatus && !isLoading && content}
+
+          {!isLoading && showLoadMore && (
+            <div className='loadmoreContainer'>
+              {!isLoadingMore ? (
+                <LoadMore currIndex={resultsBatch} incrementIndex={handleSetResultBatch} />
+              ) : (
+                <Loader />
+              )}
+            </div>
+          )}
+
+          {!isLoading && organicTotResults > 0 && (
+            <div className='resultsTot'>
+              <p>{t('search:tot_results', { tot_results: formatNumber(organicTotResults) })}</p>
+              <p>
+                <a href='https://privacy.microsoft.com/privacystatement' target='_blank'>
+                  {t('search:microsoft_result')}
+                </a>
+              </p>
+            </div>
+          )}
+        </div>
       </section>
       <style jsx>
         {`
@@ -405,6 +311,29 @@ function SearchPage({ query, type }) {
             margin-top: 1px;
           }
 
+          .resultsTot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+          }
+
+          .resultsTot p {
+            margin-bottom: 10px;
+          }
+
+          .resultsTot a {
+            color: var(--dimGrey);
+          }
+
+          .loadmoreContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+          }
+
           @media (min-width: 768px) {
             .tabsWrapper {
               padding-left: 125px;
@@ -414,6 +343,14 @@ function SearchPage({ query, type }) {
               background: white;
               padding: 15px 20px;
             }
+
+            .resultsTot {
+              margin: 40px 0;
+            }
+
+            .loadmoreContainer {
+              margin: 40px 0;
+            }
           }
         `}
       </style>
@@ -421,12 +358,77 @@ function SearchPage({ query, type }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
+type itemsProp = {
+  items: any[]
+  numResults?: number
+}
+interface resultsObj {
+  organicResults: null | itemsProp
+  sponsoredResults: null | itemsProp
+  relatedSearches: null | itemsProp
+  imageResults: null | itemsProp
+  videoResults: null | itemsProp
+  newsResults: null | itemsProp
+}
+
+// cannot use getServerSideProps yet: https://github.com/vercel/next.js/discussions/17269
+SearchPage.getInitialProps = async ({ req, res, query }) => {
+  const searchQuery = query.query
+  const type = query.type
+  if (!searchQuery || !type) {
+    if (res) {
+      res.writeHead(301, { Location: '/' })
+      return res.end()
+    } else {
+      return Router.push('/')
+    }
+  }
+
+  const queryNoWhite = queryNoWitheSpace(searchQuery)
+  let results: resultsObj = null
+  let activeTab = findTabByType(type)
+  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+  const cookies = req ? req.headers.cookie : get(COOKIE_NAME_ADULT_FILTER)
+
+  if (type === 'map') {
+    activeTab = findTabByType('map')
+  } else {
+    try {
+      const data = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
+          new URLSearchParams({
+            query: `${queryNoWhite}`,
+            AdultContentFilter: splitCookies(cookies, COOKIE_NAME_ADULT_FILTER),
+          }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': userAgent,
+            'Access-Control-Allow-Headers': '*',
+          },
+        }
+      )
+
+      if (data.ok) {
+        results = await data.json()
+      }
+    } catch (err) {
+      console.error('Error while fetching Search API:', err)
+    }
+  }
+
   return {
-    props: {
-      query: query.query,
-      type: query.type,
-    },
+    query: searchQuery,
+    type,
+    errorCode: res && res.statusCode !== 200 ? res.statusCode : null,
+    organicTotResults: results?.organicResults?.numResults ?? null,
+    organicItems: results?.organicResults?.items ?? [],
+    sponsoredItems: results?.sponsoredResults?.items ?? [],
+    imagesItems: results?.imageResults?.items ?? [],
+    videoItems: results?.videoResults?.items ?? [],
+    newsItems: results?.newsResults?.items ?? [],
+    relatedSearches: results?.relatedSearches?.items ?? [],
+    activeTab,
   }
 }
 

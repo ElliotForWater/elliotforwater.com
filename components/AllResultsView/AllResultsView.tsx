@@ -41,11 +41,10 @@ type organicItemsObj = {
   pixelUrl: string
 }
 interface Prop {
-  organicResults: { items: organicItemsObj[] }
-  sponsoredResults: { items: sponsoredItemsObj[] }
-  relatedSearches: { items: relatedLinks[] }
-  imageResults: { items: image[] }
-  videoResults: { items: any[] }
+  organicItems: organicItemsObj[]
+  sponsoredItems: sponsoredItemsObj[]
+  relatedSearches: relatedLinks[]
+  imagesItems: image[]
   batches?: { [x: number]: any[] }
 }
 
@@ -70,10 +69,7 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
 
   if (!results) return <></>
 
-  const { organicResults, sponsoredResults, relatedSearches, imageResults, batches } = results
-  const organicItems = organicResults.items
-  const sponsoredItems = sponsoredResults.items
-  const images = imageResults.items
+  const { organicItems, sponsoredItems, relatedSearches, imagesItems, batches } = results
   const mainlineSponsor = []
   const sidebarSponsor = []
 
@@ -83,7 +79,7 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
   }
   const firstBatchOrganic = !organicItems.length ? [] : organicItems.slice(0, 3)
   const secondBatchOrganic = !organicItems.length ? [] : organicItems.slice(3, organicItems.length)
-  const combinedResults = [...mainlineSponsor, ...firstBatchOrganic, images, ...secondBatchOrganic]
+  const combinedResults = [...mainlineSponsor, ...firstBatchOrganic, imagesItems, ...secondBatchOrganic]
 
   return (
     <>
@@ -91,9 +87,9 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query: searchQuery })}</h3>
       ) : (
         <div className={styles.gridContainer}>
-          {relatedSearches.items.length !== 0 && (
+          {relatedSearches.length !== 0 && (
             <div className={styles.refineSearchesWrap}>
-              <RefineSearch refineSearches={relatedSearches.items} />
+              <RefineSearch refineSearches={relatedSearches} />
             </div>
           )}
           <div className={styles.main}>
@@ -108,9 +104,9 @@ const AllResultsView = ({ results, searchQuery }: ResultsProp) => {
                 }
               })}
 
-            {relatedSearches.items.length !== 0 && (
+            {relatedSearches.length !== 0 && (
               <div className={styles.refineSearchesMobile}>
-                <RefineSearch refineSearches={relatedSearches.items} />
+                <RefineSearch refineSearches={relatedSearches} />
               </div>
             )}
 

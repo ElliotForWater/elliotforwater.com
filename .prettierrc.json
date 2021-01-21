@@ -1,7 +1,7 @@
 {
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "printWidth": 300,
+  "printWidth": 120,
   "semi": false,
   "endOfLine": "auto"
 }

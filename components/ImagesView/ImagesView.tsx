@@ -8,22 +8,16 @@ type ImagesProp = {
   imageUrl: string
   thumbnailUrl: string
   pixelUrl: string
+  length: () => number
+  map: any
 }
-
-interface Prop {
-  imageResults: { items: ImagesProp[] }
-}
-
 interface ResultsProp {
-  results: Prop
+  images: ImagesProp
   query: string
 }
 
-const ImagesView = ({ results, query }: ResultsProp) => {
+const ImagesView = ({ images, query }: ResultsProp) => {
   const { t } = useTranslation()
-  if (!results) return <></>
-
-  const images = results.imageResults.items
 
   return (
     <>
