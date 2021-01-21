@@ -6,18 +6,19 @@ import HeaderHome from '../HeaderHome/HeaderHome'
 import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
 import Modal from '../Modal/Modal'
-import { isBrowser } from '../../helpers/_utils'
 import { UserContext } from '../../context/UserContext'
+import Cookies from 'js-cookie'
+import {
+  COOKIE_NAME_SEARCH_COUNT,
+  COOKIE_NAME_ADULT_FILTER,
+  COOKIE_NAME_LANGUAGE,
+  COOKIE_NAME_NEW_TAB,
+} from '../../helpers/_cookies'
 interface LayoutProps {
   fluid?: boolean
   pageTitle: string
   pageDescription?: string
   isHome?: boolean
-}
-
-let cookieHelper
-if (isBrowser) {
-  cookieHelper = require('../../helpers/_cookies')
 }
 
 export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescription, isHome }) => {
@@ -26,15 +27,15 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
   const { userState, setNextUserState } = useContext(UserContext)
 
   useEffect(() => {
-    const searchesFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_SEARCH_COUNT)
-    const languageFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_LANGUAGE)
-    const filterFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_ADULT_FILTER)
-    const newTabFromCookies = cookieHelper?.get(cookieHelper?.COOKIE_NAME_NEW_TAB)
+    const searchesFromCookies = Cookies.get(COOKIE_NAME_SEARCH_COUNT)
+    const languageFromCookies = Cookies.get(COOKIE_NAME_LANGUAGE)
+    const filterFromCookies = Cookies.get(COOKIE_NAME_ADULT_FILTER)
+    const newTabFromCookies = Cookies.get(COOKIE_NAME_NEW_TAB)
 
     setNextUserState({
-      numOfSearches: searchesFromCookies || '0',
-      language: languageFromCookies || '1',
-      adultContentFilter: filterFromCookies || '1',
+      numOfSearches: Number(searchesFromCookies) || 0,
+      language: Number(languageFromCookies) || 1,
+      adultContentFilter: Number(filterFromCookies) || 1,
       openInNewTab: newTabFromCookies !== 'false',
     })
   }, [])
