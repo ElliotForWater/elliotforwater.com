@@ -179,7 +179,6 @@ function SearchPage({
                 const sponsoredMainline = json.sponsoredResults?.items?.filter(
                   (item) => item.placementHint === 'Mainline'
                 )
-
                 const newResults = {
                   ...prevResults,
                   batches: {
@@ -189,7 +188,7 @@ function SearchPage({
 
                 const last = newResults.batches && Object.keys(newResults.batches).pop()
                 if (newResults.batches[last].length < MAX_RESULTS.web) {
-                  return setShowLoadMore(false)
+                  setShowLoadMore(false)
                 }
 
                 return newResults

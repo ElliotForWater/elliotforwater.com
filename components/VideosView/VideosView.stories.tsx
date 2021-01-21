@@ -4,4 +4,4 @@ import VIDEOS from '../../__mocks__/videoApi.json'
 
 export default { title: 'Components/VideosView' }
 
-export const VideosView = () => <VideosViewComp results={VIDEOS} query='madonna' />
+export const VideosView = () => <VideosViewComp videos={VIDEOS.videoResults.items} query='madonna' />

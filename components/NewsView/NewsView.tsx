@@ -5,17 +5,20 @@ import styles from './NewsView.module.css'
 import classnames from 'classnames'
 
 type NewsObj = {
-  title: string
-  targetedUrl: string
-  thumbnailUrl: string
   provider: string
+  datePublished: string
   description: string
+  targetedUrl: string
+  title: string
+  thumbnailUrl: string
+  placementHint: string
   pixelUrl: string
-  length: () => number
-  map: any
+  thumbnailHeight: number
+  thumbnailWidth: number
+  rank: number
 }
 interface ResultsProp {
-  news: NewsObj
+  news: NewsObj[]
   query: string
 }
 
