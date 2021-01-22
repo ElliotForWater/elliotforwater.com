@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ButtonPrimary from './ButtonPrimary'
 import useTranslation from 'next-translate/useTranslation'
 import config from '../../appConfig'
-import { isChrome, isFirefox } from 'react-device-detect'
+import { isBrowser, isChrome, isFirefox } from 'react-device-detect'
 
 const buttonInfo = {
   chrome: {
@@ -15,13 +15,13 @@ const buttonInfo = {
   },
 }
 
-export default function ButtonAddToBrowser () {
+export default function ButtonAddToBrowser() {
   const { t } = useTranslation()
-  const [isBrowser, setIsBrowser] = useState('')
+  const [browserName, setBrowserName] = useState('')
 
   useEffect(() => {
-    if (isChrome) {
-      setIsBrowser('chrome')
+    if (isBrowser && isChrome) {
+      setBrowserName('chrome')
       /* eslint-disable-next-line no-undef */
       chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, {
         action: 'id',
@@ -30,15 +30,15 @@ export default function ButtonAddToBrowser () {
     }
 
     if (isFirefox) {
-      setIsBrowser('firefox')
+      setBrowserName('firefox')
     }
   }, [])
 
   return (
     <div className='hideSmallScreen'>
-      {isBrowser !== '' && (
-        <ButtonPrimary big linkHref={buttonInfo[isBrowser].url}>
-          {t(buttonInfo[isBrowser].label)}
+      {browserName !== '' && (
+        <ButtonPrimary big linkHref={buttonInfo[browserName].url}>
+          {t(buttonInfo[browserName].label)}
         </ButtonPrimary>
       )}
       <style jsx>

@@ -44,7 +44,7 @@
 .autosuggestResults {
   position: absolute;
   width: calc(100% - 10%);
-  z-index: 2;
+  z-index: var(--zindex100);
   background-color: #fff;
   list-style-type: none;
   margin-top: 0;
