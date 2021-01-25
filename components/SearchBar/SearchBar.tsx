@@ -180,7 +180,8 @@ const SearchBar = ({ big }: SearchProps) => {
                 [styles.highlight]: i === highlightIndex,
               })}
               onMouseDown={(el) => {
-                handleOnMouseDown(el.target.innerText)
+                const input = el.target as HTMLElement
+                handleOnMouseDown(input.innerText)
               }}
               ref={(el) => {
                 if (i === highlightIndex && el) {
