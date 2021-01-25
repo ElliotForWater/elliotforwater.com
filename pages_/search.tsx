@@ -115,7 +115,9 @@ function SearchPage({
         setNews(newsItems)
         break
     }
-  }, [query, type])
+
+    setStatusCode(errorStatus)
+  }, [query, type, errorStatus])
 
   useEffect(() => {
     let content
@@ -375,6 +377,7 @@ interface resultsObj {
 SearchPage.getInitialProps = async ({ req, res, query }) => {
   const searchQuery = query.query
   const type = query.type
+  let statusCode = req && req.errorCode
   if (!searchQuery || !type) {
     if (res) {
       res.writeHead(301, { Location: '/' })
@@ -411,6 +414,8 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
 
       if (data.ok) {
         results = await data.json()
+      } else {
+        statusCode = 400
       }
     } catch (err) {
       console.error('Error while fetching Search API:', err)
@@ -420,7 +425,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   return {
     query: searchQuery,
     type,
-    errorCode: res && res.statusCode !== 200 ? res.statusCode : null,
+    errorCode: statusCode !== 200 ? statusCode : null,
     organicTotResults: results?.organicResults?.numResults ?? null,
     organicItems: results?.organicResults?.items ?? [],
     sponsoredItems: results?.sponsoredResults?.items ?? [],
