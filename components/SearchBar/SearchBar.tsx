@@ -113,8 +113,7 @@ const SearchBar = ({ big }: SearchProps) => {
     }
   }, [searchValue])
 
-  function onSubmit({ q }) {
-    setSearchValue(q)
+  function onSubmit() {
     search()
   }
 
@@ -127,21 +126,23 @@ const SearchBar = ({ big }: SearchProps) => {
   function search(word?: string, event?) {
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     const adultFilterString = `${userState.adultContentFilter}`
-    const hasWord = word && word !== ''
-    const queryNoSpace = queryNoWitheSpace(hasWord || searchValue)
-    router.push(`search?query=${queryNoSpace}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
-    resetDropdown(event)
+
+    if ((word && word !== '') || searchValue !== '') {
+      const queryNoSpace = queryNoWitheSpace(word || searchValue)
+      router.push(`search?query=${queryNoSpace}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
+      resetDropdown(event)
+    }
   }
 
   function handleOnMouseDown(word: string) {
     setSearchValue(word)
-    search()
+    search(word)
   }
 
   function handleOnChange(el) {
-    setSearchValue(el.target.value)
+    setSearchValue(el)
     setSearchSuggestedWords(true)
-    setIsSuggestionOpen(true)
+    searchValue !== '' && setIsSuggestionOpen(true)
   }
 
   return (
@@ -154,8 +155,8 @@ const SearchBar = ({ big }: SearchProps) => {
               type='search'
               value={searchValue}
               className={big ? styles.inputBig : styles.input}
-              onChange={handleOnChange}
-              onFocus={handleOnChange}
+              onChange={(el) => handleOnChange(el.target.value)}
+              onFocus={(el) => handleOnChange(el.target.value)}
               onBlur={resetDropdown}
               autoComplete='off'
               autoCorrect='off'
@@ -178,8 +179,14 @@ const SearchBar = ({ big }: SearchProps) => {
               className={classnames(styles.autosuggestWord, {
                 [styles.highlight]: i === highlightIndex,
               })}
-              onMouseDown={() => handleOnMouseDown(word || '')}
-              ref={(el) => i === highlightIndex && el && setSearchValue(el.innerText)}
+              onMouseDown={(el) => {
+                handleOnMouseDown(el.target.innerText)
+              }}
+              ref={(el) => {
+                if (i === highlightIndex && el) {
+                  return setSearchValue(el.innerText)
+                }
+              }}
             >
               <span className={styles.autosuggestItemIcon}>
                 <SearchIcon color='var(--placeholder)' size={14} />
