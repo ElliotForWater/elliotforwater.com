@@ -86,13 +86,13 @@ const SearchBar = ({ big }: SearchProps) => {
 
         default:
           setHighlightIndex(null)
-          setSearchValue(event.target.defaultValue)
+        // setSearchValue(event.target.defaultValue)
       }
     }
-    document.addEventListener('keydown', handleKeyDown)
+    document.body.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
+      document.body.removeEventListener('keydown', handleKeyDown)
     }
   }, [searchValue])
 

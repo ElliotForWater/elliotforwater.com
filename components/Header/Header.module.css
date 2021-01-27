@@ -4,24 +4,44 @@
   justify-content: space-between;
 }
 
-.wrapperDesktop {
-  display: none;
+.navWrap {
+  grid-area: navWrap;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
 }
 
-.wrapperMobile {
+.dropletWrap {
+  grid-area: dropletWrap;
   display: flex;
-  flex-direction: column;
+  align-self: center;
+}
+
+.logoWrap {
+  grid-area: logoWrap;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.searchBarWrap {
+  grid-area: searchBarWrap;
+  margin: 0;
   width: 100%;
-  justify-content: space-around;
+  font-size: 1.3em;
+  margin-bottom: 1em;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+  grid-template-areas:
+    'dropletWrap logoWrap navWrap'
+    'searchBarWrap searchBarWrap searchBarWrap';
+  width: 100%;
   margin: 15px 15px 0 15px;
   margin-bottom: 0;
-}
-
-.logoRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
 }
 
 .logo {
@@ -50,41 +70,24 @@
   margin-top: 2px;
 }
 
-.searchWrap {
-  margin: 0;
-  width: 100%;
-  font-size: 1.3em;
-  margin-bottom: 1em;
-}
-
 .menu {
   margin-left: 1.2em;
   margin-top: 6px;
 }
 
 @media (min-width: 768px) {
-  .wrapperMobile {
-    display: none;
-  }
-
-  .wrapperDesktop {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+  .wrapper {
     margin: 20px 20px 0 20px;
-    flex-direction: row;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'logoWrap searchBarWrap dropletWrap navWrap';
   }
 
-  .leftSide {
-    display: flex;
-    width: 60%;
-    align-items: center;
-    margin-bottom: 1em;
+  .logoWrap {
+    justify-content: flex-start;
   }
 
   .logoSmaller {
-    width: 130px;
+    width: 100px;
     padding: 15px 15px 0 0;
   }
 
@@ -92,14 +95,13 @@
     max-width: 100%;
   }
 
-  .rightSide {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1em;
-  }
-
-  .searchWrap {
+  .searchBarWrap {
+    max-width: 65%;
     margin: 0;
     position: relative;
+  }
+
+  .dropletWrap {
+    justify-content: flex-end;
   }
 }
