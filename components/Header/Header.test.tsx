@@ -1,9 +1,12 @@
+import mockMediaQuery from '../../__mocks__/matchMedia'
+
 import React from 'react'
 import { mount } from 'enzyme'
 import Header from './Header'
 import { act } from 'react-dom/test-utils'
 import { UserContext } from '../../context/UserContext'
 import { user } from '../../__mocks__/userContext'
+mockMediaQuery()
 
 const userContext = {
   userState: user,
