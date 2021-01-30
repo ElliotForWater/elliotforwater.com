@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 
-function Terms () {
+function Terms() {
   const { t } = useTranslation()
 
   return (
@@ -56,8 +56,10 @@ function Terms () {
           <br />
           <br />
           {t('terms:p11')}
-          You agree to defend, indemnify and hold harmless Elliot For Water LTD and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but
-          not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.
+          You agree to defend, indemnify and hold harmless Elliot For Water LTD and its licensee and licensors, and
+          their employees, contractors, agents, officers and directors, from and against any and all claims, damages,
+          obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees),
+          resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.
           <br />
           <br />
           <strong>{t('terms:subtitle5')}</strong>

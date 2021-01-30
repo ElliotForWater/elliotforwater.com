@@ -5,7 +5,7 @@ import Trans from 'next-translate/Trans'
 
 const ComponentDescription = (props) => <p {...props} />
 
-function Privacy () {
+function Privacy() {
   const { t } = useTranslation()
 
   return (
@@ -37,8 +37,13 @@ function Privacy () {
           <h3>{t('privacy:subtitle4')}</h3>
           <Trans
             i18nKey='privacy:p4_a'
-            /* eslint-disable-next-line react/jsx-key */
-            components={[<ComponentDescription />, <a href='http://www.codefuel.com/legal/end_user_privacy_policy' target='_blank' />, <a href='http://go.microsoft.com/fwlink/?LinkId=521839' target='_blank' />]}
+            /* eslint-disable react/jsx-key */
+            components={[
+              <ComponentDescription />,
+              <a href='http://www.codefuel.com/legal/end_user_privacy_policy' target='_blank' />,
+              <a href='http://go.microsoft.com/fwlink/?LinkId=521839' target='_blank' />,
+            ]}
+            /* eslint-enable react/jsx-key */
           />
           <p>{t('privacy:p4_b')}</p>
           <p>{t('privacy:p4_c')}</p>

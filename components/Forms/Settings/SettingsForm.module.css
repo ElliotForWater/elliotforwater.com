@@ -25,6 +25,10 @@
   line-height: 1.428571429;
 }
 
+.checkbox {
+  display: inline;
+}
+
 .checkboxLabel {
   padding-left: 8px;
   margin-bottom: 0;

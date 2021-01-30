@@ -377,7 +377,6 @@ interface resultsObj {
 SearchPage.getInitialProps = async ({ req, res, query }) => {
   const searchQuery = query.query
   const type = query.type
-  let statusCode = req && req.errorCode
   if (!searchQuery || !type) {
     if (res) {
       res.writeHead(301, { Location: '/' })
@@ -386,6 +385,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
       return Router.push('/')
     }
   }
+  let statusCode = res ? res.statusCode : null
 
   const queryNoWhite = queryNoWitheSpace(searchQuery)
   let results: resultsObj = null
@@ -418,6 +418,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
         statusCode = 400
       }
     } catch (err) {
+      statusCode = 500 // TODO: change it in API res
       console.error('Error while fetching Search API:', err)
     }
   }

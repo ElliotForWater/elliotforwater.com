@@ -44,7 +44,12 @@ const App: FC = () => {
       <section>
         <div className='logo-main'>
           <h1 className='logo-main__title'>
-            <img className='logo-main__img' src='/images/HEADER-LOGO.svg' alt='Elliot For Water' title='Elliot For Water' />
+            <img
+              className='logo-main__img'
+              src='/images/HEADER-LOGO.svg'
+              alt='Elliot For Water'
+              title='Elliot For Water'
+            />
           </h1>
           <p className='logo-main__subtitle'>{t('common:for_water')}</p>
         </div>

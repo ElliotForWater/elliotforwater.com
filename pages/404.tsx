@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 
-function Error () {
+function Error() {
   const { t } = useTranslation()
 
   return (

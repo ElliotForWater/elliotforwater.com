@@ -49,7 +49,10 @@ function About() {
                           /* eslint-disable-next-line react/jsx-key */
                           <ComponentSpan />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing' target='_blank' />,
+                          <a
+                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
+                            target='_blank'
+                          />,
                           /* eslint-disable-next-line react/jsx-key */
                           <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
@@ -79,7 +82,10 @@ function About() {
                           /* eslint-disable-next-line react/jsx-key */
                           <ComponentSpan />,
                           /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing' target='_blank' />,
+                          <a
+                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
+                            target='_blank'
+                          />,
                           /* eslint-disable-next-line react/jsx-key */
                           <a href='https://wellfound.org.uk/' target='_blank' />,
                         ]}
@@ -87,7 +93,11 @@ function About() {
                     </div>
                   </div>
                   <div className='elliot-btn-group'>
-                    <a className='btn btn-primary big home-text__link home-text__chrome shadow' href='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim' target='_blank'>
+                    <a
+                      className='btn btn-primary big home-text__link home-text__chrome shadow'
+                      href='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
+                      target='_blank'
+                    >
                       {t('common:addToChrome')}
                     </a>
                   </div>
