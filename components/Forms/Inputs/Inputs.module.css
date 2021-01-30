@@ -10,11 +10,21 @@ INPUT
   margin-top: 10px;
 }
 
+.inputWrapInline {
+  display: inline;
+}
+
 .input {
   background: transparent;
   border: none;
   width: 100%;
   font-size: 14px;
+}
+
+.inputWrapInline input[type='checkbox'] {
+  position: relative;
+  top: 2px;
+  margin: 0;
 }
 
 .input:disabled {

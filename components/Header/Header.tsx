@@ -12,6 +12,7 @@ function Droplet() {
   const [hideTooltip, setHideTooltip] = useState(true)
   const { userState } = useContext(UserContext)
   const { t } = useTranslation()
+  const isBreakpoint = useMediaQuery(768)
 
   return (
     <div
@@ -21,7 +22,7 @@ function Droplet() {
       onClick={() => setHideTooltip((prev) => !prev)}
     >
       <img className={styles.dropletImg} src='/images/water_droplet.svg' />
-      <Tooltip isHidden={hideTooltip} direction='left'>
+      <Tooltip isHidden={hideTooltip} direction={isBreakpoint ? 'left' : 'right'}>
         {t('common:header.tooltip_count')}
       </Tooltip>
       <span className={styles.dropletCount}>{userState.numOfSearches}</span>

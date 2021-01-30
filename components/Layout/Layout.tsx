@@ -87,7 +87,12 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
       </div>
 
       {/* Scripts */}
-      <script src='/lib/jquery/dist/jquery.min.js' />
+      {/* JQUERY/BOOTSTRAP used just for cards gallery on homepage - remove when gallery is gone */}
+      <script
+        src='https://code.jquery.com/jquery-1.12.4.min.js'
+        integrity='sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='
+        crossOrigin='anonymous'
+      />
       <script src='//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js' />
     </div>
   )

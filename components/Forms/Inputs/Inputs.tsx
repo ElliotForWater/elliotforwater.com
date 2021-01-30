@@ -4,15 +4,21 @@ import styles from './Inputs.module.css'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: any // declare register props
   errors?: any
-  type: 'text' | 'email' | 'number' | 'checkbox' | 'search'
+  type: 'text' | 'email' | 'number' | 'checkbox' | 'search' | 'radiobox'
   rules?: any
   name: string
   customClassname?: string
 }
 export function Input({ name, type, register, rules = {}, errors = {}, customClassname, ...rest }: InputProps) {
   return (
-    <div className={styles.inputWrap}>
-      <input className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.input)} name={name} type={type} ref={register(rules)} {...rest} />
+    <div className={type === ('checkbox' || 'radiobox') ? styles.inputWrapInline : styles.inputWrap}>
+      <input
+        className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.input)}
+        name={name}
+        type={type}
+        ref={register(rules)}
+        {...rest}
+      />
       {errors[name] && <div className={styles.error}>{errors[name].message}</div>}
     </div>
   )

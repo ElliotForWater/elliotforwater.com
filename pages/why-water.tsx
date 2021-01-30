@@ -25,15 +25,11 @@ const ComponentH1 = (props) => <h1 className={styles.title} {...props} />
 const ComponentDescription = (props) => <p className={styles.description} {...props} />
 const ComponentSpan = (props) => <span {...props} />
 
-function WaterPage () {
+function WaterPage() {
   const { t } = useTranslation()
 
   return (
-    <Layout
-      fluid
-      pageTitle={t('whyWater:pageTitle')}
-      pageDescription={t('whyWater:pageDescription')}
-    >
+    <Layout fluid pageTitle={t('whyWater:pageTitle')} pageDescription={t('whyWater:pageDescription')}>
       <section className={styles.layer1}>
         <div className={styles.headline}>
           <Trans
