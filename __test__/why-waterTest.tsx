@@ -4,7 +4,7 @@
 
 import React from 'react'
 import { mount } from 'enzyme'
-import Water from '../pages_/why-water'
+import Water from '../pages/why-water'
 import Layout from '../components/Layout/Layout'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary'
 
