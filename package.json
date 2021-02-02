@@ -5,7 +5,7 @@
   "repository": "https://bitbucket.org/elliotforwater/elliotforwater_v4/src/master/",
   "main": "index.js",
   "scripts": {
-    "dev": "nNODE_TLS_REJECT_UNAUTHORIZED='0' next dev",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED='0' next dev",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
