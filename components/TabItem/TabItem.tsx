@@ -2,12 +2,18 @@ import React, { FC, ReactElement, useState, useEffect, useRef } from 'react'
 import classnames from 'classnames'
 import styles from './TabItem.module.css'
 
+interface tabObjectProp {
+  id: string
+  label: string
+  link: string
+  icon: ReactElement
+}
 interface tabItemProp {
   title: string
   icon: ReactElement
   isActive: boolean
   onItemClicked: () => void
-  links: []
+  links: tabObjectProp[]
   query: string
 }
 

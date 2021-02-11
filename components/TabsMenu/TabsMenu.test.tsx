@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react'
 import TabsMenu from './TabsMenu'
 import TabItem from '../TabItem/TabItem'
 
-function Content ({ children }) {
+function Content({ children }) {
   return children
 }
 
@@ -38,13 +38,13 @@ const tabMenu = [
 export const TabsMenuWrap = () => {
   const [activeTab, setActiveTab] = useState(tabMenu[0])
 
-  function handleTabSwitch (nextTab) {
+  function handleTabSwitch(nextTab) {
     return setActiveTab(tabMenu.find((tab) => nextTab.resultType === tab.resultType))
   }
 
   return (
     <>
-      <TabsMenu tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleTabSwitch} />
+      <TabsMenu tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleTabSwitch} query='pizza' />
       {activeTab.content}
     </>
   )

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 // prettier-ignore
 interface IconProps {
-  color: string,
+  color?: string,
   size: number
 }
 
