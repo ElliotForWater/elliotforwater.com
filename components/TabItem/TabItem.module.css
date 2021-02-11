@@ -43,20 +43,16 @@
   right: 15px;
 }
 
-.dropdown li {
-  padding: 9px 20px;
-}
-
-.dropdown li:hover {
-  background-color: #eee;
-}
-
 .dropdown li a {
   color: var(--textColor);
+  padding: 9px 20px;
+  display: inline-block;
+  width: 100%;
 }
 
 .dropdown li a:hover {
   text-decoration: none;
+  background-color: #eee;
 }
 
 .linkIcon {
