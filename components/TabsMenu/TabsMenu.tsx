@@ -1,13 +1,22 @@
 import React, { ReactElement } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import TabItem from '../TabItem/TabItem'
+
+interface tabObjectProp {
+  id: string
+  label: string
+  link: string
+  icon: ReactElement
+}
 interface tabProp {
   id: number
   resultType: string
   title: string
-  icon: ReactElement
-  links: []
+  icon?: ReactElement | undefined
+  links?: tabObjectProp[]
+  externalLink?: string | undefined
 }
+
 interface Props {
   tabItems: tabProp[]
   activeTabId: number

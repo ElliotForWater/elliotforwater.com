@@ -3,7 +3,7 @@ import TabsMenuComp from './TabsMenu'
 
 export default { title: 'Components/TabsMenu' }
 
-function Content ({ children }) {
+function Content({ children }) {
   return children
 }
 
@@ -37,13 +37,13 @@ const tabMenu = [
 export const TabsMenu = () => {
   const [activeTab, setActiveTab] = useState(tabMenu[0])
 
-  function handleTabSwitch (nextTab) {
+  function handleTabSwitch(nextTab) {
     return setActiveTab(tabMenu.find((tab) => nextTab.resultType === tab.resultType))
   }
 
   return (
     <>
-      <TabsMenuComp tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleTabSwitch} />
+      <TabsMenuComp tabItems={tabMenu} activeTabId={activeTab.id} setActiveTab={handleTabSwitch} query='pizza' />
       {activeTab.content}
     </>
   )
