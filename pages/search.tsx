@@ -10,6 +10,11 @@ import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
 import { splitCookies, COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
+import { FiMoreVertical } from 'react-icons/fi'
+import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
+import GmailIcon from '../components/Icons/GmailIcon'
+import AmazonIcon from '../components/Icons/AmazonIcon'
+
 import Cookies from 'js-cookie'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
@@ -64,6 +69,50 @@ const TAB_MENU = [
     id: 5,
     resultType: 'map',
     title: 'search:map',
+  },
+  {
+    id: 6,
+    resultType: 'external',
+    title: 'Google',
+    externalLink: 'https://google.com/search?q=',
+  },
+  {
+    id: 7,
+    resultType: 'dropdown',
+    title: 'More',
+    icon: <FiMoreVertical />,
+    links: [
+      {
+        id: 'wikipedia',
+        label: 'Wikipedia',
+        link: 'https://en.wikipedia.org/wiki/',
+        icon: <FaWikipediaW />,
+      },
+      {
+        id: 'amazon',
+        label: 'Amazon',
+        link: 'https://www.amazon.com/s?k=',
+        icon: <AmazonIcon size={20} />,
+      },
+      {
+        id: 'youtube',
+        label: 'Youtube',
+        link: 'https://www.youtube.com/results?search_query=',
+        icon: <FaYoutube />,
+      },
+      {
+        id: 'twitch',
+        label: 'Twitch',
+        link: 'https://www.twitch.tv/search?term=',
+        icon: <FaTwitch />,
+      },
+      {
+        id: 'gmail',
+        label: 'Gmail',
+        link: 'https://mail.google.com/mail/u/0/#search/',
+        icon: <GmailIcon size={20} />,
+      },
+    ],
   },
 ]
 
@@ -254,14 +303,18 @@ function SearchPage({
   }
 
   function handleSwitchTab(nextActiveTab) {
+    if (nextActiveTab.resultType === 'external') {
+      return window.open(`${nextActiveTab.externalLink}${query}`, '_blank')
+    }
+
     router.push(`search?query=${query}&type=${nextActiveTab.resultType}`)
   }
 
   return (
-    <Layout fluid pageTitle={query + t('search:pageTitle')}>
+    <Layout fluid pageTitle={query + t('search:pageTitle')} pageDescription={t('search:pageDescription')}>
       <section className='wrapper'>
         <div className='tabsWrapper'>
-          <TabsMenu tabItems={TAB_MENU} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} />
+          <TabsMenu tabItems={TAB_MENU} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} query={query} />
         </div>
 
         <div className='content'>

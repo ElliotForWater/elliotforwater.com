@@ -23,21 +23,21 @@ const ArticleLink = ({ targetedUrl, title, displayUrl, description, pixelUrl, si
 
   return (
     <article className={styles.article}>
+      <div className={styles.sponsor}>
+        {siteLinks !== undefined && <span className={styles.sponsorLabel}>{t('search:sponsor_by')} ·</span>}
+        {displayUrl}
+      </div>
       <h3 className={styles.title}>
         <CustomLink className={styles.titleLink} href={targetedUrl}>
           {title}
         </CustomLink>
       </h3>
-      <div className={styles.subtitle}>
-        {siteLinks !== undefined && <span className={styles.sponsorLabel}>{t('search:sponsor_by')}</span>}
-        {displayUrl}
-      </div>
       <p>{description}</p>
-      <div>
+      <div className={styles.relatedLinksWrap}>
         {siteLinks &&
           siteLinks.map((link, i) => (
             <span key={i}>
-              <CustomLink className={styles.relatedLink} href={link.url}>
+              <CustomLink className={styles.relatedLink} href={`search?query=${link.text}&type=web`}>
                 {link.text}
               </CustomLink>
               {i === siteLinks.length - 1 ? '' : <span> - </span>}

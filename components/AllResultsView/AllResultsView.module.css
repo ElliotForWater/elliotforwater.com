@@ -44,48 +44,48 @@
 
 .title {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 .titleLink {
   font-weight: 400;
   transition: none;
-  color: var(--elliotLink);
+  color: var(--linkSearch);
 }
 
 .titleLink:hover {
   text-decoration: underline;
+  color: var(--linkSearch);
 }
 
 .titleLink:visited {
   color: var(--elliotVisited);
 }
 
-.subtitle {
-  color: var(--elliotLinkSubtitle);
+.sponsor {
   font-size: 14px;
+  font-size: 1em;
 }
 
 .sponsorLabel {
   padding: 0.1em 0.4em 0.2em;
-  font-size: 10px;
   font-weight: bold;
   line-height: 1;
-  border-radius: 1em;
-  border: 1px solid #4aacc28f;
-  text-transform: none;
-  font-style: normal;
   margin-right: 5px;
+  color: #555;
+}
+
+.relatedLinksWrap {
+  margin-top: 10px;
 }
 
 .relatedLink {
   font-size: 12px;
-  color: var(--textGreyColor);
-  font-weight: 700;
+  color: var(--linkSearch);
 }
 
 .relatedLink:hover {
-  color: var(--textGreyColor);
+  color: var(--linkSearch);
   text-decoration: underline;
 }
 
@@ -154,5 +154,10 @@
 
   .article:first-child {
     margin-top: 0;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 1.4em;
   }
 }

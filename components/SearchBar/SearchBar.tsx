@@ -118,7 +118,9 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function resetDropdown(event) {
-    setIsSuggestionOpen(false)
+    if (!big) {
+      setIsSuggestionOpen(false)
+    }
     setHighlightIndex(null)
     event && event.target.blur()
   }
