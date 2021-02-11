@@ -2,14 +2,14 @@
   --elliotPrimary: #72afd4;
   --elliotSecondary: #5082af;
   --elliotHover: #9cd5db;
-  --elliotVisited: #2a6496;
+  --elliotVisited: #7e359e;
   --elliotLink: #287896;
   --elliotLinkSubtitle: #4aacc28f;
   --dimGrey: #999;
   --lighterGrey: #f0f0f0;
   --containerBg: #f7f7f7;
   --placeholder: #ccc;
-  --textColor: #444;
+  --textColor: #333;
   --textGreyColor: #44444494;
   --cta: #3fa2b8;
   --footerBg: #e6f6f9;
@@ -17,6 +17,7 @@
   --lightGrey: #e8e8e8;
   --BSlink: #428bca;
   --error: #ad081b;
+  --linkSearch: #1a0dab;
   --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
   --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
   --zindex0: 0;

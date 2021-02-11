@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
+import { isChrome } from 'react-device-detect'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
@@ -41,7 +42,7 @@ const App: FC = () => {
 
   return (
     <Layout pageTitle={t('home:pageTitle')} pageDescription={t('home:pageDescription')} isHome fluid>
-      <section>
+      <section className='search'>
         <div className='logo-main'>
           <h1 className='logo-main__title'>
             <img
@@ -83,7 +84,6 @@ const App: FC = () => {
 
       <section id='how-it-works' className='section section--centered section__how-it-works'>
         <div className='section-center'>
-          <img className='background background--50' src='/images/waves.png' alt='Water' />
           <h2 className='section__title'>{t('home:how_works.title')}</h2>
           <div className='home-text'>
             <p className='home-text__caption'>{t('home:how_works.description')}</p>
@@ -149,12 +149,25 @@ const App: FC = () => {
         </div>
       </section>
 
-      {/* <!-- Projects --> */}
+      {/* <!-- Video> */}
       <section className='section section--centered'>
-        <img className='projects__img shadow' src='/images/video.png' alt='Change' />
-        <h3 className='projects__title'>{t('home:projects.title')}</h3>
-        <br />
-        <p className='projects__caption' />
+        {isChrome ? (
+          <video className='video' controls playsInline poster='/videos/thumb_howItWorks.png'>
+            <source src='/videos/howItWorks.mp4' type='video/mp4' />
+            <source src='/videos/howItWorks.ogg' type='video/ogg' />
+            <source src='/videos/howItWorks.webm' type='video/webm' />
+            Uh oh! Your browser does not support HTML5 videos
+          </video>
+        ) : (
+          <div>
+            <video className='video' controls playsInline>
+              <source src='/videos/howItWorks.mp4' type='video/mp4' />
+              <source src='/videos/howItWorks.ogg' type='video/ogg' />
+              <source src='/videos/howItWorks.webm' type='video/webm' />
+              Uh oh! Your browser does not support HTML5 videos
+            </video>
+          </div>
+        )}
       </section>
 
       <style jsx>
@@ -186,8 +199,8 @@ const App: FC = () => {
           }
 
           /* ==================================================
-          Donated water section
-        ================================================== */
+            Donated water section
+          ================================================== */
           .donated-water-wrapper {
             margin: 33px auto;
             text-align: center;
@@ -207,8 +220,15 @@ const App: FC = () => {
           }
 
           /* ==================================================
-          Home Text and Buttons
-        ================================================== */
+            Home Text and Buttons
+          ================================================== */
+          .search {
+            background-image: url('/images/water_bg4.png');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            height: 100vh;
+          }
+
           .home-text {
             text-align: center;
             margin: 0 auto;
@@ -235,8 +255,8 @@ const App: FC = () => {
           }
 
           /* ==================================================
-          Show More
-        ================================================== */
+            Show More
+          ================================================== */
           .show-more {
             text-align: center;
           }
@@ -272,17 +292,16 @@ const App: FC = () => {
 
           .chevron::before {
             top: 0;
-            border-top-color: var(--black, black);
           }
 
           .chevron::after {
             top: -2px;
-            border-top-color: #fff;
+            border-top-color: var(--elliotSecondary);
           }
 
           /* ==================================================
-          How It Works section
-        ================================================== */
+            How It Works section
+          ================================================== */
           .section__title {
             font-size: 38px;
           }
@@ -333,33 +352,12 @@ const App: FC = () => {
           }
 
           /* ==================================================
-          Projects section
+          Video section
         ================================================== */
-          .projects__img {
-            margin: 10% auto;
-            max-width: 90%;
-            border-radius: 30px;
-          }
-
-          .projects__title {
-            position: absolute;
-            top: 45%;
+          .video {
             width: 100%;
-            font-weight: bold;
-            font-size: 2.2vw;
-            letter-spacing: 0.45px;
-            text-align: center;
-            color: #fff;
-          }
-
-          .projects__caption {
-            position: absolute;
-            width: 100%;
-            font-size: 1.1vw;
-            letter-spacing: 0.45px;
-            text-align: center;
-            color: #fff;
-            margin-top: -32%;
+            height: 100%;
+            margin-bottom: -5px;
           }
 
           /* Override bootrstrap carousel styles */

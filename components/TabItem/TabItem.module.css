@@ -1,5 +1,5 @@
 .tab {
-  padding-right: 12px;
+  padding-right: 4px;
   margin-bottom: -1px;
   cursor: pointer;
 }
@@ -18,4 +18,72 @@
 
 .title:hover {
   color: var(--elliotPrimary);
+}
+
+.icon {
+  display: none;
+  margin-right: -4px;
+  top: 2px;
+  position: relative;
+  font-size: 1.1em;
+}
+
+/* Copy from bootstrap to be consistent with old website */
+.dropdown {
+  position: absolute;
+  z-index: var(--zindex50);
+  min-width: 160px;
+  margin: 2px 0 0;
+  font-size: 14px;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  right: 15px;
+}
+
+.dropdown li {
+  padding: 9px 20px;
+}
+
+.dropdown li:hover {
+  background-color: #eee;
+}
+
+.dropdown li a {
+  color: var(--textColor);
+}
+
+.dropdown li a:hover {
+  text-decoration: none;
+}
+
+.linkIcon {
+  padding-right: 12px;
+  font-size: 1.3em;
+  top: 4px;
+  position: relative;
+}
+
+.youtube svg {
+  color: red;
+}
+
+.twitch svg {
+  color: #6442a4;
+}
+
+@media (min-width: 768px) {
+  .tab {
+    padding-right: 12px;
+  }
+
+  .icon {
+    display: inline;
+  }
+
+  .dropdown {
+    right: auto;
+  }
 }
