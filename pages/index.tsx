@@ -149,7 +149,7 @@ const App: FC = () => {
         </div>
       </section>
 
-      {/* <!-- Video> */}
+      {/* Video */}
       <section className='section section--centered'>
         {isChrome ? (
           <video className='video' controls playsInline poster='/videos/thumb_howItWorks.png'>

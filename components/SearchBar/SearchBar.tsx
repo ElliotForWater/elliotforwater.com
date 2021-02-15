@@ -23,7 +23,7 @@ const SearchBar = ({ big }: SearchProps) => {
   const { userState, setNextUserState } = useContext(UserContext)
 
   const initType = typeof type === 'undefined' ? 'web' : type
-  const [searchValue, setSearchValue] = useState<string | string[]>(query || '')
+  const [searchValue, setSearchValue] = useState<string | string[]>(!query ? '' : query)
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
   const [highlightIndex, setHighlightIndex] = useState<number>(null)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
@@ -48,7 +48,11 @@ const SearchBar = ({ big }: SearchProps) => {
     if (method === 'topbar') {
       setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     }
-  }, [])
+
+    if (query !== (searchValue && undefined)) {
+      setSearchValue(query)
+    }
+  }, [query])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -127,11 +131,10 @@ const SearchBar = ({ big }: SearchProps) => {
 
   function search(word?: string, event?) {
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
-    const adultFilterString = `${userState.adultContentFilter}`
 
     if ((word && word !== '') || searchValue !== '') {
       const queryNoSpace = queryNoWitheSpace(word || searchValue)
-      router.push(`search?query=${queryNoSpace}&type=${typeValue}&AdultContentFilter=${adultFilterString}`)
+      router.push(`search?query=${queryNoSpace}&type=${typeValue}`)
       resetDropdown(event)
     }
   }

@@ -391,7 +391,8 @@ function SearchPage({
 
           @media (min-width: 768px) {
             .tabsWrapper {
-              padding-left: 125px;
+              margin-top: 15px;
+              padding-left: 147px;
             }
 
             .content {
