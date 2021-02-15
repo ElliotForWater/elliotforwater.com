@@ -34,6 +34,7 @@
   white-space: nowrap;
   border: 0;
   box-shadow: none;
+  cursor: pointer;
 }
 
 .tab:hover {
