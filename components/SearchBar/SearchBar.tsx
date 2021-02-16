@@ -23,7 +23,8 @@ const SearchBar = ({ big }: SearchProps) => {
   const { userState, setNextUserState } = useContext(UserContext)
 
   const initType = typeof type === 'undefined' ? 'web' : type
-  const [searchValue, setSearchValue] = useState<string | string[]>(!query ? '' : query)
+  const initSearchValue = typeof query === 'undefined' ? '' : query
+  const [searchValue, setSearchValue] = useState<string | string[]>(initSearchValue)
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
   const [highlightIndex, setHighlightIndex] = useState<number>(null)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
@@ -147,7 +148,7 @@ const SearchBar = ({ big }: SearchProps) => {
   function handleOnChange(el) {
     setSearchValue(el)
     setSearchSuggestedWords(true)
-    searchValue !== '' && setIsSuggestionOpen(true)
+    searchValue !== ('' || undefined) && setIsSuggestionOpen(true)
   }
 
   return (
