@@ -217,7 +217,7 @@ function SearchPage({
           `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
             new URLSearchParams({
               query: `${queryNoWhite}`,
-              page: `${resultsBatch}`,
+              pageIndex: `${resultsBatch}`,
               AdultContentFilter: `${userState.adultContentFilter}`,
             })
         )
