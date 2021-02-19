@@ -15,7 +15,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "lint:style": "stylelint \"{components, styles}/**/*.css\""
+    "lint:style": "stylelint \"{components, styles}/**/*.css\"",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "keywords": [
     "search",
@@ -27,8 +30,11 @@
   "author": "ElliotForWater",
   "license": "ISC",
   "dependencies": {
+    "@next/bundle-analyzer": "^10.0.7",
+    "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
     "next": "^10.0.1",
+    "next-compose-plugins": "^2.2.1",
     "next-translate": "^1.0.1",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",
