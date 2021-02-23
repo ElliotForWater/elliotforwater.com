@@ -1,6 +1,16 @@
-# Elliot For Water V4
+# Elliot For Water - Frontend
 
-Elliot for Water is a search Engine which collecting through user click's collects revenue used to build water wells wheres needed in the world.
+Elliot for Water is the search engine that donates water with your searches: https://elliotforwater.com
+
+Elliot for Water is a social enterprise, with the mission of providing millions of people with access to safe drinking water. In practice, Elliot for Water is like any other search engine but with the extra characteristic that we donate 60% of our profit to realize clean water projects.
+
+We are very small team, incessantly working on ElliotForWater to make it become a reality which can help million of people. To do so we need to develop more functionalities which allow the project to move faster and to delivery a product that our users will love use it.
+If you are considering contributing, there is a lot you could gain from this project: you could work on a project that actually help people in need and make the difference in the world. You will work with modern technologies and will have space to work on medium size task, which will actually make the difference and have your sign once in production.
+And you will work with an open-minded, young team excited to have ideas exchange and to get new inputs.
+
+## Documentation
+
+Please find all the project related information in the [Wiki](https://github.com/ElliotForWater/efw-webapp/wiki)
 
 ## How to start
 
@@ -14,73 +24,40 @@ Once you clone the repo go ahead and install all the packages:
 
 - `npm i` must be run from `root`
 - `npm run dev` to run in development environment
-- `npm start` to run in production mode
-- `npm run storybook` to run storybook and check the UI
+- `npm run build` to run build the project and check for errors
+- `npm run storybook` to run storybook and have a look at the UI components
 - `npm run test` to run test coverage
 
 Please have a look at `package.json` to discover more scripts you can run.
 
-## Current workflow
+## API and Backend connection
 
-- Trello ticket is assigned to a Developer
-- Developer creates a new branch from `develop`.
-- Developer writes some code and some tests.
-- Developer ensures project builds and all tests are passing.
-- Developer creates a Pull Request against `develop`.
-- Pull Request should includes all developers for code review and "close branch" checkbox should be checked.
-- Developer wait for Pull Request review approval and then merges the branch to "develop". (Not enforced as currently we are only 2 part time developers)
-- Developer merge branch with `squash and merge` option and leave only the commits as description.
-- Developer creates a Pull Request from `develop` to `master` and includes the Tester to review.
-- Developer moves the Trello ticket to the testing lane.
-- Tester reviews the website
-  - If OK Tester merges to master and moves ticket to completed lane.
-  - If changes are needed comments are left on the ticket and and ticket is re-assigned back to the developer.
+This project is the Frontend code of ElliotForWater. To populate the search results, we have use internal API
+which are held in a different repository, which is not open source. (We are considering to open source that one too but we need to check better the legal implication of it.)
+Our API run in Staging and production environment.
+For the purpose of the development you can use the staging environment too.
+You will find explanatory comment in the `.env.staging` file.
 
-## Staging
+## I want to help out! How can I start?
 
-Here you can find the current staging branch.
-Please review your code there once it gets merge in `develop` branch. Check all the possible part of the application that are involve in the merged changes.
-[https://elliotforwaterdevelopment.azurewebsites.net](https://elliotforwaterdevelopment.azurewebsites.net)
+Since we are very small team and we don't have so much time, we decided to set up some tasks were we need more help in
+the github project board.
+You are more then welcome to grab any of this task and work on it.
+Please assign the task you want to work on to your self, communicate to the team any doubts, concern, unclear specification or ideas of improvements.
+We always welcome new feedbacks! If you have any ideas on how to improve the project, please feel free to open an issue, label with `ideas` and we will check and answer you asap.
+Again, please remember we are very small team and we might need some times before getting back to you :prayhands:
+Please read here how to pick a tasks and our [contribution workflow](https://github.com/ElliotForWater/efw-webapp/wiki/3.-How-to-contribute)
 
-## Best Practice
+## Got a problem or found a bug?
 
-- Commit your work relatively often, as we are multiple developers on the same project.
-- Merge from "develop" as often as possible especially if working on a long running feature to help avoid large merge conflicts.
-- Try to review other pull requests when you can to improve understanding of the project, please comment on the code if you have a question or see an issue.
-- Feel free to open a work-in-progress PR to start to get early feedbacks. You can append the prefix `WIP` to your PR so other devs knows it shouldn't be merged yet.
-- Each PR must have a test. A PR without test will not be approved
-- If you are working on UI component, a story for this UI element is expected in the PR in order to be approved.
+If you encounter any problem in the installation, please open an [issue](https://github.com/ElliotForWater/efw-webapp/issues).
 
-## PR and commits naming convention
+Got a questions? Ask to our [community](https://github.com/ElliotForWater/efw-webapp/discussions), would be easier to get an answer here then in the issues.
 
-A branch and commit message must have a meaningful name/title that describe which changes are applied.
-This is very important in the case we need to revert some changes, fix git history or extract a buggy commit.
+## License
 
-Branch name must follow these conventions:
+Licensed under [MIT](https://github.com/ElliotForWater/efw-webapp/blob/main/LICENSE)
 
-- **feat**: new feature
-- **fix**: a bug fix or a quick fix to the code
-- **chore**: Regular code maintenance
-- **refactor**: code refactoring
+Copyright 2016-2021 Elliot for Water Organisation LTD.
 
-i.e. `feat-edit-profile-page` i.e. `fix-undefined-empty-users-list`
-
-Same convention is used for git commits:
-`<type>: <verb in present-tense> <rest of message (max 80 char)>`
-
-i.e. `feat: fetch user data and display in profile page`
-
-## Tests
-
-Test are covered with `Jest`.
-you can run tests with `npm run test`
-
-If you are working on test is better to run `npm run test:watch`. In this way each changes will be detected and the test will run again.
-
-The main idea is to not test everything but what makes most sense.
-Unit Test are very welcome.
-Please use snapshot just when makes sense.
-
-=======================
-
-If you encounter any problem in the installation, please open an issue.
+Check our [Trademark guideline](https://github.com/ElliotForWater/efw-webapp/wiki/ElliotForWater-Trademark).
