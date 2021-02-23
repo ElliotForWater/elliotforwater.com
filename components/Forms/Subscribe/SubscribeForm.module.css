@@ -25,3 +25,7 @@
   color: var(--elliotPrimary);
   border: 1px solid var(--elliotPrimary);
 }
+
+.hidden {
+  display: none;
+}

@@ -13,18 +13,34 @@ export const useMediaQuery = (width) => {
 
   useEffect(() => {
     const media = window.matchMedia(`(max-width: ${width}px)`)
-    media.addEventListener('change', (e) => {
-      updateTarget(e)
-    })
+
+    if (media.addEventListener) {
+      media.addEventListener('change', (e) => {
+        updateTarget(e)
+      })
+    } else {
+      // Fix for older browsers that don't support media.addEventListner
+      media.addListener((e) => {
+        updateTarget(e)
+      })
+    }
 
     if (media.matches) {
       setTargetReached(true)
     }
 
-    return () =>
-      media.removeEventListener('change', (e) => {
-        updateTarget(e)
-      })
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener('change', (e) => {
+          updateTarget(e)
+        })
+      } else {
+        // Fix for older browsers that don't support media.addEventListner
+        media.removeListener((e) => {
+          updateTarget(e)
+        })
+      }
+    }
   }, [])
 
   return targetReached
