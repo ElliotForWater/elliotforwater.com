@@ -153,7 +153,7 @@ const App: FC = () => {
       <section className='section section--centered'>
         {isChrome ? (
           <video className='video' controls playsInline poster='/videos/thumb_howItWorks.png'>
-            <source src='/videos/howItWorks1.mp4' type='video/mp4' />
+            <source src='/videos/howItWorks.mp4' type='video/mp4' />
             <source src='/videos/howItWorks.ogg' type='video/ogg' />
             <source src='/videos/howItWorks.webm' type='video/webm' />
             Uh oh! Your browser does not support HTML5 videos
