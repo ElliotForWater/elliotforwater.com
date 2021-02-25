@@ -18,7 +18,8 @@
     "lint:style": "stylelint \"{components, styles}/**/*.css\"",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "mockApi": "cd __mocks__/ && node mockapiServer.js"
   },
   "keywords": [
     "search",
@@ -30,13 +31,8 @@
   "author": "ElliotForWater",
   "license": "ISC",
   "dependencies": {
-    "@next/bundle-analyzer": "^10.0.7",
-    "cross-env": "^7.0.3",
-    "env-cmd": "^10.1.0",
     "next": "^10.0.1",
-    "next-compose-plugins": "^2.2.1",
     "next-translate": "^1.0.1",
-    "nprogress": "^0.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -45,6 +41,7 @@
     "@babel/plugin-transform-modules-commonjs": "~7.10.4",
     "@babel/plugin-transform-runtime": "~7.11.5",
     "@babel/preset-flow": "~7.10.4",
+    "@next/bundle-analyzer": "^10.0.7",
     "@storybook/addon-actions": "~6.1.11",
     "@storybook/addon-docs": "~6.1.1",
     "@storybook/react": "~6.1.1",
@@ -64,6 +61,8 @@
     "babel-jest": "~26.3.0",
     "babel-loader": "~8.1.0",
     "classnames": "~2.2.6",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "enzyme": "~3.11.0",
     "enzyme-adapter-react-16": "~1.15.4",
     "eslint": "~7.9.0",
@@ -82,8 +81,11 @@
     "husky": "~4.3.0",
     "jest": "~26.4.2",
     "js-cookie": "~2.2.1",
+    "json-server": "^0.16.3",
     "lint-staged": "~10.3.0",
+    "next-compose-plugins": "^2.2.1",
     "next-ga": "~2.3.4",
+    "nprogress": "^0.2.0",
     "postcss": "~8.1.1",
     "postcss-extend-rule": "~3.0.0",
     "postcss-flexbugs-fixes": "~4.2.1",

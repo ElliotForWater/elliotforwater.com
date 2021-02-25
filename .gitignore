@@ -4,4 +4,5 @@ node_modules/
 .next/**
 out/
 storybook-static/
-.env*.local
+.env.production
+.env.staging
