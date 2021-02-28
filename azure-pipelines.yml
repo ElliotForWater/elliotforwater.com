@@ -1,0 +1,40 @@
+pool:
+  vmImage: vs2017-win2016
+  demands: npm
+
+steps:
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      verbose: false
+
+  - task: Npm@1
+    displayName: 'npm run build:stage'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run build:stage'
+
+  - task: Npm@1
+    displayName: 'npm run export'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run export'
+    enabled: false
+
+  - task: Npm@1
+    displayName: 'npm run test'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run test'
+
+  - task: ArchiveFiles@2
+    displayName: 'Archive Files'
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
