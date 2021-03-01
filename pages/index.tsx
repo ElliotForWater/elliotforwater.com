@@ -223,9 +223,10 @@ const App: FC = () => {
             Home Text and Buttons
           ================================================== */
           .search {
-            background-image: url('/images/water_bg4.png');
+            background-image: url('/images/water_background.png');
             background-repeat: no-repeat;
             background-position: bottom;
+            background-size: cover;
             height: 100vh;
           }
 
