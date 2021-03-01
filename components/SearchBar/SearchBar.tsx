@@ -133,7 +133,7 @@ const SearchBar = ({ big }: SearchProps) => {
   function search(word?: string, event?) {
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
 
-    if ((word && word !== '') || searchValue !== '') {
+    if ((word && word !== '') || !!searchValue) {
       const queryNoSpace = queryNoWitheSpace(word || searchValue)
       router.push(`search?query=${queryNoSpace}&type=${typeValue}`)
       resetDropdown(event)
