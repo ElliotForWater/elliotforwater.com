@@ -148,8 +148,7 @@ const SearchBar = ({ big }: SearchProps) => {
   function handleOnChange(value: string) {
     setSearchValue(value)
 
-    const trimmedValue = value.trim()
-    if (trimmedValue) {
+    if (value.trim()) {
       setSearchSuggestedWords(true)
       setIsSuggestionOpen(true)
     }
