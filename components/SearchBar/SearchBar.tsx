@@ -145,10 +145,13 @@ const SearchBar = ({ big }: SearchProps) => {
     search(word)
   }
 
-  function handleOnChange(el) {
-    setSearchValue(el)
-    setSearchSuggestedWords(true)
-    searchValue !== ('' || undefined) && setIsSuggestionOpen(true)
+  function handleOnChange(value: string) {
+    setSearchValue(value)
+
+    if (value.trim()) {
+      setSearchSuggestedWords(true)
+      setIsSuggestionOpen(true)
+    }
   }
 
   return (
