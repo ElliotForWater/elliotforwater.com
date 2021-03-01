@@ -50,7 +50,7 @@ const SearchBar = ({ big }: SearchProps) => {
       setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     }
 
-    if (query !== (searchValue && undefined)) {
+    if (query !== undefined && query !== searchValue) {
       setSearchValue(query)
     }
   }, [query])
