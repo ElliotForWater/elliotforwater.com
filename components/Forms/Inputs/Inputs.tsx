@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 export function Input({ name, type, register, rules = {}, errors = {}, customClassname, ...rest }: InputProps) {
   return (
-    <div className={type === ('checkbox' || 'radiobox') ? styles.inputWrapInline : styles.inputWrap}>
+    <div className={type === 'checkbox' || type === 'radiobox' ? styles.inputWrapInline : styles.inputWrap}>
       <input
         className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.input)}
         name={name}
