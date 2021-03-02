@@ -19,12 +19,18 @@ const SUGGESTED_WORDS_URL = 'https://suggest.finditnowonline.com/SuggestionFeed/
 const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
   const router = useRouter()
-  const { query, type, method } = router.query
+
+  // Query params can be of type string[] in case a name is used multiple times in the URL.
+  // We assume here that each name exists only once in the query.
+  const query = router.query.query as string
+  const type = router.query.type as string
+  const method = router.query.method as string
+
   const { userState, setNextUserState } = useContext(UserContext)
 
   const initType = typeof type === 'undefined' ? 'web' : type
   const initSearchValue = typeof query === 'undefined' ? '' : query
-  const [searchValue, setSearchValue] = useState<string | string[]>(initSearchValue)
+  const [searchValue, setSearchValue] = useState<string>(initSearchValue)
   const [typeValue, setTypeValue] = useState<string | string[]>(initType)
   const [highlightIndex, setHighlightIndex] = useState<number>(null)
   const [isSuggestionOpen, setIsSuggestionOpen] = useState<boolean>(false)
@@ -119,7 +125,7 @@ const SearchBar = ({ big }: SearchProps) => {
   }, [searchValue])
 
   function onSubmit() {
-    search()
+    search(searchValue)
   }
 
   function resetDropdown(event) {
@@ -130,14 +136,16 @@ const SearchBar = ({ big }: SearchProps) => {
     event && event.target.blur()
   }
 
-  function search(word?: string, event?) {
+  function search(searchString: string, event?) {
+    if (!searchString) {
+      return
+    }
+
     setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
 
-    if ((word && word !== '') || searchValue !== '') {
-      const queryNoSpace = queryNoWitheSpace(word || searchValue)
-      router.push(`search?query=${queryNoSpace}&type=${typeValue}`)
-      resetDropdown(event)
-    }
+    const queryNoSpace = queryNoWitheSpace(searchString)
+    router.push(`search?query=${queryNoSpace}&type=${typeValue}`)
+    resetDropdown(event)
   }
 
   function handleOnMouseDown(word: string) {
