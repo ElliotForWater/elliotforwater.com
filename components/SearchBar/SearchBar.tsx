@@ -20,8 +20,9 @@ const SearchBar = ({ big }: SearchProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  // Query params can be of type string[] in case a name is used multiple times in the URL.
-  // We assume here that each name exists only once in the query.
+  // Query params can be of type `string[]` in case a name is used multiple times in the URL.
+  // See https://nodejs.org/api/querystring.html#querystring_querystring_parse_str_sep_eq_options
+  // We assume here that each name exists only once in the query and thus is `string`.
   const query = router.query.query as string
   const type = router.query.type as string
   const method = router.query.method as string
