@@ -5,6 +5,6 @@ export function formatNumber(num) {
 /* Checks if in browser environment and not in SSR */
 export const isBrowser = () => !!(typeof window !== 'undefined' && window.document && window.document.createElement)
 
-export function queryNoWitheSpace(query) {
+export function queryNoWitheSpace(query: string) {
   return query.replace(/\s/g, '+')
 }
