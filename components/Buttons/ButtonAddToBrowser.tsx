@@ -21,12 +21,19 @@ export default function ButtonAddToBrowser() {
 
   useEffect(() => {
     if (isBrowser && isChrome) {
-      setBrowserName('chrome')
       /* eslint-disable-next-line no-undef */
-      chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, {
-        action: 'id',
-        value: config.CHROME_EXTENSION_ID,
-      })
+      chrome.runtime.sendMessage(
+        config.CHROME_EXTENSION_ID,
+        {
+          action: 'id',
+          value: config.CHROME_EXTENSION_ID,
+        },
+        function (response) {
+          if (!response) {
+            setBrowserName('chrome')
+          }
+        }
+      )
     }
 
     if (isFirefox) {
