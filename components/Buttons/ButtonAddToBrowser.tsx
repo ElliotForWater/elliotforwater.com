@@ -30,16 +30,18 @@ export default function ButtonAddToBrowser() {
         },
         function (response) {
           if (!response) {
-            setBrowserName('chrome')
+            return setBrowserName('chrome')
           }
         }
       )
     }
 
     if (isFirefox) {
-      setBrowserName('firefox')
+      if (!window.extensionInterface) {
+        setBrowserName('firefox')
+      }
     }
-  }, [])
+  }, [browserName])
 
   return (
     <div className='hideSmallScreen'>
