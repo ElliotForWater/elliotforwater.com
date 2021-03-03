@@ -41,7 +41,7 @@ export default function ButtonAddToBrowser() {
         setBrowserName('firefox')
       }
     }
-  }, [browserName])
+  }, [])
 
   return (
     <div className='hideSmallScreen'>
