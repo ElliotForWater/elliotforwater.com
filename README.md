@@ -8,6 +8,13 @@ We are very small team, incessantly working on ElliotForWater to make it become 
 If you are considering contributing, there is a lot you could gain from this project: you could work on a project that actually help people in need and make the difference in the world. You will work with modern technologies and will have space to work on medium size task, which will actually make the difference and have your sign once in production.
 And you will work with an open-minded, young team excited to have ideas exchange and to get new inputs.
 
+### Build Status
+
+| Branch  | Status                                                                                                                                                                                                                 |
+| :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| main    | [![Build Status](https://dev.azure.com/E4W/Elliotforwater/_apis/build/status/ElliotForWater.efw-webapp?branchName=main)](https://dev.azure.com/E4W/Elliotfowwater/_build/latest?definitionId=17&branchName=main)       |
+| develop | [![Build Status](https://dev.azure.com/E4W/Elliotforwater/_apis/build/status/ElliotForWater.efw-webapp?branchName=develop)](https://dev.azure.com/E4W/Elliotfowwater/_build/latest?definitionId=17&branchName=develop) |
+
 ## Documentation
 
 Please find all the project related information in the [Wiki](https://github.com/ElliotForWater/efw-webapp/wiki)
