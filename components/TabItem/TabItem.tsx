@@ -56,7 +56,7 @@ const TabsMenu: FC<tabItemProp> = ({ title, icon, onItemClicked, isActive, links
         <ul className={styles.dropdown} ref={menuEl}>
           {links &&
             links.map((item: { id: string; label: string; link: string; icon: ReactElement }) => (
-              <li key={item.label}>
+              <li key={item.label} className={classnames({ [styles.hiddenMobile]: item.id === 'gmail' })}>
                 <a href={`${item.link}${query}`} target='_blank'>
                   <span className={classnames(styles.linkIcon, styles[item.id])}>{item.icon}</span>
                   {item.label}

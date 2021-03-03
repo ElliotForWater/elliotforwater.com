@@ -55,6 +55,10 @@
   background-color: #eee;
 }
 
+.hiddenMobile {
+  display: none;
+}
+
 .linkIcon {
   padding-right: 12px;
   font-size: 1.3em;
@@ -71,6 +75,10 @@
 }
 
 @media (min-width: 768px) {
+  .hiddenMobile {
+    display: inline;
+  }
+
   .tab {
     padding-right: 12px;
   }

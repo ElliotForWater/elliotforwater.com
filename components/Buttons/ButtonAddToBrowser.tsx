@@ -34,6 +34,8 @@ export default function ButtonAddToBrowser() {
     }
   }, [])
 
+  console.log('ciao', browserName, browserName === '')
+
   return (
     <div className='hideSmallScreen'>
       {browserName !== '' && (
