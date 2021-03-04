@@ -4,6 +4,8 @@ import useTranslation from 'next-translate/useTranslation'
 import config from '../../appConfig'
 import { isBrowser, isChrome, isFirefox } from 'react-device-detect'
 
+declare const window: any
+
 const buttonInfo = {
   chrome: {
     url: config.CHROME_EXTENSION_URL,
@@ -21,16 +23,25 @@ export default function ButtonAddToBrowser() {
 
   useEffect(() => {
     if (isBrowser && isChrome) {
-      setBrowserName('chrome')
       /* eslint-disable-next-line no-undef */
-      chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, {
-        action: 'id',
-        value: config.CHROME_EXTENSION_ID,
-      })
+      chrome.runtime.sendMessage(
+        config.CHROME_EXTENSION_ID,
+        {
+          action: 'id',
+          value: config.CHROME_EXTENSION_ID,
+        },
+        function (response) {
+          if (!response) {
+            return setBrowserName('chrome')
+          }
+        }
+      )
     }
 
     if (isFirefox) {
-      setBrowserName('firefox')
+      if (!window.extensionInterface) {
+        setBrowserName('firefox')
+      }
     }
   }, [])
 
