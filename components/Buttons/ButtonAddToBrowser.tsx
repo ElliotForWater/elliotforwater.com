@@ -4,6 +4,8 @@ import useTranslation from 'next-translate/useTranslation'
 import config from '../../appConfig'
 import { isBrowser, isChrome, isFirefox } from 'react-device-detect'
 
+declare const window: any
+
 const buttonInfo = {
   chrome: {
     url: config.CHROME_EXTENSION_URL,
