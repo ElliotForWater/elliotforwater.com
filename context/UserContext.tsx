@@ -1,4 +1,16 @@
 import React from 'react'
+import {
+  COOKIE_NAME_LANGUAGE,
+  COOKIE_NAME_ADULT_FILTER,
+  COOKIE_NAME_NEW_TAB,
+  COOKIE_NAME_SEARCH_COUNT,
+} from '../helpers/_cookies'
+import Cookies from 'js-cookie'
+
+const searchesFromCookies = Cookies.get(COOKIE_NAME_SEARCH_COUNT)
+const languageFromCookies = Cookies.get(COOKIE_NAME_LANGUAGE)
+const filterFromCookies = Cookies.get(COOKIE_NAME_ADULT_FILTER)
+const newTabFromCookies = Cookies.get(COOKIE_NAME_NEW_TAB)
 interface userState {
   numOfSearches: number
   language: number
@@ -12,10 +24,10 @@ export interface userContextProps {
 }
 
 export const USER_STATE_DEFAULT = {
-  numOfSearches: 0,
-  language: 1, // English
-  adultContentFilter: 1, // Moderate
-  openInNewTab: false,
+  numOfSearches: Number(searchesFromCookies) || 0,
+  language: Number(languageFromCookies) || 1, // English
+  adultContentFilter: Number(filterFromCookies) || 1, // Moderate
+  openInNewTab: newTabFromCookies !== 'false' || false,
   isModalOpen: false,
 }
 

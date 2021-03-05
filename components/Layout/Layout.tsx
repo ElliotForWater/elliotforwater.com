@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '../Header/Header'
@@ -7,13 +7,6 @@ import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
 import Modal from '../Modal/Modal'
 import { UserContext } from '../../context/UserContext'
-import Cookies from 'js-cookie'
-import {
-  COOKIE_NAME_SEARCH_COUNT,
-  COOKIE_NAME_ADULT_FILTER,
-  COOKIE_NAME_LANGUAGE,
-  COOKIE_NAME_NEW_TAB,
-} from '../../helpers/_cookies'
 interface LayoutProps {
   fluid?: boolean
   pageTitle: string
@@ -24,21 +17,7 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescription, isHome }) => {
   const router = useRouter()
   const { query } = router.query
-  const { userState, setNextUserState } = useContext(UserContext)
-
-  useEffect(() => {
-    const searchesFromCookies = Cookies.get(COOKIE_NAME_SEARCH_COUNT)
-    const languageFromCookies = Cookies.get(COOKIE_NAME_LANGUAGE)
-    const filterFromCookies = Cookies.get(COOKIE_NAME_ADULT_FILTER)
-    const newTabFromCookies = Cookies.get(COOKIE_NAME_NEW_TAB)
-
-    setNextUserState({
-      numOfSearches: Number(searchesFromCookies) || 0,
-      language: Number(languageFromCookies) || 1,
-      adultContentFilter: Number(filterFromCookies) || 1,
-      openInNewTab: newTabFromCookies !== 'false',
-    })
-  }, [])
+  const { userState } = useContext(UserContext)
 
   return (
     <div className={userState.isModalOpen ? styles.noOverflow : styles.overflow}>
