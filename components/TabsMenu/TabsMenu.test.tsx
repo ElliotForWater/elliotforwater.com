@@ -1,8 +1,12 @@
+import mockMediaQuery from '../../__mocks__/matchMedia'
+
 import React, { useState } from 'react'
 import { mount } from 'enzyme'
 import { render, fireEvent } from '@testing-library/react'
 import TabsMenu from './TabsMenu'
 import TabItem from '../TabItem/TabItem'
+
+mockMediaQuery()
 
 function Content({ children }) {
   return children
