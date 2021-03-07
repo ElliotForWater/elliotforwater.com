@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.tabWithDropdown {
+  position: relative;
+}
+
 .title {
   color: var(--textColor);
   padding: 0 5px 0 5px;
@@ -40,7 +44,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  right: 15px;
+  right: 6px;
 }
 
 .dropdown li a {
@@ -68,6 +72,12 @@
 
 .twitch svg {
   color: #6442a4;
+}
+
+@media (min-width: 500px) {
+  .dropdown {
+    left: 0;
+  }
 }
 
 @media (min-width: 768px) {

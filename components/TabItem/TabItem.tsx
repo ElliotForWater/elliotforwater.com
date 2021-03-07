@@ -1,5 +1,7 @@
 import React, { FC, ReactElement, useState, useEffect, useRef } from 'react'
 import classnames from 'classnames'
+import { isMobile } from 'react-device-detect'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import styles from './TabItem.module.css'
 
 interface tabObjectProp {
@@ -21,6 +23,7 @@ const TabsMenu: FC<tabItemProp> = ({ title, icon, onItemClicked, isActive, links
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const iconMenuEl = useRef(null)
   const menuEl = useRef(null)
+  const isBreakpoint = useMediaQuery(768)
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -39,7 +42,7 @@ const TabsMenu: FC<tabItemProp> = ({ title, icon, onItemClicked, isActive, links
 
   return (
     <div
-      className={classnames(styles.tab, { [styles.active]: isActive })}
+      className={classnames(styles.tab, { [styles.active]: isActive, [styles.tabWithDropdown]: !!links })}
       onClick={() => {
         if (links) {
           setIsDropdownOpen((prev) => !prev)
@@ -55,14 +58,18 @@ const TabsMenu: FC<tabItemProp> = ({ title, icon, onItemClicked, isActive, links
       {isDropdownOpen && (
         <ul className={styles.dropdown} ref={menuEl}>
           {links &&
-            links.map((item: { id: string; label: string; link: string; icon: ReactElement }) => (
-              <li key={item.label}>
-                <a href={`${item.link}${query}`} target='_blank'>
-                  <span className={classnames(styles.linkIcon, styles[item.id])}>{item.icon}</span>
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            links.map((item: { id: string; label: string; link: string; icon: ReactElement }) => {
+              if (isMobile && item.id === 'gmail' && isBreakpoint) return
+
+              return (
+                <li key={item.label}>
+                  <a href={`${item.link}${query}`} target='_blank'>
+                    <span className={classnames(styles.linkIcon, styles[item.id])}>{item.icon}</span>
+                    {item.label}
+                  </a>
+                </li>
+              )
+            })}
         </ul>
       )}
     </div>
