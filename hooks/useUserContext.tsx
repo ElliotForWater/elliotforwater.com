@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { userContextProps, USER_STATE_DEFAULT } from '../context/UserContext'
+import { userContextProps, USER_STATE_INIT } from '../context/UserContext'
 import {
   COOKIE_NAME_LANGUAGE,
   COOKIE_NAME_ADULT_FILTER,
@@ -16,7 +16,7 @@ const cookiesName = {
 }
 
 export const useUserContext = (): userContextProps => {
-  const [userState, setUserContext] = useState(USER_STATE_DEFAULT)
+  const [userState, setUserContext] = useState(USER_STATE_INIT)
 
   const setNextUserState = useCallback((nextState): void => {
     setUserContext((prevState) => {
