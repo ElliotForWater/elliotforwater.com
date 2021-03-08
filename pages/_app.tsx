@@ -9,13 +9,37 @@ import Router from 'next/router'
 import NProgress from 'nprogress' // nprogress module
 import 'nprogress/nprogress.css' // styles of nprogress
 
+import Cookies from 'js-cookie'
+import {
+  COOKIE_NAME_LANGUAGE,
+  COOKIE_NAME_ADULT_FILTER,
+  COOKIE_NAME_NEW_TAB,
+  COOKIE_NAME_SEARCH_COUNT,
+} from '../helpers/_cookies'
+
 // Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
+const cookiesName = {
+  numOfSearches: COOKIE_NAME_SEARCH_COUNT,
+  language: COOKIE_NAME_LANGUAGE,
+  adultContentFilter: COOKIE_NAME_ADULT_FILTER,
+  openInNewTab: COOKIE_NAME_NEW_TAB,
+}
+
+function setUserStateToCookies(userState) {
+  for (const key in userState) {
+    if (cookiesName[key]) {
+      Cookies.set(cookiesName[key], Cookies.get(cookiesName[key]) || userState[key])
+    }
+  }
+}
+
 function ElliotApp({ Component, pageProps }: AppProps) {
   const user = useUserContext()
+  setUserStateToCookies(user.userState)
 
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')

@@ -445,7 +445,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   let results: resultsObj = null
   let activeTab = findTabByType(type)
   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  const cookies = req ? req.headers.cookie : Cookies.get(COOKIE_NAME_ADULT_FILTER)
+  const cookies = req ? req.headers.cookie : Cookies.get(COOKIE_NAME_ADULT_FILTER) || 1
 
   if (type === 'map') {
     activeTab = findTabByType('map')
