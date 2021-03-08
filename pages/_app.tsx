@@ -29,17 +29,22 @@ const cookiesName = {
   openInNewTab: COOKIE_NAME_NEW_TAB,
 }
 
-function setUserStateToCookies(userState) {
+const setCookiesToState = (userState) => {
   for (const key in userState) {
     if (cookiesName[key]) {
-      Cookies.set(cookiesName[key], Cookies.get(cookiesName[key]) || userState[key])
+      if (!Cookies.get(cookiesName[key])) {
+        Cookies.set(cookiesName[key], userState[key])
+      } else {
+        userState[key] = Cookies.get(cookiesName[key])
+        Cookies.set(cookiesName[key], Cookies.get(cookiesName[key]))
+      }
     }
   }
 }
 
 function ElliotApp({ Component, pageProps }: AppProps) {
   const user = useUserContext()
-  setUserStateToCookies(user.userState)
+  setCookiesToState(user.userState)
 
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
