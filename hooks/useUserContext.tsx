@@ -26,7 +26,6 @@ export const useUserContext = (): userContextProps => {
       }
 
       for (const key in nextState) {
-        // if (cookiesName.hasOwnProperty(key)) {
         if (Object.getOwnPropertyDescriptor(cookiesName, key)) {
           Cookies.set(cookiesName[key], newState[key])
         }
