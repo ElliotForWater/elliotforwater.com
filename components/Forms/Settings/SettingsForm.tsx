@@ -16,12 +16,13 @@ type InputsProp = {
 const SettingsForm = ({ callbackCloseSettings }) => {
   const { t } = useTranslation()
   const { userState, setNextUserState } = useContext(UserContext)
+  const { language, adultContentFilter, openInNewTab } = userState
 
   const methods = useForm<InputsProp>({
     defaultValues: {
-      language: userState.language,
-      adultContentFilter: userState.adultContentFilter,
-      openInNewTab: userState.openInNewTab,
+      language,
+      adultContentFilter,
+      openInNewTab,
     },
   })
   const { handleSubmit, register } = methods
@@ -72,7 +73,13 @@ const SettingsForm = ({ callbackCloseSettings }) => {
             </div>
 
             <div className='control-group'>
-              <Input id='openInNewTab' name='openInNewTab' className={styles.checkbox} type='checkbox' register={register} />
+              <Input
+                id='openInNewTab'
+                name='openInNewTab'
+                className={styles.checkbox}
+                type='checkbox'
+                register={register}
+              />
               <label className={styles.checkboxLabel} htmlFor='openInNewTab'>
                 {t('common:settings.new_tab')}
               </label>

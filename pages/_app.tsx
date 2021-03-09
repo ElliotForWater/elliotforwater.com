@@ -35,7 +35,11 @@ const setCookiesToState = (userState) => {
       if (!Cookies.get(cookiesName[key])) {
         Cookies.set(cookiesName[key], userState[key])
       } else {
-        userState[key] = Cookies.get(cookiesName[key])
+        userState.numOfSearches = Number(Cookies.get(cookiesName.numOfSearches))
+        userState.language = Number(Cookies.get(cookiesName.language))
+        userState.adultContentFilter = Number(Cookies.get(cookiesName.adultContentFilter))
+        userState.openInNewTab = Cookies.get(cookiesName.openInNewTab) !== 'false'
+
         Cookies.set(cookiesName[key], Cookies.get(cookiesName[key]))
       }
     }
