@@ -17,14 +17,14 @@ interface Props {
 
 const RefineSearch = ({ refineSearches }: Props) => {
   const { t } = useTranslation()
-  const { userState, setNextUserState } = useContext(UserContext)
+  const { userState, setUserState } = useContext(UserContext)
   const router = useRouter()
 
   function handleClick(e, text) {
     e.preventDefault()
     const queryNoWhite = queryNoWitheSpace(text)
 
-    setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
+    setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     router.push(`search?query=${queryNoWhite}&type=web`)
   }
 

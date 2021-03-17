@@ -27,7 +27,7 @@ const SearchBar = ({ big }: SearchProps) => {
   const type = router.query.type as string
   const method = router.query.method as string
 
-  const { userState, setNextUserState } = useContext(UserContext)
+  const { userState, setUserState } = useContext(UserContext)
 
   const initType = typeof type === 'undefined' ? 'web' : type
   const initSearchValue = typeof query === 'undefined' ? '' : query
@@ -54,7 +54,7 @@ const SearchBar = ({ big }: SearchProps) => {
 
   useEffect(() => {
     if (method === 'topbar') {
-      setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
+      setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     }
 
     if (query !== undefined && query !== searchValue) {
@@ -142,7 +142,7 @@ const SearchBar = ({ big }: SearchProps) => {
       return
     }
 
-    setNextUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
+    setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
 
     const queryNoSpace = queryNoWitheSpace(searchString)
     router.push(`search?query=${queryNoSpace}&type=${typeValue}`)

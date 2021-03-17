@@ -15,7 +15,7 @@ type InputsProp = {
 
 const SettingsForm = ({ callbackCloseSettings }) => {
   const { t } = useTranslation()
-  const { userState, setNextUserState } = useContext(UserContext)
+  const { userState, setUserState } = useContext(UserContext)
   const { language, adultContentFilter, openInNewTab } = userState
 
   const methods = useForm<InputsProp>({
@@ -28,7 +28,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
   const { handleSubmit, register } = methods
 
   function onSubmit({ language, adultContentFilter, openInNewTab }) {
-    setNextUserState({
+    setUserState({
       language,
       adultContentFilter,
       openInNewTab,
