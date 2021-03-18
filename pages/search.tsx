@@ -9,13 +9,13 @@ import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
-// import { splitCookies, COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
+import { COOKIE_NAME_ADULT_FILTER } from '../helpers/_cookies'
 import { FiMoreVertical } from 'react-icons/fi'
 import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
 import GmailIcon from '../components/Icons/GmailIcon'
 import AmazonIcon from '../components/Icons/AmazonIcon'
 
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -445,7 +445,9 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   let results: resultsObj = null
   let activeTab = findTabByType(type)
   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  // const cookies = req ? req.headers.cookie : Cookies.get(COOKIE_NAME_ADULT_FILTER) || 1
+  const adultContentCookie = req
+    ? req.cookies[COOKIE_NAME_ADULT_FILTER] || 1
+    : Cookies.get(COOKIE_NAME_ADULT_FILTER) || 1
 
   if (type === 'map') {
     activeTab = findTabByType('map')
@@ -455,7 +457,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
           new URLSearchParams({
             query: `${queryNoWhite}`,
-            AdultContentFilter: '1',
+            AdultContentFilter: adultContentCookie,
           }),
         {
           headers: {
