@@ -18,7 +18,7 @@ import {
   COOKIE_NAME_SEARCH_COUNT,
 } from '../helpers/_cookies'
 
-// Binding events.
+// Binding routes events.
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', (url) => {
   if (process.env.IS_PRODUCTION) {
@@ -27,8 +27,6 @@ Router.events.on('routeChangeComplete', (url) => {
   NProgress.done()
 })
 Router.events.on('routeChangeError', () => NProgress.done())
-
-// Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
 
 const cookiesName = {
   numOfSearches: COOKIE_NAME_SEARCH_COUNT,

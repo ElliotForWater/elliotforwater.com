@@ -6,8 +6,6 @@ import { GA_TRACKING_ID } from '../helpers/_gtag'
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
-
-    // Check if in production
     const isProduction = process.env.NODE_ENV === 'production'
 
     return {
@@ -20,7 +18,6 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* We only want to add the scripts if in production */}
           {process.env.IS_PRODUCTION && (
             <>
               {/* Global Site Tag (gtag.js) - Google Analytics */}
