@@ -64,9 +64,9 @@ const SettingsForm = ({ callbackCloseSettings }) => {
                 id='adultContentFilter'
                 name='adultContentFilter'
                 options={[
-                  { label: t('common:settings.off'), value: 1 },
-                  { label: t('common:settings.moderate'), value: 2 },
-                  { label: t('common:settings.strict'), value: 3 },
+                  { label: t('common:settings.off'), value: 0 },
+                  { label: t('common:settings.moderate'), value: 1 },
+                  { label: t('common:settings.strict'), value: 2 },
                 ]}
                 register={register}
               />
