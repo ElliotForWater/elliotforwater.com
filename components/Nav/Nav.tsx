@@ -14,17 +14,17 @@ const Nav = () => {
   const menuEl = useRef(null)
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { userState, setNextUserState } = useContext(UserContext)
+  const { userState, setUserState } = useContext(UserContext)
 
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = useCallback(() => {
     setIsOpen(true)
-    setNextUserState({ isModalOpen: true })
+    setUserState({ isModalOpen: true })
   }, [])
 
   const handleClose = useCallback(() => {
     setIsOpen(false)
-    setNextUserState({ isModalOpen: false })
+    setUserState({ isModalOpen: false })
   }, [])
 
   useEffect(() => {
