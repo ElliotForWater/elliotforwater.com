@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { UserContext } from '../context/UserContext'
 import { useUserContext } from '../hooks/useUserContext'
+import Router from 'next/router'
+import * as gtag from '../helpers/_gtag'
+import NProgress from 'nprogress' // nprogress module
+
 import '../styles/base.css'
 import '../styles/odometer.css'
-
-import Router from 'next/router'
-import NProgress from 'nprogress' // nprogress module
 import 'nprogress/nprogress.css' // styles of nprogress
 
 import Cookies from 'js-cookie'
@@ -17,9 +18,14 @@ import {
   COOKIE_NAME_SEARCH_COUNT,
 } from '../helpers/_cookies'
 
-// Binding events.
+// Binding routes events.
 Router.events.on('routeChangeStart', () => NProgress.start())
-Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeComplete', (url) => {
+  if (process.env.IS_PRODUCTION) {
+    gtag.pageview(url)
+  }
+  NProgress.done()
+})
 Router.events.on('routeChangeError', () => NProgress.done())
 
 const cookiesName = {
