@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { UserContextProps, UserState, USER_STATE_DEFAULT } from '../context/UserContext'
 import {
   COOKIE_NAME_LANGUAGE,
@@ -8,6 +8,8 @@ import {
 } from '../helpers/_cookies'
 import Cookies from 'js-cookie'
 
+type CookieMap = { [cookieName: string]: string }
+
 const cookiesName = {
   numOfSearches: COOKIE_NAME_SEARCH_COUNT,
   language: COOKIE_NAME_LANGUAGE,
@@ -15,25 +17,29 @@ const cookiesName = {
   openInNewTab: COOKIE_NAME_NEW_TAB,
 }
 
-const mergeCookiesWithUserState = (defaultUserState: UserState): UserState => {
+const mergeCookiesWithUserState = (defaultUserState: UserState, serverCookies?: CookieMap): UserState => {
   const newUserState = { ...defaultUserState }
 
-  const numOfSearches = Cookies.get(cookiesName.numOfSearches)
+  function getCookie(name: string): string {
+    return serverCookies ? serverCookies[name] : Cookies.get(name)
+  }
+
+  const numOfSearches = getCookie(cookiesName.numOfSearches)
   if (numOfSearches !== undefined) {
     newUserState.numOfSearches = Number(numOfSearches)
   }
 
-  const language = Cookies.get(cookiesName.language)
+  const language = getCookie(cookiesName.language)
   if (language !== undefined) {
     newUserState.language = Number(language)
   }
 
-  const adultContentFilter = Cookies.get(cookiesName.adultContentFilter)
+  const adultContentFilter = getCookie(cookiesName.adultContentFilter)
   if (adultContentFilter !== undefined) {
     newUserState.adultContentFilter = Number(adultContentFilter)
   }
 
-  const openInNewTab = Cookies.get(cookiesName.openInNewTab)
+  const openInNewTab = getCookie(cookiesName.openInNewTab)
   if (openInNewTab !== undefined) {
     newUserState.openInNewTab = openInNewTab !== 'false'
   }
@@ -41,9 +47,9 @@ const mergeCookiesWithUserState = (defaultUserState: UserState): UserState => {
   return newUserState
 }
 
-export const useUserStateSyncedWithCookies = (): UserContextProps => {
-  const initialUserState = mergeCookiesWithUserState(USER_STATE_DEFAULT)
-  const [userState, _setUserState] = useState<UserState>(initialUserState)
+export const useUserStateSyncedWithCookies = (serverCookies?: CookieMap): UserContextProps => {
+  const initialUserState = useMemo(() => mergeCookiesWithUserState(USER_STATE_DEFAULT, serverCookies), [])
+  const [userState, _setUserState] = useState(initialUserState)
 
   const setUserState = useCallback((nextState: Partial<UserState>): void => {
     _setUserState((prevState) => {
