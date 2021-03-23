@@ -23,19 +23,24 @@ export default function ButtonAddToBrowser() {
 
   useEffect(() => {
     if (isBrowser && isChrome) {
-      /* eslint-disable-next-line no-undef */
-      chrome.runtime.sendMessage(
-        config.CHROME_EXTENSION_ID,
-        {
-          action: 'id',
-          value: config.CHROME_EXTENSION_ID,
-        },
-        function (response) {
-          if (!response) {
-            return setBrowserName('chrome')
+      /* eslint-disable no-undef */
+      if (chrome.runtime) {
+        chrome.runtime.sendMessage(
+          /* eslint-enable no-undef */
+          config.CHROME_EXTENSION_ID,
+          {
+            action: 'id',
+            value: config.CHROME_EXTENSION_ID,
+          },
+          function (response) {
+            if (!response) {
+              return setBrowserName('chrome')
+            }
           }
-        }
-      )
+        )
+      }
+    } else {
+      return setBrowserName('chrome')
     }
 
     if (isFirefox) {
