@@ -8,6 +8,14 @@ We are very small team, incessantly working on ElliotForWater to make it become 
 If you are considering contributing, there is a lot you could gain from this project: you could work on a project that actually help people in need and make the difference in the world. You will work with modern technologies and will have space to work on medium size task, which will actually make the difference and have your sign once in production.
 And you will work with an open-minded, young team excited to have ideas exchange and to get new inputs.
 
+### System versions
+
+Node 14
+
+npm 6.14.11
+
+nextjs 10
+
 ### Build Status
 
 | Branch  | Status                                                                                                                                                                                                                 |
