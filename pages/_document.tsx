@@ -7,6 +7,12 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+          <link
+            rel='search'
+            type='application/opensearchdescription+xml'
+            title='ElliotForWater'
+            href='https://elliotforwater.com.com/opensearch.xml'
+          />
           {process.env.IS_PRODUCTION && (
             <>
               {/* Global Site Tag (gtag.js) - Google Analytics */}

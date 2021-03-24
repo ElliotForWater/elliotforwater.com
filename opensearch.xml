@@ -1,0 +1,10 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>ElliotForWater</ShortName>
+    <Description>Search Elliot For Water</Description>
+    <InputEncoding>UTF-8</InputEncoding>
+    <LongName>Elliot For Water Search Engine to donate water with each click</LongName>
+    <Image width="16" height="16" type="image/x-icon">https://elliotforwater.com/images/metas/favicon-16x16.png</Image>
+    <Url type="text/html" method="get" template="https://elliotforwater.com/search?query={searchTerms}&amp;type=web"/>
+    <Url type="application/x-suggestions+json" template="https://suggest.finditnowonline.com/SuggestionFeed/Suggestion?format=jsonp&amp;gd=SY1002042&amp;q={searchTerms}"/>
+</OpenSearchDescription>
+
