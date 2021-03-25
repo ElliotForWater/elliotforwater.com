@@ -11,7 +11,7 @@ export default class CustomDocument extends Document {
             rel='search'
             type='application/opensearchdescription+xml'
             title='ElliotForWater'
-            href='https://elliotforwater.com.com/opensearch.xml'
+            href='/opensearch.xml'
           />
           {process.env.IS_PRODUCTION && (
             <>
