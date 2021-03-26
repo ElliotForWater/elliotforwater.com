@@ -8,6 +8,10 @@ module.exports = {
     '/about': ['about'],
     '/terms': ['terms'],
     '/privacy': ['privacy'],
-    '/search': ['search']
-  }
+    '/search': ['search'],
+  },
+  // make sure pages' `getInitialProps` are accessible via
+  // `App.getInitialProps` in `_app`
+  // https://github.com/vinissimus/next-translate#3-configuration
+  staticsHoc: require('hoist-non-react-statics'),
 }

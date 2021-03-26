@@ -66,6 +66,28 @@ describe('App', () => {
     expect(wrapper.find(TestComponent).prop('userState')).toEqual(expectedResult)
   })
 
+  it('should pass user state merged from server cookies to context', function () {
+    const serverCookies = {
+      [COOKIE_NAME_SEARCH_COUNT]: '6',
+      [COOKIE_NAME_NEW_TAB]: 'true',
+      [COOKIE_NAME_ADULT_FILTER]: '0', // deliberately included 0 as an edge case here (falsy)
+    }
+
+    TestComponent = () => null
+
+    const wrapper = mount(
+      <App serverCookies={serverCookies} Component={ContextWrapper} pageProps={null} router={null} />
+    )
+
+    const expectedResult: UserState = {
+      ...USER_STATE_DEFAULT,
+      numOfSearches: 6,
+      openInNewTab: true,
+      adultContentFilter: 0,
+    }
+    expect(wrapper.find(TestComponent).prop('userState')).toEqual(expectedResult)
+  })
+
   it('should pass user state "false" merged from cookies to context', function () {
     // "false" is a special case as booleans get stringified
     setCookies({
