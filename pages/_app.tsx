@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import App, { AppContext } from 'next/app'
 import type { AppProps } from 'next/app'
 import { UserContext } from '../context/UserContext'
 import { useUserStateSyncedWithCookies } from '../hooks/useUserStateSyncedWithCookies'
@@ -20,8 +21,14 @@ Router.events.on('routeChangeComplete', (url) => {
 })
 Router.events.on('routeChangeError', () => NProgress.done())
 
-function ElliotApp({ Component, pageProps }: AppProps) {
-  const user = useUserStateSyncedWithCookies()
+type CookieMap = { [cookieName: string]: string }
+
+interface ElliotAppProps extends AppProps {
+  serverCookies?: CookieMap
+}
+
+function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
+  const user = useUserStateSyncedWithCookies(serverCookies)
 
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
@@ -32,6 +39,17 @@ function ElliotApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </UserContext.Provider>
   )
+}
+
+// Getting cookies from the request on every server-side render.
+// Warning: This disables the ability to perform automatic static optimization.
+// https://nextjs.org/docs/advanced-features/custom-app
+ElliotApp.getInitialProps = async (appContext: AppContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext)
+
+  const serverCookies: CookieMap = appContext.ctx.req && (appContext.ctx.req as any).cookies
+  return { ...appProps, serverCookies }
 }
 
 export default ElliotApp
