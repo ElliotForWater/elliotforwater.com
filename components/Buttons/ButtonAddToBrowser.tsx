@@ -38,9 +38,9 @@ export default function ButtonAddToBrowser() {
             }
           }
         )
+      } else {
+        return setBrowserName('chrome')
       }
-    } else {
-      return setBrowserName('chrome')
     }
 
     if (isFirefox) {
