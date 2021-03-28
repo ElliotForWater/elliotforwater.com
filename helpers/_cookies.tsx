@@ -15,8 +15,28 @@ type CookieName =
 
 export type CookieMap = { [cookieName: string]: string }
 
-export function getCookie(name: CookieName, cookieMap?: CookieMap): string {
-  return cookieMap ? cookieMap[name] : Cookies.get(name)
+function convertCookieValue(name: CookieName, value?: string): string | number | boolean {
+  if (value === undefined) {
+    return value
+  }
+
+  switch (name) {
+    case COOKIE_NAME_SEARCH_COUNT:
+    case COOKIE_NAME_LANGUAGE:
+    case COOKIE_NAME_ADULT_FILTER:
+      return Number(value)
+
+    case COOKIE_NAME_NEW_TAB:
+      return value !== 'false'
+
+    default:
+      return value
+  }
+}
+
+export function getCookie(name: CookieName, cookieMap?: CookieMap) {
+  const value = cookieMap ? cookieMap[name] : Cookies.get(name)
+  return convertCookieValue(name, value)
 }
 
 export function setCookie(name: CookieName, value: string, opts?: { expires: number }): void {
