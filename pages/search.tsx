@@ -429,8 +429,22 @@ interface resultsObj {
 
 // cannot use getServerSideProps yet: https://github.com/vercel/next.js/discussions/17269
 SearchPage.getInitialProps = async ({ req, res, query }) => {
-  const searchQuery = query.query
-  const type = query.type
+  let searchQuery = query.query
+  let type = query.type
+  const oldQuery = query.q
+
+  // fix for legacy query parameters
+  if (oldQuery) {
+    searchQuery = oldQuery
+    type = 'web'
+    if (res) {
+      res.writeHead(301, { Location: `/search?query=${searchQuery}&type=${type}` })
+      return res.end()
+    } else {
+      return history.pushState('', '', `/search?query=${searchQuery}&type=${type}`)
+    }
+  }
+
   if (!searchQuery || !type) {
     if (res) {
       res.writeHead(301, { Location: '/' })
