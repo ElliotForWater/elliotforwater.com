@@ -10,6 +10,7 @@ import NProgress from 'nprogress' // nprogress module
 import '../styles/base.css'
 import '../styles/odometer.css'
 import 'nprogress/nprogress.css' // styles of nprogress
+import { CookieMap } from '../helpers/_cookies'
 
 // Binding routes events.
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -20,8 +21,6 @@ Router.events.on('routeChangeComplete', (url) => {
   NProgress.done()
 })
 Router.events.on('routeChangeError', () => NProgress.done())
-
-type CookieMap = { [cookieName: string]: string }
 
 interface ElliotAppProps extends AppProps {
   serverCookies?: CookieMap
