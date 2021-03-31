@@ -16,7 +16,7 @@ import { CookieMap } from '../helpers/_cookies'
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', (url) => {
   if (process.env.IS_PRODUCTION) {
-    gtag.pageview(url)
+    gtag.pageview(document.title, location.href, url)
   }
   NProgress.done()
 })
