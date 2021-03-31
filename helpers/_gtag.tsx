@@ -1,8 +1,10 @@
 export const GA_TRACKING_ID = 'UA-62300852-1' // This is your GA Tracking ID
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url) => {
+export const pageview = (title, location, url) => {
   window.gtag('config', GA_TRACKING_ID, {
+    page_title: title,
+    page_location: location,
     page_path: url,
   })
 }
