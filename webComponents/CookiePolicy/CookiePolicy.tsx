@@ -1,5 +1,4 @@
-import { COOKIE_NAME_COOKIE_CONSENT } from '../../helpers/_cookies'
-import Cookies from 'js-cookie'
+import { COOKIE_NAME_COOKIE_CONSENT, getCookie, setCookie } from '../../helpers/_cookies'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -63,10 +62,10 @@ template.innerHTML = `
   </div>  
   `
 
+const COOKIE_POLICY_YES = 'yes'
+
 class CookiePolicy extends HTMLElement {
   private root: ShadowRoot
-  private cookiePolicyName: String
-  private cookiePolicyValue: String
 
   constructor() {
     super()
@@ -75,8 +74,6 @@ class CookiePolicy extends HTMLElement {
     this.root.querySelector('.cookie-policy__button').addEventListener('click', () => {
       this.onAccepted()
     })
-    this.cookiePolicyName = COOKIE_NAME_COOKIE_CONSENT
-    this.cookiePolicyValue = 'yes'
   }
 
   public updateDisplay(display): void {
@@ -85,13 +82,13 @@ class CookiePolicy extends HTMLElement {
   }
 
   public connectedCallback(): void {
-    if (Cookies.get(this.cookiePolicyName) === this.cookiePolicyValue) {
+    if (getCookie(COOKIE_NAME_COOKIE_CONSENT) === COOKIE_POLICY_YES) {
       this.updateDisplay('none')
     }
   }
 
   public onAccepted(): void {
-    Cookies.set(this.cookiePolicyName, this.cookiePolicyValue)
+    setCookie(COOKIE_NAME_COOKIE_CONSENT, COOKIE_POLICY_YES)
     this.updateDisplay('none')
   }
 }
