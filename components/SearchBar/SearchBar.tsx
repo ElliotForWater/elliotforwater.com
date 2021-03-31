@@ -169,7 +169,7 @@ const SearchBar = ({ big }: SearchProps) => {
         <div className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <form ref={inputEl}>
             <Input
-              name='q'
+              name='query'
               type='search'
               value={searchValue}
               className={big ? styles.inputBig : styles.input}
