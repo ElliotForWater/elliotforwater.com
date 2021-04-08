@@ -1,26 +1,88 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
-import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
-import fetchContenful from '../helpers/fetchContentful'
+import Hero from '../components/Hero/Hero'
+import fetchContenful from '../helpers/_fetchContentful'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import ContactUsForm from '../components/Forms/Contact/ContactForm'
 
-function About({ quote, firstSectionTitle }) {
+export async function getStaticProps() {
+  const { aboutUsPage } = await fetchContenful(`
+  {
+    aboutUsPage(id: "74N0U1LNjfceeBVytfHC93", preview: false){
+      hero{
+        title,
+        backgroundImage{
+          url
+        }
+      },
+      firstSectionTitle,
+      firstSectionContent,
+      quote,
+      projectsCollection{
+        items{
+          title,
+          conten,
+          image{
+            url,
+            title
+          },
+          ctaLabel,
+          ctaLink
+        }
+      },
+      founderTitle,
+      founder{
+        longDescription,
+        profilePic{
+          url,
+          title
+        }
+      },
+      team,
+      teamPicCollection {
+				items {
+          profilePic {
+            url,
+            title
+          },
+          shortDescription
+        }				
+      },
+    	contactUsTitle
+    }
+  }`)
+
+  // console.log(aboutUsPage)
+
+  return {
+    props: {
+      aboutUsPage: aboutUsPage,
+    },
+  }
+}
+
+function About(aboutUsPage) {
   const { t } = useTranslation()
+  const {
+    hero,
+    firstSectionTitle,
+    firstSectionContent,
+    quote,
+    founderTitle,
+    founder,
+    team,
+    teamPicCollection,
+    contactUsTitle,
+  } = aboutUsPage.aboutUsPage
 
+  console.log(hero.backgroundImage)
   return (
     <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
-      <section className='hero'>
-        <h1>
-          <span className='blueText'>{t('about:title1')}</span>
-          {t('about:title2')}
-          <span className='blueText'>{t('about:title3')}</span>
-          {t('about:title4')}
-        </h1>
-      </section>
+      <Hero imageUrl={hero.backgroundImage.url} title={hero.title} withBrowserCta />
       <section>
-        <h2>Mission</h2>
-        <p>some info about our mission</p>
-        <ButtonAddToBrowser />
+        <h2>{firstSectionTitle}</h2>
+        <p>{firstSectionContent}</p>
       </section>
       <section>
         <blockquote>{quote}</blockquote>
@@ -37,14 +99,32 @@ function About({ quote, firstSectionTitle }) {
           <div className='nextProject'>Ghana</div>
           <div className='nextProject'>India</div>
         </div>
-        <ButtonAddToBrowser />
       </section>
       <section>
-        <h2>Our Founder</h2>
+        <h2>{founderTitle}</h2>
         <div className='founderWrap'>
-          <img src='' alt='Andrea DeMichelis' />
-          <p />
+          <img src={founder?.profilePic?.url} alt={founder?.profilePic?.title} />
+          <div
+            dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(founder?.longDescription.json),
+            }}
+          />
         </div>
+      </section>
+      <section>
+        <h2>{team}</h2>
+        <div className='teamWrap'>
+          {teamPicCollection.items.map((member, index) => (
+            <div key={index}>
+              <img src={member.profilePic.url} alt={member.profilePic.title} />
+              <div>{member.shortDescription}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h3>{contactUsTitle}</h3>
+        <ContactUsForm />
       </section>
 
       <style jsx>
@@ -74,23 +154,6 @@ function About({ quote, firstSectionTitle }) {
       </style>
     </Layout>
   )
-}
-
-export async function getStaticProps() {
-  const { aboutUsPage } = await fetchContenful(`{
-    aboutUsPage(id: "74N0U1LNjfceeBVytfHC93", preview: false){
-        quote,
-        firstSectionTitle
-    }
-  }`)
-  console.log('data', aboutUsPage)
-
-  return {
-    props: {
-      quote: aboutUsPage.quote,
-      firstSectionTitle: aboutUsPage.firstSectionTitle,
-    },
-  }
 }
 
 export default About
