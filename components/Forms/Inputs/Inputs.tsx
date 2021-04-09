@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, SelectHTMLAttributes } from 'react'
+import React, { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 import classnames from 'classnames'
 import styles from './Inputs.module.css'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -44,5 +44,27 @@ export function Select({ options, name, register, rules = {}, errors = {}, ...re
         </option>
       ))}
     </select>
+  )
+}
+
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  register: any // declare register props
+  errors?: any
+  rules?: any
+  name: string
+  rows: number
+  customClassname?: string
+}
+export function Textarea({ name, rows, register, customClassname, rules = {}, errors = {}, ...rest }: TextareaProps) {
+  return (
+    <div className={styles.inputWrap}>
+      <textarea
+        className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.textarea)}
+        name={name}
+        ref={register(rules)}
+        rows={rows}
+        {...rest}
+      />
+    </div>
   )
 }

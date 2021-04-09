@@ -76,18 +76,21 @@ function About(aboutUsPage) {
     contactUsTitle,
   } = aboutUsPage.aboutUsPage
 
-  console.log(hero.backgroundImage)
   return (
     <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
       <Hero imageUrl={hero.backgroundImage.url} title={hero.title} withBrowserCta />
-      <section>
-        <h2>{firstSectionTitle}</h2>
-        <p>{firstSectionContent}</p>
+      <section className='sections'>
+        <div className='containerCenter'>
+          <h2>{firstSectionTitle}</h2>
+          <p>{firstSectionContent}</p>
+        </div>
       </section>
-      <section>
-        <blockquote>{quote}</blockquote>
+      <section className='sections'>
+        <div className='containerCenter'>
+          <blockquote>{quote}</blockquote>
+        </div>
       </section>
-      <section>
+      <section className='sections'>
         <div className='currentProjectWrap'>
           <div>
             <h3>Project</h3>
@@ -100,55 +103,124 @@ function About(aboutUsPage) {
           <div className='nextProject'>India</div>
         </div>
       </section>
-      <section>
-        <h2>{founderTitle}</h2>
-        <div className='founderWrap'>
-          <img src={founder?.profilePic?.url} alt={founder?.profilePic?.title} />
-          <div
-            dangerouslySetInnerHTML={{
-              __html: documentToHtmlString(founder?.longDescription.json),
-            }}
-          />
+      <section className='sections'>
+        <div className='containerCenter'>
+          <h2>{founderTitle}</h2>
+          <div className='founderWrap'>
+            <img src={founder.profilePic?.url} alt={founder.profilePic?.title} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: documentToHtmlString(founder.longDescription.json),
+              }}
+            />
+          </div>
         </div>
       </section>
-      <section>
+      <section className='sections'>
         <h2>{team}</h2>
         <div className='teamWrap'>
           {teamPicCollection.items.map((member, index) => (
-            <div key={index}>
+            <div key={index} className='teamContainer'>
               <img src={member.profilePic.url} alt={member.profilePic.title} />
-              <div>{member.shortDescription}</div>
+              <p>{member.shortDescription}</p>
             </div>
           ))}
         </div>
       </section>
-      <section>
-        <h3>{contactUsTitle}</h3>
-        <ContactUsForm />
+      <section className='sections'>
+        <div className='containerCenter volunteerSection'>
+          <h2>We are open source</h2>
+          <p>Our project is open source and you can help out too</p>
+          <p>Link to Github repo</p>
+
+          <h4>Special thanks goes to:</h4>
+          <div className='volunteerWrap'>
+            {teamPicCollection.items.map((member, index) => (
+              <div key={index} className='volunteerContainer'>
+                <img src={member.profilePic.url} alt={member.profilePic.title} />
+                <p>{member.shortDescription}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className='sections'>
+        <div className='containerCenter'>
+          <h2>{contactUsTitle}</h2>
+          <ContactUsForm />
+        </div>
       </section>
 
       <style jsx>
         {`
-          .section {
-            height: 100vh;
+          .sections {
+            padding: 15px;
+            text-align: center;
           }
 
-          .hero {
-            text-align: right;
+          .sections:nth-child(odd) {
+            background: #f7f7f7;
           }
 
-          .blueText {
-            color: var(--elliot-primary-color, #4aacc2);
+          .containerCenter {
+            max-width: 700px;
+            margin: 0 auto;
+            padding-bottom: 40px;
           }
 
-          .hero:after {
-            content: '';
+          h2 {
+            padding-bottom: 18px;
+            padding-top: 0;
+          }
+
+          blockquote {
+            font-size: 28px;
+            font-size: 2em;
+            font-weight: 700;
+            padding: 20px 0;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 0;
+          }
+
+          .teamWrap,
+          .volunteerWrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .teamContainer {
+            max-width: 25%;
+            margin: 0 20px;
+          }
+
+          .teamContainer img,
+          .volunteerContainer img {
+            border-radius: 50%;
+            max-width: 150px;
             width: 100%;
-            height: 100%;
-            background: url('/images/waves.png') no-repeat;
-            position: absolute;
-            bottom: 0;
-            right: 0;
+          }
+
+          .teamContainer p {
+            padding-top: 15px;
+            font-weight: bold;
+          }
+
+          .volunteerContainer {
+            max-width: 10%;
+            margin: 0 20px;
+          }
+
+          .volunteerSection h4 {
+            padding-top: 40px;
+            padding-bottom: 20px;
+          }
+
+          @media (min-width: 768px) {
+            .sections {
+              padding: 25px;
+            }
           }
         `}
       </style>

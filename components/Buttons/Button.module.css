@@ -37,7 +37,7 @@ PRIMARY BUTTON
     var(--elliotPrimary) 51%,
     var(--elliotSecondary) 100%
   );
-  box-shadow: 1px 1px 12px rgba(225, 215, 215, 0.24);
+  box-shadow: 1px 1px 8px rgba(225, 215, 215, 0.24);
   color: white;
   border-radius: 15px;
   padding: 8px 24px;

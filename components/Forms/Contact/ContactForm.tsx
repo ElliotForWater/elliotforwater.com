@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import ToastList from '../../Toast/ToastList'
 import ButtonPrimary from '../../../components/Buttons/ButtonPrimary'
+import { useForm, FormProvider } from 'react-hook-form'
+import { Input, Textarea } from '../Inputs/Inputs'
+import styles from './ContactForm.module.css'
 
 const ContactForm = () => {
   const [list, setList] = useState([])
   const { t } = useTranslation()
+
+  const methods = useForm()
+  const { handleSubmit, register, errors } = methods
 
   /* eslint-disable-next-line no-shadow */
   enum NOTIFICATION {
@@ -63,28 +69,7 @@ const ContactForm = () => {
     }
   }
 
-  async function contactApiPost(event) {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/contactus`
-
-    const { name, email, phone, msg } = event.target.elements
-    const data = {
-      name: name.value,
-      email: email.value,
-      phone: phone.value,
-      message: msg.value,
-    }
-    const postOptions = {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }
-
-    return fetch(url, postOptions)
-  }
-
-  async function handleSubmit(event) {
+  async function onSubmit(data, event) {
     // Reset any notifications
     setList([])
     showToast(NOTIFICATION.Submit)
@@ -93,7 +78,13 @@ const ContactForm = () => {
     event.preventDefault()
 
     try {
-      const response = await contactApiPost(event)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts/contactus`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
       // handle success
       if (response.ok) {
@@ -116,53 +107,59 @@ const ContactForm = () => {
   }
 
   return (
-    <>
-      <form method='post' onSubmit={handleSubmit}>
-        <div className='row'>
-          <div className='form-group col-sm-6'>
-            <input type='text' className='form-control' id='name' name='name' placeholder={t('common:forms.name')} required />
-          </div>
-          <div className='form-group col-sm-6'>
-            <input type='email' className='form-control' id='email' name='email' placeholder={t('common:forms.email')} required />
-          </div>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Input
+          name='name'
+          type='text'
+          customClassname={styles.formInput}
+          placeholder={t('common:forms.name')}
+          register={register}
+          rules={{
+            required: { value: true, message: 'Please enter your name' },
+          }}
+        />
+        <Input
+          name='email'
+          type='email'
+          customClassname={styles.formInput}
+          placeholder={t('common:forms.email')}
+          errors={errors}
+          register={register}
+          rules={{
+            required: { value: true, message: 'Please enter your email address!' },
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Please enter a valid email address: example@someemail.com',
+            },
+          }}
+        />
+        <Textarea
+          name='msg'
+          customClassname={styles.formInput}
+          placeholder={t('common:forms.message')}
+          rows={10}
+          errors={errors}
+          register={register}
+          rules={{
+            required: { value: true, message: 'Leave us a message so we can contact you back' },
+          }}
+        />
+        <div className={styles.buttons}>
+          <ButtonPrimary>
+            <button type='submit'>{t('common:forms.submit')}</button>
+          </ButtonPrimary>
+          <ToastList toastList={list} position='bottomRight' />
         </div>
-        <div className='row'>
-          <div className='form-group col-md-12'>
-            <input type='tel' className='form-control' id='phone' name='phone' placeholder={t('common:forms.phone')} required />
-          </div>
-        </div>
-        <div className='row'>
-          <div className='form-group col-md-12'>
-            <textarea className='form-control form-control--multiline' id='msg' name='msg' placeholder={t('common:forms.message')} rows={10} required />
-          </div>
-        </div>
-        <div className='row'>
-          <div className='form-group col-md-12'>
-            <input type='tel' className='form-control hidden' id='tel' name='tel' />
-          </div>
-        </div>
-        <div className='form-row'>
-          <div className='col-md-12'>
-            <ButtonPrimary big>
-              <button type='submit'>{t('common:forms.submit')}</button>
-            </ButtonPrimary>
-          </div>
-        </div>
-        <ToastList toastList={list} position='bottomRight' />
       </form>
       <style jsx>
         {`
-          .col-md-12 {
-            display: flex;
-            justify-content: flex-end;
-          }
-
           .hidden {
             display: none;
           }
         `}
       </style>
-    </>
+    </FormProvider>
   )
 }
 
