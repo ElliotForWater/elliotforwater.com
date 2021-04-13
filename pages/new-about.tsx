@@ -5,6 +5,7 @@ import Hero from '../components/Hero/Hero'
 import fetchContenful from '../helpers/_fetchContentful'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
+import ProjectSliders from '../components/Sliders/ProjectSliders'
 
 export async function getStaticProps() {
   const { aboutUsPage } = await fetchContenful(`
@@ -68,6 +69,7 @@ function About(aboutUsPage) {
     hero,
     firstSectionTitle,
     firstSectionContent,
+    projectsCarouselCollection,
     quote,
     founderTitle,
     founder,
@@ -94,13 +96,8 @@ function About(aboutUsPage) {
         <div className='currentProjectWrap'>
           <div>
             <h3>Project</h3>
-            <div>info about the project</div>
           </div>
-          <div>image gallery</div>
-        </div>
-        <div className='nextProjectWrap'>
-          <div className='nextProject'>Ghana</div>
-          <div className='nextProject'>India</div>
+          <ProjectSliders slides={projectsCarouselCollection.items} />
         </div>
       </section>
       <section className='sections'>
