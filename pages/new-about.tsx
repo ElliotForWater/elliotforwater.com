@@ -19,10 +19,10 @@ export async function getStaticProps() {
       firstSectionTitle,
       firstSectionContent,
       quote,
-      projectsCollection{
+      projectsCarouselCollection{
         items{
           title,
-          conten,
+          text,
           image{
             url,
             title
