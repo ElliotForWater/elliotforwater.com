@@ -1,18 +1,26 @@
 import Slider from 'react-slick'
 import ButtonOutline from '../Buttons/ButtonOutline'
-// import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
-  return <div className={className} style={{ ...style, display: 'block', background: 'red' }} onClick={onClick} />
+  return (
+    <div className={className} style={{ ...style, right: '0' }} onClick={onClick}>
+      <FiChevronRight />
+    </div>
+  )
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props
-  return <div className={className} style={{ ...style, display: 'block', background: 'green' }} onClick={onClick} />
+  return (
+    <div className={className} style={{ ...style, left: '0' }} onClick={onClick}>
+      <FiChevronLeft />
+    </div>
+  )
 }
 
 export default function CustomArrows({ slides }) {
@@ -59,6 +67,29 @@ export default function CustomArrows({ slides }) {
             bottom: 20px;
           }
 
+          :global(.slick-dots li button::before) {
+            font-size: 10px;
+          }
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            opacity: 0.3;
+            color: black;
+            font-size: 3em;
+            z-index: 1;
+          }
+
+          :global(.slick-prev:hover),
+          :global(.slick-next:hover) {
+            opacity: 1;
+            color: black;
+          }
+
+          :global(.slick-prev::before),
+          :global(.slick-next::before) {
+            content: '';
+          }
+
           .slideWrap {
             display: flex;
           }
@@ -71,6 +102,9 @@ export default function CustomArrows({ slides }) {
           .slideContent {
             padding: 20px;
             text-align: left;
+            background: var(--elliotLink);
+            width: 50%;
+            color: white;
           }
         `}
       </style>
