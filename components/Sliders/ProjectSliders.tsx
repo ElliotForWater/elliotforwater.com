@@ -1,6 +1,7 @@
 import Slider from 'react-slick'
 import ButtonOutline from '../Buttons/ButtonOutline'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import useWindowResize from '../../hooks/useWindowResize'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -8,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css'
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
   return (
-    <div className={className} style={{ ...style, right: '0' }} onClick={onClick}>
+    <div className={className} style={{ ...style }} onClick={onClick}>
       <FiChevronRight />
     </div>
   )
@@ -17,7 +18,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props
   return (
-    <div className={className} style={{ ...style, left: '0' }} onClick={onClick}>
+    <div className={className} style={{ ...style }} onClick={onClick}>
       <FiChevronLeft />
     </div>
   )
@@ -35,7 +36,7 @@ export default function CustomArrows({ slides }) {
   }
 
   return (
-    <div className='slickWrapper'>
+    <div className='slickWrapper' style={{ width: useWindowResize().width }}>
       <Slider {...settings}>
         {slides.map(({ title, text, image, ctaLabel, ctaLink }, index) => (
           <div key={index}>
@@ -53,14 +54,14 @@ export default function CustomArrows({ slides }) {
       <style jsx>
         {`
           .slickWrapper {
-            height: 500px;
-            width: 100%;
             position: relative;
           }
 
           :global(.slick-slider) {
-            position: absolute;
-            width: 100%;
+             {
+              /* position: absolute;
+            width: 100%; */
+            }
           }
 
           :global(.slick-dots) {
@@ -79,6 +80,14 @@ export default function CustomArrows({ slides }) {
             z-index: 1;
           }
 
+          :global(.slick-next) {
+            right: 35px;
+          }
+
+          :global(.slick-prev) {
+            left: 0;
+          }
+
           :global(.slick-prev:hover),
           :global(.slick-next:hover) {
             opacity: 1;
@@ -91,20 +100,36 @@ export default function CustomArrows({ slides }) {
           }
 
           .slideWrap {
-            display: flex;
+            display: block;
           }
 
           .slideWrap img {
-            width: 50%;
+            width: 100%;
             max-height: 500px;
           }
 
           .slideContent {
             padding: 20px;
-            text-align: left;
+            text-align: center;
             background: var(--elliotLink);
-            width: 50%;
+            width: 100%;
             color: white;
+          }
+
+          @media (min-width: 768px) {
+            .slideWrap {
+              display: flex;
+            }
+
+            .slideWrap img {
+              width: 50%;
+              max-height: 500px;
+            }
+
+            .slideContent {
+              width: 50%;
+              text-align: left;
+            }
           }
         `}
       </style>
