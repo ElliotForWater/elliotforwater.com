@@ -1,35 +1,33 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
-// Hook
-const useWindowSize = () => {
-  const isClient = typeof window === 'object' // Object represents browser window
-  const lastWidth = useRef()
+export function useWindowResize() {
+  const isClient = typeof window === 'object'
 
   function getSize() {
     return {
       width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined,
     }
   }
+  const [width, setWidth] = useState(getSize().width)
+  const [height, setHeight] = useState(getSize().height)
 
-  const [windowSize, setWindowSize] = useState(getSize)
+  const listener = () => {
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+  }
 
   useEffect(() => {
-    if (!isClient) {
-      return false
+    window.addEventListener('resize', listener)
+    return () => {
+      window.removeEventListener('resize', listener)
     }
+  }, [])
 
-    function handleResize() {
-      if (window?.innerWidth !== lastWidth.current) {
-        const width = getSize()
-        lastWidth.current = width
-        setWindowSize(width)
-      }
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, []) // Empty array ensures that effect is only run on mount and unmount
-
-  return windowSize
+  return {
+    width,
+    height,
+  }
 }
 
-export default useWindowSize
+export default useWindowResize

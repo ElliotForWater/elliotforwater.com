@@ -1,3 +1,4 @@
+import React from 'react'
 import Slider from 'react-slick'
 import ButtonOutline from '../Buttons/ButtonOutline'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'

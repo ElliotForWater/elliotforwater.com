@@ -4,7 +4,8 @@ import Layout from '../components/Layout/Layout'
 import Hero from '../components/Hero/Hero'
 import fetchContenful from '../helpers/_fetchContentful'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
-import ProjectSliders from '../components/Sliders/ProjectSliders'
+import dynamic from 'next/dynamic'
+const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders'), { ssr: false })
 
 export async function getStaticProps() {
   const { aboutUsPage } = await fetchContenful(`
@@ -130,7 +131,7 @@ function About(aboutUsPage) {
       </section>
       <section>
         <div className='currentProjectWrap'>
-          <ProjectSliders slides={projectsCarouselCollection.items} />
+          <Projectslides slides={projectsCarouselCollection.items} />
         </div>
       </section>
       <section className='sections'>
