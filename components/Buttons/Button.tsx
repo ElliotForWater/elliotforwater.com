@@ -10,11 +10,29 @@ interface ButtonProps {
   linkHref?: string
   big?: boolean
   outline?: boolean
+  outlineReverse?: boolean
 }
 
-export default function Button({ type, fluid, onClick, children, linkHref, big, outline }: ButtonProps) {
+export default function Button({
+  type,
+  fluid,
+  onClick,
+  children,
+  linkHref,
+  big,
+  outline,
+  outlineReverse,
+}: ButtonProps) {
   return (
-    <div className={classnames(styles.button, styles[type], { [styles.fluid]: fluid, [styles.big]: big, [styles.outline]: outline })} onClick={onClick}>
+    <div
+      className={classnames(styles.button, styles[type], {
+        [styles.fluid]: fluid,
+        [styles.big]: big,
+        [styles.outline]: outline,
+        [styles.outlineReverse]: outlineReverse,
+      })}
+      onClick={onClick}
+    >
       {linkHref ? <a href={linkHref}>{children}</a> : children}
     </div>
   )

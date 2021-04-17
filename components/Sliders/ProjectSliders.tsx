@@ -46,7 +46,11 @@ export default function CustomArrows({ slides }) {
               <div className='slideContent'>
                 <h3>{title}</h3>
                 <p className='text'>{text}</p>
-                {ctaLabel && <ButtonOutline href={ctaLink}>{ctaLabel}</ButtonOutline>}
+                {ctaLabel && (
+                  <ButtonOutline outlineReverse href={ctaLink}>
+                    {ctaLabel}
+                  </ButtonOutline>
+                )}
               </div>
             </div>
           </div>

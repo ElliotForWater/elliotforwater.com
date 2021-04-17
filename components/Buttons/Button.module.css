@@ -109,6 +109,21 @@ OUTLINE BUTTON
   color: white;
 }
 
+.outlineReverse {
+  @extend .outline;
+
+  border: 2px solid white;
+  color: white;
+}
+
+.outlineReverse:hover {
+  color: var(--elliotLink);
+  background-image: none;
+  background-color: white;
+  border: 2px solid transparent;
+  font-weight: bold;
+}
+
 /*
 ================================
 SUBSCRIBE BUTTON
