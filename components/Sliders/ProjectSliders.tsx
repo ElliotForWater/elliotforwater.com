@@ -45,7 +45,7 @@ export default function CustomArrows({ slides }) {
               <img src={image.url} alt={image.title} />
               <div className='slideContent'>
                 <h3>{title}</h3>
-                <p>{text}</p>
+                <p className='text'>{text}</p>
                 {ctaLabel && <ButtonOutline href={ctaLink}>{ctaLabel}</ButtonOutline>}
               </div>
             </div>
@@ -58,15 +58,8 @@ export default function CustomArrows({ slides }) {
             position: relative;
           }
 
-          :global(.slick-slider) {
-             {
-              /* position: absolute;
-            width: 100%; */
-            }
-          }
-
           :global(.slick-dots) {
-            bottom: 20px;
+            bottom: 10px;
           }
 
           :global(.slick-dots li button::before) {
@@ -106,15 +99,20 @@ export default function CustomArrows({ slides }) {
 
           .slideWrap img {
             width: 100%;
-            max-height: 500px;
+            height: 200px;
           }
 
           .slideContent {
             padding: 20px;
+            padding-bottom: 50px;
             text-align: center;
             background: var(--elliotLink);
             width: 100%;
             color: white;
+          }
+
+          .text {
+            padding-bottom: 20px;
           }
 
           @media (min-width: 768px) {
@@ -124,7 +122,6 @@ export default function CustomArrows({ slides }) {
 
             .slideWrap img {
               width: 50%;
-              max-height: 500px;
             }
 
             .slideContent {

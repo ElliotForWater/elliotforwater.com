@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
+import { isBrowser } from '../helpers/_utils'
 
 export function useWindowResize() {
-  const isClient = typeof window === 'object'
-
   function getSize() {
     return {
-      width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined,
+      width: isBrowser ? window.innerWidth : undefined,
+      height: isBrowser ? window.innerHeight : undefined,
     }
   }
   const [width, setWidth] = useState(getSize().width)

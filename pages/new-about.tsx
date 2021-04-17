@@ -85,8 +85,6 @@ export async function getStaticProps() {
     }
   }`)
 
-  // console.log(aboutUsPage.teamPicCollection.items)
-
   return {
     props: {
       aboutUsPage: aboutUsPage,
@@ -120,7 +118,8 @@ function About(aboutUsPage) {
       <Hero imageUrl={hero.backgroundImage.url} title={hero.title} withBrowserCta />
       <section className='sections'>
         <div className='containerCenter'>
-          <h2>{firstSectionTitle}</h2>
+          <h2 className='titleWithDivider'>{firstSectionTitle}</h2>
+          <div className='divider' />
           <p>{firstSectionContent}</p>
         </div>
       </section>
@@ -141,7 +140,7 @@ function About(aboutUsPage) {
             <div className='historyWrap' key={index}>
               <h4>{date}</h4>
               <div>{title}</div>
-              <hr />
+              <div className='historyDivider' />
               <p>{description}</p>
             </div>
           ))}
@@ -158,7 +157,8 @@ function About(aboutUsPage) {
       </section>
       <section className='sections'>
         <div className='teamContainer'>
-          <h2>{team}</h2>
+          <h2 className='titleWithDivider'>{team}</h2>
+          <div className='divider' />
           <div className='teamWrap'>
             {teamPicCollection.items.map((member, index) => (
               <div key={index} className='memberContainer'>
@@ -170,7 +170,7 @@ function About(aboutUsPage) {
           </div>
         </div>
         <div className='volunteersContainer'>
-          <h4>{volunteerTitle}</h4>
+          <h4 className='volunteersTitle'>{volunteerTitle}</h4>
           <div className='volunteersWrap'>
             {volunteersPicCollection.items.map((member, index) => (
               <div key={index} className='volunteerContainer'>
@@ -184,7 +184,8 @@ function About(aboutUsPage) {
       </section>
       <section className='sections'>
         <div className='containerCenter opensourceContainer'>
-          <h2>{opensourceTitle}</h2>
+          <h2 className='titleWithDivider'>{opensourceTitle}</h2>
+          <div className='divider' />
           <p>{opensourceDescription}</p>
           <a href='https://github.com/ElliotForWater/efw-webapp'>https://github.com/ElliotForWater/efw-webapp</a>
         </div>
@@ -222,6 +223,18 @@ function About(aboutUsPage) {
             padding-bottom: 18px;
           }
 
+          .titleWithDivider {
+            padding-bottom: 10px;
+          }
+
+          .divider {
+            height: 4px;
+            width: 100px;
+            margin: 0 auto;
+            background: var(--elliotLink);
+            margin-bottom: 20px;
+          }
+
           blockquote {
             font-size: 28px;
             font-size: 2em;
@@ -234,6 +247,15 @@ function About(aboutUsPage) {
 
           .historyWrap {
             padding-bottom: 40px;
+            max-width: 200px;
+            margin: 0 auto;
+          }
+
+          .historyDivider {
+            height: 4px;
+            width: 50px;
+            background: var(--elliotLink);
+            margin: 5px auto 12px;
           }
 
           .founderWrap img {
@@ -244,16 +266,16 @@ function About(aboutUsPage) {
             padding-bottom: 30px;
           }
 
-          .teamWrap,
-          .volunteersWrap {
+          .teamWrap {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            flex-direction: column;
           }
 
           .memberContainer {
-            max-width: 50%;
-            margin: 0 20px;
+            max-width: 200px;
+            margin: 20px 0 40px 0;
           }
 
           .memberContainer img,
@@ -269,6 +291,16 @@ function About(aboutUsPage) {
 
           .memberDescription {
             font-weight: bold;
+          }
+
+          .volunteersWrap {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+          }
+
+          .volunteersTitle {
+            padding-bottom: 15px;
           }
 
           .volunteerContainer {
