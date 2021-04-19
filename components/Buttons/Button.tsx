@@ -11,7 +11,6 @@ interface ButtonProps {
 }
 
 export default function Button({ fluid, onClick, children, linkHref, size }: ButtonProps) {
-  console.log({ onClick })
   return (
     <div
       className={classnames(styles.button, {

@@ -1,0 +1,37 @@
+.container {
+  max-width: 200px;
+  margin: 20px 0 40px 0;
+  text-align: center;
+}
+
+.container.big {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.container.small {
+  max-width: 15%;
+  margin: 0 20px;
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.pic {
+  border-radius: 50%;
+  max-width: 150px;
+  width: 100%;
+}
+
+.big .pic {
+  max-width: 300px;
+}
+
+.name {
+  padding-top: 15px;
+}
+
+.shortDescription {
+  font-weight: bold;
+  padding-top: 8px;
+}

@@ -5,6 +5,8 @@ import Hero from '../components/Hero/Hero'
 import fetchContenful from '../helpers/_fetchContentful'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
 import dynamic from 'next/dynamic'
+import Person from '../components/Person/Person'
+
 const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders'), { ssr: false })
 
 export async function getStaticProps() {
@@ -92,8 +94,6 @@ export async function getStaticProps() {
   }
 }
 
-// TODO: MAKE PERSON COMPONENT
-
 function About(aboutUsPage) {
   const { t } = useTranslation()
   const {
@@ -152,8 +152,7 @@ function About(aboutUsPage) {
         <div className='containerCenter'>
           <h2>{founderTitle}</h2>
           <div className='founderWrap'>
-            <img src={founder.profilePic.url} alt={founder.profilePic.title} />
-            <p>{founder.longDescription}</p>
+            <Person profilePic={founder.profilePic} longDescription={founder.longDescription} size='big' />
           </div>
         </div>
       </section>
@@ -163,11 +162,12 @@ function About(aboutUsPage) {
           <div className='divider' />
           <div className='teamWrap'>
             {teamPicCollection.items.map((member, index) => (
-              <div key={index} className='memberContainer'>
-                <img src={member.profilePic.url} alt={member.profilePic.title} />
-                <p className='memberName'>{member.name}</p>
-                <p className='memberDescription'>{member.shortDescription}</p>
-              </div>
+              <Person
+                key={index}
+                name={member.name}
+                profilePic={member.profilePic}
+                shortDescription={member.shortDescription}
+              />
             ))}
           </div>
         </div>
@@ -175,11 +175,13 @@ function About(aboutUsPage) {
           <h4 className='volunteersTitle'>{volunteerTitle}</h4>
           <div className='volunteersWrap'>
             {volunteersPicCollection.items.map((member, index) => (
-              <div key={index} className='volunteerContainer'>
-                <img src={member.profilePic.url} alt={member.profilePic.title} />
-                <p className='volunteerName'>{member.name}</p>
-                <p className='volunteerDescription'>{member.shortDescription}</p>
-              </div>
+              <Person
+                key={index}
+                name={member.name}
+                profilePic={member.profilePic}
+                shortDescription={member.shortDescription}
+                size='small'
+              />
             ))}
           </div>
         </div>
@@ -275,26 +277,6 @@ function About(aboutUsPage) {
             flex-direction: column;
           }
 
-          .memberContainer {
-            max-width: 200px;
-            margin: 20px 0 40px 0;
-          }
-
-          .memberContainer img,
-          .volunteerContainer img {
-            border-radius: 50%;
-            max-width: 150px;
-            width: 100%;
-          }
-
-          .memberName {
-            padding-top: 15px;
-          }
-
-          .memberDescription {
-            font-weight: bold;
-          }
-
           .volunteersWrap {
             display: flex;
             justify-content: center;
@@ -303,23 +285,6 @@ function About(aboutUsPage) {
 
           .volunteersTitle {
             padding-bottom: 15px;
-          }
-
-          .volunteerContainer {
-            max-width: 15%;
-            margin: 0 20px;
-            font-size: 15px;
-            line-height: 1.2;
-            text-align: left;
-          }
-
-          .volunteerName {
-            padding-top: 15px;
-          }
-
-          .volunteerDescription {
-            font-weight: bold;
-            padding-top: 8px;
           }
 
           .opensourceContainer h4 {
