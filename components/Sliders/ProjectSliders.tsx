@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from 'react-slick'
-import ButtonOutline from '../Buttons/ButtonOutline'
+import ButtonOutline from '../Buttons/ButtonOutline/ButtonOutline'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import useWindowResize from '../../hooks/useWindowResize'
 
@@ -47,7 +47,11 @@ export default function CustomArrows({ slides }) {
                 <h3>{title}</h3>
                 <p className='text'>{text}</p>
                 {ctaLabel && (
-                  <ButtonOutline outlineReverse href={ctaLink}>
+                  <ButtonOutline
+                    outlineReverse
+                    href={ctaLink}
+                    customStyle={{ color: 'white', hover: 'var(--elliotLink)' }}
+                  >
                     {ctaLabel}
                   </ButtonOutline>
                 )}
@@ -117,6 +121,10 @@ export default function CustomArrows({ slides }) {
 
           .text {
             padding-bottom: 20px;
+          }
+
+          :global(.outlineReverse:hover) {
+            color: var(--elliotLink);
           }
 
           @media (min-width: 768px) {

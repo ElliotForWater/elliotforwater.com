@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonPrimary from '../Buttons/ButtonPrimary'
+import ButtonOutline from '../Buttons/ButtonOutline/ButtonOutline'
 import useTranslation from 'next-translate/useTranslation'
 
 interface IncrementProp {
@@ -14,11 +14,7 @@ const LoadMore = ({ currIndex, incrementIndex }: IncrementProp) => {
     return incrementIndex(currIndex + 1)
   }
 
-  return (
-    <ButtonPrimary outline onClick={handleIncrementIndex}>
-      {t('common:load_more')}
-    </ButtonPrimary>
-  )
+  return <ButtonOutline onClick={handleIncrementIndex}>{t('common:load_more')}</ButtonOutline>
 }
 
 export default LoadMore

@@ -1,6 +1,7 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import ButtonPrimary from './ButtonPrimary'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 describe('ButtonPrimary', () => {
   it('should render with <a> tag', function () {
@@ -9,9 +10,10 @@ describe('ButtonPrimary', () => {
   })
 
   it('should render without <a> tag', function () {
-    const clickMock = jest.fn()
-    const wrap = shallow(<ButtonPrimary onClick={clickMock}>I'm a button</ButtonPrimary>)
-    wrap.simulate('click')
-    expect(clickMock.mock.calls.length).toBe(1)
+    let func = 0
+    render(<ButtonPrimary onClick={() => (func = 1)}>I'm a button</ButtonPrimary>)
+    const btn = screen.getByText("I'm a button")
+    fireEvent.click(btn)
+    expect(func).toEqual(1)
   })
 })

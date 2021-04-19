@@ -6,6 +6,7 @@
   cursor: pointer;
   line-height: 20.4px;
   background: transparent;
+  padding: 8px 24px;
 }
 
 .button button {
@@ -26,131 +27,6 @@
 
 /*
 ================================
-PRIMARY BUTTON
-=====================================
-*/
-.primary {
-  background-size: 200% auto;
-  background-image: linear-gradient(
-    to right,
-    var(--elliotSecondary) 0%,
-    var(--elliotPrimary) 51%,
-    var(--elliotSecondary) 100%
-  );
-  box-shadow: 1px 1px 8px rgba(225, 215, 215, 0.24);
-  color: white;
-  border-radius: 15px;
-  padding: 8px 24px;
-  transition: 0.5s;
-  font-weight: bold;
-}
-
-.primary:hover {
-  background-position: right center;
-}
-
-.primary button {
-  color: white;
-}
-
-.primary a {
-  color: white;
-}
-
-.primary a:hover {
-  color: white;
-}
-
-/*
-================================
-TEXT BUTTON
-=====================================
-*/
-.text {
-  padding: 8px 24px;
-}
-
-.text:hover a {
-  text-decoration: underline;
-}
-
-.text:hover {
-  text-decoration: underline;
-}
-
-/*
-================================
-OUTLINE BUTTON
-=====================================
-*/
-.outline {
-  padding: 8px 24px;
-  background-image: none;
-  border: 2px solid var(--elliotSecondary);
-  color: var(--elliotSecondary);
-}
-
-.outline a {
-  color: var(--elliotSecondary);
-}
-
-.outline:hover {
-  color: white;
-  background-image: linear-gradient(
-    to right,
-    var(--elliotSecondary) 0%,
-    var(--elliotPrimary) 51%,
-    var(--elliotSecondary) 100%
-  );
-  border: 2px solid transparent;
-}
-
-.outline:hover a {
-  color: white;
-}
-
-.outlineReverse {
-  @extend .outline;
-
-  border: 2px solid white;
-  color: white;
-}
-
-.outlineReverse:hover {
-  color: var(--elliotLink);
-  background-image: none;
-  background-color: white;
-  border: 2px solid transparent;
-  font-weight: bold;
-}
-
-/*
-================================
-SUBSCRIBE BUTTON
-=====================================
-*/
-.subscribe {
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 3px;
-  color: black;
-}
-
-.subscribe:hover {
-  color: var(--elliot-primary-color);
-  border-color: var(--elliot-primary-color);
-}
-
-.subscribe a {
-  color: black;
-}
-
-.subscribe a:hover {
-  color: black;
-}
-
-/*
-================================
 BUTTON OPTIONS
 =====================================
 */
@@ -160,4 +36,8 @@ BUTTON OPTIONS
 
 .big {
   padding: 16px 24px;
+}
+
+.small {
+  padding: 5px;
 }

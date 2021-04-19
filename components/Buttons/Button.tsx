@@ -3,33 +3,20 @@ import styles from './Button.module.css'
 import classnames from 'classnames'
 
 interface ButtonProps {
-  type: 'primary' | 'outline' | 'text' | 'subscribe' | 'addToBrowser'
   fluid?: boolean
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
   children: any
   linkHref?: string
-  big?: boolean
-  outline?: boolean
-  outlineReverse?: boolean
+  size?: 'big' | 'small'
 }
 
-export default function Button({
-  type,
-  fluid,
-  onClick,
-  children,
-  linkHref,
-  big,
-  outline,
-  outlineReverse,
-}: ButtonProps) {
+export default function Button({ fluid, onClick, children, linkHref, size }: ButtonProps) {
+  console.log({ onClick })
   return (
     <div
-      className={classnames(styles.button, styles[type], {
+      className={classnames(styles.button, {
         [styles.fluid]: fluid,
-        [styles.big]: big,
-        [styles.outline]: outline,
-        [styles.outlineReverse]: outlineReverse,
+        [styles[size]]: size,
       })}
       onClick={onClick}
     >

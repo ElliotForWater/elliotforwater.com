@@ -6,7 +6,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Water from '../pages/why-water'
 import Layout from '../components/Layout/Layout'
-import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 
 describe('Water', () => {
   it('should render without throwing an error', function () {

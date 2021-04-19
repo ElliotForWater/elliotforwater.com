@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import ToastList from '../../Toast/ToastList'
-import ButtonPrimary from '../../../components/Buttons/ButtonPrimary'
+import ButtonPrimary from '../../Buttons/ButtonPrimary/ButtonPrimary'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input, Textarea } from '../Inputs/Inputs'
 import styles from './ContactForm.module.css'

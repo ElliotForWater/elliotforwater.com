@@ -1,5 +1,5 @@
 import ButtonAddToBrowser from '../Buttons/ButtonAddToBrowser'
-import ButtonPrimary from '../Buttons/ButtonPrimary'
+import ButtonPrimary from '../Buttons/ButtonPrimary/ButtonPrimary'
 import styles from './Hero.module.css'
 
 type HeroProps = {
@@ -19,7 +19,7 @@ const Hero = ({ imageUrl, title, subtitle, withBrowserCta, ctaLabel, ctaLink }: 
         {subtitle && <h2>{subtitle}</h2>}
         {withBrowserCta ? <ButtonAddToBrowser /> : null}
         {ctaLink ? (
-          <ButtonPrimary big linkHref={ctaLink}>
+          <ButtonPrimary size='big' linkHref={ctaLink}>
             {ctaLabel}
           </ButtonPrimary>
         ) : null}

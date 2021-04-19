@@ -92,6 +92,8 @@ export async function getStaticProps() {
   }
 }
 
+// TODO: MAKE PERSON COMPONENT
+
 function About(aboutUsPage) {
   const { t } = useTranslation()
   const {
