@@ -1,10 +1,10 @@
 import React from 'react'
 import ButtonComp from './Button'
-import ButtonPrimaryComp from './ButtonPrimary'
-import TextButtonComp from './TextButton'
-import ButtonSubscribe from './ButtonSubscribe'
+import ButtonPrimaryComp from './ButtonPrimary/ButtonPrimary'
+import TextButtonComp from './TextButton/TextButton'
+import ButtonSubscribe from './ButtonSubscribe/ButtonSubscribe'
 import ButtonAddToBrowserComp from './ButtonAddToBrowser'
-import ButtonOutlineComp from './ButtonOutline'
+import ButtonOutlineComp from './ButtonOutline/ButtonOutline'
 
 export default {
   title: 'Inputs/Button',
@@ -31,20 +31,12 @@ export const Button = () => (
       </ButtonComp>
     </div>
 
-    <h3>Outline</h3>
-    <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '20px' }}>
-      <ButtonComp outline>
-        <a href='#'>Go somewhere</a>
-      </ButtonComp>
-      <ButtonComp outline>Load More</ButtonComp>
-    </div>
-
     <h3>Big</h3>
     <div style={{ display: 'flex', justifyContent: 'space-evenly', marginBottom: '20px' }}>
-      <ButtonComp big>
+      <ButtonComp size='big'>
         <a href='#'>Go somewhere</a>
       </ButtonComp>
-      <ButtonComp big>A bigger button</ButtonComp>
+      <ButtonComp size='big'>A bigger button</ButtonComp>
     </div>
 
     <h3>Fluid</h3>
@@ -60,20 +52,6 @@ export const Button = () => (
 
     <h3>With linkHref</h3>
     <ButtonComp linkHref='#'>Click on me and go to #</ButtonComp>
-
-    <h3>Combo</h3>
-    <p>Big and outline</p>
-    <div style={{ marginBottom: '20px' }}>
-      <ButtonComp big outline>
-        <a href='#'>Go somewhere</a>
-      </ButtonComp>
-    </div>
-    <p>Big and fluid</p>
-    <div style={{ marginBottom: '20px' }}>
-      <ButtonComp big fluid>
-        <a href='#'>Go somewhere</a>
-      </ButtonComp>
-    </div>
   </>
 )
 
@@ -83,7 +61,14 @@ export const ButtonPrimary = () => (
   </ButtonPrimaryComp>
 )
 
-export const ButtonOutline = () => <ButtonOutlineComp>Simple outline</ButtonOutlineComp>
+export const ButtonOutline = () => (
+  <>
+    <ButtonOutlineComp>Simple outline</ButtonOutlineComp>
+    <div style={{ background: 'black', padding: '40px', marginTop: '30px', maxWidth: '200px' }}>
+      <ButtonOutlineComp outlineReverse>Reverse outline</ButtonOutlineComp>
+    </div>
+  </>
+)
 
 export const TextButton = () => <TextButtonComp>I'm just some clickable text</TextButtonComp>
 

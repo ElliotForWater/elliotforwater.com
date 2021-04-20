@@ -6,6 +6,7 @@ module.exports = {
     '/': ['home'],
     '/why-water': ['whyWater'],
     '/about': ['about'],
+    '/new-about': ['about'],
     '/terms': ['terms'],
     '/privacy': ['privacy'],
     '/search': ['search'],

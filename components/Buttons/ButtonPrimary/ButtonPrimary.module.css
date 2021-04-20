@@ -1,0 +1,31 @@
+.primary {
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    var(--elliotSecondary) 0%,
+    var(--elliotPrimary) 51%,
+    var(--elliotSecondary) 100%
+  );
+  box-shadow: 1px 1px 8px rgba(225, 215, 215, 0.24);
+  color: white;
+  border-radius: 15px;
+  transition: 0.5s;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.primary:hover {
+  background-position: right center;
+}
+
+.primary button {
+  color: white;
+}
+
+.primary a {
+  color: white;
+}
+
+.primary a:hover {
+  color: white;
+}

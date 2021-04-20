@@ -1,7 +1,7 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '../components/Layout/Layout'
-import ButtonPrimary from '../components/Buttons/ButtonPrimary'
+import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 
 function Error() {
   const { t } = useTranslation()
@@ -12,7 +12,7 @@ function Error() {
         <h1>{t('common:404.title')}</h1>
         <p>{t('common:404.description')}</p>
         <div className='buttonWrapper'>
-          <ButtonPrimary big linkHref='/'>
+          <ButtonPrimary size='big' linkHref='/'>
             {t('common:backHome')}
           </ButtonPrimary>
         </div>
