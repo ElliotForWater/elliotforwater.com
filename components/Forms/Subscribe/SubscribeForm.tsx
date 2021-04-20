@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input } from '../Inputs/Inputs'
-import ButtonSubscribe from '../../Buttons/ButtonSubscribe'
+import ButtonSubscribe from '../../Buttons/ButtonSubscribe/ButtonSubscribe'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'

@@ -1,0 +1,11 @@
+.text {
+  display: inline-block;
+}
+
+.text:hover a {
+  text-decoration: underline;
+}
+
+.text:hover {
+  text-decoration: underline;
+}
