@@ -4,13 +4,13 @@
   text-align: center;
 }
 
-.container.big {
+.big {
   margin: 0 auto;
   max-width: 400px;
 }
 
-.container.small {
-  max-width: 15%;
+.small {
+  max-width: 80px;
   margin: 0 20px;
   font-size: 15px;
   line-height: 1.2;
@@ -34,4 +34,27 @@
 .shortDescription {
   font-weight: bold;
   padding-top: 8px;
+}
+
+@media (min-width: 1100px) {
+  .small {
+    max-width: 100px;
+    margin: 0 40px;
+  }
+
+  .big {
+    margin: auto;
+    display: flex;
+    max-width: 100%;
+  }
+
+  .big img {
+    width: 50%;
+    margin-right: 40px;
+  }
+
+  .big span {
+    width: 50%;
+    text-align: left;
+  }
 }
