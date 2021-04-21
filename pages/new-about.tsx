@@ -138,14 +138,16 @@ function About(aboutUsPage) {
       <section className='sections'>
         <div className='containerCenter'>
           <h2>{history}</h2>
-          {historyDatesCollection.items.map(({ date, title, description }, index) => (
-            <div className='historyWrap' key={index}>
-              <h4>{date}</h4>
-              <div>{title}</div>
-              <div className='historyDivider' />
-              <p>{description}</p>
-            </div>
-          ))}
+          <div className='historyDatesContainer'>
+            {historyDatesCollection.items.map(({ date, title, description }, index) => (
+              <div className='historyWrap' key={index}>
+                <h4>{date}</h4>
+                <div>{title}</div>
+                <div className='historyDivider' />
+                <p>{description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
       <section className='sections'>
@@ -249,10 +251,16 @@ function About(aboutUsPage) {
             border: 0;
           }
 
+          .historyDatesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+
           .historyWrap {
             padding-bottom: 40px;
             max-width: 200px;
-            margin: 0 auto;
           }
 
           .historyDivider {
@@ -294,11 +302,49 @@ function About(aboutUsPage) {
 
           @media (min-width: 768px) {
             .sections {
-              padding: 25px;
+              padding: 50px 15px;
             }
 
-            .memberContainer {
-              max-width: 25%;
+            h2 {
+              padding-bottom: 25px;
+            }
+
+            .divider {
+              margin-bottom: 30px;
+            }
+
+            blockquote {
+              padding: 40px;
+            }
+
+            .historyDatesContainer {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-evenly;
+            }
+
+            .teamWrap {
+              flex-direction: row;
+              justify-content: space-evenly;
+            }
+          }
+
+          @media (min-width: 1100px) {
+            .sections {
+              padding: 60px 25px;
+            }
+
+            h2 {
+              padding-bottom: 40px;
+            }
+
+            .divider {
+              margin-bottom: 40px;
+            }
+
+            blockquote {
+              padding: 60px;
             }
           }
         `}
