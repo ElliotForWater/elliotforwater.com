@@ -6,3 +6,4 @@ out/
 storybook-static/
 .env.production
 .env.staging
+.env.development

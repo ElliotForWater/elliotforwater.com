@@ -1,10 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  stories: [
-    '../components/**/**/*.stories.@(tsx|js)',
-    '../webComponents/**/**/*.stories.@(tsx|js)',
-  ],
+  stories: ['../components/**/**/*.stories.@(tsx|js)', '../webComponents/**/**/*.stories.@(tsx|js)'],
   addons: ['@storybook/addon-docs'],
   typescript: {
     check: false,
@@ -27,7 +24,18 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            modules: true, // Enable modules to help you using className
+            importLoaders: 1,
+            modules: {
+              auto: true,
+            },
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            postcssOptions: {
+              config: path.resolve(__dirname, '..', 'postcss.config.js'),
+            },
           },
         },
       ],
