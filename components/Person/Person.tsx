@@ -13,9 +13,11 @@ const Person = ({ profilePic, name, shortDescription, longDescription, size }: P
   return (
     <div className={classnames(styles.container, { [styles[size]]: size })}>
       <img src={profilePic.url} alt={profilePic.title} className={styles.pic} />
-      <p className={styles.name}>{name}</p>
-      {shortDescription && <p className={styles.shortDescription}>{shortDescription}</p>}
-      {longDescription && <p className={styles.longDescription}>{longDescription}</p>}
+      <span>
+        {name && <p className={styles.name}>{name}</p>}
+        {shortDescription && <p className={styles.shortDescription}>{shortDescription}</p>}
+        {longDescription && <p className={styles.longDescription}>{longDescription}</p>}
+      </span>
     </div>
   )
 }

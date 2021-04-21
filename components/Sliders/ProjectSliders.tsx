@@ -127,18 +127,43 @@ export default function CustomArrows({ slides }) {
             color: var(--elliotLink);
           }
 
-          @media (min-width: 768px) {
+          @media (min-width: 600px) {
             .slideWrap {
               display: flex;
             }
 
             .slideWrap img {
               width: 50%;
+              height: 240px;
             }
 
             .slideContent {
               width: 50%;
               text-align: left;
+            }
+          }
+
+          @media (min-width: 900px) {
+            .slideWrap img {
+              height: 300px;
+            }
+          }
+
+          @media (min-width: 1200px) {
+            .slideWrap img {
+              height: 400px;
+            }
+          }
+
+          @media (min-width: 1500px) {
+            .slideWrap img {
+              height: 500px;
+            }
+          }
+
+          @media (min-width: 1850px) {
+            .slideWrap img {
+              height: 600px;
             }
           }
         `}
