@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout'
 import Hero from '../components/Hero/Hero'
 import fetchContenful from '../helpers/_fetchContentful'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
+import ReactMarkdown from 'react-markdown'
 import dynamic from 'next/dynamic'
 import Person from '../components/Person/Person'
 import Loader from '../components/Loader/Loader'
@@ -68,7 +69,13 @@ About.getInitialProps = async () => {
             url,
             title
           },
-          shortDescription
+          shortDescription,
+          socialLinksCollection {
+            items {
+              name,
+              link
+            }
+          }
         }
       },
       volunteerTitle,
@@ -88,6 +95,8 @@ About.getInitialProps = async () => {
     	contactUsTitle
     }
   }`)
+
+  console.log('about page', aboutUsPage)
 
   return {
     aboutUsPage: aboutUsPage,
@@ -204,8 +213,9 @@ function About({ aboutUsPage }) {
             <div className='containerCenter opensourceContainer'>
               <h2 className='titleWithDivider'>{opensourceTitle}</h2>
               <div className='divider' />
-              <p>{opensourceDescription}</p>
-              <a href='https://github.com/ElliotForWater/efw-webapp'>https://github.com/ElliotForWater/efw-webapp</a>
+              <p>
+                <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
+              </p>
             </div>
           </section>
           <section className='sections'>
