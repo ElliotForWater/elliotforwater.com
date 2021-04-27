@@ -14,7 +14,15 @@
   margin: 0 20px;
   font-size: 15px;
   line-height: 1.2;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.small span {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .pic {
@@ -25,6 +33,7 @@
 
 .big .pic {
   max-width: 300px;
+  margin-bottom: 30px;
 }
 
 .name {
@@ -36,6 +45,13 @@
   padding-top: 8px;
 }
 
+.socialIcons {
+  padding-top: 10px;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-top: auto;
+}
+
 @media (min-width: 1100px) {
   .small {
     max-width: 100px;
@@ -45,7 +61,10 @@
   .big {
     margin: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 100%;
+    font-size: 16px;
   }
 
   .big img {
