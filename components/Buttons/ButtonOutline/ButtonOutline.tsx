@@ -16,6 +16,7 @@ export default function ButtonOutline(props) {
             color: var(--elliotSecondary);
             font-weight: bold;
             display: inline-block;
+            border-radius: 7px;
           }
 
           .outline a {
@@ -43,6 +44,7 @@ export default function ButtonOutline(props) {
             display: inline-block;
             border: 2px solid white;
             text-transform: uppercase;
+            border-radius: 7px;
 
             color: ${customColor};
           }

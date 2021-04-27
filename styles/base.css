@@ -64,7 +64,7 @@ h2 {
 
 a {
   text-decoration: none;
-  color: var(--BSlink);
+  color: var(--elliotLink);
 }
 
 /* To remove once all form are react-form-hooks */
