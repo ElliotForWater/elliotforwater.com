@@ -44,16 +44,18 @@ export default function CustomArrows({ slides }) {
             <div className='slideWrap'>
               <img src={image.url} alt={image.title} />
               <div className='slideContent'>
-                <h3>{title}</h3>
+                <h3 className='title'>{title}</h3>
                 <p className='text'>{text}</p>
                 {ctaLabel && (
-                  <ButtonOutline
-                    outlineReverse
-                    href={ctaLink}
-                    customStyle={{ color: 'white', hover: 'var(--elliotLink)' }}
-                  >
-                    {ctaLabel}
-                  </ButtonOutline>
+                  <div className='slideButton'>
+                    <ButtonOutline
+                      outlineReverse
+                      href={ctaLink}
+                      customStyle={{ color: 'white', hover: 'var(--elliotLink)' }}
+                    >
+                      {ctaLabel}
+                    </ButtonOutline>
+                  </div>
                 )}
               </div>
             </div>
@@ -76,18 +78,18 @@ export default function CustomArrows({ slides }) {
 
           :global(.slick-prev),
           :global(.slick-next) {
-            opacity: 0.3;
+            opacity: 0.6;
             color: black;
-            font-size: 3em;
+            font-size: 4em;
             z-index: 1;
           }
 
           :global(.slick-next) {
-            right: 35px;
+            right: 40px;
           }
 
           :global(.slick-prev) {
-            left: 0;
+            left: 10px;
           }
 
           :global(.slick-prev:hover),
@@ -117,10 +119,22 @@ export default function CustomArrows({ slides }) {
             background: var(--elliotLink);
             width: 100%;
             color: white;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .title {
+            font-size: 2em;
           }
 
           .text {
             padding-bottom: 20px;
+            padding-right: 30px;
+            text-align: justify;
+          }
+
+          .slideButton {
+            margin-top: auto;
           }
 
           :global(.outlineReverse:hover) {
@@ -134,7 +148,7 @@ export default function CustomArrows({ slides }) {
 
             .slideWrap img {
               width: 50%;
-              height: 240px;
+              height: 340px;
             }
 
             .slideContent {
@@ -145,25 +159,25 @@ export default function CustomArrows({ slides }) {
 
           @media (min-width: 900px) {
             .slideWrap img {
-              height: 300px;
+              height: 400px;
             }
           }
 
           @media (min-width: 1200px) {
             .slideWrap img {
-              height: 400px;
+              height: 500px;
             }
           }
 
           @media (min-width: 1500px) {
             .slideWrap img {
-              height: 500px;
+              height: 600px;
             }
           }
 
           @media (min-width: 1850px) {
             .slideWrap img {
-              height: 600px;
+              height: 700px;
             }
           }
         `}

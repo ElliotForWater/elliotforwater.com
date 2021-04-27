@@ -1,5 +1,6 @@
 import styles from './Person.module.css'
 import classnames from 'classnames'
+import { FiLinkedin, FiInstagram, FiTwitter, FiLink } from 'react-icons/fi'
 
 interface PersonProp {
   name?: string
@@ -7,9 +8,17 @@ interface PersonProp {
   shortDescription?: string
   longDescription?: string
   size?: 'big' | 'small'
+  socialLinks?: any
 }
 
-const Person = ({ profilePic, name, shortDescription, longDescription, size }: PersonProp) => {
+const SOCIAL_ICONS = {
+  instagram: <FiInstagram />,
+  linkedin: <FiLinkedin />,
+  twitter: <FiTwitter />,
+  personal: <FiLink />,
+}
+
+const Person = ({ profilePic, name, shortDescription, longDescription, size, socialLinks }: PersonProp) => {
   return (
     <div className={classnames(styles.container, { [styles[size]]: size })}>
       <img src={profilePic.url} alt={profilePic.title} className={styles.pic} />
@@ -17,6 +26,12 @@ const Person = ({ profilePic, name, shortDescription, longDescription, size }: P
         {name && <p className={styles.name}>{name}</p>}
         {shortDescription && <p className={styles.shortDescription}>{shortDescription}</p>}
         {longDescription && <p className={styles.longDescription}>{longDescription}</p>}
+        {socialLinks &&
+          socialLinks.map((socialLink) => (
+            <a className={styles.socialIcons} href={socialLink.link} key={socialLink.name}>
+              {SOCIAL_ICONS[socialLink.name]}
+            </a>
+          ))}
       </span>
     </div>
   )

@@ -15,8 +15,8 @@ const Hero = ({ imageUrl, title, subtitle, withBrowserCta, ctaLabel, ctaLink }: 
   return (
     <section style={{ backgroundImage: `url(${imageUrl})` }} className={styles.container}>
       <div className={styles.centeredDiv}>
-        <h1>{title}</h1>
-        {subtitle && <h2>{subtitle}</h2>}
+        <h1 className={styles.title}>{title}</h1>
+        {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
         {withBrowserCta ? (
           <span className={styles.button}>
             <ButtonAddToBrowser />

@@ -8,10 +8,15 @@
   );
   box-shadow: 1px 1px 8px rgba(225, 215, 215, 0.24);
   color: white;
-  border-radius: 15px;
+  border-radius: 10px;
   transition: 0.5s;
   font-weight: bold;
   display: inline-block;
+  text-transform: uppercase;
+}
+
+.big {
+  border-radius: 15px;
 }
 
 .primary:hover {

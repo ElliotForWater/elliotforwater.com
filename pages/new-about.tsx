@@ -4,9 +4,11 @@ import Layout from '../components/Layout/Layout'
 import Hero from '../components/Hero/Hero'
 import fetchContenful from '../helpers/_fetchContentful'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
+import ReactMarkdown from 'react-markdown'
 import dynamic from 'next/dynamic'
 import Person from '../components/Person/Person'
 import Loader from '../components/Loader/Loader'
+import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 
 const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders'), { ssr: false })
 
@@ -53,7 +55,7 @@ About.getInitialProps = async () => {
           url,
           title
         },
-        socialLinksCollection {
+        socialLinksCollection(limit: 1) {
           items {
             name,
             link
@@ -68,7 +70,13 @@ About.getInitialProps = async () => {
             url,
             title
           },
-          shortDescription
+          shortDescription,
+          socialLinksCollection(limit: 1) {
+            items {
+              name,
+              link
+            }
+          }
         }
       },
       volunteerTitle,
@@ -81,6 +89,12 @@ About.getInitialProps = async () => {
           },
           shortDescription,
           longDescription,
+          socialLinksCollection(limit: 1) {
+            items {
+              name,
+              link
+            }
+          }
         }
       },
       opensourceTitle,
@@ -88,6 +102,8 @@ About.getInitialProps = async () => {
     	contactUsTitle
     }
   }`)
+
+  console.log(aboutUsPage.volunteersPicCollection.items[1].socialLinksCollection)
 
   return {
     aboutUsPage: aboutUsPage,
@@ -131,7 +147,7 @@ function About({ aboutUsPage }) {
         <>
           <Hero imageUrl={hero.backgroundImage.url} title={hero.title} subtitle={hero.subtitle} withBrowserCta />
           <section className='sections'>
-            <div className='containerCenter'>
+            <div className='containerCenter mission'>
               <h2 className='titleWithDivider'>{firstSectionTitle}</h2>
               <div className='divider' />
               <p>{firstSectionContent}</p>
@@ -148,7 +164,7 @@ function About({ aboutUsPage }) {
             </div>
           </section>
           <section className='sections'>
-            <div className='containerCenter'>
+            <div className='containerCenterLarger'>
               <h2>{history}</h2>
               <div className='historyDatesContainer'>
                 {historyDatesCollection.items.map(({ date, title, description }, index) => (
@@ -163,7 +179,7 @@ function About({ aboutUsPage }) {
             </div>
           </section>
           <section className='sections'>
-            <div className='containerCenter'>
+            <div className='containerCenterLarger'>
               <h2>{founderTitle}</h2>
               <div className='founderWrap'>
                 <Person profilePic={founder.profilePic} longDescription={founder.longDescription} size='big' />
@@ -181,6 +197,7 @@ function About({ aboutUsPage }) {
                     name={member.name}
                     profilePic={member.profilePic}
                     shortDescription={member.shortDescription}
+                    socialLinks={member.socialLinksCollection.items}
                   />
                 ))}
               </div>
@@ -194,6 +211,7 @@ function About({ aboutUsPage }) {
                     name={member.name}
                     profilePic={member.profilePic}
                     shortDescription={member.shortDescription}
+                    socialLinks={member.socialLinksCollection.items}
                     size='small'
                   />
                 ))}
@@ -204,8 +222,12 @@ function About({ aboutUsPage }) {
             <div className='containerCenter opensourceContainer'>
               <h2 className='titleWithDivider'>{opensourceTitle}</h2>
               <div className='divider' />
-              <p>{opensourceDescription}</p>
-              <a href='https://github.com/ElliotForWater/efw-webapp'>https://github.com/ElliotForWater/efw-webapp</a>
+              <p className='opensourceDescription'>
+                <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
+              </p>
+              <ButtonPrimary>
+                <a href='https://github.com/ElliotForWater/efw-webapp'> Join us </a>
+              </ButtonPrimary>
             </div>
           </section>
           <section className='sections'>
@@ -237,6 +259,11 @@ function About({ aboutUsPage }) {
             margin: 0 auto;
           }
 
+          .containerCenterLarger {
+            max-width: 900px;
+            margin: 0 auto;
+          }
+
           h2 {
             padding: 0;
             margin: 0;
@@ -253,6 +280,10 @@ function About({ aboutUsPage }) {
             margin: 0 auto;
             background: var(--elliotLink);
             margin-bottom: 20px;
+          }
+
+          .mission p {
+            font-size: 16px;
           }
 
           blockquote {
@@ -302,7 +333,6 @@ function About({ aboutUsPage }) {
           .volunteersWrap {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
           }
 
           .volunteersTitle {
@@ -327,6 +357,10 @@ function About({ aboutUsPage }) {
               margin-bottom: 30px;
             }
 
+            .mission p {
+              font-size: 16px;
+            }
+
             blockquote {
               padding: 40px;
             }
@@ -334,19 +368,30 @@ function About({ aboutUsPage }) {
             .historyDatesContainer {
               display: flex;
               flex-direction: row;
-              align-items: center;
+              align-items: flex-start;
               justify-content: space-evenly;
+            }
+
+            .historyWrap {
+              padding: 0 20px;
             }
 
             .teamWrap {
               flex-direction: row;
               justify-content: space-evenly;
+              margin-bottom: 40px;
+              align-items: flex-start;
+            }
+
+            .opensourceDescription {
+              font-size: 18px;
+              padding-bottom: 40px;
             }
           }
 
           @media (min-width: 1100px) {
             .sections {
-              padding: 60px 25px;
+              padding: 100px 25px;
             }
 
             h2 {
