@@ -135,7 +135,7 @@ const ContactForm = () => {
           }}
         />
         <Textarea
-          name='msg'
+          name='message'
           customClassname={styles.formInput}
           placeholder={t('common:forms.message')}
           rows={10}
