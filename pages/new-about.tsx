@@ -103,8 +103,6 @@ About.getInitialProps = async () => {
     }
   }`)
 
-  console.log(aboutUsPage.volunteersPicCollection.items[1].socialLinksCollection)
-
   return {
     aboutUsPage: aboutUsPage,
   }

@@ -77,6 +77,8 @@ const ContactForm = () => {
     // Prevent form post back
     event.preventDefault()
 
+    console.log({ data })
+
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts/contactus`, {
         method: 'post',
@@ -85,6 +87,8 @@ const ContactForm = () => {
         },
         body: JSON.stringify(data),
       })
+
+      console.log({ response })
 
       // handle success
       if (response.ok) {
@@ -135,7 +139,7 @@ const ContactForm = () => {
           }}
         />
         <Textarea
-          name='msg'
+          name='message'
           customClassname={styles.formInput}
           placeholder={t('common:forms.message')}
           rows={10}
