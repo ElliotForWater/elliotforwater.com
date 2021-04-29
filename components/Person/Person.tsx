@@ -28,7 +28,7 @@ const Person = ({ profilePic, name, shortDescription, longDescription, size, soc
         {longDescription && <p className={styles.longDescription}>{longDescription}</p>}
         {socialLinks &&
           socialLinks.map((socialLink) => (
-            <a className={styles.socialIcons} href={socialLink.link} key={socialLink.name}>
+            <a className={styles.socialIcons} href={socialLink.link} target='_blank' key={socialLink.name}>
               {SOCIAL_ICONS[socialLink.name]}
             </a>
           ))}
