@@ -65,7 +65,6 @@ export default function CustomArrows({ slides }) {
           </div>
         ))}
       </Slider>
-      <style jsx />
     </div>
   )
 }
