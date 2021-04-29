@@ -1,0 +1,96 @@
+.slickWrapper {
+  position: relative;
+}
+
+.slickWrapper :global(.slick-dots) {
+  bottom: 10px;
+}
+
+.slickWrapper :global(.slick-dots li button::before) {
+  font-size: 10px;
+}
+
+.slickWrapper :global(.slick-prev),
+.slickWrapper :global(.slick-next) {
+  opacity: 0.6;
+  color: black;
+  font-size: 4em;
+  z-index: 1;
+}
+
+.slickWrapper :global(.slick-next) {
+  right: 40px;
+}
+
+.slickWrapper :global(.slick-prev) {
+  left: 10px;
+}
+
+.slickWrapper :global(.slick-prev:hover),
+.slickWrapper :global(.slick-next:hover) {
+  opacity: 1;
+  color: black;
+}
+
+.slickWrapper :global(.slick-prev::before),
+.slickWrapper :global(.slick-next::before) {
+  content: '';
+}
+
+.slideWrap {
+  display: block;
+}
+
+.slideImg {
+  width: 100%;
+}
+
+.slideImg img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.slideContent {
+  padding: 20px;
+  padding-bottom: 50px;
+  text-align: center;
+  background: var(--elliotLink);
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2em;
+}
+
+.text {
+  padding-bottom: 20px;
+  padding-right: 30px;
+  text-align: justify;
+}
+
+.slideButton {
+  margin-top: auto;
+}
+
+.slickWrapper :global(.outlineReverse:hover) {
+  color: var(--elliotLink);
+}
+
+@media (min-width: 768px) {
+  .slideWrap {
+    display: flex;
+  }
+
+  .slideImg {
+    width: 50%;
+  }
+
+  .slideContent {
+    width: 50%;
+    text-align: left;
+  }
+}
