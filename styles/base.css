@@ -67,6 +67,12 @@ a {
   color: var(--elliotLink);
 }
 
+/* to remove when get rid of bootstrap */
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
 /* To remove once all form are react-form-hooks */
 .input:focus-visible {
   outline: 1px solid black;

@@ -8,9 +8,10 @@ interface ButtonProps {
   children: any
   linkHref?: string
   size?: 'big' | 'small'
+  target?: string
 }
 
-export default function Button({ fluid, onClick, children, linkHref, size }: ButtonProps) {
+export default function Button({ fluid, onClick, children, linkHref, target = '_self', size }: ButtonProps) {
   return (
     <div
       className={classnames(styles.button, {
@@ -19,7 +20,13 @@ export default function Button({ fluid, onClick, children, linkHref, size }: But
       })}
       onClick={onClick}
     >
-      {linkHref ? <a href={linkHref}>{children}</a> : children}
+      {linkHref ? (
+        <a href={linkHref} target={target}>
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </div>
   )
 }
