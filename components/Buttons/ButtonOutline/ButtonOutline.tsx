@@ -49,8 +49,8 @@ export default function ButtonOutline(props) {
             color: ${customColor};
           }
 
-          .outlineReverse a {
-            color: ${customColor};
+          .outlineReverse :global(a) {
+            color: white;
           }
 
           .outlineReverse:hover {
@@ -60,7 +60,7 @@ export default function ButtonOutline(props) {
             border: 2px solid transparent;
           }
 
-          .outlineReverse:hover a {
+          .outlineReverse:hover :global(a) {
             color: ${customColorHover};
           }
         `}

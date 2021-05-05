@@ -26,12 +26,15 @@ const Person = ({ profilePic, name, shortDescription, longDescription, size, soc
         {name && <p className={styles.name}>{name}</p>}
         {shortDescription && <p className={styles.shortDescription}>{shortDescription}</p>}
         {longDescription && <p className={styles.longDescription}>{longDescription}</p>}
-        {socialLinks &&
-          socialLinks.map((socialLink) => (
-            <a className={styles.socialIcons} href={socialLink.link} target='_blank' key={socialLink.name}>
-              {SOCIAL_ICONS[socialLink.name]}
-            </a>
-          ))}
+        {socialLinks && (
+          <div>
+            {socialLinks.map((socialLink) => (
+              <a className={styles.socialIcons} href={socialLink.link} target='_blank' key={socialLink.name}>
+                {SOCIAL_ICONS[socialLink.name]}
+              </a>
+            ))}
+          </div>
+        )}
       </span>
     </div>
   )

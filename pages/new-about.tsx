@@ -55,7 +55,7 @@ About.getInitialProps = async () => {
           url,
           title
         },
-        socialLinksCollection(limit: 1) {
+        socialLinksCollection(limit: 4) {
           items {
             name,
             link
@@ -71,7 +71,7 @@ About.getInitialProps = async () => {
             title
           },
           shortDescription,
-          socialLinksCollection(limit: 1) {
+          socialLinksCollection(limit: 4) {
             items {
               name,
               link
@@ -89,7 +89,7 @@ About.getInitialProps = async () => {
           },
           shortDescription,
           longDescription,
-          socialLinksCollection(limit: 1) {
+          socialLinksCollection(limit: 4) {
             items {
               name,
               link
@@ -342,6 +342,11 @@ function About({ aboutUsPage }) {
             padding-bottom: 20px;
           }
 
+          .opensourceDescription {
+            font-size: 18px;
+            padding-bottom: 40px;
+          }
+
           @media (min-width: 768px) {
             .sections {
               padding: 50px 15px;
@@ -379,11 +384,6 @@ function About({ aboutUsPage }) {
               justify-content: space-evenly;
               margin-bottom: 40px;
               align-items: flex-start;
-            }
-
-            .opensourceDescription {
-              font-size: 18px;
-              padding-bottom: 40px;
             }
           }
 
