@@ -1,343 +1,407 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import Trans from 'next-translate/Trans'
 import Layout from '../components/Layout/Layout'
-import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
+import Hero from '../components/Hero/Hero'
+import fetchContenful from '../helpers/_fetchContentful'
 import ContactUsForm from '../components/Forms/Contact/ContactForm'
+import ReactMarkdown from 'react-markdown'
+import dynamic from 'next/dynamic'
+import Person from '../components/Person/Person'
+import Loader from '../components/Loader/Loader'
+import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 
-const ComponentSpan = (props) => <p className='facts__text' {...props} />
+const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders'), { ssr: false })
 
-function About() {
+About.getInitialProps = async () => {
+  const { aboutUsPage } = await fetchContenful(`
+  {
+    aboutUsPage(id: "74N0U1LNjfceeBVytfHC93", preview: false){
+      hero{
+        title,
+        subtitle,
+        backgroundImage{
+          url
+        }
+      },
+      firstSectionTitle,
+      firstSectionContent,
+      quote,
+      projectTitle,
+      projectsCarouselCollection{
+        items{
+          title,
+          text,
+          image{
+            url,
+            title
+          },
+          ctaLabel,
+          ctaLink
+        }
+      },
+      history,
+      historyDatesCollection{
+        items {
+          date,
+          title,
+          description
+        }
+      },
+      founderTitle,
+      founder{
+        name,
+        longDescription,
+        profilePic{
+          url,
+          title
+        },
+        socialLinksCollection(limit: 4) {
+          items {
+            name,
+            link
+          }
+        }
+      },
+      team,
+      teamPicCollection{
+        items {
+          name,
+          profilePic {
+            url,
+            title
+          },
+          shortDescription,
+          socialLinksCollection(limit: 4) {
+            items {
+              name,
+              link
+            }
+          }
+        }
+      },
+      volunteerTitle,
+      volunteersPicCollection{
+        items {
+          name,
+          profilePic {
+            url,
+            title
+          },
+          shortDescription,
+          longDescription,
+          socialLinksCollection(limit: 4) {
+            items {
+              name,
+              link
+            }
+          }
+        }
+      },
+      opensourceTitle,
+      opensourceDescription,
+    	contactUsTitle
+    }
+  }`)
+
+  return {
+    aboutUsPage: aboutUsPage,
+  }
+}
+
+function About({ aboutUsPage }) {
   const { t } = useTranslation()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (aboutUsPage) {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const {
+    hero,
+    firstSectionTitle,
+    firstSectionContent,
+    projectsCarouselCollection,
+    quote,
+    history,
+    historyDatesCollection,
+    founderTitle,
+    founder,
+    team,
+    teamPicCollection,
+    volunteerTitle,
+    volunteersPicCollection,
+    opensourceTitle,
+    opensourceDescription,
+    contactUsTitle,
+  } = aboutUsPage
 
   return (
     <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
-      <div className='about-header'>
-        <p className='about-header__text about-header__text--blue'>{t('about:title1')}</p>
-        <p className='about-header__text'>{t('about:title2')}</p>
-        <p className='about-header__text about-header__text--blue'>{t('about:title3')}</p>
-        <p className='about-header__text'>{t('about:title4')}</p>
-      </div>
-      <div className='background-wrapper'>
-        <img className='background' src='/images/waves.png' alt='Change' />
-      </div>
-      <div className='show-more show-more--top20'>
-        <p className='show-more__title'>{t('common:learn_more')}</p>
-        <a href='#learn-more' className='show-more__link'>
-          <i className='fas fa-chevron-down show-more__icon' />
-        </a>
-      </div>
-      <section id='learn-more' className='section section--centered learn-more'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-12'>
-              <div className='hidden-xs'>
-                <div className='facts facts--large'>
-                  <div className='flex'>
-                    <div>
-                      <img className='facts__img' src='/images/geyser.png' alt='Change' />
-                    </div>
-                    <div className='facts__info'>
-                      <p className='facts__title'>{t('about:facts_title')}</p>
-                      <p className='facts__text'>{t('about:facts_description1')}</p>
-                      <p className='facts__text'>{t('about:facts_description2')}</p>
-                      <p className='facts__text'>{t('about:facts_description3')}</p>
-                      <p className='facts__text'>{t('about:facts_description4')}</p>
-                      <Trans
-                        i18nKey='about:facts_description5'
-                        components={[
-                          /* eslint-disable-next-line react/jsx-key */
-                          <ComponentSpan />,
-                          /* eslint-disable-next-line react/jsx-key */
-                          <a
-                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
-                            target='_blank'
-                          />,
-                          /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://wellfound.org.uk/' target='_blank' />,
-                        ]}
-                      />
-                    </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Hero imageUrl={hero.backgroundImage.url} title={hero.title} subtitle={hero.subtitle} withBrowserCta />
+          <section className='sections'>
+            <div className='containerCenter mission'>
+              <h2 className='titleWithDivider'>{firstSectionTitle}</h2>
+              <div className='divider' />
+              <p>{firstSectionContent}</p>
+            </div>
+          </section>
+          <section className='sections'>
+            <div className='containerCenter'>
+              <blockquote>{quote}</blockquote>
+            </div>
+          </section>
+          <section>
+            <div className='currentProjectWrap'>
+              <Projectslides slides={projectsCarouselCollection.items} />
+            </div>
+          </section>
+          <section className='sections'>
+            <div className='containerCenterLarger'>
+              <h2>{history}</h2>
+              <div className='historyDatesContainer'>
+                {historyDatesCollection.items.map(({ date, title, description }, index) => (
+                  <div className='historyWrap' key={index}>
+                    <h4>{date}</h4>
+                    <div>{title}</div>
+                    <div className='historyDivider' />
+                    <p>{description}</p>
                   </div>
-                  <div className='cta'>
-                    <ButtonAddToBrowser />
-                  </div>
-                </div>
-              </div>
-              <div className='hidden-sm hidden-md hidden-lg'>
-                <div className='facts facts--small shadow'>
-                  <div className='flex'>
-                    <div>
-                      <img className='facts__img' src='/images/geyser.png' alt='Change' />
-                    </div>
-                    <div className='facts__info'>
-                      <p className='facts__title'>{t('about:about:facts_title')}</p>
-                      <p className='facts__text'>{t('about:facts_description1')}</p>
-                      <p className='facts__text'>{t('about:facts_description2')}</p>
-                      <p className='facts__text'>{t('about:facts_description3')}</p>
-                      <p className='facts__text'>{t('about:facts_description4')}</p>
-                      <Trans
-                        i18nKey='about:facts_description5'
-                        components={[
-                          /* eslint-disable-next-line react/jsx-key */
-                          <ComponentSpan />,
-                          /* eslint-disable-next-line react/jsx-key */
-                          <a
-                            href='https://drive.google.com/drive/folders/12KXoGXsyyvbxRXDOK8BfOVbx-Xv36i9G?usp=sharing'
-                            target='_blank'
-                          />,
-                          /* eslint-disable-next-line react/jsx-key */
-                          <a href='https://wellfound.org.uk/' target='_blank' />,
-                        ]}
-                      />
-                    </div>
-                  </div>
-                  <div className='elliot-btn-group'>
-                    <a
-                      className='btn btn-primary big home-text__link home-text__chrome shadow'
-                      href='https://chrome.google.com/webstore/detail/elliot-for-water/ddfnnfelkcabbeebchaegpcdcmdekoim'
-                      target='_blank'
-                    >
-                      {t('common:addToChrome')}
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <div className='show-more'>
-        <p className='show-more__title'>{t('about:contact_us')}</p>
-        <a href='#contact-us' className='show-more__link'>
-          <i className='fas fa-chevron-down show-more__icon' />
-        </a>
-      </div>
-      <section className='section contact-us' id='contact-us'>
-        <h2 className='contact-us__title'>{t('about:contact_us')}</h2>
-        <ContactUsForm />
-      </section>
+          </section>
+          <section className='sections'>
+            <div className='containerCenterLarger'>
+              <h2>{founderTitle}</h2>
+              <div className='founderWrap'>
+                <Person profilePic={founder.profilePic} longDescription={founder.longDescription} size='big' />
+              </div>
+            </div>
+          </section>
+          <section className='sections'>
+            <div className='teamContainer'>
+              <h2 className='titleWithDivider'>{team}</h2>
+              <div className='divider' />
+              <div className='teamWrap'>
+                {teamPicCollection.items.map((member, index) => (
+                  <Person
+                    key={index}
+                    name={member.name}
+                    profilePic={member.profilePic}
+                    shortDescription={member.shortDescription}
+                    socialLinks={member.socialLinksCollection.items}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='volunteersContainer'>
+              <h4 className='volunteersTitle'>{volunteerTitle}</h4>
+              <div className='volunteersWrap'>
+                {volunteersPicCollection.items.map((member, index) => (
+                  <Person
+                    key={index}
+                    name={member.name}
+                    profilePic={member.profilePic}
+                    shortDescription={member.shortDescription}
+                    socialLinks={member.socialLinksCollection.items}
+                    size='small'
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className='sections'>
+            <div className='containerCenter opensourceContainer'>
+              <h2 className='titleWithDivider'>{opensourceTitle}</h2>
+              <div className='divider' />
+              <p className='opensourceDescription'>
+                <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
+              </p>
+              <ButtonPrimary linkHref='https://github.com/ElliotForWater/efw-webapp' target='_blank'>
+                Join us
+              </ButtonPrimary>
+            </div>
+          </section>
+          <section className='sections'>
+            <div className='containerCenter'>
+              <h2>{contactUsTitle}</h2>
+              <ContactUsForm />
+            </div>
+          </section>
+        </>
+      )}
       <style jsx>
         {`
-          /* ==================================================
-            Header text
-          ================================================== */
-          .about-header {
-            font-size: 50px;
-            font-size: 6vw;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 12%;
-            margin-right: 7%;
-            letter-spacing: -1.5px;
-            line-height: 0.8em;
-          }
-
-          .about-header__text {
-            margin: 0 0 18px 0;
-          }
-          .about-header__text--blue {
-            color: var(--elliot-primary-color, #4aacc2);
-          }
-
-          /* ==================================================
-            Show More
-          ================================================== */
-          .show-more {
+          .sections {
+            padding: 40px 15px;
             text-align: center;
           }
 
-          .show-more__title {
-            margin-bottom: 0;
-            font-size: 12px;
+          .sectionAllWidth {
+            padding: 15px 0;
+            text-align: center;
           }
 
-          .chevron {
-            position: relative;
-            display: block;
-            height: 20px;
-            right: 10px;
-            top: -2em;
+          .sections:nth-child(odd) {
+            background: #f7f7f7;
           }
 
-          .show-more__link {
-            display: inline-block;
+          .containerCenter {
+            max-width: 700px;
+            margin: 0 auto;
           }
 
-          .show-more__link:hover {
-            text-decoration: none;
+          .containerCenterLarger {
+            max-width: 900px;
+            margin: 0 auto;
           }
 
-          .chevron::before,
-          .chevron::after {
-            position: absolute;
-            display: block;
-            content: '';
-            border: 10px solid transparent;
+          h2 {
+            padding: 0;
+            margin: 0;
+            padding-bottom: 18px;
           }
 
-          .chevron::before {
-            top: 0;
-            border-top-color: var(--black, black);
+          .titleWithDivider {
+            padding-bottom: 10px;
           }
 
-          .chevron::after {
-            top: -2px;
-            border-top-color: #fff;
-          }
-
-          /* ==================================================
-            Learn More
-          ================================================== */
-          .background-wrapper {
-            position: relative;
-          }
-
-          .show-more--top30 {
-            margin-top: 30%;
-          }
-
-          .show-more--top20 {
-            margin-top: 20%;
-          }
-
-          .facts {
-            padding: 10px;
-            text-align: left;
-            display: inline-block;
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .facts__img {
-            height: 50vw;
-            margin-right: 10px;
-          }
-
-          .facts__info {
-            width: 44vw;
-            text-align: justify;
-          }
-
-          .facts__title {
-            font-size: 2vw;
-            font-weight: 600;
-            letter-spacing: 0em;
-            word-spacing: 0.4em;
-            line-height: 1.25em;
-          }
-
-          .facts__text {
-            font-size: 1.5vw;
-            letter-spacing: 1px;
-            line-height: 1.25em;
-          }
-
-          .facts__text a {
-            color: var(--elliotPrimary);
-          }
-
-          .facts__text--blue {
-            margin-top: 2%;
-            letter-spacing: 2px;
-            color: #48adc3;
-            font-weight: bold;
-          }
-
-          .flex {
+          .divider {
+            height: 4px;
+            width: 100px;
+            margin: 0 auto;
+            background: var(--elliotLink);
             margin-bottom: 20px;
           }
 
-          .buttonChrome {
-            margin-top: 20px;
+          .mission p {
+            font-size: 16px;
           }
 
-          /* ==================================================
-            Contact
-          ================================================== */
-          .contact-us {
-            position: relative;
-            text-align: left;
-            letter-spacing: 2.5px;
-            margin: 15% auto;
-            width: 70%;
-          }
-
-          .contact-us__title {
-            margin-top: 7%;
+          blockquote {
+            font-size: 28px;
+            font-size: 2em;
             font-weight: 700;
+            padding: 20px 0;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 0;
           }
 
-          /* ==================================================
-            Media Styles
-          ================================================== */
-          @media (max-width: 768px) {
-            .learn-more {
-              margin: 18% 6%;
-            }
-            .facts__img {
-              height: 26vw;
-            }
-            .facts__info {
-              width: 54vw;
-            }
-            .facts__title {
-              font-size: 2.2vw;
-            }
-            .facts__text {
-              font-size: 1.8vw;
-            }
-
-            /* New style */
-            .cta {
-              margin-top: 20px;
-            }
-            /* Finish new style */
+          .historyDatesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
           }
 
-          @media (max-width: 600px) {
-            .about-header {
-              font-size: 8vw;
-            }
-            .facts__img {
-              height: 30vw;
-            }
-            .facts__info {
-              width: 64vw;
-            }
-            .facts__title {
-              font-size: 2.5vw;
-            }
-            .facts__text {
-              font-size: 2vw;
+          .historyWrap {
+            padding-bottom: 40px;
+            max-width: 200px;
+          }
+
+          .historyDivider {
+            height: 4px;
+            width: 50px;
+            background: var(--elliotLink);
+            margin: 5px auto 12px;
+          }
+
+          .founderWrap img {
+            padding-bottom: 20px;
+          }
+
+          .teamContainer {
+            padding-bottom: 30px;
+          }
+
+          .teamWrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+
+          .volunteersWrap {
+            display: flex;
+            justify-content: center;
+          }
+
+          .volunteersTitle {
+            padding-bottom: 15px;
+          }
+
+          .opensourceContainer h4 {
+            padding-top: 40px;
+            padding-bottom: 20px;
+          }
+
+          .opensourceDescription {
+            font-size: 18px;
+            padding-bottom: 40px;
+          }
+
+          @media (min-width: 768px) {
+            .sections {
+              padding: 50px 15px;
             }
 
-            .contactUs {
-              margin: 15% auto;
-              width: 90%;
+            h2 {
+              padding-bottom: 25px;
+            }
+
+            .divider {
+              margin-bottom: 30px;
+            }
+
+            .mission p {
+              font-size: 16px;
+            }
+
+            blockquote {
+              padding: 40px;
+            }
+
+            .historyDatesContainer {
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              justify-content: space-evenly;
+            }
+
+            .historyWrap {
+              padding: 0 20px;
+            }
+
+            .teamWrap {
+              flex-direction: row;
+              justify-content: space-evenly;
+              margin-bottom: 40px;
+              align-items: flex-start;
             }
           }
 
-          @media (max-width: 480px) {
-            .about-header {
-              font-size: 7vw;
-              line-height: 12px;
+          @media (min-width: 1100px) {
+            .sections {
+              padding: 100px 25px;
             }
-            .facts__img {
-              height: 46vw;
+
+            h2 {
+              padding-bottom: 40px;
             }
-            .facts__info {
-              width: 70vw;
+
+            .divider {
+              margin-bottom: 40px;
             }
-            .facts__title {
-              font-size: 3.5vw;
-            }
-            .facts__text {
-              font-size: 2.8vw;
-              letter-spacing: 0.4px;
+
+            blockquote {
+              padding: 60px;
             }
           }
         `}
@@ -345,4 +409,5 @@ function About() {
     </Layout>
   )
 }
+
 export default About
