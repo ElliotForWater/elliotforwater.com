@@ -96,3 +96,7 @@
 .navButton :global(div) {
   padding: 0;
 }
+
+.navButton :global(span:hover a) {
+  text-decoration: none;
+}
