@@ -28,7 +28,6 @@ interface ElliotAppProps extends AppProps {
 
 function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
   const user = useUserStateSyncedWithCookies(serverCookies)
-
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
   }, [])

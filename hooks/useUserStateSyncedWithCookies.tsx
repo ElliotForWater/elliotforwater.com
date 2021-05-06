@@ -42,6 +42,8 @@ export const useUserStateSyncedWithCookies = (serverCookies?: CookieMap): UserCo
         ...prevState,
         ...nextState,
       }
+      newState.adultContentFilter = Number(newState.adultContentFilter)
+      newState.language = Number(newState.language)
 
       for (const key in nextState) {
         if (Object.getOwnPropertyDescriptor(cookiesName, key)) {
