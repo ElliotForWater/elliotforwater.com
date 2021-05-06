@@ -456,8 +456,18 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   const queryNoWhite = queryNoWitheSpace(searchQuery)
   let results: resultsObj = null
   let activeTab = findTabByType(type)
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  const adultContentCookie = req ? req.cookies[COOKIE_NAME_ADULT_FILTER] || 1 : getCookie(COOKIE_NAME_ADULT_FILTER) || 1
+
+  let userAgent
+  let adultContentCookie
+  if (req) {
+    userAgent = req.headers['user-agent']
+    adultContentCookie = isNaN(Number(req.cookies[COOKIE_NAME_ADULT_FILTER]))
+      ? 1
+      : req.cookies[COOKIE_NAME_ADULT_FILTER]
+  } else {
+    userAgent = navigator.userAgent
+    adultContentCookie = getCookie(COOKIE_NAME_ADULT_FILTER) === undefined ? 1 : getCookie(COOKIE_NAME_ADULT_FILTER)
+  }
 
   if (type === 'map') {
     activeTab = findTabByType('map')

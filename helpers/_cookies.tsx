@@ -23,8 +23,10 @@ function convertCookieValue(name: CookieName, value?: string): string | number |
   switch (name) {
     case COOKIE_NAME_SEARCH_COUNT:
     case COOKIE_NAME_LANGUAGE:
-    case COOKIE_NAME_ADULT_FILTER:
       return Number(value)
+
+    case COOKIE_NAME_ADULT_FILTER:
+      return isNaN(Number(value)) ? 1 : Number(value)
 
     case COOKIE_NAME_NEW_TAB:
       return value !== 'false'
