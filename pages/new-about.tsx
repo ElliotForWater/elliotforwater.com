@@ -223,8 +223,8 @@ function About({ aboutUsPage }) {
               <p className='opensourceDescription'>
                 <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
               </p>
-              <ButtonPrimary>
-                <a href='https://github.com/ElliotForWater/efw-webapp'> Join us </a>
+              <ButtonPrimary linkHref='https://github.com/ElliotForWater/efw-webapp' target='_blank'>
+                Join us
               </ButtonPrimary>
             </div>
           </section>
