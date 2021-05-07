@@ -1,10 +1,15 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import { isChrome } from 'react-device-detect'
+// import ReactMarkdown from 'react-markdown'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import fetchContenful from '../helpers/_fetchContentful'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
+import Loader from '../components/Loader/Loader'
+
 import styles from './index.module.css'
 
 let Odometer = null
@@ -20,11 +25,55 @@ function getLitersOfWater(litersOfWaterPerMillisecond) {
   return millisecondsDifference / litersOfWaterPerMillisecond
 }
 
-const App: FC = () => {
+Home.getInitialProps = async () => {
+  // RichFormat text with Graphql: https://www.contentful.com/blog/2021/04/14/rendering-linked-assets-entries-in-contentful/
+  const { homePage } = await fetchContenful(`
+  {
+    homePage(id: "fl7zyfAyVPWvG3qJBuspf", preview: false){
+      searchFieldTitle,
+      counterTitle,
+    	intro {
+        title,
+        content { 
+        	json,
+        },
+      },
+    	video {
+        title,
+        url
+      },
+    	howItWorks,
+    	howItWorksCardsCollection {
+        items {
+          title,
+          description
+        }
+      },
+    	waterGoal {
+        title,
+        content{ 
+        	json,
+        },
+      },
+    	newsletterTitle
+  }    
+}`)
+
+  return {
+    homePage: homePage,
+  }
+}
+
+function Home({ homePage }) {
   const { t } = useTranslation()
   const [odometerValue, setOdometerValue] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
+    if (homePage) {
+      setIsLoading(false)
+    }
+
     Odometer = dynamic(import('react-odometerjs') as any, {
       ssr: false,
       loading: () => <p>0</p>,
@@ -40,49 +89,90 @@ const App: FC = () => {
     return () => clearInterval(timerInterval)
   }, [])
 
+  const { searchFieldTitle, counterTitle, intro, video, howItWorks, waterGoal, newsletterTitle } = homePage
+
   return (
     <Layout pageTitle={t('home:pageTitle')} pageDescription={t('home:pageDescription')} isHome fluid>
-      <section className='search'>
-        <div className='logo-main'>
-          <h1 className='logo-main__title'>
-            <img
-              className='logo-main__img'
-              src='/images/HEADER-LOGO.svg'
-              alt='Elliot For Water'
-              title='Elliot For Water'
-            />
-          </h1>
-          <p className='logo-main__subtitle'>{t('common:for_water')}</p>
-        </div>
-        <div className={styles.searchWrap}>
-          <SearchBar big />
-        </div>
-        <div className='home-text'>
-          <h2 className='home-text__title'>{t('home:title')}</h2>
-          <p className='home-text__caption'>{t('home:caption')}</p>
-          <div className='donated-water-wrapper'>
-            {Odometer !== null && (
-              <Odometer
-                // @ts-ignore
-                value={odometerValue}
-                format='(,ddd)'
-                duration={1000}
-              />
-            )}
-            <p className='donated-water-text'>{t('home:liter_of_water')} </p>
-          </div>
-          <div className='cta'>
-            <ButtonAddToBrowser />
-          </div>
-          <div className='show-more'>
-            <a href='#how-it-works' className='show-more__link'>
-              <i className='chevron' />
-            </a>
-          </div>
-        </div>
-      </section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <section className={styles.searchBarSection}>
+            <div className={styles.logo}>
+              <div className={styles.logoImgWrap}>
+                <img
+                  className={styles.logoImg}
+                  src='/images/HEADER-LOGO.svg'
+                  alt='Elliot For Water'
+                  title='Elliot For Water'
+                />
+              </div>
+              <p className={styles.logoSubtitle}>{t('common:for_water')}</p>
+            </div>
+            <div className={styles.searchWrap}>
+              <SearchBar big />
+            </div>
+            <div className={styles.introContainer}>
+              <h1 className={styles.introTitle}>{searchFieldTitle}</h1>
+              <div className={styles.counterContainer}>
+                {Odometer !== null && (
+                  <Odometer
+                    // @ts-ignore
+                    value={odometerValue}
+                    format='(,ddd)'
+                    duration={1000}
+                  />
+                )}
+                <p className={styles.counterText}>{counterTitle} </p>
+              </div>
+              <div className={styles.cta}>
+                <ButtonAddToBrowser />
+              </div>
+              <div className='show-more'>
+                <a href='#how-it-works' className='show-more__link'>
+                  <i className='chevron' />
+                </a>
+              </div>
+            </div>
+          </section>
 
-      <section id='how-it-works' className='section section--centered section__how-it-works'>
+          <section>
+            <h2>{intro.title}</h2>
+            <div>{documentToReactComponents(intro.content.json)}</div>
+            {isChrome ? (
+              <video className={styles.video} controls playsInline poster='/videos/thumb_howItWorks.png'>
+                <source src='/videos/howItWorks.mp4' type='video/mp4' />
+                <source src='/videos/howItWorks.ogg' type='video/ogg' />
+                <source src='/videos/howItWorks.webm' type='video/webm' />
+                Uh oh! Your browser does not support HTML5 videos
+              </video>
+            ) : (
+              <div>
+                <video className={styles.video} controls playsInline>
+                  <source src='/videos/howItWorks.mp4' type='video/mp4' />
+                  <source src='/videos/howItWorks.ogg' type='video/ogg' />
+                  <source src='/videos/howItWorks.webm' type='video/webm' />
+                  Uh oh! Your browser does not support HTML5 videos
+                </video>
+              </div>
+            )}
+          </section>
+
+          <section>
+            <h2>{howItWorks}</h2>3 cards here
+          </section>
+
+          <section>
+            <h2>{waterGoal.title}</h2>
+            <p>{documentToReactComponents(waterGoal.content.json)}</p>
+          </section>
+
+          <section>
+            <h2>{newsletterTitle}</h2>
+            Newsletter form big
+          </section>
+
+          {/* <section id='how-it-works' className='section section--centered section__how-it-works'>
         <div className='section-center'>
           <h2 className='section__title'>{t('home:how_works.title')}</h2>
           <div className='home-text'>
@@ -90,14 +180,12 @@ const App: FC = () => {
           </div>
           <div className='hidden-md hidden-lg'>
             <div id='myCarousel' className='carousel slide' data-ride='carousel'>
-              {/* <!-- Indicators --> */}
               <ol className='carousel-indicators'>
                 <li data-target='#myCarousel' data-slide-to='0' className='active' />
                 <li data-target='#myCarousel' data-slide-to='1' />
                 <li data-target='#myCarousel' data-slide-to='2' />
               </ol>
 
-              {/* <!-- Wrapper for slides --> */}
               <div className='carousel-inner'>
                 <div className='item active'>
                   <div className='carousel-card'>
@@ -118,7 +206,6 @@ const App: FC = () => {
                 </div>
               </div>
 
-              {/* <!-- Left and right controls --> */}
               <a className='left carousel-control' href='#myCarousel' data-slide='prev'>
                 <span className='glyphicon glyphicon-chevron-left' />
                 <span className='sr-only'>{t('common:previous')}</span>
@@ -147,109 +234,14 @@ const App: FC = () => {
         <div className='cta'>
           <ButtonAddToBrowser />
         </div>
-      </section>
-
-      {/* Video */}
-      <section className='section section--centered'>
-        {isChrome ? (
-          <video className='video' controls playsInline poster='/videos/thumb_howItWorks.png'>
-            <source src='/videos/howItWorks.mp4' type='video/mp4' />
-            <source src='/videos/howItWorks.ogg' type='video/ogg' />
-            <source src='/videos/howItWorks.webm' type='video/webm' />
-            Uh oh! Your browser does not support HTML5 videos
-          </video>
-        ) : (
-          <div>
-            <video className='video' controls playsInline>
-              <source src='/videos/howItWorks.mp4' type='video/mp4' />
-              <source src='/videos/howItWorks.ogg' type='video/ogg' />
-              <source src='/videos/howItWorks.webm' type='video/webm' />
-              Uh oh! Your browser does not support HTML5 videos
-            </video>
-          </div>
-        )}
-      </section>
-
+      </section> */}
+        </>
+      )}
       <style jsx>
         {`
           /* ==================================================
-          Logo
-        ================================================== */
-          .logo-main {
-            text-align: center;
-            margin: 0 2em;
-          }
-
-          .logo-main__link {
-          }
-
-          .logo-main__img {
-            height: auto;
-            width: 100%;
-            max-width: 10em;
-          }
-
-          .logo-main__subtitle {
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-shadow: 0 2px 3px #c3c2c245;
-            margin-bottom: 33px;
-          }
-
-          /* ==================================================
-            Donated water section
-          ================================================== */
-          .donated-water-wrapper {
-            margin: 33px auto;
-            text-align: center;
-          }
-
-          .odometer {
-            color: var(--elliotPrimary);
-            font-size: 20px;
-            letter-spacing: 0.3em;
-            font-family: var(--fontCommon);
-            font-weight: 700;
-          }
-
-          .donated-water-text {
-            color: #868383d4;
-            font-size: 12px;
-          }
-
-          /* ==================================================
             Home Text and Buttons
           ================================================== */
-          .search {
-            background-image: url('/images/water_background.png');
-            background-repeat: no-repeat;
-            background-position: bottom;
-            background-size: cover;
-            height: 100vh;
-          }
-
-          .home-text {
-            text-align: center;
-            margin: 0 auto;
-            margin-bottom: 8px;
-            max-width: 85%;
-          }
-
-          .home-text__title {
-            font-size: 16px;
-            text-shadow: 1px 3px 5px #6f6e6e0f;
-          }
-
-          .home-text__caption {
-            margin: 0;
-            font-size: 14px;
-          }
-
-          .home-text__chrome {
-            display: none;
-          }
 
           .show-more__link {
             margin-top: 70px;
@@ -352,15 +344,6 @@ const App: FC = () => {
             margin-right: 20px;
           }
 
-          /* ==================================================
-          Video section
-        ================================================== */
-          .video {
-            width: 100%;
-            height: 100%;
-            margin-bottom: -5px;
-          }
-
           /* Override bootrstrap carousel styles */
           .carousel-control.left {
             background-image: none;
@@ -390,76 +373,12 @@ const App: FC = () => {
           Responsive Media
         ================================================== */
           @media (min-width: 400px) {
-            .logo-main__subtitle {
-              font-size: 14px;
-            }
-
-            .home-text__title {
-              margin-top: 0px;
-              margin-bottom: 10px;
-              font-size: 1.4em;
-            }
-
             .section-center {
               width: 80%;
             }
           }
 
           @media (min-width: 768px) {
-            .logo-main__subtitle {
-              font-size: 17px;
-            }
-
-            .section__search {
-              margin-top: 0;
-            }
-
-            .search__input {
-              height: 3em;
-            }
-
-            .main-search-wrapper {
-              margin: 22px auto 44px;
-            }
-
-            .odometer {
-              font-size: 26px;
-            }
-
-            .donated-water-text {
-              font-size: 16px;
-            }
-
-            .donated-water-wrapper {
-              margin: 44px 0 22px;
-            }
-
-            .home-text {
-              margin-bottom: 14px;
-              max-width: 70%;
-            }
-
-            .home-text__title {
-              font-size: 30px;
-            }
-
-            .home-text__caption {
-              font-size: 16px;
-            }
-
-            .home-text__chrome {
-              display: inline-block;
-              font-size: 12px;
-            }
-
-            .search-form-container {
-              width: auto;
-            }
-
-            .home-text .elliot-btn-group {
-              margin-top: 14px;
-            }
-
             .show-more__link {
               margin-top: 8px;
               margin-left: -13px;
@@ -472,20 +391,10 @@ const App: FC = () => {
               right: 0;
               top: 0;
             }
-
-            .cta {
-              margin-top: 20px;
-            }
-          }
-
-          @media (min-width: 900px) {
-            .home-text {
-              max-width: 55%;
-            }
           }
         `}
       </style>
     </Layout>
   )
 }
-export default App
+export default Home
