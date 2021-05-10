@@ -26,7 +26,6 @@ function getLitersOfWater(litersOfWaterPerMillisecond) {
 }
 
 Home.getInitialProps = async () => {
-  // RichFormat text with Graphql: https://www.contentful.com/blog/2021/04/14/rendering-linked-assets-entries-in-contentful/
   const { homePage } = await fetchContenful(`
   {
     homePage(id: "fl7zyfAyVPWvG3qJBuspf", preview: false){
