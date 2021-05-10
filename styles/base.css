@@ -129,6 +129,14 @@ ul {
   font-weight: 700;
 }
 
+.divider {
+  height: 4px;
+  width: 100px;
+  margin: 0 auto;
+  background: var(--elliotLink);
+  margin-bottom: 20px;
+}
+
 /* ==================================================
   Styles from .NET
 ================================================== */

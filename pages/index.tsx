@@ -4,6 +4,8 @@ import useTranslation from 'next-translate/useTranslation'
 import { isChrome } from 'react-device-detect'
 // import ReactMarkdown from 'react-markdown'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { FiArrowDownCircle } from 'react-icons/fi'
+import classnames from 'classnames'
 import fetchContenful from '../helpers/_fetchContentful'
 import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
@@ -96,7 +98,7 @@ function Home({ homePage }) {
         <Loader />
       ) : (
         <>
-          <section className={styles.searchBarSection}>
+          <section>
             <div className={styles.logo}>
               <div className={styles.logoImgWrap}>
                 <img
@@ -111,8 +113,8 @@ function Home({ homePage }) {
             <div className={styles.searchWrap}>
               <SearchBar big />
             </div>
-            <div className={styles.introContainer}>
-              <h1 className={styles.introTitle}>{searchFieldTitle}</h1>
+            <div className={styles.ctaContainer}>
+              <h1 className={styles.ctaTitle}>{searchFieldTitle}</h1>
               <div className={styles.counterContainer}>
                 {Odometer !== null && (
                   <Odometer
@@ -127,48 +129,104 @@ function Home({ homePage }) {
               <div className={styles.cta}>
                 <ButtonAddToBrowser />
               </div>
-              <div className='show-more'>
-                <a href='#how-it-works' className='show-more__link'>
-                  <i className='chevron' />
-                </a>
+              <div className={styles.showMoreContainer}>
+                <FiArrowDownCircle />
               </div>
+            </div>
+            <div className={styles.introContainer}>
+              <div className={styles.introBox}>
+                <h2 className={styles.introTitle}>{intro.title}</h2>
+                <div className={styles.introDescription}>{documentToReactComponents(intro.content.json)}</div>
+                {isChrome ? (
+                  <video className={styles.video} controls playsInline poster='/videos/thumb_howItWorks.png'>
+                    <source src='/videos/howItWorks.mp4' type='video/mp4' />
+                    <source src='/videos/howItWorks.ogg' type='video/ogg' />
+                    <source src='/videos/howItWorks.webm' type='video/webm' />
+                    Uh oh! Your browser does not support HTML5 videos
+                  </video>
+                ) : (
+                  <div>
+                    <video className={styles.video} controls playsInline>
+                      <source src='/videos/howItWorks.mp4' type='video/mp4' />
+                      <source src='/videos/howItWorks.ogg' type='video/ogg' />
+                      <source src='/videos/howItWorks.webm' type='video/webm' />
+                      Uh oh! Your browser does not support HTML5 videos
+                    </video>
+                  </div>
+                )}
+              </div>
+              {/* <svg className={styles.waveBackground} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
+                <path
+                  fill='var(--elliotSecondary)'
+                  fill-opacity='1'
+                  d='M0,32L60,32C120,32,240,32,360,42.7C480,53,600,75,720,90.7C840,107,960,117,1080,117.3C1200,117,1320,107,1380,101.3L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'
+                ></path>
+              </svg> */}
+              {/* <svg className={styles.waveBackground} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
+                <path
+                  fill='var(--elliotSecondary)'
+                  fill-opacity='1'
+                  d='M0,128L60,149.3C120,171,240,213,360,234.7C480,256,600,256,720,240C840,224,960,192,1080,170.7C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'
+                ></path>
+              </svg> */}
+              <svg className={styles.waveBackground} viewBox='0 0 1440 600' xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  d='M 0,600 C 0,600 0,150 0,150 C 144.28571428571428,134.03571428571428 288.57142857142856,118.07142857142858 395,131 C 501.42857142857144,143.92857142857142 569.9999999999999,185.75 673,190 C 776.0000000000001,194.25 913.4285714285713,160.92857142857144 1047,148 C 1180.5714285714287,135.07142857142856 1310.2857142857142,142.53571428571428 1440,150 C 1440,150 1440,600 1440,600 Z'
+                  stroke='none'
+                  stroke-width='0'
+                  fill='#5082afff'
+                />
+                {/* <path
+                  d='M 0,600 C 0,600 0,300 0,300 C 137.10714285714286,299.57142857142856 274.2142857142857,299.14285714285717 381,313 C 487.7857142857143,326.85714285714283 564.25,355 692,344 C 819.75,333 998.7857142857142,282.85714285714283 1132,269 C 1265.2142857142858,255.14285714285717 1352.607142857143,277.57142857142856 1440,300 C 1440,300 1440,600 1440,600 Z'
+                  stroke='none'
+                  stroke-width='0'
+                  fill='#5082af88'
+                ></path> */}
+                {/* <path
+                  d='M 0,600 C 0,600 0,450 0,450 C 107.78571428571428,439.3571428571429 215.57142857142856,428.7142857142857 347,437 C 478.42857142857144,445.2857142857143 633.4999999999999,472.50000000000006 746,482 C 858.5000000000001,491.49999999999994 928.4285714285716,483.28571428571433 1037,475 C 1145.5714285714284,466.71428571428567 1292.7857142857142,458.35714285714283 1440,450 C 1440,450 1440,600 1440,600 Z'
+                  stroke='none'
+                  stroke-width='0'
+                  fill='#5082afff'
+                ></path> */}
+              </svg>
+              {/* <svg
+                className={styles.waveBackground}
+                height='100%'
+                width='100%'
+                id='svg'
+                viewBox='0 0 1440 700'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M 0,700 C 0,700 0,350 0,350 C 125.96428571428572,314.1071428571429 251.92857142857144,278.2142857142857 380,268 C 508.07142857142856,257.7857142857143 638.2500000000001,273.25000000000006 746,294 C 853.7499999999999,314.74999999999994 939.0714285714287,340.7857142857143 1051,351 C 1162.9285714285713,361.2142857142857 1301.4642857142858,355.6071428571429 1440,350 C 1440,350 1440,700 1440,700 Z'
+                  stroke='none'
+                  stroke-width='0'
+                  fill='#5082afff'
+                ></path>
+              </svg> */}
             </div>
           </section>
 
-          <section>
-            <h2>{intro.title}</h2>
-            <div>{documentToReactComponents(intro.content.json)}</div>
-            {isChrome ? (
-              <video className={styles.video} controls playsInline poster='/videos/thumb_howItWorks.png'>
-                <source src='/videos/howItWorks.mp4' type='video/mp4' />
-                <source src='/videos/howItWorks.ogg' type='video/ogg' />
-                <source src='/videos/howItWorks.webm' type='video/webm' />
-                Uh oh! Your browser does not support HTML5 videos
-              </video>
-            ) : (
-              <div>
-                <video className={styles.video} controls playsInline>
-                  <source src='/videos/howItWorks.mp4' type='video/mp4' />
-                  <source src='/videos/howItWorks.ogg' type='video/ogg' />
-                  <source src='/videos/howItWorks.webm' type='video/webm' />
-                  Uh oh! Your browser does not support HTML5 videos
-                </video>
-              </div>
-            )}
+          <section className={classnames(styles.bgBlue, styles.sections, styles.howItWorks)}>
+            <div className={styles.centerBox}>
+              <h2>{howItWorks}</h2>
+              <div className='divider' />
+              <p>3 cards here</p>
+            </div>
           </section>
 
-          <section>
-            <h2>{howItWorks}</h2>3 cards here
+          <section className={classnames(styles.sections)}>
+            <div className={styles.centerBox}>
+              <h2>{waterGoal.title}</h2>
+              <p>{documentToReactComponents(waterGoal.content.json)}</p>
+            </div>
           </section>
 
-          <section>
-            <h2>{waterGoal.title}</h2>
-            <p>{documentToReactComponents(waterGoal.content.json)}</p>
-          </section>
-
-          <section>
-            <h2>{newsletterTitle}</h2>
-            Newsletter form big
+          <section className={classnames(styles.bgGrey, styles.sections)}>
+            <div className={styles.centerBox}>
+              <h2>{newsletterTitle}</h2>
+              Newsletter form big
+            </div>
           </section>
 
           {/* <section id='how-it-works' className='section section--centered section__how-it-works'>
@@ -238,59 +296,6 @@ function Home({ homePage }) {
       )}
       <style jsx>
         {`
-          /* ==================================================
-            Home Text and Buttons
-          ================================================== */
-
-          .show-more__link {
-            margin-top: 70px;
-          }
-
-          /* ==================================================
-            Show More
-          ================================================== */
-          .show-more {
-            text-align: center;
-          }
-
-          .show-more__title {
-            margin-bottom: 0;
-            font-size: 9px;
-          }
-
-          .chevron {
-            position: relative;
-            display: block;
-            height: 20px;
-            right: 10px;
-            top: -2em;
-          }
-
-          .show-more__link {
-            display: inline-block;
-          }
-
-          .show-more__link:hover {
-            text-decoration: none;
-          }
-
-          .chevron::before,
-          .chevron::after {
-            position: absolute;
-            display: block;
-            content: '';
-            border: 10px solid transparent;
-          }
-
-          .chevron::before {
-            top: 0;
-          }
-
-          .chevron::after {
-            top: -2px;
-            border-top-color: var(--elliotSecondary);
-          }
-
           /* ==================================================
             How It Works section
           ================================================== */
@@ -374,21 +379,6 @@ function Home({ homePage }) {
           @media (min-width: 400px) {
             .section-center {
               width: 80%;
-            }
-          }
-
-          @media (min-width: 768px) {
-            .show-more__link {
-              margin-top: 8px;
-              margin-left: -13px;
-            }
-
-            .show-more .show-more__link .chevron {
-              position: relative;
-              display: inherit;
-              height: auto;
-              right: 0;
-              top: 0;
             }
           }
         `}

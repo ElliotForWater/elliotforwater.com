@@ -272,14 +272,6 @@ function About({ aboutUsPage }) {
             padding-bottom: 10px;
           }
 
-          .divider {
-            height: 4px;
-            width: 100px;
-            margin: 0 auto;
-            background: var(--elliotLink);
-            margin-bottom: 20px;
-          }
-
           .mission p {
             font-size: 16px;
           }
