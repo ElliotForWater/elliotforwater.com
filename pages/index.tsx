@@ -11,6 +11,7 @@ import Layout from '../components/Layout/Layout'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import Loader from '../components/Loader/Loader'
+import Card from '../components/Card/Card'
 
 import styles from './index.module.css'
 
@@ -90,7 +91,16 @@ function Home({ homePage }) {
     return () => clearInterval(timerInterval)
   }, [])
 
-  const { searchFieldTitle, counterTitle, intro, video, howItWorks, waterGoal, newsletterTitle } = homePage
+  const {
+    searchFieldTitle,
+    counterTitle,
+    intro,
+    video,
+    howItWorks,
+    howItWorksCardsCollection,
+    waterGoal,
+    newsletterTitle,
+  } = homePage
 
   return (
     <Layout pageTitle={t('home:pageTitle')} pageDescription={t('home:pageDescription')} isHome fluid>
@@ -173,7 +183,7 @@ function Home({ homePage }) {
                 <path
                   d='M 0,600 C 0,600 0,150 0,150 C 144.28571428571428,134.03571428571428 288.57142857142856,118.07142857142858 395,131 C 501.42857142857144,143.92857142857142 569.9999999999999,185.75 673,190 C 776.0000000000001,194.25 913.4285714285713,160.92857142857144 1047,148 C 1180.5714285714287,135.07142857142856 1310.2857142857142,142.53571428571428 1440,150 C 1440,150 1440,600 1440,600 Z'
                   stroke='none'
-                  stroke-width='0'
+                  strokeWidth='0'
                   fill='#5082afff'
                 />
                 {/* <path
@@ -211,14 +221,18 @@ function Home({ homePage }) {
             <div className={styles.centerBox}>
               <h2>{howItWorks}</h2>
               <div className='divider' />
-              <p>3 cards here</p>
+              <div className={styles.cardWrap}>
+                {howItWorksCardsCollection.items.map((card) => (
+                  <Card title={card.title} text={card.description} key={card.title} />
+                ))}
+              </div>
             </div>
           </section>
 
           <section className={classnames(styles.sections)}>
             <div className={styles.centerBox}>
               <h2>{waterGoal.title}</h2>
-              <p>{documentToReactComponents(waterGoal.content.json)}</p>
+              <div>{documentToReactComponents(waterGoal.content.json)}</div>
             </div>
           </section>
 

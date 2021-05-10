@@ -1,0 +1,14 @@
+.container {
+  box-sizing: border-box;
+  width: 332px;
+  min-height: 322px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 12px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 16px -8px rgb(0 0 0 / 20%);
+  color: var(--textColor);
+}

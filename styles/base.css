@@ -253,10 +253,18 @@ ul {
   .odometer {
     font-size: 26px;
   }
+
+  .divider {
+    margin-bottom: 30px;
+  }
 }
 
 @media (min-width: 1200px) {
   .old_container {
     max-width: 1100px;
+  }
+
+  .divider {
+    margin-bottom: 40px;
   }
 }

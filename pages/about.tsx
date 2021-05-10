@@ -348,10 +348,6 @@ function About({ aboutUsPage }) {
               padding-bottom: 25px;
             }
 
-            .divider {
-              margin-bottom: 30px;
-            }
-
             .mission p {
               font-size: 16px;
             }
@@ -386,10 +382,6 @@ function About({ aboutUsPage }) {
 
             h2 {
               padding-bottom: 40px;
-            }
-
-            .divider {
-              margin-bottom: 40px;
             }
 
             blockquote {
