@@ -26,7 +26,7 @@
 
 .searchBarWrap {
   grid-area: searchBarWrap;
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
   font-size: 1.3em;
   margin-bottom: 1em;
@@ -97,7 +97,6 @@
 
   .searchBarWrap {
     max-width: 65%;
-    margin: 0;
     position: relative;
   }
 

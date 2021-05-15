@@ -12,6 +12,7 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--lighterGrey);
   font-size: 18px;
+  margin-top: 5px;
 }
 
 .inputBig {
@@ -28,7 +29,7 @@
 .button {
   position: absolute;
   right: 20px;
-  bottom: 20%;
+  top: 50%;
   background: #fff;
   border: 0;
   margin-bottom: 0;
