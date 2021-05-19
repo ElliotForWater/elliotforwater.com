@@ -5,6 +5,11 @@
   align-items: flex-start;
 }
 
+.newsletterFormBig {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .wrapperInput {
   margin-right: 3px;
 }
@@ -14,18 +19,12 @@
   max-width: 150px;
 }
 
-.newsletterButton {
-  background: transparent;
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 3px;
-}
-
-.newsletterButton:hover {
-  color: var(--elliotPrimary);
-  border: 1px solid var(--elliotPrimary);
-}
-
-.hidden {
-  display: none;
+.newsletterEmailBig {
+  border-radius: 12px;
+  border-style: hidden;
+  background-color: #fff;
+  box-shadow: -1px 1px 5px -1px rgba(1, 1, 1, 0.2);
+  height: 34px;
+  padding: 6px 12px;
+  margin-bottom: 30px;
 }

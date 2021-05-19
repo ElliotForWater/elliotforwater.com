@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input } from '../Inputs/Inputs'
 import ButtonSubscribe from '../../Buttons/ButtonSubscribe/ButtonSubscribe'
+import ButtonOutline from '../../Buttons/ButtonOutline/ButtonOutline'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
@@ -16,7 +17,7 @@ enum NOTIFICATION {
   None,
 }
 
-const SubscribeForm = () => {
+const SubscribeForm = ({ big = false }) => {
   const { t } = useTranslation()
   const [list, setList] = useState([])
 
@@ -119,13 +120,15 @@ const SubscribeForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.newsletterForm} noValidate>
-        <div className={styles.hidden}>
-          <Input name='name' type='text' hidden register={register} />
-        </div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={big ? styles.newsletterFormBig : styles.newsletterForm}
+        noValidate
+      >
+        <Input name='name' type='text' hidden register={register} />
         <div className={styles.wrapperInput}>
           <Input
-            customClassname={styles.newsletterEmail}
+            customClassname={big ? styles.newsletterEmailBig : styles.newsletterEmail}
             name='email'
             type='email'
             errors={errors}
@@ -139,9 +142,15 @@ const SubscribeForm = () => {
             }}
           />
         </div>
-        <ButtonSubscribe>
-          <button type='submit'>{t('common:forms.subscribe')}</button>
-        </ButtonSubscribe>
+        {big ? (
+          <ButtonOutline outlineReverse>
+            <button type='submit'>{t('common:forms.subscribe')}</button>
+          </ButtonOutline>
+        ) : (
+          <ButtonSubscribe>
+            <button type='submit'>{t('common:forms.subscribe')}</button>
+          </ButtonSubscribe>
+        )}
         <ToastList toastList={list} position='bottomRight' />
       </form>
     </FormProvider>

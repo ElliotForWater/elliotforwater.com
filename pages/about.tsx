@@ -228,7 +228,7 @@ function About({ aboutUsPage }) {
               </ButtonPrimary>
             </div>
           </section>
-          <section className='sections'>
+          <section className='sections' id='contact'>
             <div className='containerCenter'>
               <h2>{contactUsTitle}</h2>
               <ContactUsForm />

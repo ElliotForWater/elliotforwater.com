@@ -1,5 +1,6 @@
 .footer {
-  background: var(--footerBg);
+  /* background: var(--footerBg); */
+  background: var(--lightgreyTest);
   grid-row-start: 3;
   grid-row-end: 4;
   padding: 20px;
@@ -8,6 +9,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: var(--textColor);
 }
 
 .social {

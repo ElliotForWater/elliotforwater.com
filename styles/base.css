@@ -26,6 +26,12 @@
   --zindex100: 100;
   --zindex200: 200;
   --zindex300: 300;
+  --primaryDarkerTest: #489fb5;
+  --primaryLighterTest: #82c0cc;
+  --secondaryTest: #16697a;
+  --ctaTest: #ffa62b;
+  --lightgreyTest: #f7f7f7;
+  --lightgreyDarkerTest: #ede7e3;
 }
 
 * {
@@ -123,6 +129,7 @@ ul {
 /* odometer custom style */
 .odometer {
   color: var(--elliotPrimary);
+  color: var(--primaryDarkerTest);
   font-size: 22px;
   letter-spacing: 0.3em;
   font-family: var(--fontCommon);
@@ -133,7 +140,7 @@ ul {
   height: 4px;
   width: 100px;
   margin: 0 auto;
-  background: var(--elliotLink);
+  background: #00458b;
   margin-bottom: 20px;
 }
 

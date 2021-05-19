@@ -1,5 +1,4 @@
 import React, { FC, useState, useContext } from 'react'
-import Link from 'next/link'
 import { UserContext } from '../../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import Nav from '../Nav/Nav'
@@ -14,9 +13,6 @@ const HeaderHome: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerRight}>
-        <Link href='/why-water'>
-          <a className={styles.headerRightLink}>{t('common:header.our_mission')}</a>
-        </Link>
         <div className={styles.rightSide}>
           <div
             className={styles.dropletContainer}
