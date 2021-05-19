@@ -90,7 +90,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-ga": "~2.3.4",
     "nprogress": "^0.2.0",
-    "postcss": "~8.1.1",
+    "postcss": "~8.2.10",
     "postcss-extend-rule": "~3.0.0",
     "postcss-flexbugs-fixes": "~4.2.1",
     "postcss-loader": "~4.0.2",
