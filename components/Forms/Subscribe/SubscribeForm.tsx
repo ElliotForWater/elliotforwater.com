@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input } from '../Inputs/Inputs'
 import ButtonSubscribe from '../../Buttons/ButtonSubscribe/ButtonSubscribe'
-import ButtonOutline from '../../Buttons/ButtonOutline/ButtonOutline'
+import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
@@ -17,7 +17,7 @@ enum NOTIFICATION {
   None,
 }
 
-const SubscribeForm = ({ big = false }) => {
+const SubscribeForm = ({ big = false, ...props }) => {
   const { t } = useTranslation()
   const [list, setList] = useState([])
 
@@ -143,9 +143,9 @@ const SubscribeForm = ({ big = false }) => {
           />
         </div>
         {big ? (
-          <ButtonOutline outlineReverse>
+          <ButtonFull {...props}>
             <button type='submit'>{t('common:forms.subscribe')}</button>
-          </ButtonOutline>
+          </ButtonFull>
         ) : (
           <ButtonSubscribe>
             <button type='submit'>{t('common:forms.subscribe')}</button>

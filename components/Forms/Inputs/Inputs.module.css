@@ -32,23 +32,23 @@ INPUT
 }
 
 .input:focus {
-  outline: 1px dotted var(--placeholder);
+  outline: 1px dotted var(--dimGrey);
 }
 
 .input::placeholder {
   /* Chrome, FF, Opera, Safari 10.1+ */
-  color: var(--placeholder);
+  color: var(--dimGrey);
   opacity: 1; /* FF */
 }
 
 .input::-ms-input-placeholder {
   /* Edge */
-  color: var(--placeholder);
+  color: var(--dimGrey);
 }
 
 .input:-ms-input-placeholder {
   /* IE 10-11 */
-  color: var(--placeholder);
+  color: var(--dimGrey);
 }
 
 /* 

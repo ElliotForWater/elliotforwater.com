@@ -7,8 +7,6 @@
     var(--elliotSecondary) 100%
   );
   box-shadow: 1px 1px 8px rgba(225, 215, 215, 0.24);
-
-  /* background-color: var(--secondaryTest); */
   color: white;
   border-radius: 10px;
   transition: 0.5s;
@@ -17,14 +15,11 @@
   text-transform: uppercase;
 }
 
-/* .primary:hover {
-  background-position: right center; 
-} */
-
-.primary button {
-  color: white;
+.primary:hover {
+  background-position: right center;
 }
 
+.primary button,
 .primary a {
   color: white;
 }

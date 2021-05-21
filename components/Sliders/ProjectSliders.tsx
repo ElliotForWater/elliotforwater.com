@@ -52,10 +52,9 @@ export default function CustomArrows({ slides }) {
                 {ctaLink && (
                   <div className={styles.slideButton}>
                     <ButtonOutline
-                      outlineReverse
                       linkHref={ctaLink}
                       target='_blank'
-                      customStyle={{ color: 'white', hover: 'var(--elliotLink)' }}
+                      customStyle={{ color: 'white', colorHover: 'var(--elliotTealBlue)', backgroundHover: 'white' }}
                     >
                       {ctaLabel}
                     </ButtonOutline>

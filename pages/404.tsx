@@ -23,7 +23,7 @@ function Error() {
         {`
           .wrapper {
             text-align: center;
-            background: var(--footerBg);
+            background: var(--elliotPrimary);
             padding: 30px 20px;
           }
 

@@ -5,6 +5,7 @@ import TextButtonComp from './TextButton/TextButton'
 import ButtonSubscribe from './ButtonSubscribe/ButtonSubscribe'
 import ButtonAddToBrowserComp from './ButtonAddToBrowser'
 import ButtonOutlineComp from './ButtonOutline/ButtonOutline'
+import ButtonFullComp from './ButtonFull/ButtonFull'
 
 export default {
   title: 'Inputs/Button',
@@ -65,7 +66,16 @@ export const ButtonOutline = () => (
   <>
     <ButtonOutlineComp>Simple outline</ButtonOutlineComp>
     <div style={{ background: 'black', padding: '40px', marginTop: '30px', maxWidth: '200px' }}>
-      <ButtonOutlineComp outlineReverse>Reverse outline</ButtonOutlineComp>
+      <ButtonOutlineComp>Outline on dark</ButtonOutlineComp>
+    </div>
+  </>
+)
+
+export const ButtonFull = () => (
+  <>
+    <ButtonFullComp>Simple Full</ButtonFullComp>
+    <div style={{ background: 'black', padding: '40px', marginTop: '30px', maxWidth: '200px' }}>
+      <ButtonFullComp>Full on dark</ButtonFullComp>
     </div>
   </>
 )

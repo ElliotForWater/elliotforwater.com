@@ -228,10 +228,17 @@ function About({ aboutUsPage }) {
               </ButtonPrimary>
             </div>
           </section>
-          <section className='sections' id='contact'>
+          <section className='sections contactus' id='contact'>
             <div className='containerCenter'>
               <h2>{contactUsTitle}</h2>
-              <ContactUsForm />
+              <ContactUsForm
+                customStyle={{
+                  background: 'var(--elliotCta)',
+                  color: 'white',
+                  backgroundHover: 'var(--elliotCta)',
+                  colorHover: 'white',
+                }}
+              />
             </div>
           </section>
         </>
@@ -249,7 +256,12 @@ function About({ aboutUsPage }) {
           }
 
           .sections:nth-child(odd) {
-            background: #f7f7f7;
+            background: var(--lightGreyBackground);
+          }
+
+          #contact {
+            background: var(--elliotSecondary);
+            color: white;
           }
 
           .containerCenter {
@@ -301,7 +313,7 @@ function About({ aboutUsPage }) {
           .historyDivider {
             height: 4px;
             width: 50px;
-            background: var(--elliotLink);
+            background: var(--elliotSecondary);
             margin: 5px auto 12px;
           }
 

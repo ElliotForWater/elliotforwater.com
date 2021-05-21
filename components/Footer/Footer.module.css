@@ -1,6 +1,5 @@
 .footer {
-  /* background: var(--footerBg); */
-  background: var(--lightgreyTest);
+  background: var(--lightGreyBackground);
   grid-row-start: 3;
   grid-row-end: 4;
   padding: 20px;
@@ -58,7 +57,7 @@
 }
 
 .link a:hover {
-  color: var(--cta);
+  color: var(--elliotSecondary);
   text-decoration: none;
 }
 

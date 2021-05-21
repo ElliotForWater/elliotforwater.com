@@ -360,7 +360,7 @@ function SearchPage({
 
           .content {
             padding: 10px 2px;
-            background: var(--containerBg);
+            background: var(--lightGreyBackground);
             margin-top: 1px;
           }
 
