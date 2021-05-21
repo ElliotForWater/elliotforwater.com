@@ -1,12 +1,12 @@
 .sections {
   position: relative;
-  padding: 100px 0;
+  padding: 60px 0;
   text-align: center;
   color: var(--textColor);
 }
 
 .sections h2 {
-  font-size: 1.8vw;
+  font-size: 6vw;
 }
 
 .bgGrey {
@@ -23,7 +23,8 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 70px;
+  height: 30px;
+  left: 0;
 }
 
 .searchBarSection {
@@ -100,32 +101,33 @@
 
 .introContainer {
   position: relative;
-  padding: 150px 0;
+  padding: 70px 20px 150px;
 }
 
 .introBox {
   margin: 0 auto;
-  max-width: 80%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
 .introText {
-  width: 40%;
+  padding-bottom: 60px;
+  text-align: center;
 }
 
 .introTitle {
-  font-size: 2.8vw;
+  font-size: 6vw;
 }
 
 .introDescription {
-  font-size: 1.8vw;
+  font-size: 5vw;
 }
 
 .introPic {
-  width: 400px;
-  height: 400px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-size: cover;
   background-position-x: center;
@@ -135,22 +137,20 @@
 .videoSection {
   background-color: var(--lightAzureBackground);
   position: relative;
-  min-height: 740px;
+  min-height: 300px;
 }
 
 .video {
-  width: 90%;
+  width: 100%;
   position: absolute;
-  top: 10px;
-  right: -40px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  top: calc(50% - 100px);
+  right: 0;
   box-shadow: -6px 5px 16px 0 #a6a6a6;
 }
 
 .howItWorks {
-  padding-top: 100px;
-  padding-bottom: 150px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   position: relative;
   text-align: center;
 }
@@ -160,12 +160,7 @@
 }
 
 .howItWorksDescription {
-  padding-bottom: 80px;
-}
-
-.howItWorks :global(.divider) {
-  background: white;
-  margin-bottom: 100px;
+  padding-bottom: 40px;
 }
 
 .cardWrap {
@@ -174,7 +169,7 @@
 }
 
 .cardWrap :global(> div) {
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 }
 
 .newsletterSection {
@@ -186,7 +181,11 @@
   background: var(--elliotCta);
 }
 
-@media (min-width: 400px) {
+@media (min-width: 450px) {
+  .sections h2 {
+    font-size: 4vw;
+  }
+
   .logoSubtitle {
     font-size: 14px;
   }
@@ -200,9 +199,40 @@
   .searchWrap {
     max-width: 80%;
   }
+
+  .introPic {
+    width: 250px;
+    height: 250px;
+  }
+
+  .introTitle {
+    font-size: 5vw;
+  }
+
+  .introDescription {
+    font-size: 4vw;
+  }
+
+  .videoSection {
+    min-height: 500px;
+  }
+
+  .video {
+    width: 90%;
+    top: calc(50% - 150px);
+    right: -10px;
+  }
 }
 
 @media (min-width: 768px) {
+  .sections {
+    padding: 100px 0;
+  }
+
+  .svgDiagonal {
+    height: 70px;
+  }
+
   .logoSubtitle {
     font-size: 17px;
   }
@@ -228,12 +258,53 @@
     font-size: 16px;
   }
 
-  .odometer {
-    font-size: 26px;
-  }
-
   .cta {
     margin-top: 20px;
+  }
+
+  .introContainer {
+    padding: 150px 20px;
+  }
+
+  .introBox {
+    max-width: 80%;
+    flex-direction: row;
+  }
+
+  .introText {
+    padding-bottom: 0;
+    text-align: left;
+    width: 40%;
+  }
+
+  .introDescription {
+    font-size: 1.8vw;
+  }
+
+  .introPic {
+    width: 400px;
+    height: 400px;
+  }
+
+  .videoSection {
+    min-height: 740px;
+  }
+
+  .video {
+    width: 90%;
+    top: 10px;
+    right: -40px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .howItWorks {
+    padding-top: 100px;
+    padding-bottom: 150px;
+  }
+
+  .howItWorksDescription {
+    padding-bottom: 80px;
   }
 
   .cardWrap {

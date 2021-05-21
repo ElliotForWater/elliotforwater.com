@@ -1,11 +1,12 @@
 .container {
   box-sizing: border-box;
-  width: 332px;
+  width: 80%;
   min-height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 12px;
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 30px;
   background-color: #fff;
   border-radius: 18px;
@@ -27,4 +28,10 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: 0 12px;
+  }
 }

@@ -125,7 +125,9 @@ const SubscribeForm = ({ big = false, ...props }) => {
         className={big ? styles.newsletterFormBig : styles.newsletterForm}
         noValidate
       >
-        <Input name='name' type='text' hidden register={register} />
+        <div className='hidden-element'>
+          <Input name='name' type='text' hidden register={register} />
+        </div>
         <div className={styles.wrapperInput}>
           <Input
             customClassname={big ? styles.newsletterEmailBig : styles.newsletterEmail}
