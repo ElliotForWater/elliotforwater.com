@@ -92,7 +92,8 @@
   margin-top: 20px;
 }
 
-.showMoreContainer {
+.showMoreContainer a {
+  display: inline-block;
   font-size: 2em;
   padding-top: 23px;
   color: var(--elliotSecondary);

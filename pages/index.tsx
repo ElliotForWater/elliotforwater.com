@@ -150,12 +150,14 @@ function Home({ homePage }) {
                 <ButtonAddToBrowser />
               </div>
               <div className={styles.showMoreContainer}>
-                <FiArrowDownCircle />
+                <a href='#introSection'>
+                  <FiArrowDownCircle />
+                </a>
               </div>
             </div>
           </section>
 
-          <section className={styles.introContainer}>
+          <section className={styles.introContainer} id='introSection'>
             <div className={styles.introBox}>
               <div className={styles.introText}>
                 <h2 className={styles.introTitle}>{intro.title}</h2>
