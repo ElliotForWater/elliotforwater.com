@@ -2,6 +2,7 @@
   box-sizing: border-box;
   width: 80%;
   min-height: 350px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +11,7 @@
   padding: 30px;
   background-color: #fff;
   border-radius: 18px;
-  box-shadow: 0 10px 16px -8px rgb(0 0 0 / 20%);
+  box-shadow: 2px 2px 20px -4px rgb(0 0 0 / 20%);
   color: var(--textColor);
 }
 

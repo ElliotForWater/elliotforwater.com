@@ -142,9 +142,11 @@
 
 .video {
   width: 100%;
+  max-width: 1900px;
   position: absolute;
-  top: calc(50% - 100px);
-  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
   box-shadow: -6px 5px 16px 0 #a6a6a6;
 }
 
@@ -216,17 +218,15 @@
   .videoSection {
     min-height: 500px;
   }
-
-  .video {
-    width: 90%;
-    top: calc(50% - 150px);
-    right: -10px;
-  }
 }
 
 @media (min-width: 768px) {
   .sections {
     padding: 100px 0;
+  }
+
+  .sections h2 {
+    font-size: 2.4vw;
   }
 
   .svgDiagonal {
@@ -277,25 +277,21 @@
     width: 40%;
   }
 
+  .introTitle {
+    font-size: 4vw;
+  }
+
   .introDescription {
     font-size: 1.8vw;
   }
 
   .introPic {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
   }
 
   .videoSection {
     min-height: 740px;
-  }
-
-  .video {
-    width: 90%;
-    top: 10px;
-    right: -40px;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
 
   .howItWorks {
@@ -323,5 +319,35 @@
 @media (min-width: 900px) {
   .ctaContainer {
     max-width: 55%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .sections {
+    padding: 150px 0;
+  }
+
+  .introPic {
+    width: 500px;
+    height: 500px;
+  }
+
+  .videoSection {
+    min-height: 900px;
+  }
+
+  .howItWorks {
+    padding-top: 150px;
+    padding-bottom: 200px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .introContainer {
+    padding: 250px 20px;
+  }
+
+  .videoSection {
+    min-height: 1100px;
   }
 }
