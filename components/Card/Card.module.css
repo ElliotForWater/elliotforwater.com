@@ -13,6 +13,7 @@
   border-radius: 18px;
   box-shadow: 2px 2px 20px -4px rgb(0 0 0 / 20%);
   color: var(--textColor);
+  font-size: 1.2rem;
 }
 
 .imgWrapper {
@@ -34,5 +35,13 @@
 @media (min-width: 768px) {
   .container {
     margin: 0 12px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .container {
+    margin: 0 12px;
+    font-size: 1.8rem;
   }
 }

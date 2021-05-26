@@ -3,10 +3,12 @@
   padding: 60px 0;
   text-align: center;
   color: var(--textColor);
+  font-size: 1.6rem;
 }
 
 .sections h2 {
   font-size: 6vw;
+  padding-bottom: 20px;
 }
 
 .bgGrey {
@@ -318,6 +320,10 @@
 }
 
 @media (min-width: 900px) {
+  .sections {
+    font-size: 1.8rem;
+  }
+
   .ctaContainer {
     max-width: 55%;
   }
@@ -326,6 +332,7 @@
 @media (min-width: 1100px) {
   .sections {
     padding: 150px 0;
+    font-size: 2.2rem;
   }
 
   .introPic {
