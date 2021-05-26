@@ -3,7 +3,11 @@ const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID
 const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
 
 // RichFormat text with Graphql: https://www.contentful.com/blog/2021/04/14/rendering-linked-assets-entries-in-contentful/
-export async function fetchContenful(query: string) {
+export async function fetchContenful(page: string, query: string) {
+  // if mockAPi
+  // const res = await import('__mocks_/contenful/page.graphql');
+  // return res
+
   try {
     const res = await fetch(`${contentulUrl}/${space}/environments/master`, {
       method: 'POST',

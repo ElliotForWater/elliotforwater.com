@@ -13,7 +13,9 @@ import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders'), { ssr: false })
 
 About.getInitialProps = async () => {
-  const { aboutUsPage } = await fetchContenful(`
+  const { aboutUsPage } = await fetchContenful(
+    'about',
+    `
   {
     aboutUsPage(id: "74N0U1LNjfceeBVytfHC93", preview: false){
       hero{
@@ -101,7 +103,8 @@ About.getInitialProps = async () => {
       opensourceDescription,
     	contactUsTitle
     }
-  }`)
+  }`
+  )
 
   return {
     aboutUsPage: aboutUsPage,
