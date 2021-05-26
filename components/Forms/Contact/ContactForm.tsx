@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import ToastList from '../../Toast/ToastList'
-import ButtonPrimary from '../../Buttons/ButtonPrimary/ButtonPrimary'
+import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input, Textarea } from '../Inputs/Inputs'
 import styles from './ContactForm.module.css'
 
-const ContactForm = () => {
+const ContactForm = (props) => {
   const [list, setList] = useState([])
   const { t } = useTranslation()
 
@@ -146,19 +146,12 @@ const ContactForm = () => {
           }}
         />
         <div className={styles.buttons}>
-          <ButtonPrimary>
+          <ButtonFull {...props}>
             <button type='submit'>{t('common:forms.submit')}</button>
-          </ButtonPrimary>
+          </ButtonFull>
           <ToastList toastList={list} position='bottomRight' />
         </div>
       </form>
-      <style jsx>
-        {`
-          .hidden {
-            display: none;
-          }
-        `}
-      </style>
     </FormProvider>
   )
 }

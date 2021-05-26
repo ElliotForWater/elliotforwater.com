@@ -1,17 +1,361 @@
+.sections {
+  position: relative;
+  padding: 60px 0;
+  text-align: center;
+  color: var(--textColor);
+  font-size: 1.6rem;
+}
+
+.sections h2 {
+  font-size: 6vw;
+  padding-bottom: 20px;
+}
+
+.bgGrey {
+  background-color: var(--lightAzureBackground);
+}
+
+.centerBox {
+  padding: 0 20px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.svgDiagonal {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  left: 0;
+}
+
+.searchBarSection {
+  background-image: url('/images/water_background.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  margin: 0 2em;
+}
+
+.logoImgWrap {
+  font-size: 36px;
+}
+
+.logoImg {
+  height: auto;
+  width: 100%;
+  max-width: 10em;
+}
+
+.logoSubtitle {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 3px #c3c2c245;
+  margin-bottom: 33px;
+}
+
 .searchWrap {
   max-width: 90%;
   margin: 33px auto;
   font-size: 1.2em;
 }
 
-@media (min-width: 400px) {
+.ctaContainer {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  max-width: 85%;
+}
+
+.ctaTitle {
+  color: var(--textColor);
+  font-size: 16px;
+  text-shadow: 1px 3px 5px #6f6e6e0f;
+}
+
+.counterContainer {
+  margin: 33px auto;
+  text-align: center;
+}
+
+.counterText {
+  color: var(--dimGrey);
+  font-size: 12px;
+}
+
+.cta {
+  margin-top: 20px;
+}
+
+.showMoreContainer a {
+  display: inline-block;
+  font-size: 2em;
+  padding-top: 23px;
+  color: var(--elliotSecondary);
+  position: relative;
+}
+
+.introContainer {
+  position: relative;
+  padding: 70px 20px 150px;
+}
+
+.introBox {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.introText {
+  padding-bottom: 60px;
+  text-align: center;
+}
+
+.introTitle {
+  font-size: 6vw;
+}
+
+.introDescription {
+  font-size: 5vw;
+}
+
+.introPic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position-x: center;
+  box-shadow: 0 4px 22px 0 #a6a6a6;
+}
+
+.videoSection {
+  background-color: var(--lightAzureBackground);
+  position: relative;
+  min-height: 300px;
+}
+
+.video {
+  width: 100%;
+  max-width: 1900px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  box-shadow: -6px 5px 16px 0 #a6a6a6;
+}
+
+.howItWorks {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+  text-align: center;
+}
+
+.howItWorksTitle {
+  font-size: 2.8vw;
+}
+
+.howItWorksDescription {
+  padding-bottom: 40px;
+}
+
+.cardWrap {
+  margin: 0 auto;
+  max-width: 350px;
+}
+
+.cardWrap :global(> div) {
+  margin-bottom: 80px;
+}
+
+.newsletterSection {
+  background-color: var(--elliotSecondary);
+  color: white;
+}
+
+.newsletterSection :global(.divider) {
+  background: var(--elliotCta);
+}
+
+@media (min-width: 450px) {
+  .sections h2 {
+    font-size: 4vw;
+  }
+
+  .logoSubtitle {
+    font-size: 14px;
+  }
+
+  .ctaTitle {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+  }
+
   .searchWrap {
     max-width: 80%;
+  }
+
+  .introPic {
+    width: 250px;
+    height: 250px;
+  }
+
+  .introTitle {
+    font-size: 5vw;
+  }
+
+  .introDescription {
+    font-size: 4vw;
+  }
+
+  .videoSection {
+    min-height: 500px;
   }
 }
 
 @media (min-width: 768px) {
+  .sections {
+    padding: 100px 0;
+  }
+
+  .sections h2 {
+    font-size: 2.4vw;
+  }
+
+  .svgDiagonal {
+    height: 70px;
+  }
+
+  .logoSubtitle {
+    font-size: 17px;
+  }
+
   .searchWrap {
     max-width: 42em;
+  }
+
+  .ctaContainer {
+    margin-bottom: 14px;
+    max-width: 70%;
+  }
+
+  .ctaTitle {
+    font-size: 30px;
+  }
+
+  .counterContainer {
+    margin: 44px 0 22px;
+  }
+
+  .counterText {
+    font-size: 16px;
+  }
+
+  .cta {
+    margin-top: 20px;
+  }
+
+  .introContainer {
+    padding: 150px 20px;
+  }
+
+  .introBox {
+    max-width: 80%;
+    flex-direction: row;
+  }
+
+  .introText {
+    padding-bottom: 0;
+    text-align: left;
+    width: 40%;
+  }
+
+  .introTitle {
+    font-size: 4vw;
+  }
+
+  .introDescription {
+    font-size: 1.8vw;
+  }
+
+  .introPic {
+    width: 350px;
+    height: 350px;
+  }
+
+  .videoSection {
+    min-height: 740px;
+  }
+
+  .howItWorks {
+    padding-top: 100px;
+    padding-bottom: 150px;
+  }
+
+  .howItWorksDescription {
+    padding-bottom: 80px;
+  }
+
+  .cardWrap {
+    margin: auto;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cardWrap :global(> div) {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .sections {
+    font-size: 1.8rem;
+  }
+
+  .ctaContainer {
+    max-width: 55%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .sections {
+    padding: 150px 0;
+    font-size: 2.2rem;
+  }
+
+  .introPic {
+    width: 500px;
+    height: 500px;
+  }
+
+  .videoSection {
+    min-height: 900px;
+  }
+
+  .howItWorks {
+    padding-top: 150px;
+    padding-bottom: 200px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .introContainer {
+    padding: 250px 20px;
+  }
+
+  .videoSection {
+    min-height: 1100px;
   }
 }

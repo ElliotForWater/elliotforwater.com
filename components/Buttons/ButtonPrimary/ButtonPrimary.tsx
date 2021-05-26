@@ -5,7 +5,7 @@ import classnames from 'classnames'
 
 export default function ButtonPrimary(props) {
   return (
-    <span className={classnames(styles.primary, { [styles.big]: props.big })}>
+    <span className={classnames(styles.primary, { [styles.size]: props.size })}>
       <Button {...props} />
     </span>
   )

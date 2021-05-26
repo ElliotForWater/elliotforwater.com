@@ -208,7 +208,7 @@ const SearchBar = ({ big }: SearchProps) => {
               }}
             >
               <span className={styles.autosuggestItemIcon}>
-                <SearchIcon color='var(--placeholder)' size={14} />
+                <SearchIcon color='var(--dimGrey)' size={14} />
               </span>
               {word}
             </li>

@@ -39,7 +39,7 @@
 }
 
 .slickWrapper :global(.slick-track) {
-  background-color: var(--elliotLink);
+  background-color: var(--elliotTealBlue);
 }
 
 .slideWrap {
@@ -61,7 +61,7 @@
   padding: 20px;
   padding-bottom: 50px;
   text-align: center;
-  background: var(--elliotLink);
+  background: var(--elliotTealBlue);
   width: 100%;
   color: white;
   display: flex;
@@ -82,7 +82,7 @@
 }
 
 .slickWrapper :global(.outlineReverse:hover) {
-  color: var(--elliotLink);
+  color: var(--elliotTealBlue);
 }
 
 @media (min-width: 768px) {

@@ -50,12 +50,12 @@
 .titleLink {
   font-weight: 400;
   transition: none;
-  color: var(--linkSearch);
+  color: var(--elliotLinkSearch);
 }
 
 .titleLink:hover {
   text-decoration: underline;
-  color: var(--linkSearch);
+  color: var(--elliotLinkSearch);
 }
 
 .titleLink:visited {
@@ -81,11 +81,11 @@
 
 .relatedLink {
   font-size: 12px;
-  color: var(--linkSearch);
+  color: var(--elliotLinkSearch);
 }
 
 .relatedLink:hover {
-  color: var(--linkSearch);
+  color: var(--elliotLinkSearch);
   text-decoration: underline;
 }
 

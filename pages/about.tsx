@@ -228,10 +228,17 @@ function About({ aboutUsPage }) {
               </ButtonPrimary>
             </div>
           </section>
-          <section className='sections'>
+          <section className='sections contactus' id='contact'>
             <div className='containerCenter'>
               <h2>{contactUsTitle}</h2>
-              <ContactUsForm />
+              <ContactUsForm
+                customStyle={{
+                  background: 'var(--elliotCta)',
+                  color: 'white',
+                  backgroundHover: 'var(--elliotCta)',
+                  colorHover: 'white',
+                }}
+              />
             </div>
           </section>
         </>
@@ -249,7 +256,12 @@ function About({ aboutUsPage }) {
           }
 
           .sections:nth-child(odd) {
-            background: #f7f7f7;
+            background: var(--lightGreyBackground);
+          }
+
+          #contact {
+            background: var(--elliotSecondary);
+            color: white;
           }
 
           .containerCenter {
@@ -270,14 +282,6 @@ function About({ aboutUsPage }) {
 
           .titleWithDivider {
             padding-bottom: 10px;
-          }
-
-          .divider {
-            height: 4px;
-            width: 100px;
-            margin: 0 auto;
-            background: var(--elliotLink);
-            margin-bottom: 20px;
           }
 
           .mission p {
@@ -309,7 +313,7 @@ function About({ aboutUsPage }) {
           .historyDivider {
             height: 4px;
             width: 50px;
-            background: var(--elliotLink);
+            background: var(--elliotSecondary);
             margin: 5px auto 12px;
           }
 
@@ -356,10 +360,6 @@ function About({ aboutUsPage }) {
               padding-bottom: 25px;
             }
 
-            .divider {
-              margin-bottom: 30px;
-            }
-
             .mission p {
               font-size: 16px;
             }
@@ -394,10 +394,6 @@ function About({ aboutUsPage }) {
 
             h2 {
               padding-bottom: 40px;
-            }
-
-            .divider {
-              margin-bottom: 40px;
             }
 
             blockquote {

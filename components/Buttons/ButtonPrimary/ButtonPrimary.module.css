@@ -15,18 +15,11 @@
   text-transform: uppercase;
 }
 
-.big {
-  border-radius: 15px;
-}
-
 .primary:hover {
   background-position: right center;
 }
 
-.primary button {
-  color: white;
-}
-
+.primary button,
 .primary a {
   color: white;
 }

@@ -15,7 +15,11 @@ const Footer = () => {
             <img className={styles.icon} src='/images/social-icons/fb_icon.svg' alt='facebook elliot for water' />
           </a>
           <a target='_blank' href='https://www.instagram.com/elliotforwater/' rel='noopener'>
-            <img className={styles.icon} src='/images/social-icons/instagram_icon.svg' alt='instagram elliot for water' />
+            <img
+              className={styles.icon}
+              src='/images/social-icons/instagram_icon.svg'
+              alt='instagram elliot for water'
+            />
           </a>
           <a target='_blank' href='https://vm.tiktok.com/Kk2AL5/' rel='noopener'>
             <img className={styles.icon} src='/images/social-icons/tiktok_icon.svg' alt='tiktok elliot for water' />
@@ -23,7 +27,11 @@ const Footer = () => {
           <a target='_blank' href='https://twitter.com/Elliotforwater' rel='noopener'>
             <img className={styles.icon} src='/images/social-icons/twitter_icon.svg' alt='twitter elliot for water' />
           </a>
-          <a target='_blank' href='https://www.youtube.com/channel/UCPxhu7Umb7kBzGVA0DB7uew?view_as=subscriber' rel='noopener'>
+          <a
+            target='_blank'
+            href='https://www.youtube.com/channel/UCPxhu7Umb7kBzGVA0DB7uew?view_as=subscriber'
+            rel='noopener'
+          >
             <img className={styles.icon} src='/images/social-icons/youtube_icon.svg' alt='youtube elliot for water' />
           </a>
         </div>
@@ -36,7 +44,7 @@ const Footer = () => {
       <div className={styles.separationLine} />
       <ul className={styles.links}>
         <li className={styles.link}>
-          <Link href='/about'>
+          <Link href='/about/#contact'>
             <a>{t('common:footer.contact')}</a>
           </Link>
         </li>

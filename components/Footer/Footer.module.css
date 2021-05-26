@@ -1,5 +1,5 @@
 .footer {
-  background: var(--footerBg);
+  background: var(--lightGreyBackground);
   grid-row-start: 3;
   grid-row-end: 4;
   padding: 20px;
@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: var(--textColor);
 }
 
 .social {
@@ -56,7 +57,7 @@
 }
 
 .link a:hover {
-  color: var(--cta);
+  color: var(--elliotSecondary);
   text-decoration: none;
 }
 

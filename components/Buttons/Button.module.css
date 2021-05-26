@@ -17,10 +17,12 @@
   background: transparent;
   text-transform: inherit;
   font-weight: inherit;
+  color: inherit;
 }
 
 .button a {
   cursor: pointer;
+  color: inherit;
 }
 
 .button a:hover {

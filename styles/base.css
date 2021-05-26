@@ -1,23 +1,17 @@
 :root {
   --elliotPrimary: #72afd4;
-  --elliotSecondary: #5082af;
-  --elliotHover: #9cd5db;
+  --elliotSecondary: #577399;
+  --elliotTealBlue: #287896;
+  --elliotCta: #ffa62b;
   --elliotVisited: #7e359e;
-  --elliotLink: #287896;
-  --elliotLinkSubtitle: #4aacc28f;
+  --elliotLinkSearch: #1a0dab;
   --dimGrey: #999;
   --lighterGrey: #f0f0f0;
-  --containerBg: #f7f7f7;
-  --placeholder: #ccc;
-  --textColor: #333;
-  --textGreyColor: #44444494;
-  --cta: #3fa2b8;
-  --footerBg: #e6f6f9;
-  --borderColor: #99b7bd4f;
+  --lightGreyBackground: #f7f7f7;
+  --lightAzureBackground: #f7f7ff;
   --lightGrey: #e8e8e8;
-  --BSlink: #428bca;
+  --textColor: #333;
   --error: #ad081b;
-  --linkSearch: #1a0dab;
   --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
   --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
   --zindex0: 0;
@@ -64,7 +58,7 @@ h2 {
 
 a {
   text-decoration: none;
-  color: var(--elliotLink);
+  color: var(--elliotPrimary);
 }
 
 /* to remove when get rid of bootstrap */
@@ -122,11 +116,19 @@ ul {
 
 /* odometer custom style */
 .odometer {
-  color: var(--elliotPrimary);
+  color: var(--elliotSecondary);
   font-size: 22px;
   letter-spacing: 0.3em;
   font-family: var(--fontCommon);
   font-weight: 700;
+}
+
+.divider {
+  height: 4px;
+  width: 100px;
+  margin: 0 auto;
+  background: var(--elliotSecondary);
+  margin-bottom: 20px;
 }
 
 /* ==================================================
@@ -245,10 +247,18 @@ ul {
   .odometer {
     font-size: 26px;
   }
+
+  .divider {
+    margin-bottom: 30px;
+  }
 }
 
 @media (min-width: 1200px) {
   .old_container {
     max-width: 1100px;
+  }
+
+  .divider {
+    margin-bottom: 40px;
   }
 }
