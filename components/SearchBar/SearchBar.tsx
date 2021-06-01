@@ -63,52 +63,6 @@ const SearchBar = ({ big }: SearchProps) => {
   }, [query])
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      const { key } = event
-
-      switch (key) {
-        case 'ArrowUp':
-          event.preventDefault()
-          setSearchSuggestedWords(false)
-          return setHighlightIndex((prevIndex: number) => {
-            if (prevIndex === 0) {
-              return prevIndex
-            } else {
-              return prevIndex - 1
-            }
-          })
-
-        case 'ArrowDown':
-          setSearchSuggestedWords(false)
-          return setHighlightIndex((prevIndex: number) => {
-            if (prevIndex === null) {
-              return 0
-            }
-
-            if (prevIndex === suggestedWords.length - 1) {
-              return prevIndex
-            } else {
-              return prevIndex + 1
-            }
-          })
-
-        case 'Escape':
-          setIsSuggestionOpen(false)
-          break
-
-        default:
-          setHighlightIndex(null)
-        // setSearchValue(event.target.defaultValue)
-      }
-    }
-    document.body.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      document.body.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [searchValue])
-
-  useEffect(() => {
     const fetchSuggestedWords = async () => {
       try {
         const res = await fetchJsonp(`${SUGGESTED_WORDS_URL}${searchValue}`)
@@ -123,7 +77,52 @@ const SearchBar = ({ big }: SearchProps) => {
     if (searchSuggestedWords) {
       fetchSuggestedWords()
     }
+
+    document.body.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.removeEventListener('keydown', handleKeyDown)
+    }
   }, [searchValue])
+
+  const handleKeyDown = (event) => {
+    const { key } = event
+
+    switch (key) {
+      case 'ArrowUp':
+        event.preventDefault()
+        setSearchSuggestedWords(false)
+        return setHighlightIndex((prevIndex: number) => {
+          if (prevIndex === 0) {
+            return prevIndex
+          } else {
+            return prevIndex - 1
+          }
+        })
+
+      case 'ArrowDown':
+        setSearchSuggestedWords(false)
+        return setHighlightIndex((prevIndex: number) => {
+          if (prevIndex === null) {
+            return 0
+          }
+
+          if (prevIndex === suggestedWords.length - 1) {
+            return prevIndex
+          } else {
+            return prevIndex + 1
+          }
+        })
+
+      case 'Escape':
+        setIsSuggestionOpen(false)
+        break
+
+      default:
+        setHighlightIndex(null)
+      // setSearchValue(event.target.defaultValue)
+    }
+  }
 
   function onSubmit() {
     search(searchValue)

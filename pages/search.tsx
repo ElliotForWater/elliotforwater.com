@@ -451,15 +451,19 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
       return Router.push('/')
     }
   }
-  let statusCode = res ? res.statusCode : null
 
+  let statusCode = res ? res.statusCode : null
   const queryNoWhite = queryNoWitheSpace(searchQuery)
   let results: resultsObj = null
   let activeTab = findTabByType(type)
-
   let userAgent
   let adultContentCookie
+  let ipClient
+
   if (req) {
+    ipClient = req.headers['x-real-ip'] || req.connection.remoteAddress
+    console.log({ ipClient })
+
     userAgent = req.headers['user-agent']
     adultContentCookie = isNaN(Number(req.cookies[COOKIE_NAME_ADULT_FILTER]))
       ? 1
@@ -478,14 +482,9 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
           new URLSearchParams({
             query: `${queryNoWhite}`,
             AdultContentFilter: adultContentCookie,
-          }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': userAgent,
-            'Access-Control-Allow-Headers': '*',
-          },
-        }
+            UserIp: ipClient,
+            UserAgent: userAgent,
+          })
       )
 
       if (data.ok) {
