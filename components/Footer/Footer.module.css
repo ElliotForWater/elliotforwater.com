@@ -40,7 +40,6 @@
 .links {
   grid-area: links;
   margin-top: 10px;
-  list-style: none;
   padding: 0;
 }
 
@@ -61,12 +60,34 @@
   text-decoration: none;
 }
 
+.legalContacts {
+  grid-area: legalContacts;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.name {
+  grid-area: name;
+}
+
+.contact {
+  grid-area: contact;
+}
+
+.addressStreet {
+  grid-area: addressStreet;
+}
+
+.addressCountry {
+  grid-area: addressCountry;
+}
+
 @media (min-width: 768px) {
   .footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    grid-template-areas: 'social newsletter' 'line line' 'links .';
+    grid-template-areas: 'social newsletter' 'line line' 'links legalContacts';
     column-gap: 10px;
     row-gap: 8px;
     text-align: left;
@@ -86,5 +107,14 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
     margin-top: 0;
+  }
+
+  .legalContacts {
+    grid-area: legalContacts;
+    text-align: right;
+    display: grid;
+    grid-template-areas: 'name contact ' 'addressStreet .' 'addressCountry .';
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
   }
 }

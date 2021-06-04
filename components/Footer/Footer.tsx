@@ -67,6 +67,12 @@ const Footer = () => {
           </Link>
         </li>
       </ul>
+      <ul className={styles.legalContacts}>
+        <li className={styles.name}>Elliot For Water Organisation LTD.</li>
+        <li className={styles.addressStreet}>1b Maud Road, London</li>
+        <li className={styles.addressCountry}>UK, E10 5QF</li>
+        <li className={styles.contact}>info@elliotforwater.com</li>
+      </ul>
     </footer>
   )
 }
