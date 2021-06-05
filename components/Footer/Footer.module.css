@@ -74,12 +74,8 @@
   grid-area: contact;
 }
 
-.addressStreet {
-  grid-area: addressStreet;
-}
-
-.addressCountry {
-  grid-area: addressCountry;
+.address {
+  grid-area: address;
 }
 
 @media (min-width: 768px) {
@@ -113,8 +109,14 @@
     grid-area: legalContacts;
     text-align: right;
     display: grid;
-    grid-template-areas: 'name contact ' 'addressStreet .' 'addressCountry .';
-    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'name contact ' 'address .';
+    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .legalContacts {
+    grid-template-columns: 2fr 1fr;
   }
 }
