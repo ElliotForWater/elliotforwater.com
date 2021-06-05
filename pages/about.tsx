@@ -14,9 +14,8 @@ const Projectslides = dynamic(() => import('../components/Sliders/ProjectSliders
 
 About.getInitialProps = async () => {
   const { aboutUsPage } = await fetchContenful(
-    'about',
-    `
-  {
+    'aboutUs',
+    `{
     aboutUsPage(id: "74N0U1LNjfceeBVytfHC93", preview: false){
       hero{
         title,

@@ -29,7 +29,9 @@ function getLitersOfWater(litersOfWaterPerMillisecond) {
 }
 
 Home.getInitialProps = async () => {
-  const { homePage } = await fetchContenful(`
+  const { homePage } = await fetchContenful(
+    'home',
+    `
   {
     homePage(id: "fl7zyfAyVPWvG3qJBuspf", preview: false){
       searchFieldTitle,
@@ -68,7 +70,8 @@ Home.getInitialProps = async () => {
       },
     	newsletterTitle
   }    
-}`)
+}`
+  )
 
   return {
     homePage: homePage,
