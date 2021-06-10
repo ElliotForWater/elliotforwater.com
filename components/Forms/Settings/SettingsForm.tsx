@@ -45,7 +45,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.settingsBody}>
-            <div className='control-group'>
+            <div className={styles.controlBox}>
               <label htmlFor='language'>{t('common:settings.language')}</label>
               <Select
                 id='language'
@@ -58,7 +58,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
               />
             </div>
 
-            <div className='control-group'>
+            <div className={styles.controlBox}>
               <label htmlFor='adultContentFilter'>{t('common:settings.adult_filter')}</label>
               <Select
                 id='adultContentFilter'
@@ -72,7 +72,7 @@ const SettingsForm = ({ callbackCloseSettings }) => {
               />
             </div>
 
-            <div className='control-group'>
+            <div className={styles.controlBox}>
               <Input
                 id='openInNewTab'
                 name='openInNewTab'
