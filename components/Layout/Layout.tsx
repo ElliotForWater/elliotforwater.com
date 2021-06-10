@@ -39,12 +39,6 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         <meta name='og:site_name' content='Elliot for Water' />
         <meta name='og:type' content='website' />
 
-        {/* <!-- Font awesome --> */}
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css' />
-
-        {/* <!-- Styles --> */}
-        {/* <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' /> */}
-
         {/* <!-- Apple Icons --> */}
         <link rel='apple-touch-icon' sizes='180x180' href='images/metas/apple-touch-icon.png' />
         <link rel='icon' type='image/png' sizes='32x32' href='images/metas/favicon-32x32.png' />
