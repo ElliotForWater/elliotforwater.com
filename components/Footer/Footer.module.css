@@ -109,7 +109,7 @@
     grid-area: legalContacts;
     text-align: right;
     display: grid;
-    grid-template-areas: 'name contact ' 'address .';
+    grid-template-areas: 'name contact ' 'address phone';
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
   }
