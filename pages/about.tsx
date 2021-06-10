@@ -140,7 +140,7 @@ function About({ aboutUsPage }) {
   } = aboutUsPage
 
   return (
-    <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
+    <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageDescription')} fluid>
       {isLoading ? (
         <Loader />
       ) : (
@@ -226,7 +226,7 @@ function About({ aboutUsPage }) {
                 <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
               </p>
               <ButtonPrimary linkHref='https://github.com/ElliotForWater/efw-webapp' target='_blank'>
-                Join us
+                {t('about:join_us')}
               </ButtonPrimary>
             </div>
           </section>
