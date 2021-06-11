@@ -25,6 +25,9 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
@@ -33,22 +36,50 @@ body,
   height: 100%;
 }
 
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: white;
   color: var(--textColor);
   font-weight: 400;
   min-height: 100%;
   line-height: 1.5;
+  font-size: 14px;
   font-family: var(--fontCommon);
+}
+
+::before,
+::after {
+  box-sizing: border-box;
 }
 
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: var(--fontCommon);
   font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
   line-height: 1.3;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -56,36 +87,21 @@ h2 {
   font-size: 1.8em;
 }
 
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
 a {
   text-decoration: none;
   color: var(--elliotPrimary);
 }
 
-/* to remove when get rid of bootstrap */
-a:focus {
-  outline: none;
-  text-decoration: none;
-}
-
-/* To remove once all form are react-form-hooks */
-.input:focus-visible {
-  outline: 1px solid black;
-}
-
-.input::placeholder {
-  /* Chrome, FF, Opera, Safari 10.1+ */
-  color: var(--placeholder);
-  opacity: 1; /* FF */
-}
-
-.input::-ms-input-placeholder {
-  /* Edge */
-  color: var(--placeholder);
-}
-
-.input:-ms-input-placeholder {
-  /* IE 10-11 */
-  color: var(--placeholder);
+a:hover {
+  color: var(--elliotSecondary);
 }
 
 p {
@@ -96,22 +112,35 @@ ul {
   list-style: none;
 }
 
-.hidden-element {
-  height: 0;
-  width: 0;
-  display: none;
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 /* COMMON STYLE 
 =========================
 */
-.main {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
-.container {
-  padding: 20px 0;
+.hidden-element {
+  height: 0;
+  width: 0;
+  display: none;
 }
 
 /* odometer custom style */
@@ -131,49 +160,6 @@ ul {
   margin-bottom: 20px;
 }
 
-/* ==================================================
-  Styles from .NET
-================================================== */
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-}
-
-.background--50 {
-  top: 50%;
-}
-
-.section-center {
-  margin: auto;
-}
-
-.section {
-  position: relative;
-}
-
-.section--centered {
-  text-align: center;
-}
-
-.flex--center {
-  justify-content: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.card {
-  margin: auto;
-}
-
-.card__img {
-  width: 25em;
-}
-
 .old_container {
   background: #f7f7f7;
   margin-top: 1px;
@@ -181,67 +167,11 @@ ul {
   margin-left: 0;
 }
 
-.old_container__fluid {
-  background: #f7f7f7;
-  margin-top: 1px;
-  margin-right: 0;
-  margin-left: 0;
-  width: 100%;
-}
-
-/* ==================================================
-   Form styles
-================================================== */
-.form-control {
-  border-radius: 30px;
-  border-style: hidden;
-  background-color: #fff;
-  box-shadow: -1px 1px 5px -1px rgba(1, 1, 1, 0.2);
-  padding-left: 1.5em;
-  font-style: italic;
-}
-
-.form-control--multiline {
-  padding-top: 1.2em;
-}
-
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--placeholder-grey-color, lightgrey);
-  opacity: 1; /* Firefox */
-}
-
-.form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: var(--placeholder-grey-color, lightgrey);
-}
-
-.form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: var(--placeholder-grey-color, lightgrey);
-}
-
-.control-group {
-  margin-top: 2em;
-}
-
-.control-label {
-  display: inline-block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 @media (min-width: 768px) {
   .old_container {
     background: white;
     margin-top: 0;
     margin-left: 130px;
-  }
-
-  .old_container__fluid {
-    background: white;
-    padding-right: 20px;
-    padding-left: 20px;
   }
 
   .odometer {

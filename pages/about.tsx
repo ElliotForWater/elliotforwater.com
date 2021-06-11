@@ -140,7 +140,7 @@ function About({ aboutUsPage }) {
   } = aboutUsPage
 
   return (
-    <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageTitle')} fluid>
+    <Layout pageTitle={t('about:pageTitle')} pageDescription={t('about:pageDescription')} fluid>
       {isLoading ? (
         <Loader />
       ) : (
@@ -222,11 +222,11 @@ function About({ aboutUsPage }) {
             <div className='containerCenter opensourceContainer'>
               <h2 className='titleWithDivider'>{opensourceTitle}</h2>
               <div className='divider' />
-              <p className='opensourceDescription'>
+              <div className='opensourceDescription'>
                 <ReactMarkdown>{opensourceDescription}</ReactMarkdown>
-              </p>
+              </div>
               <ButtonPrimary linkHref='https://github.com/ElliotForWater/efw-webapp' target='_blank'>
-                Join us
+                {t('about:join_us')}
               </ButtonPrimary>
             </div>
           </section>
@@ -291,8 +291,8 @@ function About({ aboutUsPage }) {
           }
 
           blockquote {
-            font-size: 28px;
-            font-size: 2em;
+            font-size: 22px;
+            font-size: 1.5em;
             font-weight: 700;
             padding: 20px 0;
             max-width: 700px;

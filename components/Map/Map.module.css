@@ -5,3 +5,8 @@
   border: none;
   margin: 0;
 }
+
+.container {
+  height: calc(70vw);
+  padding: 0 25px;
+}
