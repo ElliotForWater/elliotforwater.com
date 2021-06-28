@@ -17,7 +17,6 @@ function Droplet() {
   return (
     <div
       className={styles.dropletContainer}
-      onMouseEnter={() => setHideTooltip(false)}
       onMouseLeave={() => setHideTooltip(true)}
       onClick={() => setHideTooltip((prev) => !prev)}
     >
