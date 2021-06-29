@@ -138,7 +138,7 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function search(searchString: string, event?) {
-    if (!searchString) {
+    if (!searchString || !/\S/.test(searchString)) {
       return
     }
 
@@ -179,10 +179,11 @@ const SearchBar = ({ big }: SearchProps) => {
               autoComplete='off'
               autoCorrect='off'
               spellCheck='false'
+              id='search-form'
               placeholder={t('common:search_input')}
               register={register}
             />
-            <button className={big ? styles.buttonBig : styles.button} type='submit'>
+            <button className={big ? styles.buttonBig : styles.button} type='submit' id='search-form-submit-button'>
               <SearchIcon color='var(--elliotPrimary)' size={16} />
             </button>
           </form>
