@@ -138,7 +138,7 @@ const SearchBar = ({ big }: SearchProps) => {
   }
 
   function search(searchString: string, event?) {
-    if (!searchString) {
+    if (!searchString || !/\S/.test(searchString)) {
       return
     }
 
