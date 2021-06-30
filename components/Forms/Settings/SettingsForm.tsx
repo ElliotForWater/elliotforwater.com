@@ -9,7 +9,7 @@ import styles from './SettingsForm.module.css'
 
 type InputsProp = {
   language: number
-  adultContentFilter: number
+  adultContentFilter: string
   openInNewTab: boolean
 }
 
@@ -64,9 +64,9 @@ const SettingsForm = ({ callbackCloseSettings }) => {
                 id='adultContentFilter'
                 name='adultContentFilter'
                 options={[
-                  { label: t('common:settings.off'), value: 0 },
-                  { label: t('common:settings.moderate'), value: 1 },
-                  { label: t('common:settings.strict'), value: 2 },
+                  { label: t('common:settings.off'), value: 'Off' },
+                  { label: t('common:settings.moderate'), value: 'Moderate' },
+                  { label: t('common:settings.strict'), value: 'Strict' },
                 ]}
                 register={register}
               />

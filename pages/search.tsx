@@ -212,11 +212,11 @@ function SearchPage({
         setIsLoadingMore(true)
 
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
+          `${process.env.NEXT_PUBLIC_BASE_URL}/searchresults/${type}?` +
             new URLSearchParams({
               query: `${queryNoWhite}`,
               pageIndex: `${resultsBatch}`,
-              AdultContentFilter: `${userState.adultContentFilter}`,
+              adultContentFilter: `${userState.adultContentFilter}`,
             })
         )
 
@@ -508,10 +508,10 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   } else {
     try {
       const data = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
+        `${process.env.NEXT_PUBLIC_BASE_URL}/searchresults/${type}?` +
           new URLSearchParams({
             query: `${queryNoWhite}`,
-            AdultContentFilter: adultContentCookie,
+            adultContentFilter: adultContentCookie,
           }),
         {
           headers: {
