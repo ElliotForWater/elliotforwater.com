@@ -15,7 +15,6 @@ export default async function handler(req, res) {
     q: query,
     safeSearch: adultContentFilter,
   }
-
   switch (type) {
     case 'web':
       params.count = 10
@@ -34,9 +33,8 @@ export default async function handler(req, res) {
       params.offset = pageIndex || 0
       break
   }
-
   const fullQuery = objectToStringParams(params)
-  const results = await getBingApi(type, fullQuery)
 
+  const results = await getBingApi(type, fullQuery)
   res.json(results)
 }
