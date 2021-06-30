@@ -3,7 +3,7 @@ import Router, { useRouter } from 'next/router'
 import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
-import Error from 'next/error'
+// import Error from 'next/error'
 import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
@@ -317,7 +317,17 @@ function SearchPage({
 
         <div className='content'>
           {isLoading && <Loader />}
-          {errorStatus && <Error statusCode={errorStatus} />}
+          {errorStatus && (
+            <div className='errorContainer'>
+              <h2>
+                {errorStatus} <span>|</span> {errorStatus === 400 ? 'Bad Request' : 'Server Error'}
+              </h2>
+              <p>
+                We are sorry, we have a temporary issue. Please{' '}
+                <a href={`https://google.com/search?q=${query}`}>click here</a> to see your results on Google!
+              </p>
+            </div>
+          )}
 
           {!errorStatus && !isLoading && content}
 
@@ -385,6 +395,30 @@ function SearchPage({
             justify-content: center;
             align-items: center;
             margin: 20px 0;
+          }
+
+          .errorContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100%;
+          }
+
+          .errorContainer h2 {
+            font-weight: normal;
+            padding-bottom: 20px;
+            font-size: 1.5em;
+          }
+
+          .errorContainer h2 span {
+            font-size: 1.4em;
+            color: #b0aeae;
+          }
+
+          .errorContainer p {
+            font-size: 1.2em;
           }
 
           @media (min-width: 768px) {
@@ -487,7 +521,6 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
           },
         }
       )
-
       if (data.ok) {
         results = await data.json()
       } else {
