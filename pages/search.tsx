@@ -509,7 +509,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
     }
   } catch (err) {
     statusCode = 500 // TODO: change it in API res
-    console.error('Error while fetching Search API:', err)
+    console.error('Error fetching Search API:', err)
   }
 
   return {
