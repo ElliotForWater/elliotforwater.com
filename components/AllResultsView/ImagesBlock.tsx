@@ -25,9 +25,8 @@ const ImagesBlock = ({ images, query }: Prop) => {
         {firstBatch.map((image, i) => (
           <div className={styles.imagePreviewContainer} key={i}>
             <a href={image.contentUrl} target='_blank'>
-              <img className={styles.imagePreviewImage} src={image.thumbnailUrl} alt={image.title} />
+              <img className={styles.imagePreviewImage} src={image.thumbnailUrl} alt={image.name} />
             </a>
-            {/* <img className={styles.hidden} src={image.pixelUrl} /> */}
           </div>
         ))}
       </div>

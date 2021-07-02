@@ -9,7 +9,6 @@ import { queryNoWitheSpace } from '../../helpers/_utils'
 type relatedObj = {
   text: string
   displayText: string
-  // pixelUrl: string
 }
 
 interface Props {

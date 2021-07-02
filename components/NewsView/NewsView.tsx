@@ -4,8 +4,12 @@ import CustomLink from '../CustomLink'
 import styles from './NewsView.module.css'
 import classnames from 'classnames'
 
+type providerProps = {
+  name: string
+}
+
 type NewsObj = {
-  provider: { name: string }
+  provider?: providerProps[]
   description: string
   url: string
   name: string

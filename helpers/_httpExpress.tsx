@@ -7,15 +7,21 @@ function getBingApi(type, query, headers) {
 
   const isWebSearch = type === 'web'
   const path = isWebSearch ? '/v7.0/search?' : `/v7.0/${type}/search?`
+  const clientid = headers['x-msedge-clientip']
+  const userAgent = headers['user-agent']
 
   const options = {
     hostname: 'api.bing.microsoft.com',
     path: path + query,
     headers: {
-      'user-agent': headers['user-agent'],
-      'x-msedge-clientip': headers['x-msedge-clientip'],
       'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_KEY,
     },
+  }
+  if (clientid) {
+    headers['X-MSEdge-ClientID'] = clientid
+  }
+  if (userAgent) {
+    headers['user-agent'] = userAgent
   }
 
   return new Promise((resolve, reject) => {

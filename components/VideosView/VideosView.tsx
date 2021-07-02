@@ -5,7 +5,7 @@ import styles from './VideosView.module.css'
 
 type VideosProp = {
   name: string
-  creator: { name: string }
+  creator?: { name: string }
   contentUrl: string
   thumbnailUrl: string
 }

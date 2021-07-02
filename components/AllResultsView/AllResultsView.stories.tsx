@@ -4,10 +4,11 @@ import ALL_RESULTS from '../../__mocks__/webApi.json'
 
 export default { title: 'Components/AllResultsView' }
 const webResults = {
-  organicItems: ALL_RESULTS.organicResults.items,
-  sponsoredItems: ALL_RESULTS.sponsoredResults.items,
-  relatedSearches: ALL_RESULTS.relatedSearches.items,
-  imagesItems: ALL_RESULTS.imageResults.items,
+  web: ALL_RESULTS.webPages.value,
+  relatedSearches: ALL_RESULTS.relatedSearches?.value,
+  images: ALL_RESULTS.images.value,
+  videos: ALL_RESULTS.videos?.value,
+  news: ALL_RESULTS.news.value,
 }
 
-export const AllResultsView = () => <AllResultsViewComp results={webResults} searchQuery='sugar' />
+export const AllResultsView = () => <AllResultsViewComp results={webResults} query='sugar' />

@@ -6,13 +6,13 @@ import IMAGES from '../../__mocks__/imageApi.json'
 
 describe('ImagesView', () => {
   it('should render without throwing an error', function () {
-    const wrap = shallow(<ImagesView images={IMAGES.imageResults.items} query='goat' />)
+    const wrap = shallow(<ImagesView images={IMAGES.value} query='goat' />)
     expect(wrap).toBeDefined()
   })
 
   it('should render 17 images', function () {
-    render(<ImagesView images={IMAGES.imageResults.items} query='goat' />)
+    render(<ImagesView images={IMAGES.value} query='goat' />)
     const img = screen.getAllByRole('link')
-    expect(img.length).toBe(17)
+    expect(img.length).toBe(150)
   })
 })

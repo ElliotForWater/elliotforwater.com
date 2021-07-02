@@ -24,8 +24,10 @@ type organicItemsObj = {
 }
 interface Prop {
   web: organicItemsObj[]
-  relatedSearches: relatedLinks[]
-  images: image[]
+  relatedSearches?: relatedLinks[]
+  images?: image[]
+  videos?: image[]
+  news?: image[]
   batches?: { [x: number]: any[] }
 }
 

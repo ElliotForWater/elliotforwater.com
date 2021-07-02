@@ -6,13 +6,13 @@ import NEWS from '../../__mocks__/newsApi.json'
 
 describe('NewsView', () => {
   it('should render without throwing an error', function () {
-    const wrap = shallow(<NewsView news={NEWS.newsResults.items} query='goat' />)
+    const wrap = shallow(<NewsView news={NEWS.value} query='goat' />)
     expect(wrap).toBeDefined()
   })
 
   it('should render all the elements in the NEWS array', function () {
-    render(<NewsView news={NEWS.newsResults.items} query='goat' />)
+    render(<NewsView news={NEWS.value} query='goat' />)
     const article = screen.getAllByRole('article')
-    expect(article.length).toBe(25)
+    expect(article.length).toBe(18)
   })
 })
