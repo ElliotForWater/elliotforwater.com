@@ -503,7 +503,8 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
 
     if (data.ok) {
       results = await data.json()
-      isWeb = results._type === 'SearchResponse'
+      const resultTypeAPI = '_type'
+      isWeb = results[resultTypeAPI] === 'SearchResponse'
     } else {
       statusCode = 400
     }
