@@ -50,7 +50,7 @@ describe('App', () => {
     setCookies({
       [COOKIE_NAME_SEARCH_COUNT]: 3,
       [COOKIE_NAME_NEW_TAB]: true,
-      [COOKIE_NAME_ADULT_FILTER]: 0, // deliberately included 0 as an edge case here (falsy)
+      [COOKIE_NAME_ADULT_FILTER]: 'Off',
     })
 
     TestComponent = () => null
@@ -70,7 +70,7 @@ describe('App', () => {
     const serverCookies = {
       [COOKIE_NAME_SEARCH_COUNT]: '6',
       [COOKIE_NAME_NEW_TAB]: 'true',
-      [COOKIE_NAME_ADULT_FILTER]: '0', // deliberately included 0 as an edge case here (falsy)
+      [COOKIE_NAME_ADULT_FILTER]: 'Off',
     }
 
     TestComponent = () => null
