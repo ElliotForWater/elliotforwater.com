@@ -8,7 +8,7 @@ import { queryNoWitheSpace } from '../../helpers/_utils'
 
 type relatedObj = {
   text: string
-  pixelUrl: string
+  displayText: string
 }
 
 interface Props {
@@ -40,7 +40,7 @@ const RefineSearch = ({ refineSearches }: Props) => {
                 refineSearches.map((item, i) => {
                   return (
                     <a key={i} className={styles.tab} onClick={(e) => handleClick(e, item.text)}>
-                      {item.text}
+                      {item.displayText}
                     </a>
                   )
                 })}

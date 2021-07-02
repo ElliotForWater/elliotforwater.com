@@ -4,10 +4,9 @@ import CustomLink from '../CustomLink'
 import styles from './ImagesView.module.css'
 
 type ImagesProp = {
-  title: string
-  imageUrl: string
+  name: string
+  contentUrl: string
   thumbnailUrl: string
-  pixelUrl: string
 }
 interface ResultsProp {
   images: ImagesProp[]
@@ -17,18 +16,21 @@ interface ResultsProp {
 const ImagesView = ({ images, query }: ResultsProp) => {
   const { t } = useTranslation()
 
+  if (!Array.isArray(images)) {
+    return <></>
+  }
+
   return (
     <>
-      {!images.length ? (
+      {!images ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <div className={styles.container}>
           {images.map((image, i) => (
             <div className={styles.item} key={i}>
-              <CustomLink href={image.imageUrl}>
-                <img src={image.thumbnailUrl} alt={image.title} title={image.title} className={styles.image} />
+              <CustomLink href={image.contentUrl}>
+                <img src={image.thumbnailUrl} alt={image.name} title={image.name} className={styles.image} />
               </CustomLink>
-              <img className={styles.hidden} src={image.pixelUrl} />
             </div>
           ))}
         </div>

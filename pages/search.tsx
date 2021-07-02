@@ -1,14 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Router, { useRouter } from 'next/router'
-import { UserContext } from '../context/UserContext'
+import requestIp from 'request-ip'
+// import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
 // import Error from 'next/error'
 import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
-import LoadMore from '../components/LoadMore/LoadMore'
-import { formatNumber, queryNoWitheSpace } from '../helpers/_utils'
+// import LoadMore from '../components/LoadMore/LoadMore'
+import { formatNumber, queryNoWitheSpace, getClientIp } from '../helpers/_utils'
 import { COOKIE_NAME_ADULT_FILTER, getCookie } from '../helpers/_cookies'
 import { FiMoreVertical } from 'react-icons/fi'
 import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
@@ -35,12 +36,12 @@ interface tabProp {
   title: string
 }
 
-const MAX_RESULTS = {
-  web: 10,
-  image: 150,
-  video: 50,
-  news: 100,
-}
+// const MAX_RESULTS = {
+//   web: 10,
+//   image: 150,
+//   video: 50,
+//   news: 100,
+// }
 
 const TAB_MENU = [
   {
@@ -50,12 +51,12 @@ const TAB_MENU = [
   },
   {
     id: 2,
-    resultType: 'image',
+    resultType: 'images',
     title: 'search:images',
   },
   {
     id: 3,
-    resultType: 'video',
+    resultType: 'videos',
     title: 'search:videos',
   },
   {
@@ -118,51 +119,22 @@ function findTabByType(type?: string): tabProp {
   return TAB_MENU.find((tab) => type === tab.resultType)
 }
 
-function SearchPage({
-  query,
-  type,
-  errorCode,
-  activeTab,
-  organicTotResults,
-  organicItems,
-  sponsoredItems,
-  imagesItems,
-  videoItems,
-  newsItems,
-  relatedSearches,
-}) {
+function SearchPage({ query, type, errorCode, activeTab, totResults, results }) {
   const { t } = useTranslation()
   const router = useRouter()
-  const { userState } = useContext(UserContext)
-  const [resultsBatch, setResultsBatch] = useState<number>(0)
-  const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
-  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+  // const { userState } = useContext(UserContext)
+  // const [resultsBatch, setResultsBatch] = useState<number>(0)
+  // const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
+  // const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [content, setContent] = useState(null)
-  const queryNoWhite = queryNoWitheSpace(query)
+  // const queryNoWhite = queryNoWitheSpace(query)
   const [errorStatus, setStatusCode] = useState(errorCode)
 
-  const [allResults, setAllResults] = useState({ organicItems, sponsoredItems, imagesItems, relatedSearches })
-  const [images, setImages] = useState(imagesItems)
-  const [videos, setVideos] = useState(videoItems)
-  const [news, setNews] = useState(newsItems)
+  const [allResults, setAllResults] = useState(results)
 
   useEffect(() => {
-    switch (type) {
-      case 'web':
-        setAllResults({ organicItems, sponsoredItems, imagesItems, relatedSearches })
-        break
-      case 'image':
-        setImages(imagesItems)
-        break
-      case 'video':
-        setVideos(videoItems)
-        break
-      case 'news':
-        setNews(newsItems)
-        break
-    }
-
+    setAllResults(results)
     setStatusCode(errorStatus)
   }, [query, type, errorStatus])
 
@@ -171,134 +143,134 @@ function SearchPage({
     setIsLoading(true)
     switch (type) {
       case 'web':
-        content = <AllResultsView results={allResults} searchQuery={query} />
+        content = <AllResultsView results={allResults} query={query} />
         setIsLoading(false)
-        allResults?.organicItems.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        // allResults?.organicItems.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
-      case 'image':
-        content = <ImagesView images={images} query={query} />
+      case 'images':
+        content = <ImagesView images={allResults} query={query} />
         setIsLoading(false)
-        images.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        // images.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
-      case 'video':
-        content = <VideosView videos={videos} query={query} />
+      case 'videos':
+        content = <VideosView videos={allResults} query={query} />
         setIsLoading(false)
-        videos.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        // videos.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'news':
-        content = <NewsView news={news} query={query} />
+        content = <NewsView news={allResults} query={query} />
         setIsLoading(false)
-        news.length ? setShowLoadMore(true) : setShowLoadMore(false)
+        // news.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'map':
         content = <MapView searchQuery={query} />
         setIsLoading(false)
-        setShowLoadMore(false)
+        // setShowLoadMore(false)
         break
     }
 
     setContent(content)
-  }, [allResults, images, videos, news, type, query])
+  }, [allResults, type, query])
 
-  useEffect(() => {
-    if (resultsBatch === 0 || type === 'map') return
+  // useEffect(() => {
+  //   if (resultsBatch === 0 || type === 'map') return
 
-    const fetchData = async () => {
-      try {
-        setIsLoadingMore(true)
+  //   const fetchData = async () => {
+  //     try {
+  //       setIsLoadingMore(true)
 
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
-            new URLSearchParams({
-              query: `${queryNoWhite}`,
-              pageIndex: `${resultsBatch}`,
-              AdultContentFilter: `${userState.adultContentFilter}`,
-            })
-        )
+  //       const res = await fetch(
+  //         `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
+  //           new URLSearchParams({
+  //             query: `${queryNoWhite}`,
+  //             pageIndex: `${resultsBatch}`,
+  //             adultContentFilter: `${userState.adultContentFilter}`,
+  //           })
+  //       )
 
-        if (res.ok) {
-          const json = await res.json()
-          switch (type) {
-            case 'web':
-              setAllResults((prevResults: any) => {
-                const sponsoredMainline = json.sponsoredResults?.items?.filter(
-                  (item) => item.placementHint === 'Mainline'
-                )
-                const newResults = {
-                  ...prevResults,
-                  batches: {
-                    [resultsBatch]: [...sponsoredMainline, ...json.organicResults?.items],
-                  },
-                }
+  //       if (res.ok) {
+  //         const json = await res.json()
+  //         switch (type) {
+  //           case 'web':
+  //             setAllResults((prevResults: any) => {
+  //               const sponsoredMainline = json.sponsoredResults?.items?.filter(
+  //                 (item) => item.placementHint === 'Mainline'
+  //               )
+  //               const newResults = {
+  //                 ...prevResults,
+  //                 batches: {
+  //                   [resultsBatch]: [...sponsoredMainline, ...json.organicResults?.items],
+  //                 },
+  //               }
 
-                const last = newResults.batches && Object.keys(newResults.batches).pop()
-                if (newResults.batches[last].length < MAX_RESULTS.web) {
-                  setShowLoadMore(false)
-                }
+  //               const last = newResults.batches && Object.keys(newResults.batches).pop()
+  //               if (newResults.batches[last].length < MAX_RESULTS.web) {
+  //                 setShowLoadMore(false)
+  //               }
 
-                return newResults
-              })
-              setIsLoadingMore(false)
-              return
+  //               return newResults
+  //             })
+  //             setIsLoadingMore(false)
+  //             return
 
-            case 'image':
-              setImages((prevResults) => {
-                const newResults = [...prevResults, ...json.imageResults?.items]
+  //           case 'image':
+  //             setImages((prevResults) => {
+  //               const newResults = [...prevResults, ...json.imageResults?.items]
 
-                if (newResults.length < MAX_RESULTS.image) {
-                  setShowLoadMore(false)
-                }
-                return newResults
-              })
+  //               if (newResults.length < MAX_RESULTS.image) {
+  //                 setShowLoadMore(false)
+  //               }
+  //               return newResults
+  //             })
 
-              setIsLoadingMore(false)
-              return
+  //             setIsLoadingMore(false)
+  //             return
 
-            case 'video':
-              setVideos((prevResults) => {
-                const newResults = [...prevResults, ...json.videoResults?.items]
+  //           case 'video':
+  //             setVideos((prevResults) => {
+  //               const newResults = [...prevResults, ...json.videoResults?.items]
 
-                if (newResults.length < MAX_RESULTS.video) {
-                  setShowLoadMore(false)
-                }
-                return newResults
-              })
+  //               if (newResults.length < MAX_RESULTS.video) {
+  //                 setShowLoadMore(false)
+  //               }
+  //               return newResults
+  //             })
 
-              setIsLoadingMore(false)
-              return
+  //             setIsLoadingMore(false)
+  //             return
 
-            case 'news':
-              setNews((prevResults) => {
-                const newResults = [...prevResults, ...json.newsResults?.items]
+  //           case 'news':
+  //             setNews((prevResults) => {
+  //               const newResults = [...prevResults, ...json.newsResults?.items]
 
-                if (newResults.length < MAX_RESULTS.news) {
-                  setShowLoadMore(false)
-                }
-                return newResults
-              })
+  //               if (newResults.length < MAX_RESULTS.news) {
+  //                 setShowLoadMore(false)
+  //               }
+  //               return newResults
+  //             })
 
-              setIsLoadingMore(false)
-              return
-          }
-        } else {
-          setStatusCode(400)
-        }
-      } catch (err) {
-        console.error('Error while fetching Search API:', err)
-        setStatusCode(500)
-      }
-    }
+  //             setIsLoadingMore(false)
+  //             return
+  //         }
+  //       } else {
+  //         setStatusCode(400)
+  //       }
+  //     } catch (err) {
+  //       console.error('Error while fetching Search API:', err)
+  //       setStatusCode(500)
+  //     }
+  //   }
 
-    fetchData()
-  }, [resultsBatch])
+  //   fetchData()
+  // }, [resultsBatch])
 
-  function handleSetResultBatch(nextIndex) {
-    setResultsBatch(nextIndex)
-  }
+  // function handleSetResultBatch(nextIndex) {
+  //   setResultsBatch(nextIndex)
+  // }
 
   function handleSwitchTab(nextActiveTab) {
     if (nextActiveTab.resultType === 'external') {
@@ -331,7 +303,7 @@ function SearchPage({
 
           {!errorStatus && !isLoading && content}
 
-          {!isLoading && showLoadMore && (
+          {/* {!isLoading && showLoadMore && (
             <div className='loadmoreContainer'>
               {!isLoadingMore ? (
                 <LoadMore currIndex={resultsBatch} incrementIndex={handleSetResultBatch} />
@@ -339,11 +311,11 @@ function SearchPage({
                 <Loader />
               )}
             </div>
-          )}
+          )} */}
 
-          {!isLoading && organicTotResults > 0 && (
+          {!isLoading && totResults > 0 && (
             <div className='resultsTot'>
-              <p>{t('search:tot_results', { tot_results: formatNumber(organicTotResults) })}</p>
+              <p>{t('search:tot_results', { tot_results: formatNumber(totResults) })}</p>
               <p>
                 <a href='https://privacy.microsoft.com/privacystatement' target='_blank'>
                   {t('search:microsoft_result')}
@@ -445,25 +417,28 @@ function SearchPage({
     </Layout>
   )
 }
-
-type itemsProp = {
-  items: any[]
-  numResults?: number
-}
 interface resultsObj {
-  organicResults: null | itemsProp
-  sponsoredResults: null | itemsProp
-  relatedSearches: null | itemsProp
-  imageResults: null | itemsProp
-  videoResults: null | itemsProp
-  newsResults: null | itemsProp
+  value: null | any[]
+  relatedSearches: null | { value: any[] }
+  totalEstimatedMatches: null | number
+  webPages: null | { totalEstimatedMatches: number; value: any[] }
+  images: null | { value: any[] }
+  videos: null | { value: any[] }
+  news: null | { value: any[] }
 }
 
-// cannot use getServerSideProps yet: https://github.com/vercel/next.js/discussions/17269
 SearchPage.getInitialProps = async ({ req, res, query }) => {
   let searchQuery = query.query
   let type = query.type
+  let isWeb
+  let statusCode = res ? res.statusCode : null
+  let results: resultsObj = null
+  let activeTab = findTabByType(type)
+  let userAgent
+  let adultContentCookie
+  const queryNoWhite = queryNoWitheSpace(searchQuery)
   const oldQuery = query.q
+  const isMap = type === 'map'
 
   // fix for legacy query parameters
   if (oldQuery) {
@@ -477,6 +452,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
     }
   }
 
+  // if url doesn't have query or type param
   if (!searchQuery || !type) {
     if (res) {
       res.writeHead(301, { Location: '/' })
@@ -485,64 +461,72 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
       return Router.push('/')
     }
   }
-  let statusCode = res ? res.statusCode : null
 
-  const queryNoWhite = queryNoWitheSpace(searchQuery)
-  let results: resultsObj = null
-  let activeTab = findTabByType(type)
-
-  let userAgent
-  let adultContentCookie
+  // define userAgent and adultContentFilter based on client or server req
   if (req) {
     userAgent = req.headers['user-agent']
-    adultContentCookie = isNaN(Number(req.cookies[COOKIE_NAME_ADULT_FILTER]))
-      ? 1
-      : req.cookies[COOKIE_NAME_ADULT_FILTER]
+    adultContentCookie = req.cookies[COOKIE_NAME_ADULT_FILTER] ? 'Moderate' : req.cookies[COOKIE_NAME_ADULT_FILTER]
   } else {
     userAgent = navigator.userAgent
-    adultContentCookie = getCookie(COOKIE_NAME_ADULT_FILTER) === undefined ? 1 : getCookie(COOKIE_NAME_ADULT_FILTER)
+    adultContentCookie =
+      getCookie(COOKIE_NAME_ADULT_FILTER) === undefined ? 'Moderate' : getCookie(COOKIE_NAME_ADULT_FILTER)
   }
 
-  if (type === 'map') {
+  // if is map, we return less data
+  if (isMap) {
     activeTab = findTabByType('map')
-  } else {
-    try {
-      const data = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/searchresults/${type}?` +
-          new URLSearchParams({
-            query: `${queryNoWhite}`,
-            AdultContentFilter: adultContentCookie,
-          }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': userAgent,
-            'Access-Control-Allow-Headers': '*',
-          },
-        }
-      )
-      if (data.ok) {
-        results = await data.json()
-      } else {
-        statusCode = 400
-      }
-    } catch (err) {
-      statusCode = 500 // TODO: change it in API res
-      console.error('Error while fetching Search API:', err)
+
+    return {
+      query: searchQuery,
+      type,
+      errorCode: statusCode !== 200 ? statusCode : null,
+      activeTab,
+      results: null,
     }
+  }
+
+  try {
+    const data = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
+        new URLSearchParams({
+          query: `${queryNoWhite}`,
+          adultContentFilter: adultContentCookie,
+        }),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': userAgent,
+          'X-MSEdge-ClientIP': req ? requestIp.getClientIp(req) : await getClientIp(),
+        },
+      }
+    )
+
+    if (data.ok) {
+      results = await data.json()
+      const resultTypeAPI = '_type'
+      isWeb = results[resultTypeAPI] === 'SearchResponse'
+    } else {
+      statusCode = 400
+    }
+  } catch (err) {
+    statusCode = 500 // TODO: change it in API res
+    console.error('Error! fetching Search API:', err)
   }
 
   return {
     query: searchQuery,
     type,
     errorCode: statusCode !== 200 ? statusCode : null,
-    organicTotResults: results?.organicResults?.numResults ?? null,
-    organicItems: results?.organicResults?.items ?? [],
-    sponsoredItems: results?.sponsoredResults?.items ?? [],
-    imagesItems: results?.imageResults?.items ?? [],
-    videoItems: results?.videoResults?.items ?? [],
-    newsItems: results?.newsResults?.items ?? [],
-    relatedSearches: results?.relatedSearches?.items ?? [],
+    totResults: isWeb ? results.webPages.totalEstimatedMatches : results.totalEstimatedMatches,
+    results: isWeb
+      ? {
+          web: results.webPages.value,
+          images: results.images?.value,
+          video: results.videos?.value,
+          news: results.news?.value,
+          relatedSearches: results.relatedSearches?.value,
+        }
+      : results.value,
     activeTab,
   }
 }

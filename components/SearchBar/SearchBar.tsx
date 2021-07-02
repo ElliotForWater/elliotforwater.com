@@ -98,7 +98,6 @@ const SearchBar = ({ big }: SearchProps) => {
 
         default:
           setHighlightIndex(null)
-        // setSearchValue(event.target.defaultValue)
       }
     }
     document.body.addEventListener('keydown', handleKeyDown)

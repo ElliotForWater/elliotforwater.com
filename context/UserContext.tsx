@@ -2,7 +2,7 @@ import React from 'react'
 export interface UserState {
   numOfSearches: number
   language: number
-  adultContentFilter: number
+  adultContentFilter: string
   openInNewTab: boolean
   isModalOpen: boolean
 }
@@ -14,7 +14,7 @@ export interface UserContextProps {
 export const USER_STATE_DEFAULT: UserState = {
   numOfSearches: 0,
   language: 1, // English
-  adultContentFilter: 1, // Moderate
+  adultContentFilter: 'Moderate',
   openInNewTab: false,
   isModalOpen: false,
 }

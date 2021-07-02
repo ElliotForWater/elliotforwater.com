@@ -8,3 +8,23 @@ export const isBrowser = () => !!(typeof window !== 'undefined' && window.docume
 export function queryNoWitheSpace(query: string) {
   return query.replace(/\s/g, '+')
 }
+
+export function getGeoloc() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const latLong = { lat: position.coords.latitude, lng: position.coords.longitude }
+      return latLong
+    })
+  }
+}
+
+export async function getClientIp() {
+  const res = await fetch('https://api.ipify.org?format=json')
+
+  if (res.ok) {
+    const objIp = await res.json()
+    return objIp.ip
+  } else {
+    console.error('Problem fetching my IP')
+  }
+}
