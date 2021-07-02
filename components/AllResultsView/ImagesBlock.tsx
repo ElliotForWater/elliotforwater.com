@@ -4,18 +4,17 @@ import styles from './AllResultsView.module.css'
 import useTranslation from 'next-translate/useTranslation'
 
 type image = {
-  title: string
-  targetedUrl: string
+  name: string
+  contentUrl: string
   thumbnailUrl: string
-  pixelUrl: string
 }
 
 type Prop = {
   images: image[]
-  searchQuery: string
+  query: string
 }
 
-const ImagesBlock = ({ images, searchQuery }: Prop) => {
+const ImagesBlock = ({ images, query }: Prop) => {
   const { t } = useTranslation()
   const firstBatch = images.slice(0, 3)
 
@@ -25,21 +24,17 @@ const ImagesBlock = ({ images, searchQuery }: Prop) => {
       <div className={styles.imagePreview}>
         {firstBatch.map((image, i) => (
           <div className={styles.imagePreviewContainer} key={i}>
-            <a href={image.targetedUrl} target='_blank'>
-              <img
-                className={styles.imagePreviewImage}
-                src={image.thumbnailUrl}
-                alt={image.title}
-              />
+            <a href={image.contentUrl} target='_blank'>
+              <img className={styles.imagePreviewImage} src={image.thumbnailUrl} alt={image.title} />
             </a>
-            <img className={styles.hidden} src={image.pixelUrl} />
+            {/* <img className={styles.hidden} src={image.pixelUrl} /> */}
           </div>
         ))}
       </div>
       <Link
         href={{
           pathname: '/search',
-          query: { query: searchQuery, type: 'image' },
+          query: { query, type: 'image' },
         }}
       >
         <a>

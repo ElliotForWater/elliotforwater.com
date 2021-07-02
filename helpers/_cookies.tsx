@@ -15,6 +15,19 @@ type CookieName =
 
 export type CookieMap = { [cookieName: string]: string }
 
+function convertAdultFilter(value) {
+  switch (value) {
+    case 'Off':
+      return (value = 'Off')
+    case 'Moderate':
+      return (value = 'Moderate')
+    case 'Strict':
+      return (value = 'Strict')
+    default:
+      return (value = 'Moderate')
+  }
+}
+
 function convertCookieValue(name: CookieName, value?: string): string | number | boolean {
   if (value === undefined) {
     return value
@@ -26,7 +39,7 @@ function convertCookieValue(name: CookieName, value?: string): string | number |
       return Number(value)
 
     case COOKIE_NAME_ADULT_FILTER:
-      return isNaN(Number(value)) ? 1 : Number(value)
+      return convertAdultFilter(value)
 
     case COOKIE_NAME_NEW_TAB:
       return value !== 'false'
@@ -42,5 +55,8 @@ export function getCookie(name: CookieName, cookieMap?: CookieMap) {
 }
 
 export function setCookie(name: CookieName, value: string, opts?: { expires: number }): void {
+  if (name === COOKIE_NAME_ADULT_FILTER) {
+    value = convertAdultFilter(value)
+  }
   Cookies.set(name, value, opts)
 }

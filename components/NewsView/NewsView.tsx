@@ -5,17 +5,11 @@ import styles from './NewsView.module.css'
 import classnames from 'classnames'
 
 type NewsObj = {
-  provider: string
-  datePublished: string
+  provider: { name: string }
   description: string
-  targetedUrl: string
-  title: string
-  thumbnailUrl: string
-  placementHint: string
-  pixelUrl: string
-  thumbnailHeight: number
-  thumbnailWidth: number
-  rank: number
+  url: string
+  name: string
+  image: { thumbnail: { contentUrl: string } }
 }
 interface ResultsProp {
   news: NewsObj[]
@@ -25,40 +19,44 @@ interface ResultsProp {
 const NewsView = ({ news, query }: ResultsProp) => {
   const { t } = useTranslation()
 
+  if (!Array.isArray(news)) {
+    return <></>
+  }
   return (
     <>
-      {!news || !news.length ? (
+      {!news ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <ul className={styles.articles}>
-          {news.map((article, i) => (
-            <li key={i}>
-              <article className={styles.article}>
-                <div className={styles.wrap}>
-                  <div className={styles.container}>
-                    <CustomLink href={article.targetedUrl}>
-                      <img
-                        className={classnames(styles.image, {
-                          [styles.placeholder]: !article.thumbnailUrl,
-                        })}
-                        src={article.thumbnailUrl || ''}
-                        alt={article.thumbnailUrl ? article.title : ''}
-                        title={article.title}
-                      />
-                    </CustomLink>
-                  </div>
-                  <div className={styles.container}>
-                    <div className={styles.title}>
-                      <CustomLink href={article.targetedUrl}>{article.title}</CustomLink>
+          {news.map((article, i) => {
+            return (
+              <li key={i}>
+                <article className={styles.article}>
+                  <div className={styles.wrap}>
+                    <div className={styles.container}>
+                      <CustomLink href={article.url}>
+                        <img
+                          className={classnames(styles.image, {
+                            [styles.placeholder]: !article.image,
+                          })}
+                          src={article.image?.thumbnail.contentUrl || ''}
+                          alt={article.image ? article.name : ''}
+                          title={article.name}
+                        />
+                      </CustomLink>
                     </div>
-                    <div className={styles.subtitle}>{article.provider}</div>
-                    <p className={styles.description}>{article.description}</p>
+                    <div className={styles.container}>
+                      <div className={styles.title}>
+                        <CustomLink href={article.url}>{article.name}</CustomLink>
+                      </div>
+                      {article.provider && <div className={styles.subtitle}>{article.provider[0].name}</div>}
+                      <p className={styles.description}>{article.description}</p>
+                    </div>
                   </div>
-                  <img className={styles.hidden} src={article.pixelUrl} />
-                </div>
-              </article>
-            </li>
-          ))}
+                </article>
+              </li>
+            )
+          })}
         </ul>
       )}
     </>

@@ -1,6 +1,6 @@
 const https = require('https')
 
-function getBingApi(type, query) {
+function getBingApi(type, query, headers) {
   if (!process.env.BING_SEARCH_KEY) {
     throw new Error('BING_SEARCH_KEY is not set.')
   }
@@ -11,7 +11,11 @@ function getBingApi(type, query) {
   const options = {
     hostname: 'api.bing.microsoft.com',
     path: path + query,
-    headers: { 'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_KEY },
+    headers: {
+      'user-agent': headers['user-agent'],
+      'x-msedge-clientip': headers['x-msedge-clientip'],
+      'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_KEY,
+    },
   }
 
   return new Promise((resolve, reject) => {
@@ -19,11 +23,6 @@ function getBingApi(type, query) {
       let body = ''
       res.on('data', (part) => (body += part))
       res.on('end', () => {
-        for (const header in res.headers) {
-          if (header.startsWith('bingapis-') || header.startsWith('x-msedge-')) {
-            console.log(header + ': ' + res.headers[header])
-          }
-        }
         resolve(JSON.parse(body))
       })
       res.on('error', (e) => {

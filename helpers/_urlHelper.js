@@ -1,3 +1,5 @@
+// Do we use it anywhere??
+
 const url = {
   getUrlParameter: (name) => {
     const paramName = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
@@ -8,7 +10,7 @@ const url = {
 
   setFormAction: (path) => {
     return path.startsWith('/Search') ? path : '/Search'
-  }
+  },
 }
 
 export default url
