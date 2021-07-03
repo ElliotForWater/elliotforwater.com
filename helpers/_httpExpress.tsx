@@ -15,7 +15,6 @@ function getBingApi(type, query, headers) {
     path: path + query,
     headers: {
       'Ocp-Apim-Subscription-Key': process.env.BING_SEARCH_KEY,
-      'Access-Control-Allow-Origin': '*',
     },
   }
   if (clientid) {
