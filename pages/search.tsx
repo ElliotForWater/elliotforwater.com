@@ -465,7 +465,8 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   // define userAgent and adultContentFilter based on client or server req
   if (req) {
     userAgent = req.headers['user-agent']
-    adultContentCookie = req.cookies[COOKIE_NAME_ADULT_FILTER] ? 'Moderate' : req.cookies[COOKIE_NAME_ADULT_FILTER]
+    adultContentCookie =
+      req.cookies[COOKIE_NAME_ADULT_FILTER] === undefined ? 'Moderate' : req.cookies[COOKIE_NAME_ADULT_FILTER]
   } else {
     userAgent = navigator.userAgent
     adultContentCookie =
