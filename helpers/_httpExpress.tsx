@@ -10,6 +10,7 @@ function getBingApi(type, query, headers) {
   const clientid = headers['x-msedge-clientip']
   const userAgent = headers['user-agent']
 
+  console.log({ clientid })
   const options = {
     hostname: 'api.bing.microsoft.com',
     path: path + query,
