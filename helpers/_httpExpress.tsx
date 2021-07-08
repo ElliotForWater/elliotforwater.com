@@ -19,12 +19,13 @@ function getBingApi(type, query, headers) {
     },
   }
   if (clientid) {
-    headers['X-MSEdge-ClientID'] = clientid
+    options.headers['X-MSEdge-ClientID'] = clientid
   }
   if (userAgent) {
-    headers['user-agent'] = userAgent
+    options.headers['user-agent'] = userAgent
   }
 
+  console.log(options)
   return new Promise((resolve, reject) => {
     https.get(options, (res) => {
       let body = ''
