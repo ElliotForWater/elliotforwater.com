@@ -61,7 +61,7 @@ describe('App', () => {
       ...USER_STATE_DEFAULT,
       numOfSearches: 3,
       openInNewTab: true,
-      adultContentFilter: 'Off',
+      adultContentFilter: 'Moderate',
     }
     expect(wrapper.find(TestComponent).prop('userState')).toEqual(expectedResult)
   })
@@ -83,7 +83,7 @@ describe('App', () => {
       ...USER_STATE_DEFAULT,
       numOfSearches: 6,
       openInNewTab: true,
-      adultContentFilter: 'Off',
+      adultContentFilter: 'Moderate',
     }
     expect(wrapper.find(TestComponent).prop('userState')).toEqual(expectedResult)
   })
