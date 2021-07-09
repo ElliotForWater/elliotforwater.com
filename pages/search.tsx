@@ -10,7 +10,7 @@ import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 // import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace, getClientIp } from '../helpers/_utils'
-import { COOKIE_NAME_ADULT_FILTER, getCookie } from '../helpers/_cookies'
+import { COOKIE_NAME_ADULT_FILTER, getCookie, convertAdultFilter } from '../helpers/_cookies'
 import { FiMoreVertical } from 'react-icons/fi'
 import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
 import GmailIcon from '../components/Icons/GmailIcon'
@@ -466,7 +466,9 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   if (req) {
     userAgent = req.headers['user-agent']
     adultContentCookie =
-      req.cookies[COOKIE_NAME_ADULT_FILTER] === undefined ? 'Moderate' : req.cookies[COOKIE_NAME_ADULT_FILTER]
+      req.cookies[COOKIE_NAME_ADULT_FILTER] === undefined
+        ? 'Moderate'
+        : convertAdultFilter(req.cookies[COOKIE_NAME_ADULT_FILTER])
   } else {
     userAgent = navigator.userAgent
     adultContentCookie =
@@ -518,10 +520,10 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
     query: searchQuery,
     type,
     errorCode: statusCode !== 200 ? statusCode : null,
-    totResults: isWeb ? results.webPages.totalEstimatedMatches : results.totalEstimatedMatches,
+    totResults: isWeb ? results.webPages?.totalEstimatedMatches : results.totalEstimatedMatches,
     results: isWeb
       ? {
-          web: results.webPages.value,
+          web: results.webPages?.value,
           images: results.images?.value,
           video: results.videos?.value,
           news: results.news?.value,
