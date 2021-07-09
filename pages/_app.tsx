@@ -47,13 +47,6 @@ ElliotApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext)
 
   const serverCookies: CookieMap = appContext.ctx.req && (appContext.ctx.req as any).cookies
-
-  if (appContext.ctx.req) {
-    const ip = appContext.ctx.req.headers['x-forwarded-for'] || appContext.ctx.req.connection?.remoteAddress
-    console.log('app', ip)
-
-    console.log(appContext.ctx.req.connection?.remoteAddress)
-  }
   return { ...appProps, serverCookies }
 }
 
