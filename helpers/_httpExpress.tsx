@@ -10,7 +10,6 @@ function getBingApi(type, query, headers) {
   const clientip = headers['x-msedge-clientip']
   const userAgent = headers['user-agent']
 
-  console.log({ clientip })
   const options = {
     hostname: 'api.bing.microsoft.com',
     path: path + query,
@@ -25,7 +24,6 @@ function getBingApi(type, query, headers) {
     options.headers['User-Agent'] = userAgent
   }
 
-  console.log(options)
   return new Promise((resolve, reject) => {
     https.get(options, (res) => {
       let body = ''
