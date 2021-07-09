@@ -15,13 +15,13 @@ type CookieName =
 
 export type CookieMap = { [cookieName: string]: string }
 
-function convertAdultFilter(value) {
+export function convertAdultFilter(value) {
   switch (value) {
-    case 'Off':
+    case '0':
       return (value = 'Off')
-    case 'Moderate':
+    case '1':
       return (value = 'Moderate')
-    case 'Strict':
+    case '2':
       return (value = 'Strict')
     default:
       return (value = 'Moderate')
@@ -55,8 +55,5 @@ export function getCookie(name: CookieName, cookieMap?: CookieMap) {
 }
 
 export function setCookie(name: CookieName, value: string, opts?: { expires: number }): void {
-  if (name === COOKIE_NAME_ADULT_FILTER) {
-    value = convertAdultFilter(value)
-  }
   Cookies.set(name, value, opts)
 }

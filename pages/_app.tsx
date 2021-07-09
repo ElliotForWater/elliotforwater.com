@@ -47,6 +47,7 @@ ElliotApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext)
 
   const serverCookies: CookieMap = appContext.ctx.req && (appContext.ctx.req as any).cookies
+
   return { ...appProps, serverCookies }
 }
 
