@@ -23,7 +23,7 @@ const VideosView = ({ videos, query }: ResultsProp) => {
   }
   return (
     <>
-      {!videos ? (
+      {videos.length === 0 ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <div className={styles.container}>

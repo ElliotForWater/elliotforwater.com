@@ -15,4 +15,16 @@ describe('ImagesView', () => {
     const img = screen.getAllByRole('link')
     expect(img.length).toBe(150)
   })
+
+  it('should render no result title', function () {
+    const noResQuery = 'hfkajdhfkahdfj'
+    render(<ImagesView images={[]} query={`${noResQuery}`} />)
+    const title = screen.getByText(/no_result_found/i)
+    expect(title).toBeDefined()
+  })
+
+  it('should be empty', function () {
+    const { container } = render(<ImagesView images={undefined} query='goat' />)
+    expect(container.firstChild).toBeNull()
+  })
 })

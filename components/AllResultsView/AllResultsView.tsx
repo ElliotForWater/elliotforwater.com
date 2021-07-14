@@ -50,17 +50,19 @@ const AllResultsView = ({ results, query }: ResultsProp) => {
     }
   }, [results])
 
-  if (!results?.web) {
+  if (!results) {
     return <></>
   }
 
   const { web, relatedSearches, images, batches } = results
-  const firstBatchOrganic = !web.length ? [] : web.slice(0, 3)
-  const secondBatchOrganic = !web.length ? [] : web.slice(3, web.length)
+  const noResult = !web
+
+  const firstBatchOrganic = noResult ? [] : web.slice(0, 3)
+  const secondBatchOrganic = noResult ? [] : web.slice(3, web.length)
   const combinedResults = [...firstBatchOrganic, images, ...secondBatchOrganic]
   return (
     <>
-      {!web?.length ? (
+      {noResult ? (
         <h3 className={styles.titleNoResults}>{t('search:no_result_found_query', { query })}</h3>
       ) : (
         <div className={styles.gridContainer}>
