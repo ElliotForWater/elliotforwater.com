@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Router, { useRouter } from 'next/router'
 import requestIp from 'request-ip'
-// import { UserContext } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
-// import Error from 'next/error'
+import Error from 'next/error'
 import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
-// import LoadMore from '../components/LoadMore/LoadMore'
+import LoadMore from '../components/LoadMore/LoadMore'
 import { formatNumber, queryNoWitheSpace, getClientIp } from '../helpers/_utils'
 import { COOKIE_NAME_ADULT_FILTER, getCookie, convertAdultFilter } from '../helpers/_cookies'
 import { FiMoreVertical } from 'react-icons/fi'
 import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
 import GmailIcon from '../components/Icons/GmailIcon'
 import AmazonIcon from '../components/Icons/AmazonIcon'
+import { SEARCH_MAX_RESULTS } from '../appConfig'
 
 const AllResultsView = dynamic(() => import('../components/AllResultsView/AllResultsView'), {
   loading: () => <Loader />,
@@ -35,13 +36,6 @@ interface tabProp {
   resultType: string
   title: string
 }
-
-// const MAX_RESULTS = {
-//   web: 10,
-//   image: 150,
-//   video: 50,
-//   news: 100,
-// }
 
 const TAB_MENU = [
   {
@@ -122,13 +116,13 @@ function findTabByType(type?: string): tabProp {
 function SearchPage({ query, type, errorCode, activeTab, totResults, results }) {
   const { t } = useTranslation()
   const router = useRouter()
-  // const { userState } = useContext(UserContext)
-  // const [resultsBatch, setResultsBatch] = useState<number>(0)
-  // const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
-  // const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+  const { userState } = useContext(UserContext)
+  const [resultsBatch, setResultsBatch] = useState<number>(0)
+  const [showLoadMore, setShowLoadMore] = useState<boolean>(false)
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [content, setContent] = useState(null)
-  // const queryNoWhite = queryNoWitheSpace(query)
+  const queryNoWhite = queryNoWitheSpace(query)
   const [errorStatus, setStatusCode] = useState(errorCode)
 
   const [allResults, setAllResults] = useState(results)
@@ -145,138 +139,124 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
       case 'web':
         content = <AllResultsView results={allResults} query={query} />
         setIsLoading(false)
-        // allResults?.organicItems.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'images':
         content = <ImagesView images={allResults} query={query} />
         setIsLoading(false)
-        // images.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'videos':
         content = <VideosView videos={allResults} query={query} />
         setIsLoading(false)
-        // videos.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'news':
         content = <NewsView news={allResults} query={query} />
         setIsLoading(false)
-        // news.length ? setShowLoadMore(true) : setShowLoadMore(false)
         break
 
       case 'map':
         content = <MapView searchQuery={query} />
         setIsLoading(false)
-        // setShowLoadMore(false)
         break
+    }
+
+    // loadmore button
+    const totRemainResults = totResults - SEARCH_MAX_RESULTS[type] * resultsBatch
+    const noResults = type === 'web' ? !allResults.web : allResults.length === 0
+    if (type === 'map' || noResults || totRemainResults < SEARCH_MAX_RESULTS[type]) {
+      setShowLoadMore(false)
+    } else {
+      setShowLoadMore(true)
     }
 
     setContent(content)
   }, [allResults, type, query])
 
-  // useEffect(() => {
-  //   if (resultsBatch === 0 || type === 'map') return
+  useEffect(() => {
+    if (resultsBatch === 0 || type === 'map') return
 
-  //   const fetchData = async () => {
-  //     try {
-  //       setIsLoadingMore(true)
+    const fetchData = async () => {
+      try {
+        setIsLoadingMore(true)
 
-  //       const res = await fetch(
-  //         `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
-  //           new URLSearchParams({
-  //             query: `${queryNoWhite}`,
-  //             pageIndex: `${resultsBatch}`,
-  //             adultContentFilter: `${userState.adultContentFilter}`,
-  //           })
-  //       )
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
+            new URLSearchParams({
+              query: `${queryNoWhite}`,
+              pageIndex: `${resultsBatch}`,
+              adultContentFilter: `${userState.adultContentFilter}`,
+            }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'User-Agent': navigator.userAgent,
+              'X-MSEdge-ClientIP': await getClientIp(),
+            },
+          }
+        )
 
-  //       if (res.ok) {
-  //         const json = await res.json()
-  //         switch (type) {
-  //           case 'web':
-  //             setAllResults((prevResults: any) => {
-  //               const sponsoredMainline = json.sponsoredResults?.items?.filter(
-  //                 (item) => item.placementHint === 'Mainline'
-  //               )
-  //               const newResults = {
-  //                 ...prevResults,
-  //                 batches: {
-  //                   [resultsBatch]: [...sponsoredMainline, ...json.organicResults?.items],
-  //                 },
-  //               }
+        if (res.ok) {
+          const result = await res.json()
+          switch (type) {
+            case 'web':
+              setAllResults((prevResults: any) => {
+                const newResults = {
+                  ...prevResults,
+                  batches: {
+                    [resultsBatch]: [...result.webPages?.value],
+                  },
+                }
+                return newResults
+              })
+              setIsLoadingMore(false)
+              return
 
-  //               const last = newResults.batches && Object.keys(newResults.batches).pop()
-  //               if (newResults.batches[last].length < MAX_RESULTS.web) {
-  //                 setShowLoadMore(false)
-  //               }
+            case 'images':
+              setAllResults((prevResults) => {
+                const newResults = [...prevResults, ...result.value]
+                return newResults
+              })
 
-  //               return newResults
-  //             })
-  //             setIsLoadingMore(false)
-  //             return
+              setIsLoadingMore(false)
+              return
 
-  //           case 'image':
-  //             setImages((prevResults) => {
-  //               const newResults = [...prevResults, ...json.imageResults?.items]
+            case 'videos':
+              setAllResults((prevResults) => {
+                const newResults = [...prevResults, ...result.value]
+                return newResults
+              })
+              setIsLoadingMore(false)
+              return
 
-  //               if (newResults.length < MAX_RESULTS.image) {
-  //                 setShowLoadMore(false)
-  //               }
-  //               return newResults
-  //             })
+            case 'news':
+              setAllResults((prevResults) => {
+                const newResults = [...prevResults, ...result.value]
+                return newResults
+              })
+              setIsLoadingMore(false)
+              return
+          }
+        } else {
+          setStatusCode(400)
+        }
+      } catch (err) {
+        console.error('Error while fetching Search API:', err)
+        setStatusCode(500)
+      }
+    }
+    fetchData()
+  }, [resultsBatch])
 
-  //             setIsLoadingMore(false)
-  //             return
-
-  //           case 'video':
-  //             setVideos((prevResults) => {
-  //               const newResults = [...prevResults, ...json.videoResults?.items]
-
-  //               if (newResults.length < MAX_RESULTS.video) {
-  //                 setShowLoadMore(false)
-  //               }
-  //               return newResults
-  //             })
-
-  //             setIsLoadingMore(false)
-  //             return
-
-  //           case 'news':
-  //             setNews((prevResults) => {
-  //               const newResults = [...prevResults, ...json.newsResults?.items]
-
-  //               if (newResults.length < MAX_RESULTS.news) {
-  //                 setShowLoadMore(false)
-  //               }
-  //               return newResults
-  //             })
-
-  //             setIsLoadingMore(false)
-  //             return
-  //         }
-  //       } else {
-  //         setStatusCode(400)
-  //       }
-  //     } catch (err) {
-  //       console.error('Error while fetching Search API:', err)
-  //       setStatusCode(500)
-  //     }
-  //   }
-
-  //   fetchData()
-  // }, [resultsBatch])
-
-  // function handleSetResultBatch(nextIndex) {
-  //   setResultsBatch(nextIndex)
-  // }
+  function handleSetResultBatch(nextIndex) {
+    setResultsBatch(nextIndex)
+  }
 
   function handleSwitchTab(nextActiveTab) {
     if (nextActiveTab.resultType === 'external') {
       return window.open(`${nextActiveTab.externalLink}${query}`, '_blank')
     }
-
     router.push(`search?query=${query}&type=${nextActiveTab.resultType}`)
   }
 
@@ -289,21 +269,11 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
 
         <div className='content'>
           {isLoading && <Loader />}
-          {errorStatus && (
-            <div className='errorContainer'>
-              <h2>
-                {errorStatus} <span>|</span> {errorStatus === 400 ? 'Bad Request' : 'Server Error'}
-              </h2>
-              <p>
-                We are sorry, we have a temporary issue. Please{' '}
-                <a href={`https://google.com/search?q=${query}`}>click here</a> to see your results on Google!
-              </p>
-            </div>
-          )}
+          {errorStatus && <Error statusCode={errorStatus} />}
 
           {!errorStatus && !isLoading && content}
 
-          {/* {!isLoading && showLoadMore && (
+          {!isLoading && showLoadMore && (
             <div className='loadmoreContainer'>
               {!isLoadingMore ? (
                 <LoadMore currIndex={resultsBatch} incrementIndex={handleSetResultBatch} />
@@ -311,7 +281,7 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
                 <Loader />
               )}
             </div>
-          )} */}
+          )}
 
           {!isLoading && totResults > 0 && (
             <div className='resultsTot'>
