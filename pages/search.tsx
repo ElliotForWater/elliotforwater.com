@@ -135,6 +135,14 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
   useEffect(() => {
     let content
     setIsLoading(true)
+
+    if (type === 'map') {
+      content = <MapView searchQuery={query} />
+      setContent(content)
+      setIsLoading(false)
+      return
+    }
+
     switch (type) {
       case 'web':
         content = <AllResultsView results={allResults} query={query} />
@@ -155,17 +163,12 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
         content = <NewsView news={allResults} query={query} />
         setIsLoading(false)
         break
-
-      case 'map':
-        content = <MapView searchQuery={query} />
-        setIsLoading(false)
-        break
     }
 
     // loadmore button
     const totRemainResults = totResults - SEARCH_MAX_RESULTS[type] * resultsBatch
-    const noResults = type === 'web' ? !allResults.web : allResults.length === 0
-    if (type === 'map' || noResults || totRemainResults < SEARCH_MAX_RESULTS[type]) {
+    const noResults = type === 'web' ? !allResults?.web : allResults?.length === 0
+    if (noResults || totRemainResults < SEARCH_MAX_RESULTS[type]) {
       setShowLoadMore(false)
     } else {
       setShowLoadMore(true)
