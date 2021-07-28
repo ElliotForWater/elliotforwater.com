@@ -44,16 +44,10 @@ export default function ButtonAddToBrowser() {
     }
 
     if (isFirefox) {
-      if (!window.extensionInterface) {
-        setBrowserName('firefox')
-      }
-
+      // check msg from extension content-script.js
       window.addEventListener('message', function (event) {
-        if (event.data) {
-          console.log('test ff??')
-        }
-        if (event.source === window && event.data.direction && event.data.direction !== 'content-script-ff') {
-          // Assume extension is now installed
+        const { source, data } = event
+        if (source === window && data?.target === 'content-script-ff' && data?.message !== 'installed') {
           setBrowserName('firefox')
         }
       })
