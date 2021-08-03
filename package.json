@@ -9,7 +9,7 @@
     "build:dev": "env-cmd -f .env.development next build",
     "build:stage": "env-cmd -f .env.staging next build",
     "build:prod": "env-cmd -f .env.production next build",
-    "start:stage": "env-cmd -f .env.staging next start",
+    "start:stage": "env-cmd -f .env.staging npm run build:stage && next start",
     "start": "env-cmd -f .env.production next start",
     "storybook": "start-storybook -s ./public",
     "test": "jest",
