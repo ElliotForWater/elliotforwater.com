@@ -13,7 +13,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-hooks', 'jest'],
   rules: {
-    'no-shadow': 'warn',
+    'no-shadow': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
@@ -24,7 +24,7 @@ module.exports = {
       },
     ],
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'react/jsx-handler-names': 'warn',
     'react/jsx-pascal-case': 'warn',
     'react/jsx-no-target-blank': 'off',

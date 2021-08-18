@@ -8,8 +8,8 @@ export default {
       <div style={{ marginTop: '50px', maxWidth: '300px', margin: '0 auto' }}>
         <Story />
       </div>
-    )
-  ]
+    ),
+  ],
 }
 
 export const Nav = () => <NavComponent />

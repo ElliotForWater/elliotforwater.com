@@ -14,7 +14,7 @@ const Tooltip = ({ isHidden, children, direction }: Props) => {
       <span
         className={classnames(styles.tooltip, {
           [styles.isHidden]: isHidden,
-          [styles[direction]]: direction
+          [styles[direction]]: direction,
         })}
       >
         {children}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiLoader } from 'react-icons/fi'
 
-export default function Loader () {
+export default function Loader() {
   return (
     <div className='loader'>
       <FiLoader />

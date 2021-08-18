@@ -133,34 +133,34 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
   }, [query, type, errorStatus])
 
   useEffect(() => {
-    let content
+    let updatedContent
     setIsLoading(true)
 
     if (type === 'map') {
-      content = <MapView searchQuery={query} />
-      setContent(content)
+      updatedContent = <MapView searchQuery={query} />
+      setContent(updatedContent)
       setIsLoading(false)
       return
     }
 
     switch (type) {
       case 'web':
-        content = <AllResultsView results={allResults} query={query} />
+        updatedContent = <AllResultsView results={allResults} query={query} />
         setIsLoading(false)
         break
 
       case 'images':
-        content = <ImagesView images={allResults} query={query} />
+        updatedContent = <ImagesView images={allResults} query={query} />
         setIsLoading(false)
         break
 
       case 'videos':
-        content = <VideosView videos={allResults} query={query} />
+        updatedContent = <VideosView videos={allResults} query={query} />
         setIsLoading(false)
         break
 
       case 'news':
-        content = <NewsView news={allResults} query={query} />
+        updatedContent = <NewsView news={allResults} query={query} />
         setIsLoading(false)
         break
     }
@@ -174,7 +174,7 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
       setShowLoadMore(true)
     }
 
-    setContent(content)
+    setContent(updatedContent)
   }, [allResults, type, query])
 
   useEffect(() => {
