@@ -461,6 +461,8 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
     }
   }
 
+  console.log({ envUrl: process.env.NEXT_PUBLIC_BASE_URL })
+
   try {
     const data = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
