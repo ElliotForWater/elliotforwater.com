@@ -465,7 +465,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
 
   try {
     const data = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
+      `/api/searchresults/${type}?` +
         new URLSearchParams({
           query: `${queryNoWhite}`,
           adultContentFilter: adultContentCookie,
