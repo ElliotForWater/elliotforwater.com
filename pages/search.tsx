@@ -185,7 +185,7 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
         setIsLoadingMore(true)
 
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/searchresults/${type}?` +
+          `${router.asPath}/api/searchresults/${type}?` +
             new URLSearchParams({
               query: `${queryNoWhite}`,
               pageIndex: `${resultsBatch}`,
@@ -400,7 +400,8 @@ interface resultsObj {
   news: null | { value: any[] }
 }
 
-SearchPage.getInitialProps = async ({ req, res, query }) => {
+SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
+  const isDev = process.env.IS_DEV
   let searchQuery = query.query
   let type = query.type
   let isWeb
@@ -409,6 +410,7 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
   let activeTab = findTabByType(type)
   let userAgent
   let adultContentCookie
+  let fullUrl
   const queryNoWhite = queryNoWitheSpace(searchQuery)
   const oldQuery = query.q
   const isMap = type === 'map'
@@ -442,10 +444,12 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
       req.cookies[COOKIE_NAME_ADULT_FILTER] === undefined
         ? 'Moderate'
         : convertAdultFilter(req.cookies[COOKIE_NAME_ADULT_FILTER])
+    fullUrl = isDev ? process.env.NEXT_PUBLIC_BASE_URL : `https://${req.headers.host}`
   } else {
     userAgent = navigator.userAgent
     adultContentCookie =
       getCookie(COOKIE_NAME_ADULT_FILTER) === undefined ? 'Moderate' : getCookie(COOKIE_NAME_ADULT_FILTER)
+    fullUrl = window.location.origin
   }
 
   // if is map, we return less data
@@ -461,11 +465,9 @@ SearchPage.getInitialProps = async ({ req, res, query }) => {
     }
   }
 
-  console.log({ envUrl: process.env.NEXT_PUBLIC_BASE_URL })
-
   try {
     const data = await fetch(
-      `/api/searchresults/${type}?` +
+      `${fullUrl}/api/searchresults/${type}?` +
         new URLSearchParams({
           query: `${queryNoWhite}`,
           adultContentFilter: adultContentCookie,

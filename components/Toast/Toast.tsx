@@ -5,10 +5,7 @@ const Toast = (props) => {
   const { title, message, backgroundColor, icon, onDelete } = props
 
   return (
-    <div
-      className={`${styles.notification} ${styles.toast}`}
-      style={{ backgroundColor: backgroundColor }}
-    >
+    <div className={`${styles.notification} ${styles.toast}`} style={{ backgroundColor: backgroundColor }}>
       <button type='button' className={styles.notificationButton} onClick={() => onDelete()}>
         X
       </button>

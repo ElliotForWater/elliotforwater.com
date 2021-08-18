@@ -41,7 +41,7 @@ describe('ToastList', () => {
           .first()
           .find('p')
           .first()
-          .text(),
+          .text()
       ).toEqual(secondTitle)
     })
 
@@ -61,7 +61,7 @@ describe('ToastList', () => {
           .first()
           .find('p')
           .first()
-          .text(),
+          .text()
       ).toEqual(firstTitle)
     })
   })
