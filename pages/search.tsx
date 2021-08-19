@@ -185,7 +185,7 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
         setIsLoadingMore(true)
 
         const res = await fetch(
-          `${router.asPath}/api/searchresults/${type}?` +
+          `${window.location.origin}/api/searchresults/${type}?` +
             new URLSearchParams({
               query: `${queryNoWhite}`,
               pageIndex: `${resultsBatch}`,
@@ -493,6 +493,7 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
     console.error('Error! fetching Search API:', err)
   }
 
+  console.log({ results })
   return {
     query: searchQuery,
     type,
