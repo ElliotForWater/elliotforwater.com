@@ -33,7 +33,7 @@ const ImagesBlock = ({ images, query }: Prop) => {
       <Link
         href={{
           pathname: '/search',
-          query: { query, type: 'image' },
+          query: { query, type: 'images' },
         }}
       >
         <a>

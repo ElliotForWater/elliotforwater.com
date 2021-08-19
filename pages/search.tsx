@@ -493,7 +493,6 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
     console.error('Error! fetching Search API:', err)
   }
 
-  console.log({ results })
   return {
     query: searchQuery,
     type,
