@@ -110,7 +110,7 @@ const SearchBar = ({ big }: SearchProps) => {
   useEffect(() => {
     const fetchSuggestedWords = async () => {
       try {
-        const res = await fetchJsonp(`${SUGGESTED_WORDS_URL}${searchValue}`)
+        const res = await fetchJsonp(`${SUGGESTED_WORDS_URL}${encodeURIComponent(searchValue)}`)
         const suggestedWordsArray = await res.json()
         setSuggestedWords(suggestedWordsArray[1].slice(0, 10))
         return
