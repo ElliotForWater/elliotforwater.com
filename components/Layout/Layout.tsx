@@ -47,6 +47,9 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         <link rel='mask-icon' href='images/metas/safari-pinned-tab.svg' color='#5bbad5' />
         <meta name='msapplication-TileColor' content='#da532c' />
         <meta name='theme-color' content='#ffffff' />
+
+        {/* <!-- Google Search Console --> */}
+        <meta name='google-site-verification' content='LCu_d-opmHAq1wVOCJcxwzZeEOwN9SRv2QKwSyq7ICc' />
       </Head>
       <div className={styles.wrapper}>
         {isHome ? <HeaderHome /> : <Header />}
