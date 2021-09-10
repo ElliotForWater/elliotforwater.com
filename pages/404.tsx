@@ -1,5 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout/Layout'
 import ButtonPrimary from '../components/Buttons/ButtonPrimary/ButtonPrimary'
 
@@ -8,6 +9,9 @@ function Error() {
 
   return (
     <Layout fluid pageTitle='404 Error Page' pageDescription='404 error page - Elliot for Water'>
+      <Helmet>
+        <meta name='robots' content='noindex, nofollow' />
+      </Helmet>
       <section className='wrapper'>
         <h1>{t('common:404.title')}</h1>
         <p>{t('common:404.description')}</p>

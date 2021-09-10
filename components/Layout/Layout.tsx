@@ -28,6 +28,7 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         {/* <!-- Schema.org for Google --> */}
         <meta itemProp='name' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta itemProp='description' content={pageDescription} />
+
         {/* <!-- Twitter --> */}
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />

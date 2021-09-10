@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext'
 import useTranslation from 'next-translate/useTranslation'
 import dynamic from 'next/dynamic'
 import Error from 'next/error'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
@@ -265,6 +266,9 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
 
   return (
     <Layout fluid pageTitle={`${query} ` + t('search:pageTitle')} pageDescription={t('search:pageDescription')}>
+      <Helmet>
+        <meta name='robots' content='noindex, nofollow' />
+      </Helmet>
       <section className='wrapper'>
         <div className='tabsWrapper'>
           <TabsMenu tabItems={TAB_MENU} activeTabId={activeTab.id} setActiveTab={handleSwitchTab} query={query} />
