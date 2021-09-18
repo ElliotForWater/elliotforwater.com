@@ -4,8 +4,6 @@ import useTranslation from 'next-translate/useTranslation'
 import config from '../../appConfig'
 import { isBrowser, isChrome, isFirefox } from 'react-device-detect'
 
-declare const window: any
-
 const buttonInfo = {
   chrome: {
     url: config.CHROME_EXTENSION_URL,
@@ -44,10 +42,23 @@ export default function ButtonAddToBrowser() {
     }
 
     if (isFirefox) {
+      console.log('firefox')
+
+      // window.addEventListener("message", (event) => {
+      //   if (event.source == window &&
+      //       event.data &&
+      //       event.data.direction == "from-page-script") {
+      //     alert("Content script received message: \"" + event.data.message + "\"");
+      //   }
+      // });
+
       // check msg from extension content-script.js
       window.addEventListener('message', function (event) {
+        console.log('message', event)
+
         const { source, data } = event
         if (source === window && data?.target === 'content-script-ff' && data?.message !== 'installed') {
+          console.log('set firefox')
           setBrowserName('firefox')
         }
       })
