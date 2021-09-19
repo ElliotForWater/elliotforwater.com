@@ -29,21 +29,18 @@ export default function ButtonAddToBrowser() {
     if (isBrowser && isChrome) {
       /* eslint-disable no-undef */
       if (chrome.runtime) {
-        chrome.runtime.sendMessage(
-          /* eslint-enable no-undef */
-          config.CHROME_EXTENSION_ID,
-          {
-            action: 'id',
-            value: config.CHROME_EXTENSION_ID,
-          }
-        )
+        chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, {
+          action: 'id',
+          value: config.CHROME_EXTENSION_ID,
+        })
 
-        // chrome.runtime.onMessage.addListener((res) => {
-        //   if(res.message === 'extension_installed') {
-        //     setBrowserName('chrome')
-        //   }
-        // })
+        chrome.runtime.onMessage.addListener((res) => {
+          if (res.message === 'extension_installed') {
+            setBrowserName('chrome')
+          }
+        })
       }
+      /* eslint-enable no-undef */
     }
 
     if (isFirefox) {
