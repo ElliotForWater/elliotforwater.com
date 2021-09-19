@@ -53,33 +53,14 @@ export default function ButtonAddToBrowser() {
     if (isFirefox) {
       console.log('firefox')
 
-      if (typeof window.extensionInterface !== 'undefined') {
-        // Installed
-        console.log('extension installed')
-
-        window.extensionInterface.postMessage()
-      } else {
-        console.log('not installed')
-      }
-
-      // window.addEventListener("message", (event) => {
-      //   if (event.source == window &&
-      //       event.data &&
-      //       event.data.direction == "from-page-script") {
-      //     alert("Content script received message: \"" + event.data.message + "\"");
-      //   }
-      // });
-
       // check msg from extension content-script.js
-      window.addEventListener('message', function (event) {
-        console.log('message', event)
-
-        const { source, data } = event
-        if (source === window && data?.target === 'content-script-ff' && data?.message !== 'installed') {
-          console.log('set firefox')
-          setBrowserName('firefox')
-        }
-      })
+      if (
+        window.extensionInterface?.target === 'content-script-ff' &&
+        window.extensionInterface?.message === 'installed'
+      ) {
+        console.log('extension installed')
+        setBrowserName('firefox')
+      }
     }
   }, [])
 
