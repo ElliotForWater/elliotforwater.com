@@ -15,6 +15,12 @@ const buttonInfo = {
   },
 }
 
+declare global {
+  interface Window {
+    extensionInterface: any
+  }
+}
+
 export default function ButtonAddToBrowser() {
   const { t } = useTranslation()
   const [browserName, setBrowserName] = useState('')
@@ -43,6 +49,13 @@ export default function ButtonAddToBrowser() {
 
     if (isFirefox) {
       console.log('firefox')
+
+      if (typeof window.extensionInterface !== 'undefined') {
+        // Installed
+        console.log('extension Interface')
+
+        window.extensionInterface.usefulFunction()
+      }
 
       // window.addEventListener("message", (event) => {
       //   if (event.source == window &&
