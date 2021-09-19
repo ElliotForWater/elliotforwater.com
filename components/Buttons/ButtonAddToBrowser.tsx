@@ -36,6 +36,8 @@ export default function ButtonAddToBrowser() {
 
         chrome.runtime.onMessage.addListener((res) => {
           if (res.message === 'extension_installed') {
+            setBrowserName('')
+          } else {
             setBrowserName('chrome')
           }
         })
