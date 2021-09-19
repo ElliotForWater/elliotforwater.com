@@ -35,18 +35,14 @@ export default function ButtonAddToBrowser() {
           {
             action: 'id',
             value: config.CHROME_EXTENSION_ID,
-          },
-          function (response) {
-            console.log('response', response)
-            if (!response) {
-              // no extension installed
-              return setBrowserName('chrome')
-            }
           }
         )
-      } else {
-        console.log('we are in browser')
-        // return setBrowserName('chrome')
+
+        // chrome.runtime.onMessage.addListener((res) => {
+        //   if(res.message === 'extension_installed') {
+        //     setBrowserName('chrome')
+        //   }
+        // })
       }
     }
 
