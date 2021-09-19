@@ -44,14 +44,9 @@ export default function ButtonAddToBrowser() {
     }
 
     if (isFirefox) {
-      console.log('firefox')
-
       // check msg from extension content-script.js
-      if (
-        window.extensionInterface?.target === 'content-script-ff' &&
-        window.extensionInterface?.message === 'installed'
-      ) {
-        console.log('extension installed')
+      if (!window.extensionInterface) {
+        console.log('extension not installed')
         setBrowserName('firefox')
       }
     }
