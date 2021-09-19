@@ -52,9 +52,11 @@ export default function ButtonAddToBrowser() {
 
       if (typeof window.extensionInterface !== 'undefined') {
         // Installed
-        console.log('extension Interface')
+        console.log('extension installed')
 
-        window.extensionInterface.usefulFunction()
+        window.extensionInterface.postMessage()
+      } else {
+        console.log('not installed')
       }
 
       // window.addEventListener("message", (event) => {
