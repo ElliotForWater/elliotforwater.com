@@ -29,26 +29,25 @@ export default function ButtonAddToBrowser() {
     if (isBrowser && isChrome) {
       /* eslint-disable no-undef */
       if (chrome.runtime) {
-        chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, {
-          action: 'id',
-          value: config.CHROME_EXTENSION_ID,
+        chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, (response) => {
+          console.log('received user data', response)
         })
 
-        chrome.runtime.onMessage.addListener((res) => {
-          if (res.message === 'extension_installed') {
-            setBrowserName('')
-          } else {
-            setBrowserName('chrome')
-          }
-        })
+        // chrome.runtime.onMessage.addListener((res) => {
+        //   if (res.message === 'extension_installed') {
+        //     setBrowserName('')
+        //   } else {
+        //     setBrowserName('chrome')
+        //   }
+        // })
       }
       /* eslint-enable no-undef */
     }
 
     if (isFirefox) {
       // check msg from extension content-script.js
+      // if extension is NOT installed
       if (!window.extensionInterface) {
-        console.log('extension not installed')
         setBrowserName('firefox')
       }
     }
