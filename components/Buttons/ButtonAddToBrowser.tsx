@@ -27,7 +27,7 @@ export default function ButtonAddToBrowser() {
 
   async function sendMessageChrome() {
     /* eslint-disable no-undef */
-    const req = chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, { message: config.CHROME_EXTENSION_ID })
+    const req = await chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, { message: config.CHROME_EXTENSION_ID })
     console.log({ req })
     /* eslint-enable no-undef */
   }
