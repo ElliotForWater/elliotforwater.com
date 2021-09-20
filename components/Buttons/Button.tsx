@@ -17,6 +17,7 @@ export default function Button({ fluid, onClick, children, linkHref, target = '_
       className={classnames(styles.button, {
         [styles.fluid]: fluid,
         [styles[size]]: size,
+        [styles.withLink]: linkHref,
       })}
       onClick={onClick}
     >

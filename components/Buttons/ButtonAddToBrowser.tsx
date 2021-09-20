@@ -23,7 +23,7 @@ declare global {
 
 export default function ButtonAddToBrowser() {
   const { t } = useTranslation()
-  const [browserName, setBrowserName] = useState('')
+  const [browserName, setBrowserName] = useState('chrome')
 
   useEffect(() => {
     if (isBrowser && isChrome) {

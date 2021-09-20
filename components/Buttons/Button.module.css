@@ -45,3 +45,18 @@ BUTTON OPTIONS
 .small {
   padding: 5px;
 }
+
+.big.withLink,
+.small.withLink {
+  padding: 0;
+}
+
+.withLink.big > a {
+  padding: 16px 24px;
+  display: block;
+}
+
+.withLink.small > a {
+  padding: 5px;
+  display: block;
+}
