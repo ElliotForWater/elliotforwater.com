@@ -25,21 +25,23 @@ export default function ButtonAddToBrowser() {
   const { t } = useTranslation()
   const [browserName, setBrowserName] = useState('')
 
+  async function chromeMessage() {
+    /* eslint-disable no-undef */
+    const res = await chrome.runtime.sendMessage({ message: 'ddfnnfelkcabbeebchaegpcdcmdekoim' })
+    /* eslint-enable no-undef */
+    console.log({ res })
+  }
+
   useEffect(() => {
     if (isBrowser && isChrome) {
       /* eslint-disable no-undef */
       if (chrome.runtime) {
-        chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, (response) => {
-          console.log('received user data', response)
-        })
+        // async function chromeMessage() {
+        //   const res = await chrome.runtime.sendMessage({ message: 'ddfnnfelkcabbeebchaegpcdcmdekoim'})
+        //   console.log({ res })
+        // }
 
-        // chrome.runtime.onMessage.addListener((res) => {
-        //   if (res.message === 'extension_installed') {
-        //     setBrowserName('')
-        //   } else {
-        //     setBrowserName('chrome')
-        //   }
-        // })
+        chromeMessage()
       }
       /* eslint-enable no-undef */
     }
