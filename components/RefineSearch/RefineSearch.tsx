@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import { UserContext } from '../../context/UserContext'
 import styles from './RefineSearch.module.css'
-import { queryNoWitheSpace } from '../../helpers/_utils'
+import { queryNoWhiteSpace } from '../../helpers/_utils'
 
 type relatedObj = {
   text: string
@@ -22,7 +22,7 @@ const RefineSearch = ({ refineSearches }: Props) => {
 
   function handleClick(e, text) {
     e.preventDefault()
-    const queryNoWhite = queryNoWitheSpace(text)
+    const queryNoWhite = queryNoWhiteSpace(text)
 
     setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
     router.push(`search?query=${queryNoWhite}&type=web`)

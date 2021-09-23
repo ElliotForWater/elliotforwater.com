@@ -10,7 +10,7 @@ import Layout from '../components/Layout/Layout'
 import TabsMenu from '../components/TabsMenu/TabsMenu'
 import Loader from '../components/Loader/Loader'
 import LoadMore from '../components/LoadMore/LoadMore'
-import { formatNumber, queryNoWitheSpace, getClientIp } from '../helpers/_utils'
+import { formatNumber, queryNoWhiteSpace, getClientIp } from '../helpers/_utils'
 import { COOKIE_NAME_ADULT_FILTER, getCookie, convertAdultFilter } from '../helpers/_cookies'
 import { FiMoreVertical } from 'react-icons/fi'
 import { FaWikipediaW, FaYoutube, FaTwitch } from 'react-icons/fa'
@@ -123,7 +123,7 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [content, setContent] = useState(null)
-  const queryNoWhite = queryNoWitheSpace(query)
+  const queryNoWhite = queryNoWhiteSpace(query)
   const [errorStatus, setStatusCode] = useState(errorCode)
 
   const [allResults, setAllResults] = useState(results)
@@ -415,7 +415,7 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
   let userAgent
   let adultContentCookie
   let fullUrl
-  const queryNoWhite = queryNoWitheSpace(searchQuery)
+  const queryNoWhite = queryNoWhiteSpace(searchQuery)
   const oldQuery = query.q
   const isMap = type === 'map'
 
