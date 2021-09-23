@@ -5,8 +5,8 @@ export function formatNumber(num) {
 /* Checks if in browser environment and not in SSR */
 export const isBrowser = () => !!(typeof window !== 'undefined' && window.document && window.document.createElement)
 
-export function queryNoWitheSpace(query: string) {
-  return encodeURIComponent(query).replace(/%20/g,"+")
+export function queryNoWhiteSpace(query: string) {
+  return encodeURIComponent(query).replace(/%20/g, '+')
 }
 
 export function getGeoloc() {

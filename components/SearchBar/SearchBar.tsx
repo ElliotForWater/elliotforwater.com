@@ -8,7 +8,7 @@ import classnames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SearchBar.module.css'
 import SearchIcon from '../Icons/SearchIcon'
-import { queryNoWitheSpace } from '../../helpers/_utils'
+import { queryNoWhiteSpace } from '../../helpers/_utils'
 
 type SearchProps = {
   big?: boolean
@@ -143,7 +143,7 @@ const SearchBar = ({ big }: SearchProps) => {
 
     setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
 
-    const queryNoSpace = queryNoWitheSpace(searchString)
+    const queryNoSpace = queryNoWhiteSpace(searchString)
     router.push(`search?query=${queryNoSpace}&type=${typeValue}`)
     resetDropdown(event)
   }
