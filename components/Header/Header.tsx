@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext } from 'react'
+import React, { FC, useState, useRef, useEffect, useContext } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link'
 import SearchBar from '../SearchBar/SearchBar'
@@ -13,14 +13,22 @@ function Droplet() {
   const { userState } = useContext(UserContext)
   const { t } = useTranslation()
   const isBreakpoint = useMediaQuery(768)
+  const dropletContainer = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      const isOutsideDropletContainer = dropletContainer.current && !dropletContainer.current.contains(event.target)
+      if (isOutsideDropletContainer) setHideTooltip(true)
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [dropletContainer])
 
   return (
-    <div
-      className={styles.dropletContainer}
-      onMouseEnter={() => setHideTooltip(false)}
-      onMouseLeave={() => setHideTooltip(true)}
-      onClick={() => setHideTooltip((prev) => !prev)}
-    >
+    <div className={styles.dropletContainer} ref={dropletContainer} onClick={() => setHideTooltip(!hideTooltip)}>
       <img className={styles.dropletImg} src='/images/water_droplet.svg' />
       <Tooltip isHidden={hideTooltip} direction={isBreakpoint ? 'left' : 'right'}>
         {t('common:header.tooltip_count')}
