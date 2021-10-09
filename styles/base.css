@@ -154,10 +154,9 @@ label {
 
 .divider {
   height: 4px;
-  width: 100px;
+  width: 100%;
   margin: 0 auto;
   background: var(--elliotSecondary);
-  margin-bottom: 20px;
 }
 
 .old_container {
@@ -166,29 +165,54 @@ label {
   margin-right: 0;
   margin-left: 0;
 }
-
+.container {
+  margin-left: 15rem;
+  margin-right: auto;
+}
+@media (min-width: 576px) {
+  .divider {
+    margin-bottom: 1vh;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    margin-left: 2.55rem;
+  }
+}
 @media (min-width: 768px) {
   .old_container {
     background: white;
     margin-top: 0;
     margin-left: 130px;
   }
-
   .odometer {
     font-size: 26px;
   }
 
   .divider {
-    margin-bottom: 30px;
+    margin-bottom: 1.5vh;
   }
 }
-
+@media (max-width: 768px) {
+  .container {
+    margin-left: 2.55rem;
+    margin-right: 1rem;
+  }
+}
 @media (min-width: 1200px) {
   .old_container {
     max-width: 1100px;
   }
-
   .divider {
-    margin-bottom: 40px;
+    margin-bottom: 3vh;
   }
 }
+
+/*TERMS*/
+.termsWrap {
+  padding: 0 1rem;
+}
+.termsWrap > ul {
+  list-style-type: circle;
+}
+/*END of TERMS*/

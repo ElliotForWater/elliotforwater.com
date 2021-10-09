@@ -7,8 +7,9 @@ function Terms() {
 
   return (
     <Layout fluid pageTitle={t('terms:pageTitle')} pageDescription={t('terms:pageDescription')}>
-      <div className='old_container'>
+      <div className='container'>
         <h2>{t('terms:title')}</h2>
+        <div className='divider'> </div>
         <label>{t('terms:date')}</label>
         <div className='termsWrap'>
           <br />
@@ -22,14 +23,48 @@ function Terms() {
           {t('terms:p3')}
           <br />
           <br />
-          <strong>{t('terms:subtitle1')}</strong>
-          <br />
+          <strong>In this Article </strong>
+          <ul>
+            <li>
+              <a href='#sub1'>{t('terms:subtitle1')}</a>
+            </li>
+            <li>
+              {' '}
+              <a href='#sub2'>{t('terms:subtitle2')}</a>
+            </li>
+            <li>
+              <a href='#sub3'>{t('terms:subtitle3')}</a>
+            </li>
+            <li>
+              <a href='#sub4'>{t('terms:subtitle4')}</a>
+            </li>
+            <li>
+              <a href='#sub5'>{t('terms:subtitle5')}</a>
+            </li>
+            <li>
+              <a href='#sub6'>{t('terms:subtitle6')}</a>
+            </li>
+            <li>
+              <a href='#sub7'>{t('terms:subtitle7')}</a>
+            </li>
+            <li>
+              <a href='#sub8'>{t('terms:subtitle8')}</a>
+            </li>
+            <li>
+              <a href='#sub9'>{t('terms:subtitle9')}</a>
+            </li>
+            <li>
+              <a href='#sub10'>{t('terms:subtitle10')}</a>
+            </li>
+          </ul>
+          <h4 id='sub1'>{t('terms:subtitle1')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p4')}
           <br />
           <br />
-          <strong>{t('terms:subtitle2')}</strong>
-          <br />
+          <h4 id='sub2'>{t('terms:subtitle2')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p5')}
           <br />
@@ -40,8 +75,8 @@ function Terms() {
           {t('terms:p7')}
           <br />
           <br />
-          <strong>{t('terms:subtitle3')}</strong>
-          <br />
+          <h4 id='sub3'>{t('terms:subtitle3')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p8')}
           <br />
@@ -52,24 +87,20 @@ function Terms() {
           {t('terms:p10')}
           <br />
           <br />
-          <strong>{t('terms:subtitle4')}</strong>
-          <br />
+          <h4 id='sub4'>{t('terms:subtitle4')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p11')}
-          You agree to defend, indemnify and hold harmless Elliot For Water LTD and its licensee and licensors, and
-          their employees, contractors, agents, officers and directors, from and against any and all claims, damages,
-          obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees),
-          resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.
           <br />
           <br />
-          <strong>{t('terms:subtitle5')}</strong>
-          <br />
+          <h4 id='sub5'>{t('terms:subtitle5')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p12')}
           <br />
           <br />
-          <strong>{t('terms:subtitle6')}</strong>
-          <br />
+          <h4 id='sub6'>{t('terms:subtitle6')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p13')}
           <br />
@@ -77,14 +108,14 @@ function Terms() {
           {t('terms:p14')}
           <br />
           <br />
-          <strong>{t('terms:subtitle7')}</strong>
-          <br />
+          <h4 id='sub7'>{t('terms:subtitle7')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p15')}
           <br />
           <br />
-          <strong>{t('terms:subtitle8')}</strong>
-          <br />
+          <h4 id='sub8'>{t('terms:subtitle8')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p16')}
           <br />
@@ -92,8 +123,8 @@ function Terms() {
           {t('terms:p17')}
           <br />
           <br />
-          <strong>{t('terms:subtitle9')}</strong>
-          <br />
+          <h4 id='sub9'>{t('terms:subtitle9')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p18')}
           <br />
@@ -101,13 +132,13 @@ function Terms() {
           {t('terms:p19')}
           <br />
           <br />
-          <strong>{t('terms:subtitle10')}</strong>
-          <br />
+          <h4 id='sub10'>{t('terms:subtitle10')}</h4>
+          <hr></hr>
           <br />
           {t('terms:p20')}
           <br />
           <br />
-          {t('terms:p21')} info@elliotforwater.com
+          {t('terms:p21')} <a href='mailto:info@elliotforwater.com'> info@elliotforwater.com</a>
           <br />
           <br />
           {t('terms:p22')}
