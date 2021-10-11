@@ -12,6 +12,7 @@ import ButtonAddToBrowser from '../components/Buttons/ButtonAddToBrowser'
 import Loader from '../components/Loader/Loader'
 import Card from '../components/Card/Card'
 import SubscribeForm from '../components/Forms/Subscribe/SubscribeForm'
+import Accordion from '../components/Accordion/Accordion'
 
 import styles from './index.module.css'
 
@@ -68,6 +69,13 @@ Home.getInitialProps = async () => {
         	json,
         },
       },
+      faqTitle,
+      faqListCollection {
+        items {
+          title,
+          text
+        }
+      },
     	newsletterTitle
   }    
 }`
@@ -112,6 +120,8 @@ function Home({ homePage }) {
     howItWorksDescription,
     howItWorksCardsCollection,
     waterGoal,
+    faqTitle,
+    faqListCollection,
     newsletterTitle,
   } = homePage
 
@@ -228,6 +238,24 @@ function Home({ homePage }) {
             <div className={styles.centerBox}>
               <h2>{waterGoal.title}</h2>
               <div>{documentToReactComponents(waterGoal.content.json)}</div>
+            </div>
+            <svg
+              className={styles.svgDiagonal}
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 100 100'
+              preserveAspectRatio='none'
+            >
+              <polygon fill='white' points='0,0 0,100 100,100' />
+            </svg>
+          </section>
+
+          <section className={classnames(styles.sections)}>
+            <div className={classnames(styles.centerBox, styles.accordionWrap)}>
+              <h2>{faqTitle}</h2>
+              <div className={styles.accordionSection}>
+                <img className={styles.accordionImage} />
+                <Accordion list={faqListCollection.items} />
+              </div>
             </div>
           </section>
 

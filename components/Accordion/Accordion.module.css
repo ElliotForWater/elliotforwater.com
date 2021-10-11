@@ -1,0 +1,38 @@
+.accordion {
+  list-style: none;
+}
+
+.accordionItem {
+  border-top: 1px solid var(--lightAzureBackground);
+}
+
+.accordionTitle {
+  font-size: 18px;
+  background-color: var(--elliotSecondary);
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.control {
+  font-size: 20px;
+}
+
+.text {
+  background-color: var(--lightGreyBackground);
+  padding: 20px;
+  font-size: 16px;
+}
+
+.textWrapper {
+  height: auto;
+  overflow: hidden;
+  transition: height ease 0.2s;
+}
