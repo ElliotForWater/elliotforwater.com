@@ -70,10 +70,15 @@ Home.getInitialProps = async () => {
         },
       },
       faqTitle,
+      faqImage {
+        url,
+        title
+      },
       faqListCollection {
         items {
           title,
-          text
+          text,
+          tags
         }
       },
     	newsletterTitle
@@ -121,6 +126,7 @@ function Home({ homePage }) {
     howItWorksCardsCollection,
     waterGoal,
     faqTitle,
+    faqImage,
     faqListCollection,
     newsletterTitle,
   } = homePage
@@ -253,7 +259,9 @@ function Home({ homePage }) {
             <div className={classnames(styles.centerBox, styles.accordionWrap)}>
               <h2>{faqTitle}</h2>
               <div className={styles.accordionSection}>
-                <img className={styles.accordionImage} />
+                <div className={styles.accordionImage}>
+                  <img src={faqImage.url} alt={faqImage.title} />
+                </div>
                 <Accordion list={faqListCollection.items} />
               </div>
             </div>

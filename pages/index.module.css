@@ -197,6 +197,14 @@
 
 .accordionImage {
   display: none;
+  width: 500px;
+  height: 500px;
+}
+
+.accordionImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (min-width: 450px) {
@@ -356,9 +364,7 @@
 
   .accordionImage {
     display: block;
-    background: red;
-    width: 100px;
-    height: 100px;
+    margin-right: 40px;
   }
 }
 
@@ -380,6 +386,10 @@
   .howItWorks {
     padding-top: 150px;
     padding-bottom: 200px;
+  }
+
+  .accordionImage {
+    margin-right: 60px;
   }
 }
 

@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import classnames from 'classnames'
 import { FiChevronRight, FiChevronDown } from 'react-icons/fi'
+import ReactMarkdown from 'react-markdown'
+import ButtonAddToBrowser from '../Buttons/ButtonAddToBrowser'
 import styles from './Accordion.module.css'
 
 type AccordionItemProps = {
   title: string
   text: string
+  tags: null | string[]
 }
 interface PropAccordion {
   list: AccordionItemProps[]
@@ -18,7 +21,7 @@ interface AccordionObj {
 }
 
 function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
-  const { title, text } = item
+  const { title, text, tags } = item
 
   return (
     <li className={classnames(styles.accordionItem, { [styles.active]: isActive })}>
@@ -28,7 +31,14 @@ function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
       </div>
       {isActive && (
         <div className={styles.textWrapper}>
-          <div className={styles.text}>{text}</div>
+          <div className={styles.text}>
+            <ReactMarkdown>{text}</ReactMarkdown>
+            {tags && tags.includes('extension-button') && (
+              <span className={styles.button}>
+                <ButtonAddToBrowser />
+              </span>
+            )}
+          </div>
         </div>
       )}
     </li>
