@@ -1,0 +1,45 @@
+.accordion {
+  list-style: none;
+  border-bottom: 1px solid var(--elliotSecondary);
+}
+
+.accordionItem {
+  border-top: 1px solid var(--elliotSecondary);
+  padding-bottom: 8px;
+}
+
+.accordionTitle {
+  font-size: 18px;
+  color: var(--elliotSecondary);
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.control {
+  font-size: 20px;
+}
+
+.text {
+  background-color: var(--lightGreyBackground);
+  padding: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.textWrapper {
+  height: auto;
+  overflow: hidden;
+  transition: height ease 0.2s;
+}
+
+.button {
+  margin-top: 20px;
+  display: inline-block;
+}
