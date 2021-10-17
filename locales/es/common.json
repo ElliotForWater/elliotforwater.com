@@ -1,0 +1,72 @@
+{
+  "addToChrome": "Agregue Elliot For Water a Chrome",
+  "addToFirefox": "Agregue Elliot For Water a Firefox",
+  "backHome": "regresar a inicio",
+  "contact_us": "Contactanos",
+  "learn_more": "Aprende más",
+  "load_more": "Carga más",
+  "for_water": "Para agua",
+  "search_input": "Busca en la web para dar agua ...",
+  "previous": "Anterior",
+  "next": "Siguiente",
+  "header": {
+    "our_mission": "Nuestra misión",
+    "tooltip_count": "Este es el número de búsquedas que ha realizado con Elliot for Water. Aproximadamente, cada búsqueda dona 14 litros de agua potable pura."
+  },
+  "close": "Cerrar",
+  "save": "Guardar",
+  "404": {
+    "title": "¡No te ahogues en un vaso de agua!",
+    "description": "¡Parece que la página que estás buscando no existe!"
+  },
+  "error": {
+    "title": "¡Uh oh! ¡Parece que hubo una fuga!",
+    "description": "¡Pedimos disculpas! Hubo un problema en nuestro sistema. Inténtelo en unos minutos."
+  },
+  "footer": {
+    "social_with_us": "Ponerse social con nosotros",
+    "follow_our_journey": "Sigue nuestro viaje",
+    "contact": "Contacto",
+    "about_us": "Sobre nosotros",
+    "faq": "FAQ",
+    "privacy": "Política de privacidad",
+    "terms": "Términos"
+  },
+  "nav": {
+    "why_water": "Por qué el agua",
+    "about": "Sobre nosotros",
+    "share_fb": "Compártanos en Facebook",
+    "blog": "Blog",
+    "settings": "Configuración",
+    "terms": "Términos",
+    "privacy": "Privacidad"
+  },
+  "forms": {
+    "submit": "enviar",
+    "subscribe": "Suscribir",
+    "submitting": "Suscribiendo...",
+    "submitting_text": "¡Espere por favor!",
+    "success": "Éxito",
+    "success_text": "Gracias por tu interés.",
+    "thanks": "Gracias",
+    "thanks_text": "Ya tenemos tus datos",
+    "sorry": "Lo lamentamos",
+    "sorry_text": "Ocurrió un error en nuestro servidor.",
+    "error": "Error",
+    "error_text": "No puede conectarse.",
+    "phone": "Número de teléfono",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Escribe tu mensaje aquí..."
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "adult_filter": "Filtro para adultos",
+    "new_tab": "Abrir resultados de búsqueda en una pestaña nueva",
+    "english": "English",
+    "off": "Apagado",
+    "moderate": "Moderado",
+    "strict": "Estricto"
+  }
+}
