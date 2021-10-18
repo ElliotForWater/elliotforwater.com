@@ -1,0 +1,30 @@
+{
+  "pageTitle": "Por qué el agua",
+  "pageDescription": "Agua significa salud, educación, empoderamiento de la mujer e infancia. En pocas palabras, ¡el agua significa vida!",
+  "layer1": {
+    "title": "<0>Por qué <1>el agua?</1></0>",
+    "subtitle": "Agua significa salud, educación, empoderamiento de la mujer e infancia. En pocas palabras, ¡el agua significa vida!",
+    "explanation": "1 de cada 10 personas carece de acceso a agua potable y nuestra misión es cambiar eso. Por eso creamos Elliot for Water, un buscador que dona agua gracias a tus búsquedas.",
+    "bubble": "Los pozos permiten que las personas que no tienen acceso a agua dulce tengan una fuente de agua directa y sostenible directamente al alcance de la mano"
+  },
+  "layer2": {
+    "explanation": "<0><1>¡El agua significa vida!</1> A través del agua limpia, podemos salvar la vida de más de 760.000 personas cada año. Hoy en día, 785 millones de personas en todo el mundo todavía carecen de acceso a agua potable, lo que provoca muchas enfermedades de salud.</0>",
+    "bubble": "El agua sucia procedente de pozos poco profundos excavados a mano puede contener muchas bacterias dañinas, parásitos e incluso sustancias químicas tóxicas."
+  },
+  "layer3": {
+    "explanation": "<0><1>¡El agua significa el empoderamiento de las mujeres!</1>En los países en desarrollo, las mujeres dedican una media de 6 horas al día a recoger agua. Con una fuente cercana de agua potable, las mujeres recuperan el tiempo para estudiar, trabajar, crear negocios y cuidar de sus familias.</0>",
+    "bubble": "¡Uno de estos frascos que las mujeres llevan en la cabeza puede pesar hasta 44 libras!"
+  },
+  "layer4": {
+    "explanation": "<0><1>¡El agua significa educación!</1>Los niños caminan hasta 4 millas por día para conseguir agua para sus familias, pero sus búsquedas cambiarán eso y les darán a los niños la oportunidad y el tiempo para ir a la escuela, obtener una educación y simplemente disfrutar de su infancia.</0>",
+    "bubble": "Los pozos generalmente se cavan alrededor de 50-75 pies para alcanzar el agua que se encuentra en las profundidades de la tierra."
+  },
+  "layer5": {
+    "explanation": "<0><1>¡El agua ayuda al medio ambiente!</1>El acceso a agua potable limpia evita que las personas generen emisiones de CO2, ya que los aldeanos ya no necesitan quemar leña para hervir y purificar el agua.</0>",
+    "bubble": "Un cilindro de bomba extrae el agua a través de las tuberías principales y entrega el agua dulce."
+  },
+  "layer6": {
+    "subtitle": "¿Cómo se convierten tus búsquedas en agua?",
+    "explanation": "<0>Donamos el 60% de nuestras ganancias a las organizaciones locales de confianza con las que trabajamos para que puedan implementar la mejor y más sostenible solución de agua en cada aldea. De hecho, no todos los lugares tienen las mismas necesidades: algunos pueblos pueden requerir pozos mientras que otros filtros de arena o tuberías, por ejemplo. Lo más importante es que todas las personas tengan acceso a agua potable. Actualmente, estamos trabajando en Guinea-Bissau en colaboración con <1>WellFound.</1> Puede hacer clic <2>aquí</2> si quieres conocer más sobre nuestros proyectos.</0>"
+  }
+}
