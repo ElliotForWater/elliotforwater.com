@@ -87,5 +87,32 @@ export const homePage = {
       },
     },
   },
+  faqTitle: 'Frequently Asked',
+  faqImage: {
+    url:
+      'https://images.ctfassets.net/3qtdrevau8ui/37PmgegmjS2eWdlPT69mj2/90201d93b4862de11be69b59fa7ff0be/IMG-20191021-WA0012.jpg',
+    title: 'woman_water',
+  },
+  faqListCollection: {
+    items: [
+      {
+        title: 'How can I support clean water projects by searching the web?',
+        text:
+          "Elliot is a search engine, just like Google, but we use 60% of the profit generated through the searches to finance clean water projects. \nThe way it works is simple: you search the web, clicks on Ads generate money, and money finances clean water projects. \nThe search results are provided by a combination of Microsoft's API and our own algorithm. On top of that, by adding Elliot to your browser you’ll also be able to use Bing’s search engine and still donate water!",
+        tags: null,
+      },
+      {
+        title: 'Why water',
+        text:
+          'Because water means health, education, women’s empowerment, and childhood.\nSimply put, Water means Life! More than 565 million people in the world either lack access to water or pay for it 10 to 15 times more than the middle class. This translates to either having to spend a large amount of money to get water or to having to fetch for it every day.\nFetching water means that kids and women will have to spend up to 6 hours a day collecting water from unreliable sources which then means poor water quality, no time for kids to go to school and be kids, and no time for women to work and earn an income.\nBy proving people with reliable and safe access to clean water, though, we can change all this and make sure that every person in the world has a chance to create their own future!\nOur first goal is to provide 1 million people with access to safe water.',
+        tags: null,
+      },
+      {
+        title: 'How do I start using Elliot every day?',
+        text: 'You can do that by simply adding Elliot to your browser. \nYou can do that with just one click',
+        tags: ['extension-button'],
+      },
+    ],
+  },
   newsletterTitle: 'Subscribe to our newsletter!',
 }
