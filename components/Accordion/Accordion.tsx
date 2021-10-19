@@ -2,6 +2,7 @@ import { useState } from 'react'
 import classnames from 'classnames'
 import { FiChevronRight, FiChevronDown } from 'react-icons/fi'
 import ReactMarkdown from 'react-markdown'
+import { isBrowser } from 'react-device-detect'
 import ButtonAddToBrowser from '../Buttons/ButtonAddToBrowser'
 import styles from './Accordion.module.css'
 
@@ -22,6 +23,11 @@ interface AccordionObj {
 
 function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
   const { title, text, tags } = item
+  const hasExtensionTag = tags && tags.includes('extension-button')
+
+  if (!isBrowser && hasExtensionTag) {
+    return <></>
+  }
 
   return (
     <li className={classnames(styles.accordionItem, { [styles.active]: isActive })}>
@@ -33,7 +39,7 @@ function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
         <div className={styles.textWrapper}>
           <div className={styles.text}>
             <ReactMarkdown>{text}</ReactMarkdown>
-            {tags && tags.includes('extension-button') && (
+            {hasExtensionTag && (
               <span className={styles.button}>
                 <ButtonAddToBrowser />
               </span>

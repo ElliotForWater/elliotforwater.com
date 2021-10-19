@@ -50,25 +50,12 @@ export default function ButtonAddToBrowser() {
   }, [])
 
   return (
-    <div className='hideSmallScreen'>
-      {browserName !== '' && (
+    <>
+      {isBrowser && browserName !== '' && (
         <ButtonPrimary size='big' linkHref={buttonInfo[browserName].url}>
           {t(buttonInfo[browserName].label)}
         </ButtonPrimary>
       )}
-      <style jsx>
-        {`
-          .hideSmallScreen {
-            display: none;
-          }
-
-          @media (min-width: 768px) {
-            .hideSmallScreen {
-              display: block;
-            }
-          }
-        `}
-      </style>
-    </div>
+    </>
   )
 }
