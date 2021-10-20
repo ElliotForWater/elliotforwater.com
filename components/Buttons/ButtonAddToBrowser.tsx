@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ButtonPrimary from './ButtonPrimary/ButtonPrimary'
+import ButtonFull from './ButtonFull/ButtonFull'
 import useTranslation from 'next-translate/useTranslation'
 import config from '../../appConfig'
 import { isBrowser, isChrome, isFirefox } from 'react-device-detect'
@@ -21,7 +22,13 @@ declare global {
   }
 }
 
-export default function ButtonAddToBrowser() {
+interface Props {
+  customStyle?: { color: string; background: string; colorHover: string; backgroundHover: string }
+  size?: 'big' | 'small'
+  type?: 'primary' | 'full'
+}
+
+export default function ButtonAddToBrowser({ type = 'primary', size = 'big', customStyle }: Props) {
   const { t } = useTranslation()
   const [browserName, setBrowserName] = useState('')
 
@@ -52,9 +59,19 @@ export default function ButtonAddToBrowser() {
   return (
     <>
       {isBrowser && browserName !== '' && (
-        <ButtonPrimary size='big' linkHref={buttonInfo[browserName].url}>
-          {t(buttonInfo[browserName].label)}
-        </ButtonPrimary>
+        <>
+          {type === 'full' && (
+            <ButtonFull size={size} linkHref={buttonInfo[browserName].url} customStyle={customStyle}>
+              {t(buttonInfo[browserName].label)}
+            </ButtonFull>
+          )}
+
+          {type === 'primary' && (
+            <ButtonPrimary size={size} linkHref={buttonInfo[browserName].url}>
+              {t(buttonInfo[browserName].label)}
+            </ButtonPrimary>
+          )}
+        </>
       )}
     </>
   )

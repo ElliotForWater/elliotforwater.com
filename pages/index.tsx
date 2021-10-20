@@ -69,11 +69,7 @@ Home.getInitialProps = async () => {
         	json,
         },
       },
-      faqTitle,
-      faqImage {
-        url,
-        title
-      },
+      faqTitle
       faqListCollection {
         items {
           title,
@@ -81,7 +77,8 @@ Home.getInitialProps = async () => {
           tags
         }
       },
-    	newsletterTitle
+    	newsletterTitle,
+      newsletterDescription
   }    
 }`
   )
@@ -126,9 +123,9 @@ function Home({ homePage }) {
     howItWorksCardsCollection,
     waterGoal,
     faqTitle,
-    faqImage,
     faqListCollection,
     newsletterTitle,
+    newsletterDescription,
   } = homePage
 
   return (
@@ -245,23 +242,12 @@ function Home({ homePage }) {
               <h2>{waterGoal.title}</h2>
               <div>{documentToReactComponents(waterGoal.content.json)}</div>
             </div>
-            <svg
-              className={styles.svgDiagonal}
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 100 100'
-              preserveAspectRatio='none'
-            >
-              <polygon fill='white' points='0,0 0,100 100,100' />
-            </svg>
           </section>
 
-          <section className={classnames(styles.sections)}>
-            <div className={classnames(styles.centerBox, styles.accordionWrap)}>
+          <section className={classnames(styles.sections, styles.accordionSection)}>
+            <div className={styles.centerBox}>
               <h2>{faqTitle}</h2>
-              <div className={styles.accordionSection}>
-                <div className={styles.accordionImage}>
-                  <img src={faqImage.url} alt={faqImage.title} />
-                </div>
+              <div className={styles.accordionWrap}>
                 <Accordion list={faqListCollection.items} />
               </div>
             </div>
@@ -270,6 +256,7 @@ function Home({ homePage }) {
           <section className={classnames(styles.sections, styles.newsletterSection)}>
             <div className={styles.centerBox}>
               <h2>{newsletterTitle}</h2>
+              <p>{newsletterDescription}</p>
               <div className='divider' />
               <SubscribeForm
                 big

@@ -40,9 +40,18 @@ function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
           <div className={styles.text}>
             <ReactMarkdown>{text}</ReactMarkdown>
             {hasExtensionTag && (
-              <span className={styles.button}>
-                <ButtonAddToBrowser />
-              </span>
+              <div className={styles.button}>
+                <ButtonAddToBrowser
+                  size='big'
+                  type='full'
+                  customStyle={{
+                    color: 'var(--elliotSecondary)',
+                    background: 'white',
+                    colorHover: 'var(--elliotPrimary)',
+                    backgroundHover: 'white',
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

@@ -177,37 +177,20 @@
   margin-bottom: 80px;
 }
 
-.newsletterSection {
+.accordionSection {
   background-color: var(--elliotSecondary);
   color: white;
+}
+
+.accordionWrap {
+  margin: 0 auto;
+  max-width: 900px;
 }
 
 .newsletterSection :global(.divider) {
   background: var(--elliotCta);
 }
 
-.accordionWrap {
-  max-width: 1100px;
-}
-
-.accordionSection {
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.accordionImage {
-  display: none;
-  width: 500px;
-  height: 500px;
-}
-
-.accordionImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: 20%;
-  border-bottom-left-radius: 20%;
-}
 
 @media (min-width: 450px) {
   .sections h2 {
@@ -350,24 +333,6 @@
   .ctaContainer {
     max-width: 55%;
   }
-
-  .accordionSection {
-    margin: 0;
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .accordionSection :global(ul) {
-    max-width: 700px;
-    width: 100%;
-  }
-
-  .accordionImage {
-    display: block;
-    margin-right: 40px;
-  }
 }
 
 @media (min-width: 1100px) {
@@ -388,10 +353,6 @@
   .howItWorks {
     padding-top: 150px;
     padding-bottom: 200px;
-  }
-
-  .accordionImage {
-    margin-right: 60px;
   }
 }
 
