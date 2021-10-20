@@ -191,6 +191,11 @@
   background: var(--elliotCta);
 }
 
+.newsletterDescription {
+  padding-bottom: 20px;
+  margin-top: -15px;
+}
+
 
 @media (min-width: 450px) {
   .sections h2 {

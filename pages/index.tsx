@@ -256,7 +256,7 @@ function Home({ homePage }) {
           <section className={classnames(styles.sections, styles.newsletterSection)}>
             <div className={styles.centerBox}>
               <h2>{newsletterTitle}</h2>
-              <p>{newsletterDescription}</p>
+              <p className={styles.newsletterDescription}>{newsletterDescription}</p>
               <div className='divider' />
               <SubscribeForm
                 big
