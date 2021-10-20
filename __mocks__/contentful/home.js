@@ -115,4 +115,5 @@ export const homePage = {
     ],
   },
   newsletterTitle: 'Subscribe to our newsletter!',
+  newsletterDescription: '',
 }
