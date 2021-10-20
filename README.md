@@ -24,6 +24,11 @@ nextjs 10
 ## Documentation
 
 Please find all the project related information in the [Wiki](https://github.com/ElliotForWater/efw-webapp/wiki)
+Quick links:
+Project set up and usage: https://github.com/ElliotForWater/elliotforwater.com/wiki/1.-Set-up-and-usage
+How to contribute: https://github.com/ElliotForWater/elliotforwater.com/wiki/3.-How-to-contribute
+Our code standard: https://github.com/ElliotForWater/elliotforwater.com/wiki/7.-Code-Styleguide
+
 
 ## How to start
 
@@ -52,12 +57,14 @@ You will find explanatory comments in the `.env.staging` file.
 
 ## I want to help out! How can I start?
 
-Since we are a very small team and we don't have so much time, we decided to set up some tasks where we need more help in
-the github project board.
-You are more then welcome to grab any of the tasks and work on it.
+We always welcome contributor of any kinds.
+You can support us writing code, testing, writing translation, giving tips on UI, UX, SEO or spotting bugs or requesting new features.
+In our [Github issues](https://github.com/ElliotForWater/elliotforwater.com/issues) you will find different tasks that mostly need help. 
+You are more then welcome to grab any of those tasks and work on it.
 Please assign the task you want to work on to yourself, communicate to the team any doubts, concerns, unclear specification or ideas of improvements.
+
 We always welcome new feedback! If you have any ideas on how to improve the project, please feel free to open an issue, label with `ideas` and we will check and answer you asap.
-Again, please remember we are a very small team and we might need some time before getting back to you :prayhands:
+Please remember we are a small team and we might need some time before getting back to you :prayhands:
 Please read here how to pick a task and our [contribution workflow](https://github.com/ElliotForWater/efw-webapp/wiki/3.-How-to-contribute)
 
 ## Got a problem or found a bug?
