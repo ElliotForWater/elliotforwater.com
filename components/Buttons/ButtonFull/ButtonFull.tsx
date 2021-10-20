@@ -39,9 +39,6 @@ export default function ButtonFull({ customStyle, ...props }: Props) {
             font-weight: bold;
             display: inline-block;
             text-transform: uppercase;
-             {
-              /* padding: 10px; */
-            }
           }
 
           .buttonFull:hover {
