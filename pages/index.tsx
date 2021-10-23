@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import { isChrome } from 'react-device-detect'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import ReactMarkdown from 'react-markdown'
 import { FiArrowDownCircle } from 'react-icons/fi'
 import classnames from 'classnames'
 import fetchContenful from '../helpers/_fetchContentful'
@@ -256,7 +257,9 @@ function Home({ homePage }) {
           <section className={classnames(styles.sections, styles.newsletterSection)}>
             <div className={styles.centerBox}>
               <h2>{newsletterTitle}</h2>
-              <p className={styles.newsletterDescription}>{newsletterDescription}</p>
+              <p className={styles.newsletterDescription}>
+                <ReactMarkdown>{newsletterDescription}</ReactMarkdown>
+              </p>
               <div className='divider' />
               <SubscribeForm
                 big
