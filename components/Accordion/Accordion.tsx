@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import classnames from 'classnames'
 import { FiChevronRight, FiChevronDown } from 'react-icons/fi'
 import ReactMarkdown from 'react-markdown'
@@ -23,10 +23,17 @@ interface AccordionObj {
 function AccordionItem({ item, isActive, onToggle }: AccordionObj) {
   const { title, text, tags } = item
   const hasExtensionTag = tags && tags.includes('extension-button')
+  const titleEl = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (titleEl?.current) {
+      titleEl.current.scrollIntoView({ block: 'nearest' })
+    }
+  }, [isActive])
 
   return (
     <li className={classnames(styles.accordionItem, { [styles.active]: isActive })}>
-      <div className={styles.accordionTitle} onClick={onToggle}>
+      <div className={styles.accordionTitle} onClick={onToggle} ref={titleEl}>
         {title}
         <span className={styles.control}>{isActive ? <FiChevronDown /> : <FiChevronRight />} </span>
       </div>
