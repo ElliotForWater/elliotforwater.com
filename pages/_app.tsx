@@ -31,7 +31,9 @@ function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
 
-    gtag.pageview(document.title, location.href, location.pathname + location.search)
+    if (process.env.IS_PRODUCTION) {
+      gtag.pageview(document.title, location.href, location.pathname + location.search)
+    }
   }, [])
 
   return (
