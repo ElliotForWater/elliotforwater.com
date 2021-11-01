@@ -30,6 +30,10 @@ function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
   const user = useUserStateSyncedWithCookies(serverCookies)
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
+
+    if (process.env.IS_PRODUCTION) {
+      gtag.pageview(document.title, location.href, location.pathname + location.search)
+    }
   }, [])
 
   return (
