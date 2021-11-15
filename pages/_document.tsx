@@ -13,7 +13,7 @@ export default class CustomDocument extends Document {
             title='ElliotForWater'
             href='/opensearch.xml'
           />
-          {process.env.IS_PRODUCTION && (
+          {process.env.NEXT_PUBLIC_IS_PRODUCTION && (
             <>
               {/* Global Site Tag (gtag.js) - Google Analytics */}
               <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
