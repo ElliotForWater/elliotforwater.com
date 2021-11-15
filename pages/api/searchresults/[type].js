@@ -21,5 +21,6 @@ export default async function handler(req, res) {
 
   const fullQuery = objectToStringParams(params)
   const results = await getBingApi(type, fullQuery, req.headers)
+  console.log('Bing api call results:', results)
   res.json(results)
 }
