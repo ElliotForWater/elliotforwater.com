@@ -14,4 +14,17 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
       },
     ]
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/blog',
+        destination: 'https://elliotforwaterblogstaging.azurewebsites.net/blog',
+      },
+      {
+        source: '/blog/:path*',
+        destination: `https://elliotforwaterblogstaging.azurewebsites.net/blog/:path*`,
+      },
+    ]
+  },
 })
