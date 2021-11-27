@@ -91,7 +91,6 @@
     "json-server": "^0.16.3",
     "lint-staged": "~10.3.0",
     "next-compose-plugins": "^2.2.1",
-    "next-ga": "~2.3.4",
     "nprogress": "^0.2.0",
     "postcss": "~8.2.10",
     "postcss-extend-rule": "~3.0.0",
