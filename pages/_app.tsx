@@ -15,10 +15,8 @@ import { CookieMap } from '../helpers/_cookies'
 // Binding routes events.
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', (url) => {
-  console.log('router changed')
   console.log('envroment', process.env.NEXT_PUBLIC_IS_PRODUCTION)
   if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
-    console.log('is production router changed')
     gtag.pageview(document.title, location.href, url)
   }
   NProgress.done()
@@ -33,10 +31,7 @@ function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
   const user = useUserStateSyncedWithCookies(serverCookies)
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
-    console.log('app reload')
-    console.log('envroment useEffect', process.env.NEXT_PUBLIC_IS_PRODUCTION)
     if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
-      console.log('is production useEffect')
       gtag.pageview(document.title, location.href, location.pathname + location.search)
     }
   }, [])

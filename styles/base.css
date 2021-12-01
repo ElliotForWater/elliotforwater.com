@@ -161,20 +161,30 @@ label {
   margin-bottom: 20px;
 }
 
-.old_container {
-  background: #f7f7f7;
-  margin-top: 1px;
-  margin-right: 0;
-  margin-left: 0;
+.internal-page-container {
+  padding: 0 20px;
+  margin-bottom: 50px;
+}
+
+.internal-page-container h4 {
+  margin-top: 30px;
+  border-bottom: 1px dotted var(--elliotSecondary);
+  padding-bottom: 7px;
+}
+
+.internal-page-container ul {
+  list-style-type: circle;
+}
+
+.internal-page-divider {
+  height: 4px;
+  width: 100%;
+  background: var(--elliotSecondary);
+  margin-bottom: 30px;
+  margin-top: 8px;
 }
 
 @media (min-width: 768px) {
-  .old_container {
-    background: white;
-    margin-top: 0;
-    margin-left: 130px;
-  }
-
   .odometer {
     font-size: 26px;
   }
@@ -182,14 +192,26 @@ label {
   .divider {
     margin-bottom: 30px;
   }
+
+  .internal-page-container {
+    margin-left: 130px;
+  }
+
+  .internal-page-divider {
+    margin-bottom: 1.5vh;
+  }
 }
 
 @media (min-width: 1200px) {
-  .old_container {
+  .internal-page-container {
     max-width: 1100px;
   }
 
   .divider {
     margin-bottom: 40px;
+  }
+
+  .internal-page-divider {
+    margin-bottom: 3vh;
   }
 }
