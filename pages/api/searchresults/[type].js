@@ -1,5 +1,11 @@
 import getBingApi from '../../../helpers/_httpExpress'
 import { SEARCH_MAX_RESULTS } from '../../../appConfig'
+import rateLimit from '../../../helpers/_rateLimit'
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+})
 
 function objectToStringParams(params) {
   const qs = Object.keys(params)
@@ -9,18 +15,27 @@ function objectToStringParams(params) {
   return qs
 }
 
-export default async function handler(req, res) {
-  const { type, query, adultContentFilter, pageIndex } = req.query
+async function handler(req, res) {
+  try {
+    await limiter.check(res, 3, 'CACHE_TOKEN') // 10 requests per minute
+    console.log('rate limit ok')
 
-  const params = {
-    q: query,
-    safeSearch: adultContentFilter,
-    count: SEARCH_MAX_RESULTS[type],
-    offset: pageIndex || 0,
+    const { type, query, adultContentFilter, pageIndex } = req.query
+    const params = {
+      q: query,
+      safeSearch: adultContentFilter,
+      count: SEARCH_MAX_RESULTS[type],
+      offset: pageIndex || 0,
+    }
+
+    const fullQuery = objectToStringParams(params)
+    const results = await getBingApi(type, fullQuery, req.headers)
+
+    res.json(results)
+  } catch {
+    console.log('rate limit exceeded')
+    res.status(429).json({ error: 'Rate limit exceeded' })
   }
-
-  const fullQuery = objectToStringParams(params)
-  const results = await getBingApi(type, fullQuery, req.headers)
-  console.log('Bing api call results:', results)
-  res.json(results)
 }
+
+export default handler

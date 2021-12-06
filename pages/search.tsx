@@ -128,9 +128,12 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
 
   const [allResults, setAllResults] = useState(results)
 
+  console.log({ errorCode })
+  console.log({ errorStatus })
+
   useEffect(() => {
     setAllResults(results)
-    setStatusCode(errorStatus)
+    // setStatusCode(errorStatus)
   }, [query, type, errorStatus])
 
   useEffect(() => {
@@ -465,7 +468,7 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
       type,
       errorCode: statusCode !== 200 ? statusCode : null,
       activeTab,
-      results: null,
+      results: {},
     }
   }
 
@@ -484,33 +487,38 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
         },
       }
     )
+    console.log('searchpage server data', data)
 
     if (data.ok) {
       results = await data.json()
       const resultTypeAPI = '_type'
       isWeb = results[resultTypeAPI] === 'SearchResponse'
     } else {
+      console.log('400 error')
       statusCode = 400
     }
   } catch (err) {
     statusCode = 500 // TODO: change it in API res
+    console.log('500 error')
     console.error('Error! fetching Search API:', err)
   }
 
   return {
     query: searchQuery,
     type,
-    errorCode: statusCode !== 200 ? statusCode : null,
-    totResults: isWeb ? results.webPages?.totalEstimatedMatches : results.totalEstimatedMatches,
-    results: isWeb
-      ? {
-          web: results.webPages?.value,
-          images: results.images?.value,
-          video: results.videos?.value,
-          news: results.news?.value,
-          relatedSearches: results.relatedSearches?.value,
-        }
-      : results.value,
+    errorCode: statusCode !== 200 && statusCode,
+    totResults: results ? (isWeb ? results.webPages?.totalEstimatedMatches : results.totalEstimatedMatches) : null,
+    results: results
+      ? isWeb
+        ? {
+            web: results.webPages?.value,
+            images: results.images?.value,
+            video: results.videos?.value,
+            news: results.news?.value,
+            relatedSearches: results.relatedSearches?.value,
+          }
+        : results.value
+      : null,
     activeTab,
   }
 }

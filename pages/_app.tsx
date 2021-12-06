@@ -15,7 +15,6 @@ import { CookieMap } from '../helpers/_cookies'
 // Binding routes events.
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', (url) => {
-  console.log('envroment', process.env.NEXT_PUBLIC_IS_PRODUCTION)
   if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
     gtag.pageview(document.title, location.href, url)
   }

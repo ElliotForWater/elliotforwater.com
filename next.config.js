@@ -25,6 +25,10 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
         source: '/blog/:path*',
         destination: `https://elliotforwaterblogstaging.azurewebsites.net/blog/:path*`,
       },
+      {
+        source: '/it/blog/:path*',
+        destination: `https://elliotforwaterblogstaging.azurewebsites.net/it  /blog/:path*`,
+      },
     ]
   },
 })
