@@ -128,10 +128,18 @@ function SearchPage({ query, type, statusCode, activeTab, totResults, results })
 
   const [allResults, setAllResults] = useState(results)
 
+  console.log({ errorCode })
+  console.log({ errorStatus })
+
   useEffect(() => {
     setAllResults(results)
+<<<<<<< HEAD
     setErrorCode(statusCode !== 200 && statusCode)
   }, [query, type, statusCode])
+=======
+    // setStatusCode(errorStatus)
+  }, [query, type, errorStatus])
+>>>>>>> trying rate limit
 
   useEffect(() => {
     let updatedContent
@@ -484,12 +492,14 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
         },
       }
     )
+    console.log('searchpage server data', data)
 
     if (data.ok) {
       results = await data.json()
       const resultTypeAPI = '_type'
       isWeb = results[resultTypeAPI] === 'SearchResponse'
     } else {
+      console.log('400 error')
       statusCode = 400
     }
   } catch (err) {
