@@ -484,19 +484,16 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
         },
       }
     )
-    console.log('searchpage server data', data)
 
     if (data.ok) {
       results = await data.json()
       const resultTypeAPI = '_type'
       isWeb = results[resultTypeAPI] === 'SearchResponse'
     } else {
-      console.log('400 error')
       statusCode = 400
     }
   } catch (err) {
-    statusCode = 500 // TODO: change it in API res
-    console.log('500 error')
+    statusCode = 500
     console.error('Error! fetching Search API:', err)
   }
 
