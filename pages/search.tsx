@@ -128,18 +128,10 @@ function SearchPage({ query, type, statusCode, activeTab, totResults, results })
 
   const [allResults, setAllResults] = useState(results)
 
-  console.log({ errorCode })
-  console.log({ errorStatus })
-
   useEffect(() => {
     setAllResults(results)
-<<<<<<< HEAD
     setErrorCode(statusCode !== 200 && statusCode)
   }, [query, type, statusCode])
-=======
-    // setStatusCode(errorStatus)
-  }, [query, type, errorStatus])
->>>>>>> trying rate limit
 
   useEffect(() => {
     let updatedContent
