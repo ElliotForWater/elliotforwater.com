@@ -114,7 +114,7 @@ function findTabByType(type?: string): tabProp {
   return TAB_MENU.find((tab) => type === tab.resultType)
 }
 
-function SearchPage({ query, type, errorCode, activeTab, totResults, results }) {
+function SearchPage({ query, type, statusCode, activeTab, totResults, results }) {
   const { t } = useTranslation()
   const router = useRouter()
   const { userState } = useContext(UserContext)
@@ -124,14 +124,14 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [content, setContent] = useState(null)
   const queryNoWhite = queryNoWhiteSpace(query)
-  const [errorStatus, setStatusCode] = useState(errorCode)
+  const [errorCode, setErrorCode] = useState(statusCode !== 200 && statusCode)
 
   const [allResults, setAllResults] = useState(results)
 
   useEffect(() => {
     setAllResults(results)
-    setStatusCode(errorStatus)
-  }, [query, type, errorStatus])
+    setErrorCode(statusCode !== 200 && statusCode)
+  }, [query, type, statusCode])
 
   useEffect(() => {
     let updatedContent
@@ -243,11 +243,11 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
               return
           }
         } else {
-          setStatusCode(400)
+          setErrorCode(400)
         }
       } catch (err) {
         console.error('Error while fetching Search API:', err)
-        setStatusCode(500)
+        setErrorCode(500)
       }
     }
     fetchData()
@@ -276,9 +276,9 @@ function SearchPage({ query, type, errorCode, activeTab, totResults, results }) 
 
         <div className='content'>
           {isLoading && <Loader />}
-          {errorStatus && <Error statusCode={errorStatus} />}
+          {errorCode && <Error statusCode={errorCode} />}
 
-          {!errorStatus && !isLoading && content}
+          {!errorCode && !isLoading && content}
 
           {!isLoading && showLoadMore && (
             <div className='loadmoreContainer'>
@@ -463,9 +463,9 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
     return {
       query: searchQuery,
       type,
-      errorCode: statusCode !== 200 ? statusCode : null,
+      statusCode: statusCode !== 200 ? statusCode : null,
       activeTab,
-      results: null,
+      results: {},
     }
   }
 
@@ -493,25 +493,36 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
       statusCode = 400
     }
   } catch (err) {
-    statusCode = 500 // TODO: change it in API res
+    statusCode = 500
     console.error('Error! fetching Search API:', err)
   }
 
-  return {
-    query: searchQuery,
-    type,
-    errorCode: statusCode !== 200 ? statusCode : null,
-    totResults: isWeb ? results.webPages?.totalEstimatedMatches : results.totalEstimatedMatches,
-    results: isWeb
-      ? {
-          web: results.webPages?.value,
-          images: results.images?.value,
-          video: results.videos?.value,
-          news: results.news?.value,
-          relatedSearches: results.relatedSearches?.value,
-        }
-      : results.value,
-    activeTab,
+  if (results) {
+    return {
+      query: searchQuery,
+      type,
+      statusCode,
+      totResults: isWeb ? results.webPages?.totalEstimatedMatches : results.totalEstimatedMatches,
+      results: isWeb
+        ? {
+            web: results.webPages?.value,
+            images: results.images?.value,
+            video: results.videos?.value,
+            news: results.news?.value,
+            relatedSearches: results.relatedSearches?.value,
+          }
+        : results.value,
+      activeTab,
+    }
+  } else {
+    return {
+      query: searchQuery,
+      type,
+      statusCode,
+      totResults: null,
+      results: null,
+      activeTab,
+    }
   }
 }
 
