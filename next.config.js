@@ -12,6 +12,16 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
         destination: '/why-water',
         permanent: true,
       },
+      {
+        source: '/it',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/it/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
     ]
   },
 
@@ -19,15 +29,11 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
     return [
       {
         source: '/blog',
-        destination: 'https://elliotforwaterblogstaging.azurewebsites.net/blog',
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
       },
       {
         source: '/blog/:path*',
-        destination: `https://elliotforwaterblogstaging.azurewebsites.net/blog/:path*`,
-      },
-      {
-        source: '/it/blog/:path*',
-        destination: `https://elliotforwaterblogstaging.azurewebsites.net/it/blog/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
       },
     ]
   },

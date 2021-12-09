@@ -17,7 +17,7 @@ function objectToStringParams(params) {
 
 async function handler(req, res) {
   try {
-    await limiter.check(res, 3, 'CACHE_TOKEN') // 10 requests per minute
+    await limiter.check(res, 20, 'CACHE_TOKEN') // 20 requests per minute - 1200/hr
     console.log('rate limit ok')
 
     const { type, query, adultContentFilter, pageIndex } = req.query
