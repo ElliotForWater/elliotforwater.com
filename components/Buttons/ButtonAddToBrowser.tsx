@@ -36,13 +36,17 @@ export default function ButtonAddToBrowser({ type = 'primary', size = 'big', cus
     if (isBrowser && isChrome) {
       /* eslint-disable no-undef */
       if (chrome.runtime) {
-        chrome.runtime.sendMessage(config.CHROME_EXTENSION_ID, { message: config.CHROME_EXTENSION_ID }, function (
-          reply
-        ) {
-          if (!reply) {
-            setBrowserName('chrome')
+        chrome.runtime.sendMessage(
+          config.CHROME_EXTENSION_ID,
+          {
+            message: config.CHROME_EXTENSION_ID,
+          },
+          function (reply) {
+            if (!reply) {
+              setBrowserName('chrome')
+            }
           }
-        })
+        )
       }
       /* eslint-enable no-undef */
     }
