@@ -22,6 +22,10 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
         destination: '/:path*',
         permanent: true,
       },
+      {
+        source: '/blog/search:path*',
+        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/search:path*`,
+      },
     ]
   },
 
