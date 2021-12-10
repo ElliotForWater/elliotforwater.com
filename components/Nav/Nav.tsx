@@ -71,9 +71,7 @@ const Nav = () => {
             <a href='https://www.facebook.com/elliotforwater/?fref=ts'>{t('common:nav.share_fb')}</a>
           </li>
           <li className={styles.menuItem}>
-            <a target='_blank' href='https://medium.com/@elliotforwater'>
-              {t('common:nav.blog')}
-            </a>
+            <Link href='/blog'>{t('common:nav.blog')}</Link>
           </li>
           <li className={styles.divider} />
           <li className={classnames(styles.menuItem, styles.navButton)}>
