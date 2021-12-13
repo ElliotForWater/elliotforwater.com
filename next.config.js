@@ -34,11 +34,11 @@ module.exports = withPlugins([[withBundleAnalyzer], nextTranslate], {
     return [
       {
         source: '/blog',
-        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}`,
       },
       {
         source: '/blog/:path*',
-        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/:path*`,
       },
     ]
   },
