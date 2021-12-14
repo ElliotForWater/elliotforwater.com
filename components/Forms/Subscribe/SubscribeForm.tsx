@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input } from '../Inputs/Inputs'
 import ButtonSubscribe from '../../Buttons/ButtonSubscribe/ButtonSubscribe'
@@ -6,6 +6,7 @@ import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 /* eslint-disable-next-line no-shadow */
 enum NOTIFICATION {
@@ -23,6 +24,7 @@ const SubscribeForm = ({ big = false, ...props }) => {
 
   const methods = useForm()
   const { handleSubmit, register, errors } = methods
+  const recaptchaRef = useRef<ReCAPTCHA>()
 
   const showToast = (notification: NOTIFICATION) => {
     let toastProperties = null
@@ -80,6 +82,14 @@ const SubscribeForm = ({ big = false, ...props }) => {
   }
 
   async function onSubmit(data, e) {
+    const token = await recaptchaRef.current.executeAsync()
+
+    if (!token) {
+      return
+    } else {
+      data = { ...data, recapchaToken: token }
+    }
+
     // Reset any notifications
     setList([])
 
@@ -155,6 +165,12 @@ const SubscribeForm = ({ big = false, ...props }) => {
         )}
         <ToastList toastList={list} position='bottomRight' />
       </form>
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size='invisible'
+        sitekey='FAKE KEY'
+        // sitekey={process.env.RECAPCHA_SITE_KEY}
+      />
     </FormProvider>
   )
 }
