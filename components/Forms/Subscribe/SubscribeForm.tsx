@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input } from '../Inputs/Inputs'
 import ButtonSubscribe from '../../Buttons/ButtonSubscribe/ButtonSubscribe'
@@ -6,6 +6,7 @@ import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 /* eslint-disable-next-line no-shadow */
 enum NOTIFICATION {
@@ -14,12 +15,14 @@ enum NOTIFICATION {
   UserExists,
   ConnectionError,
   ServerError,
+  RecaptchaError,
   None,
 }
 
 const SubscribeForm = ({ big = false, ...props }) => {
   const { t } = useTranslation()
   const [list, setList] = useState([])
+  const recaptchaRef = useRef<ReCAPTCHA>()
 
   const methods = useForm()
   const { handleSubmit, register, errors } = methods
@@ -68,6 +71,14 @@ const SubscribeForm = ({ big = false, ...props }) => {
           icon: '/images/toast/error.svg',
         }
         break
+      case NOTIFICATION.RecaptchaError:
+        toastProperties = {
+          title: 'Recaptcha Error',
+          message: 'Recaptcha not verified',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg',
+        }
+        break
       case NOTIFICATION.None:
       default:
         setList([])
@@ -79,7 +90,21 @@ const SubscribeForm = ({ big = false, ...props }) => {
     }
   }
 
+  useEffect(() => {
+    recaptchaRef.current.execute()
+  }, [])
+
   async function onSubmit(data, e) {
+    // Checking for valid captcha else we dont submit
+    const token = recaptchaRef.current.getValue()
+
+    if (!token) {
+      showToast(NOTIFICATION.RecaptchaError)
+      return
+    } else {
+      data = { ...data, recaptchaToken: token }
+    }
+
     // Reset any notifications
     setList([])
 
@@ -155,6 +180,11 @@ const SubscribeForm = ({ big = false, ...props }) => {
         )}
         <ToastList toastList={list} position='bottomRight' />
       </form>
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size='invisible'
+        sitekey='FAKE KEY' // {process.env.RECAPTCHA_SITE_KEY}
+      />
     </FormProvider>
   )
 }
