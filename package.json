@@ -93,7 +93,6 @@
     "lint-staged": "^10.3.0",
     "lru-cache": "^6.0.0",
     "next-compose-plugins": "^2.2.1",
-    "nprogress": "^0.2.0",
     "postcss": "^8.2.10",
     "postcss-extend-rule": "^3.0.0",
     "postcss-flexbugs-fixes": "^4.2.1",
