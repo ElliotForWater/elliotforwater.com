@@ -184,6 +184,10 @@ label {
   margin-top: 8px;
 }
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 @media (min-width: 768px) {
   .odometer {
     font-size: 26px;

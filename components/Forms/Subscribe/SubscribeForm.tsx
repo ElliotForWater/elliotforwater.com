@@ -170,9 +170,24 @@ const SubscribeForm = ({ big = false, ...props }) => {
           />
         </div>
         {big ? (
-          <ButtonFull {...props}>
-            <button type='submit'>{t('common:forms.subscribe')}</button>
-          </ButtonFull>
+          <div>
+            <div className={styles.recapchaBranding}>
+              This site is protected by reCAPTCHA and the Google
+              <a href='https://policies.google.com/privacy' target='_blank'>
+                {' '}
+                Privacy Policy{' '}
+              </a>
+              and
+              <a href='https://policies.google.com/terms' target='_blank'>
+                {' '}
+                Terms of Service{' '}
+              </a>{' '}
+              apply.
+            </div>
+            <ButtonFull {...props}>
+              <button type='submit'>{t('common:forms.subscribe')}</button>
+            </ButtonFull>
+          </div>
         ) : (
           <ButtonSubscribe>
             <button type='submit'>{t('common:forms.subscribe')}</button>
@@ -183,7 +198,7 @@ const SubscribeForm = ({ big = false, ...props }) => {
       <ReCAPTCHA
         ref={recaptchaRef}
         size='invisible'
-        sitekey='FAKE KEY' // {process.env.RECAPTCHA_SITE_KEY}
+        sitekey='FAKE KEY' // {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
       />
     </FormProvider>
   )

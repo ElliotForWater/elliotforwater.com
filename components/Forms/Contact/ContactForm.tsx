@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import ToastList from '../../Toast/ToastList'
 import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input, Textarea } from '../Inputs/Inputs'
 import styles from './ContactForm.module.css'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const ContactForm = (props) => {
   const [list, setList] = useState([])
   const { t } = useTranslation()
+  const recaptchaRef = useRef<ReCAPTCHA>()
 
   const methods = useForm()
   const { handleSubmit, register, errors } = methods
@@ -19,6 +21,7 @@ const ContactForm = (props) => {
     Success,
     ConnectionError,
     ServerError,
+    RecaptchaError,
     None,
   }
 
@@ -58,6 +61,14 @@ const ContactForm = (props) => {
           icon: '/images/toast/error.svg',
         }
         break
+      case NOTIFICATION.RecaptchaError:
+        toastProperties = {
+          title: 'Recaptcha Error',
+          message: 'Recaptcha not verified',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg',
+        }
+        break
       case NOTIFICATION.None:
       default:
         setList([])
@@ -69,7 +80,21 @@ const ContactForm = (props) => {
     }
   }
 
+  useEffect(() => {
+    recaptchaRef.current.execute()
+  }, [])
+
   async function onSubmit(data, event) {
+    // Checking for valid captcha else we dont submit
+    const token = recaptchaRef.current.getValue()
+
+    if (!token) {
+      showToast(NOTIFICATION.RecaptchaError)
+      return
+    } else {
+      data = { ...data, recaptchaToken: token }
+    }
+
     // Reset any notifications
     setList([])
     showToast(NOTIFICATION.Submit)
@@ -145,6 +170,19 @@ const ContactForm = (props) => {
             required: { value: true, message: 'Leave us a message so we can contact you back' },
           }}
         />
+        <div>
+          This site is protected by reCAPTCHA and the Google
+          <a href='https://policies.google.com/privacy' target='_blank'>
+            {' '}
+            Privacy Policy{' '}
+          </a>
+          and
+          <a href='https://policies.google.com/terms' target='_blank'>
+            {' '}
+            Terms of Service{' '}
+          </a>
+          apply.
+        </div>
         <div className={styles.buttons}>
           <ButtonFull {...props}>
             <button type='submit'>{t('common:forms.submit')}</button>
@@ -152,6 +190,11 @@ const ContactForm = (props) => {
           <ToastList toastList={list} position='bottomRight' />
         </div>
       </form>
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size='invisible'
+        sitekey='FAKE KEY' // {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+      />
     </FormProvider>
   )
 }
