@@ -5,11 +5,11 @@ import { UserContext } from '../context/UserContext'
 import { useUserStateSyncedWithCookies } from '../hooks/useUserStateSyncedWithCookies'
 import Router from 'next/router'
 import * as gtag from '../helpers/_gtag'
-import NProgress from 'nprogress' // nprogress module
+import NProgress from 'accessible-nprogress' // nprogress module
 
 import '../styles/base.css'
 import '../styles/odometer.css'
-import 'nprogress/nprogress.css' // styles of nprogress
+import 'accessible-nprogress/dist/accessible-nprogress.css' // styles of nprogress
 import { CookieMap } from '../helpers/_cookies'
 
 // Binding routes events.
