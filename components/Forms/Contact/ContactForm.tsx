@@ -193,7 +193,7 @@ const ContactForm = (props) => {
       <ReCAPTCHA
         ref={recaptchaRef}
         size='invisible'
-        sitekey='FAKE KEY' // {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
       />
     </FormProvider>
   )
