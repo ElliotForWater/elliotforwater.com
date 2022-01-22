@@ -195,11 +195,7 @@ const SubscribeForm = ({ big = false, ...props }) => {
         )}
         <ToastList toastList={list} position='bottomRight' />
       </form>
-      <ReCAPTCHA
-        ref={recaptchaRef}
-        size='invisible'
-        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-      />
+      <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} />
     </FormProvider>
   )
 }

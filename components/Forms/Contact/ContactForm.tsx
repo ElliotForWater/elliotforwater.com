@@ -190,11 +190,7 @@ const ContactForm = (props) => {
           <ToastList toastList={list} position='bottomRight' />
         </div>
       </form>
-      <ReCAPTCHA
-        ref={recaptchaRef}
-        size='invisible'
-        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-      />
+      <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} />
     </FormProvider>
   )
 }
