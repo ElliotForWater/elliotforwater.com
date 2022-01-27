@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import ToastList from '../../Toast/ToastList'
 import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Input, Textarea } from '../Inputs/Inputs'
 import styles from './ContactForm.module.css'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 const ContactForm = (props) => {
   const [list, setList] = useState([])
   const { t } = useTranslation()
-  const recaptchaRef = useRef<ReCAPTCHA>()
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const methods = useForm()
   const { handleSubmit, register, errors } = methods
@@ -80,13 +80,13 @@ const ContactForm = (props) => {
     }
   }
 
-  useEffect(() => {
-    recaptchaRef.current.execute()
-  }, [])
-
   async function onSubmit(data, event) {
     // Checking for valid captcha else we dont submit
-    const token = recaptchaRef.current.getValue()
+    if (!executeRecaptcha) {
+      showToast(NOTIFICATION.RecaptchaError)
+      return
+    }
+    const token = await executeRecaptcha('yourAction')
 
     if (!token) {
       showToast(NOTIFICATION.RecaptchaError)
@@ -190,7 +190,6 @@ const ContactForm = (props) => {
           <ToastList toastList={list} position='bottomRight' />
         </div>
       </form>
-      <ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} />
     </FormProvider>
   )
 }

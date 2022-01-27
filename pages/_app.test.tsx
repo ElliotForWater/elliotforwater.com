@@ -4,6 +4,7 @@ import { mount } from 'enzyme'
 import App from './_app'
 import { UserContext, UserContextProps, UserState, USER_STATE_DEFAULT } from '../context/UserContext'
 import { COOKIE_NAME_ADULT_FILTER, COOKIE_NAME_NEW_TAB, COOKIE_NAME_SEARCH_COUNT } from '../helpers/_cookies'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 describe('App', () => {
   let ContextWrapper
@@ -134,5 +135,12 @@ describe('App', () => {
 
     expect(Cookies.get(COOKIE_NAME_SEARCH_COUNT)).toEqual('5')
     expect(Cookies.get(COOKIE_NAME_NEW_TAB)).toEqual('true')
+  })
+
+  it('Recaptcha wrapper should exist', function () {
+    const wrapper = mount(
+      <GoogleReCaptchaProvider children={<App Component={ContextWrapper} pageProps={null} router={null} />} />
+    )
+    expect(wrapper.find(GoogleReCaptchaProvider).exists()).toBe(true)
   })
 })
