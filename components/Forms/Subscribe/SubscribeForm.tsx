@@ -6,6 +6,7 @@ import ButtonFull from '../../Buttons/ButtonFull/ButtonFull'
 import ToastList from '../../Toast/ToastList'
 import useTranslation from 'next-translate/useTranslation'
 import styles from './SubscribeForm.module.css'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 /* eslint-disable-next-line no-shadow */
 enum NOTIFICATION {
@@ -14,12 +15,14 @@ enum NOTIFICATION {
   UserExists,
   ConnectionError,
   ServerError,
+  RecaptchaError,
   None,
 }
 
 const SubscribeForm = ({ big = false, ...props }) => {
   const { t } = useTranslation()
   const [list, setList] = useState([])
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const methods = useForm()
   const { handleSubmit, register, errors } = methods
@@ -68,6 +71,14 @@ const SubscribeForm = ({ big = false, ...props }) => {
           icon: '/images/toast/error.svg',
         }
         break
+      case NOTIFICATION.RecaptchaError:
+        toastProperties = {
+          title: 'Recaptcha Error',
+          message: 'Recaptcha not verified',
+          backgroundColor: '#d9534f',
+          icon: '/images/toast/error.svg',
+        }
+        break
       case NOTIFICATION.None:
       default:
         setList([])
@@ -80,6 +91,20 @@ const SubscribeForm = ({ big = false, ...props }) => {
   }
 
   async function onSubmit(data, e) {
+    // Checking for valid captcha else we dont submit
+    if (!executeRecaptcha) {
+      showToast(NOTIFICATION.RecaptchaError)
+      return
+    }
+    const token = await executeRecaptcha('yourAction')
+
+    if (!token) {
+      showToast(NOTIFICATION.RecaptchaError)
+      return
+    } else {
+      data = { ...data, recaptchaToken: token }
+    }
+
     // Reset any notifications
     setList([])
 
@@ -145,9 +170,24 @@ const SubscribeForm = ({ big = false, ...props }) => {
           />
         </div>
         {big ? (
-          <ButtonFull {...props}>
-            <button type='submit'>{t('common:forms.subscribe')}</button>
-          </ButtonFull>
+          <div>
+            <div className={styles.recapchaBranding}>
+              This site is protected by reCAPTCHA and the Google
+              <a href='https://policies.google.com/privacy' target='_blank'>
+                {' '}
+                Privacy Policy{' '}
+              </a>
+              and
+              <a href='https://policies.google.com/terms' target='_blank'>
+                {' '}
+                Terms of Service{' '}
+              </a>{' '}
+              apply.
+            </div>
+            <ButtonFull {...props}>
+              <button type='submit'>{t('common:forms.subscribe')}</button>
+            </ButtonFull>
+          </div>
         ) : (
           <ButtonSubscribe>
             <button type='submit'>{t('common:forms.subscribe')}</button>

@@ -5,11 +5,12 @@ import { UserContext } from '../context/UserContext'
 import { useUserStateSyncedWithCookies } from '../hooks/useUserStateSyncedWithCookies'
 import Router from 'next/router'
 import * as gtag from '../helpers/_gtag'
-import NProgress from 'nprogress' // nprogress module
+import NProgress from 'accessible-nprogress' // nprogress module
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 import '../styles/base.css'
 import '../styles/odometer.css'
-import 'nprogress/nprogress.css' // styles of nprogress
+import 'accessible-nprogress/dist/accessible-nprogress.css' // styles of nprogress
 import { CookieMap } from '../helpers/_cookies'
 
 // Binding routes events.
@@ -36,9 +37,11 @@ function ElliotApp({ Component, pageProps, serverCookies }: ElliotAppProps) {
   }, [])
 
   return (
-    <UserContext.Provider value={user}>
-      <Component {...pageProps} />
-    </UserContext.Provider>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
+      <UserContext.Provider value={user}>
+        <Component {...pageProps} />
+      </UserContext.Provider>
+    </GoogleReCaptchaProvider>
   )
 }
 

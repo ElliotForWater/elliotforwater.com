@@ -25,6 +25,8 @@ export const Layout: FC<LayoutProps> = ({ children, fluid, pageTitle, pageDescri
         <title>{isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`}</title>
         {/* <!-- Search Engine --> */}
         <meta name='description' content={pageDescription} />
+        {process.env.NEXT_PUBLIC_IS_STAGING && <meta name='robots' content='noindex, nofollow' />}
+
         {/* <!-- Schema.org for Google --> */}
         <meta itemProp='name' content={isHome || query ? pageTitle : `${pageTitle} - Elliot for Water`} />
         <meta itemProp='description' content={pageDescription} />
