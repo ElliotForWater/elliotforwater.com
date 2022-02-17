@@ -33,7 +33,7 @@
   "dependencies": {
     "accessible-nprogress": "^1.0.0",
     "contentful-mock": "^0.0.4",
-    "next": "^11.1.3",
+    "next": "^12.1.0",
     "next-translate": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
