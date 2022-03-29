@@ -30,8 +30,9 @@ async function handler(req, res) {
 
     const fullQuery = objectToStringParams(params)
     const results = await getBingApi(type, fullQuery, req.headers)
-
     res.json(results)
+    console.log('fetching bing api...')
+    console.log(res)
   } catch {
     console.log('rate limit exceeded')
     res.status(429).json({ error: 'Rate limit exceeded' })

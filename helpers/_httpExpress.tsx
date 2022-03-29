@@ -25,6 +25,7 @@ function getBingApi(type, query, headers) {
   }
 
   return new Promise((resolve, reject) => {
+    console.log('https fetch from express helper')
     https.get(options, (res) => {
       let body = ''
       res.on('data', (part) => (body += part))

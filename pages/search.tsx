@@ -185,6 +185,7 @@ function SearchPage({ query, type, statusCode, activeTab, totResults, results })
       try {
         setIsLoadingMore(true)
 
+        console.log('fetching api from new batch searchpage')
         const res = await fetch(
           `${window.location.origin}/api/searchresults/${type}?` +
             new URLSearchParams({
@@ -470,6 +471,7 @@ SearchPage.getInitialProps = async ({ req, res, query, pathname }) => {
   }
 
   try {
+    console.log('fetching api from nextjs searchpage')
     const data = await fetch(
       `${fullUrl}/api/searchresults/${type}?` +
         new URLSearchParams({
