@@ -25,7 +25,11 @@ const SubscribeForm = ({ big = false, ...props }) => {
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const methods = useForm()
-  const { handleSubmit, register, errors } = methods
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = methods
 
   const showToast = (notification: NOTIFICATION) => {
     let toastProperties = null
