@@ -63,6 +63,7 @@ export function Textarea({ name, rows, register, customClassname, rules = {}, er
         rows={rows}
         {...rest}
       />
+      {errors[name] && <div className={styles.error}>{errors[name].message}</div>}
     </div>
   )
 }
