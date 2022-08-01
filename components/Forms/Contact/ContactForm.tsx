@@ -13,7 +13,11 @@ const ContactForm = (props) => {
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const methods = useForm()
-  const { handleSubmit, register, errors } = methods
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = methods
 
   /* eslint-disable-next-line no-shadow */
   enum NOTIFICATION {
@@ -139,6 +143,7 @@ const ContactForm = (props) => {
           type='text'
           customClassname={styles.formInput}
           placeholder={t('common:forms.name')}
+          errors={errors}
           register={register}
           rules={{
             required: { value: true, message: 'Please enter your name' },
