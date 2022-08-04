@@ -36,7 +36,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 export function Select({ options, name, register, rules = {}, errors = {}, ...rest }: SelectProps) {
   return (
-    <select className={styles.select} {...register(name)} {...rest}>
+    <select className={styles.select} {...register(name, rules)} {...rest}>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>
           {label || value}
