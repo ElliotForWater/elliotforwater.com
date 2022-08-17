@@ -1,7 +1,6 @@
 import React from 'react'
-import Toast from './Toast'
 import ToastList from './ToastList'
-import { mount } from 'enzyme'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 describe('ToastList', () => {
   const firstTitle = 'first title'
@@ -21,48 +20,36 @@ describe('ToastList', () => {
 
   describe('render', () => {
     it('should display some toasts', () => {
-      const wrapper = mount(<ToastList {...{ toastList: toastList }} />)
-      expect(wrapper.findWhere((el) => el.is(Toast)).length).toEqual(2)
+      render(<ToastList {...{ toastList: toastList }} />)
+      expect(screen.getAllByRole('button').length).toBe(2)
     })
 
     it('should remove the first toast from the list', () => {
       // Arrange
-      const wrapper = mount(<ToastList {...{ toastList: toastList }} />)
-      const firstToast = wrapper.findWhere((el) => el.is(Toast)).first()
+      render(<ToastList {...{ toastList: toastList }} />)
+      const firstToast = screen.getAllByRole('button')[0]
 
       // Act
-      firstToast.find('button').simulate('click')
+      fireEvent.click(firstToast)
 
       // Assert
-      expect(wrapper.findWhere((el) => el.is(Toast)).length).toEqual(1)
-      expect(
-        wrapper
-          .findWhere((el) => el.is(Toast))
-          .first()
-          .find('p')
-          .first()
-          .text()
-      ).toEqual(secondTitle)
+      expect(screen.getAllByRole('button').length).toBe(1)
+      expect(screen.getByText(secondTitle)).toBeDefined()
+      expect(screen.queryByText(firstTitle)).toBeNull()
     })
 
     it('should remove the second toast from the list', () => {
       // Arrange
-      const wrapper = mount(<ToastList {...{ toastList: toastList }} />)
-      const secondToast = wrapper.findWhere((el) => el.is(Toast)).at(1)
+      render(<ToastList {...{ toastList: toastList }} />)
+      const secondToast = screen.getAllByRole('button')[1]
+
       // Act
-      secondToast.find('button').simulate('click')
+      fireEvent.click(secondToast)
 
       // Assert
-      expect(wrapper.findWhere((el) => el.is(Toast)).length).toEqual(1)
-
-      expect(
-        wrapper
-          .findWhere((el) => el.is(Toast))
-          .first()
-          .find('p')
-          .first()
-          .text()
-      ).toEqual(firstTitle)
+      expect(screen.getAllByRole('button').length).toBe(1)
+      expect(screen.getByText(firstTitle)).toBeDefined()
+      expect(screen.queryByText(secondTitle)).toBeNull()
     })
   })
 })

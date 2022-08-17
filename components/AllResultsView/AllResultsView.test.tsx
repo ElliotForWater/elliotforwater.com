@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import AllResultsView from './AllResultsView'
 import { render, screen } from '@testing-library/react'
 import ALL_RESULTS from '../../__mocks__/webApi.json'
@@ -22,8 +21,8 @@ const emptyResults = {
 
 describe('AllResultsView', () => {
   it('should render without throwing an error', function () {
-    const wrap = shallow(<AllResultsView results={webResults} query='sugar' />)
-    expect(wrap).toBeDefined()
+    const { container } = render(<AllResultsView results={webResults} query='sugar' />)
+    expect(container).toBeDefined()
   })
 
   it('should render 16 articles', function () {

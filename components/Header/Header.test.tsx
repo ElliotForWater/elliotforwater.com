@@ -1,9 +1,8 @@
 import mockMediaQuery from '../../__mocks__/matchMedia'
 
 import React from 'react'
-import { mount } from 'enzyme'
+import { screen, render } from '@testing-library/react'
 import Header from './Header'
-import { act } from 'react-dom/test-utils'
 import { UserContext } from '../../context/UserContext'
 import { user } from '../../__mocks__/userContext'
 mockMediaQuery()
@@ -25,13 +24,12 @@ jest.mock('next/router', () => ({
 
 describe('Header', () => {
   it('should render without throwing an error', async function () {
-    await act(async () => {
-      const wrap = mount(
-        <UserContext.Provider value={userContext}>
-          <Header />
-        </UserContext.Provider>
-      )
-      expect(wrap.find('img').first().prop('src')).toEqual('/images/water_droplet.svg')
-    })
+    render(
+      <UserContext.Provider value={userContext}>
+        <Header />
+      </UserContext.Provider>
+    )
+    const firstImage = screen.getAllByRole('img')[0]
+    expect(firstImage.src).toContain('/images/water_droplet.svg')
   })
 })
