@@ -9,17 +9,17 @@ steps:
       verbose: false
 
   - task: Npm@1
-    displayName: 'npm run build:stage'
+    displayName: 'npm run build:prod'
     env:
       NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
       NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
       NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
       NEXT_PUBLIC_RECAPTCHA_SITE_KEY: $(NEXT_PUBLIC_RECAPTCHA_SITE_KEY)
-      BING_SEARCH_KEY: $(BING_SEARCH_DEV_KEY)
+      BING_SEARCH_KEY: $(BING_SEARCH_KEY_22)
     inputs:
       command: custom
       verbose: false
-      customCommand: 'run build:stage'
+      customCommand: 'run build:prod'
 
   - task: Npm@1
     displayName: 'npm run export'

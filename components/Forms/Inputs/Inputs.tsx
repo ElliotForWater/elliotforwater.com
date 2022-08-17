@@ -14,9 +14,8 @@ export function Input({ name, type, register, rules = {}, errors = {}, customCla
     <div className={type === 'checkbox' || type === 'radiobox' ? styles.inputWrapInline : styles.inputWrap}>
       <input
         className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.input)}
-        name={name}
         type={type}
-        ref={register(rules)}
+        {...register(name, rules)}
         {...rest}
       />
       {errors[name] && <div className={styles.error}>{errors[name].message}</div>}
@@ -37,7 +36,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 export function Select({ options, name, register, rules = {}, errors = {}, ...rest }: SelectProps) {
   return (
-    <select className={styles.select} name={name} ref={register} {...rest}>
+    <select className={styles.select} {...register(name, rules)} {...rest}>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>
           {label || value}
@@ -60,11 +59,11 @@ export function Textarea({ name, rows, register, customClassname, rules = {}, er
     <div className={styles.inputWrap}>
       <textarea
         className={classnames({ [styles.inputError]: errors[name] }, customClassname, styles.textarea)}
-        name={name}
-        ref={register(rules)}
+        {...register(name, rules)}
         rows={rows}
         {...rest}
       />
+      {errors[name] && <div className={styles.error}>{errors[name].message}</div>}
     </div>
   )
 }
