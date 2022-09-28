@@ -1,12 +1,11 @@
 import React from 'react'
-import { mount } from 'enzyme'
 import ButtonPrimary from './ButtonPrimary'
 import { render, screen, fireEvent } from '@testing-library/react'
 
 describe('ButtonPrimary', () => {
   it('should render with <a> tag', function () {
-    const wrap = mount(<ButtonPrimary linkHref='#'>I'm a button</ButtonPrimary>)
-    expect(wrap.find('a').exists()).toBe(true)
+    render(<ButtonPrimary linkHref='#'>I'm a button</ButtonPrimary>)
+    expect(screen.getByRole('link')).toBeDefined()
   })
 
   it('should render without <a> tag', function () {

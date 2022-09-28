@@ -1,14 +1,15 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import Tooltip from './Tooltip'
 
 describe('Tooltip', () => {
   it('should render without throwing an error', function () {
-    shallow(
+    const { container } = render(
       <Tooltip isHidden={false} direction='left'>
         {' '}
         Some text for the tooltip
       </Tooltip>
     )
+    expect(container).toBeDefined()
   })
 })

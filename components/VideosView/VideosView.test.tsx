@@ -1,13 +1,12 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import VideosView from './VideosView'
 import { render, screen } from '@testing-library/react'
 import VIDEOS from '../../__mocks__/videoApi.json'
 
 describe('VideosView', () => {
   it('should render without throwing an error', function () {
-    const wrap = shallow(<VideosView videos={VIDEOS.value} query='madonna' />)
-    expect(wrap).toBeDefined()
+    const { container } = render(<VideosView videos={VIDEOS.value} query='madonna' />)
+    expect(container).toBeDefined()
   })
 
   it('should render all videos results', function () {

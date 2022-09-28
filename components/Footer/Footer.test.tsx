@@ -1,10 +1,11 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { render, screen, within } from '@testing-library/react'
 import Footer from './Footer'
 
 describe('Footer', () => {
   it('should render without throwing an error', function () {
-    const wrap = mount(<Footer />)
-    expect(wrap.find('h4').first().text()).toBe('common:footer.social_with_us')
+    render(<Footer />)
+    const firstH4 = screen.getAllByRole('heading', { level: 4 })[0]
+    expect(within(firstH4).getByText('common:footer.social_with_us')).toBeDefined()
   })
 })

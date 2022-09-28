@@ -1,9 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import Nav from './Nav'
 
 describe('Nav', () => {
   it('should render without throwing an error', function () {
-    shallow(<Nav />)
+    const { container } = render(<Nav />)
+    expect(container).toBeDefined()
   })
 })

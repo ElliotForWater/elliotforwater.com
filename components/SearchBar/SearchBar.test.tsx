@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import SearchBar from './SearchBar'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -9,6 +9,7 @@ describe('SearchBar', () => {
     useRouter.mockImplementationOnce(() => ({
       query: { query: 'coffee' },
     }))
-    shallow(<SearchBar />)
+    const { container } = render(<SearchBar />)
+    expect(container).toBeDefined()
   })
 })

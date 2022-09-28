@@ -1,7 +1,6 @@
 import React from 'react'
 import Toast from './Toast'
-import { shallow } from 'enzyme'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 
 describe('Toast', () => {
   describe('render', () => {
@@ -35,8 +34,8 @@ describe('Toast', () => {
     it('should display the icon', () => {
       const expectedValue = 'Some test text'
       const expectedIcon = 'test.jpg'
-      const wrap = shallow(<Toast {...{ title: expectedValue, icon: expectedIcon }} />)
-      expect(wrap.find('img').props().src).toEqual(expectedIcon)
+      render(<Toast {...{ title: expectedValue, icon: expectedIcon }} />)
+      expect(screen.getByRole('img').src).toContain(expectedIcon)
     })
 
     it('should call the function when X button clicked', () => {

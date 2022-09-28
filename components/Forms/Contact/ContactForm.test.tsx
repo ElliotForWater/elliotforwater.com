@@ -1,10 +1,11 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { render, screen, within } from '@testing-library/react'
 import ContactForm from './ContactForm'
 
 describe('ContactForm', () => {
   it('should render without throwing an error', function () {
-    const wrapper = mount(<ContactForm />)
-    expect(wrapper.find('button').first().text()).toBe('common:forms.submit')
+    render(<ContactForm />)
+    const button = screen.getByRole('button')
+    expect(within(button).getByText('common:forms.submit')).toBeDefined()
   })
 })
