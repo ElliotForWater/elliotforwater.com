@@ -1,10 +1,8 @@
 import mockMediaQuery from '../../__mocks__/matchMedia'
 
 import React, { useState } from 'react'
-import { mount } from 'enzyme'
 import { render, fireEvent, screen } from '@testing-library/react'
 import TabsMenu from './TabsMenu'
-import TabItem from '../TabItem/TabItem'
 
 mockMediaQuery()
 
@@ -58,15 +56,6 @@ describe('TabsMenu', () => {
   it('should render four tabs', function () {
     render(<TabsMenuWrap />)
     expect(screen.getAllByText(/Tab (\d+)/).length).toBe(4)
-  })
-
-  it('should show active class on tab click', function () {
-    const wrap = mount(<TabsMenuWrap />)
-    expect(wrap.find(TabItem).first().prop('isActive')).toBe(true)
-
-    wrap.find(TabItem).last().simulate('click')
-    expect(wrap.find(TabItem).first().prop('isActive')).toBe(false)
-    expect(wrap.find(TabItem).last().prop('isActive')).toBe(true)
   })
 
   it('should show corresponding content when tab is clicked', function () {
