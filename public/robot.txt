@@ -9,3 +9,11 @@ User-agent: AhrefsBot
 User-agent: SemrushBot
 User-agent: SemrushBot-SA
 Disallow: /
+
+# Block indexing of /search? pages
+# Allow indexing of any other pages
+User-agent: *
+Allow: /
+Disallow: /search?
+
+Sitemap: https://a292494.sitemaphosting6.com/4337145/sitemap_4337145.xml
