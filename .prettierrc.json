@@ -1,7 +1,6 @@
 {
-  "singleQuote": true,
-  "jsxSingleQuote": true,
-  "printWidth": 120,
+  "$schema": "https://json.schemastore.org/prettierrc",
   "semi": false,
-  "endOfLine": "auto"
+  "singleQuote": true,
+  "printWidth": 100
 }
