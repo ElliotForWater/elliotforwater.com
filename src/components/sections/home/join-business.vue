@@ -42,7 +42,7 @@ const companies = [
                     Join our free Business pilot program and be part of the change
                 </div>
 
-                <Button variant="primary" class="shrink-0">
+                <Button variant="primary" class="shrink-0" target="_blank" href="https://form.jotform.com/252945447848069">
                     Get in touch
                 </Button>
             </div>

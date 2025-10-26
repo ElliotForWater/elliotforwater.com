@@ -59,7 +59,7 @@ import WhiteButtonBg from '@/components/ui/white-button-bg.vue';
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <div class="col-span-2 bg-neutral-50 border-1 border-neutral-100 rounded-4xl overflow-hidden px-4 md:px-6 lg:px-8 
+                    <div class="col-span-2 bg-neutral-50 border-1 border-neutral-100 rounded-4xl overflow-hidden px-4 md:px-6 lg:px-8
                         flex flex-col gap-5 md:gap-10 justify-between max-h-[500px] md:max-h-[580px]
                     ">
                         <div class="py-4 md:py-6 lg:py-8 space-y-4 md:space-y-6 lg:space-y-8 max-w-[503px] w-full">
@@ -169,7 +169,7 @@ import WhiteButtonBg from '@/components/ui/white-button-bg.vue';
                                             Get more with Pro
                                         </span>
                                     </CardTitle>
-                                    <Button variant="tertiary">
+                                    <Button variant="tertiary" target="_blank" href="https://form.jotform.com/252944655309061">
                                         <span class="relative z-10">
                                             Join the waitlist
                                         </span>
