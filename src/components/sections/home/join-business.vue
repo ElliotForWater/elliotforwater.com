@@ -10,6 +10,8 @@ const companies = [
     { icon: '/logos/trusted-company/5.svg' },
     { icon: '/logos/trusted-company/6.svg' },
     { icon: '/logos/trusted-company/7.svg' },
+    { icon: '/logos/trusted-company/8.svg' },
+    { icon: '/logos/trusted-company/9.svg' },
     { icon: '/logos/trusted-company/1.svg' },
     { icon: '/logos/trusted-company/2.svg' },
     { icon: '/logos/trusted-company/3.svg' },
@@ -17,6 +19,8 @@ const companies = [
     { icon: '/logos/trusted-company/5.svg' },
     { icon: '/logos/trusted-company/6.svg' },
     { icon: '/logos/trusted-company/7.svg' },
+    { icon: '/logos/trusted-company/8.svg' },
+    { icon: '/logos/trusted-company/9.svg' },
     { icon: '/logos/trusted-company/1.svg' },
     { icon: '/logos/trusted-company/2.svg' },
     { icon: '/logos/trusted-company/3.svg' },
@@ -24,6 +28,8 @@ const companies = [
     { icon: '/logos/trusted-company/5.svg' },
     { icon: '/logos/trusted-company/6.svg' },
     { icon: '/logos/trusted-company/7.svg' },
+    { icon: '/logos/trusted-company/8.svg' },
+    { icon: '/logos/trusted-company/9.svg' },
 ]
 
 
