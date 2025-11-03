@@ -4,7 +4,7 @@ import AddToFirefoxButton from '@/components/ui/AddToFirefoxButton.vue';
 import Button from '@/components/ui/Button.vue';
 
 let userAgent = navigator.userAgent;
-let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
+// let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
 let isFirefox = userAgent.includes('Firefox');
 </script>
 
@@ -33,7 +33,7 @@ let isFirefox = userAgent.includes('Firefox');
 
         <div class="flex items-start gap-2 md:gap-6 justify-center">
           <div class="relative">
-            <AddToChromeButton v-if="isChrome" />
+            <AddToChromeButton v-if="!isFirefox" />
             <AddToFirefoxButton v-if="isFirefox" />
             <div class="max-w-[70px] md:max-w-[100px] lg:max-w-[172px] w-full -translate-x-[40%] sm:-translate-x-[98%] sm:-translate-y-[2%]">
               <img src="/icons/free-icon.svg" alt="free-icon" />

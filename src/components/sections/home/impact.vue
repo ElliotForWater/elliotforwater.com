@@ -5,7 +5,7 @@ import CardDetails from '@/components/ui/card/CardDetails.vue';
 import SectionTitle from '@/components/ui/SectionTitle.vue';
 
 let userAgent = navigator.userAgent;
-let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
+// let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
 let isFirefox = userAgent.includes('Firefox');
 </script>
 
@@ -26,7 +26,7 @@ let isFirefox = userAgent.includes('Firefox');
         </CardDetails>
       </div>
       <div class="flex flex-col items-center gap-6 pt-6">
-        <AddToChromeButton v-if="isChrome" />
+        <AddToChromeButton v-if="!isFirefox" />
         <AddToFirefoxButton v-if="isFirefox" />
         <div class="flex items-center flex-wrap gap-2 md:gap-4 px-[2%]">
           <p class="uppercase text-neutral-400 text-xs md:text-sm">Available for Chrome & Firefox</p>

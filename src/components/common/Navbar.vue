@@ -18,48 +18,46 @@ const isMenuOpen = ref(false);
 
 // toggle menu
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 // watch for menu open/close → lock/unlock body scroll
 watch(isMenuOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : ''
+  document.body.style.overflow = open ? 'hidden' : '';
 });
 
 // ensure cleanup when component unmounts
 onUnmounted(() => {
-  document.body.style.overflow = ''
+  document.body.style.overflow = '';
 });
 
 const scrollToSection = (hash: string) => {
-  isMenuOpen.value = false
+  isMenuOpen.value = false;
 
   if (hash.startsWith('#')) {
-    const el = document.querySelector(hash)
+    const el = document.querySelector(hash);
     if (el) {
-      const offset = 65
-      const elementPosition = el.getBoundingClientRect().top + window.scrollY
-      const offsetPosition = elementPosition - offset
+      const offset = 65;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
 
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth',
-      })
+      });
     } else {
-      window.location.href = '/' + hash
+      window.location.href = '/' + hash;
     }
   }
-}
+};
 
 let userAgent = navigator.userAgent;
-let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
+// let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
 let isFirefox = userAgent.includes('Firefox');
 </script>
 
 <template>
-  <nav
-    class="app-container flex items-center justify-between gap-2 py-4 bg-background border-b border-neutral-100 shadow-xs sticky top-0 left-0 z-50"
-  >
+  <nav class="app-container flex items-center justify-between gap-2 py-4 bg-background border-b border-neutral-100 shadow-xs sticky top-0 left-0 z-50">
     <!-- Logo -->
     <RouterLink to="/" class="inline-block max-w-24 w-full relative z-50">
       <img src="/logos/app-logo.svg" alt="logo" class="w-full" />
@@ -87,7 +85,7 @@ let isFirefox = userAgent.includes('Firefox');
 
     <!-- Right Side Buttons -->
     <div class="flex gap-2 shrink-0 relative z-50">
-      <AddToChromeButton v-if="isChrome" />
+      <AddToChromeButton v-if="!isFirefox" />
       <AddToFirefoxButton v-if="isFirefox" />
       <!-- Hamburger (Mobile only) -->
       <Button variant="primary" class="block lg:hidden !rounded-2xl" @click="toggleMenu">
