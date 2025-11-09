@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import Cookie from '../views/Cookie.vue';
 import Privacy from '../views/Privacy.vue';
 import Terms from '../views/Terms.vue';
+import Donate from '../views/Donate.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/privacy',
       name: 'privacy',
       component: Privacy,
+    },
+    {
+      path: '/donate',
+      name: 'donate',
+      component: Donate,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

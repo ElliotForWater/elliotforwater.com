@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import Footer from '@/components/common/Footer.vue';
+import Navbar from '@/components/common/Navbar.vue';
 </script>
 
 <template>
+  <Navbar />
   <div class="flex flex-row justify-center px-5">
     <div class="flex flex-col mt-10 text-14 text-left mb-20" style="max-width: 900px">
       <div class="flex flex-row">
@@ -41,6 +44,7 @@ import { RouterLink } from 'vue-router';
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <style lang="css">
