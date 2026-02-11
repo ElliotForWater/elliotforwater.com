@@ -2,8 +2,7 @@
 import { ref, watch, onUnmounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import Button from '../ui/Button.vue';
-import AddToChromeButton from '../ui/AddToChromeButton.vue';
-import AddToFirefoxButton from '../ui/AddToFirefoxButton.vue';
+import AddToBrowserCTA from './AddToBrowserCTA.vue';
 
 // navigation links
 const navLinks = [
@@ -50,10 +49,6 @@ const scrollToSection = (hash: string) => {
     }
   }
 };
-
-let userAgent = navigator.userAgent;
-// let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
-let isFirefox = userAgent.includes('Firefox');
 </script>
 
 <template>
@@ -85,8 +80,8 @@ let isFirefox = userAgent.includes('Firefox');
 
     <!-- Right Side Buttons -->
     <div class="flex gap-2 shrink-0 relative z-50">
-      <AddToChromeButton v-if="!isFirefox" />
-      <AddToFirefoxButton v-if="isFirefox" />
+      <AddToBrowserCTA :showFreeBadge="false" ctaLink="https://magic.beehiiv.com/v1/e9406cdd-094c-4ff2-a866-49b0aa2dd605" label="Send me the link" />
+
       <!-- Hamburger (Mobile only) -->
       <Button variant="primary" class="block lg:hidden !rounded-2xl" @click="toggleMenu">
         <span v-if="!isMenuOpen">☰</span>
