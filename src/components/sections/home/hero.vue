@@ -28,11 +28,11 @@ import AddToBrowserCTA from '@/components/common/AddToBrowserCTA.vue';
 
         <AddToBrowserCTA ctaLink="https://magic.beehiiv.com/v1/e9406cdd-094c-4ff2-a866-49b0aa2dd605" label="Send me the link">
           <template #mobileHint>
-            <div class="text-base text-center text-text-body">Elliot for Water is only available on desktop, leave your email, and we’ll send you the download link.</div>
+            <div class="text-base text-center text-text-body pb-1 mb-2">Elliot for Water is only available on desktop, leave your email, and we’ll send you the download link.</div>
           </template>
 
           <template #secondCta>
-            <Button variant="primary" href="#how_it_works">Discover more</Button>
+            <Button variant="primary" class="text-sm sm:text-base" href="#how_it_works">Discover more</Button>
           </template>
         </AddToBrowserCTA>
       </div>

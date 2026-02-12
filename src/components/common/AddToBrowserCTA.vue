@@ -41,12 +41,11 @@ const submit = (event?: Event) => {
   <!-- Mobile/Tablet -->
   <div v-if="isMobileOrTablet" class="w-full">
     <slot name="mobileHint" />
-    <div class="flex justify-center pt-1 mt-2">
+    <div class="flex items-start gap-2 md:gap-6 justify-center">
       <Button variant="secondary" class="text-sm sm:text-base" @click="submit">
         {{ props.label }}
       </Button>
-    </div>
-    <div class="flex justify-center pt-1 mt-2">
+
       <slot name="secondCta" />
     </div>
   </div>

@@ -23,7 +23,9 @@ import SectionTitle from '@/components/ui/SectionTitle.vue';
       <div class="flex flex-col items-center gap-6 pt-6">
         <AddToBrowserCTA :showFreeBadge="false" ctaLink="https://magic.beehiiv.com/v1/e9406cdd-094c-4ff2-a866-49b0aa2dd605" label="Send me the link">
           <template #mobileHint>
-            <div class="text-text-body text-sm md:text-base font-medium text-center">Elliot for Water is only available on desktop, leave your email, and we’ll send you the download link.</div>
+            <div class="text-text-body text-sm md:text-base font-medium text-center pb-1 mb-2">
+              Elliot for Water is only available on desktop, leave your email, and we’ll send you the download link.
+            </div>
           </template>
         </AddToBrowserCTA>
       </div>
