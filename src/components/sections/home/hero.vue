@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import AddToChromeButton from '@/components/ui/AddToChromeButton.vue';
-import AddToFirefoxButton from '@/components/ui/AddToFirefoxButton.vue';
 import Button from '@/components/ui/Button.vue';
-
-let userAgent = navigator.userAgent;
-// let isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
-let isFirefox = userAgent.includes('Firefox');
+import AddToBrowserCTA from '@/components/common/AddToBrowserCTA.vue';
 </script>
 
 <template>
@@ -31,16 +26,15 @@ let isFirefox = userAgent.includes('Firefox');
           Elliot for Water is a free productivity dashboard that helps you stay focused while supporting clean water projects around the world.
         </p>
 
-        <div class="flex items-start gap-2 md:gap-6 justify-center">
-          <div class="relative">
-            <AddToChromeButton v-if="!isFirefox" />
-            <AddToFirefoxButton v-if="isFirefox" />
-            <div class="max-w-[70px] md:max-w-[100px] lg:max-w-[172px] w-full -translate-x-[40%] sm:-translate-x-[98%] sm:-translate-y-[2%]">
-              <img src="/icons/free-icon.svg" alt="free-icon" />
-            </div>
-          </div>
-          <Button variant="primary" href="#how_it_works"> Discover more </Button>
-        </div>
+        <AddToBrowserCTA ctaLink="https://magic.beehiiv.com/v1/e9406cdd-094c-4ff2-a866-49b0aa2dd605" label="Send me the link">
+          <template #mobileHint>
+            <div class="text-base text-center text-text-body pb-1 mb-2">Elliot for Water is only available on desktop, leave your email, and we’ll send you the download link.</div>
+          </template>
+
+          <template #secondCta>
+            <Button variant="primary" class="text-sm sm:text-base" href="#how_it_works">Discover more</Button>
+          </template>
+        </AddToBrowserCTA>
       </div>
 
       <div class="w-full">
